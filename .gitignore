@@ -19,6 +19,7 @@
 .env.test.local
 .env.production.local
 .eslintcache
+.env
 
 build-storybook.log
 npm-debug.log*
