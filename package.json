@@ -28,7 +28,7 @@
   "scripts": {
     "dev": "vite",
     "build": "rollup -c",
-    "release": "",
+    "release": "auto shipit --base-branch=main",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

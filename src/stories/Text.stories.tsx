@@ -12,7 +12,7 @@ export const Paragraph = {
 		children: 'Text',
         type: 'p'
 	},
-	play: async ({canvasElement}) =>{
+	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
 		canvas.getByTestId('paragraph');
 	}
@@ -23,7 +23,7 @@ export const Header = {
 		children: 'Header',
         type: 'h1'
 	},
-	play: async ({canvasElement}) =>{
+	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
 		canvas.getByTestId('header');
 	}
