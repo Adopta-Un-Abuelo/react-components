@@ -2,6 +2,25 @@
 
 #### ⚠️ Pushed to `main`
 
+- feat: readme & contributing file modification (guillermo.angeles@adoptaunabuelo.com)
+- Merge tag 'v0.1.3' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: set node version in workflows (guillermo.angeles@adoptaunabuelo.com)
+- fix: engines added to package.json (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/progress-bar' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: ProgressBar components created (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'test' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: package.json error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.1.1 (Thu May 18 2023)
+
+#### ⚠️ Pushed to `main`
+
 - fix: set node version in workflows (guillermo.angeles@adoptaunabuelo.com)
 - fix: engines added to package.json (guillermo.angeles@adoptaunabuelo.com)
 - Merge branch 'feature/progress-bar' into main (guillermo.angeles@adoptaunabuelo.com)
