@@ -1,11 +1,17 @@
 {
-  "name": "intro-storybook-react-template",
+  "name": "react-components",
   "version": "0.2.0",
-  "description": "Starter template to get up and running quickly with React and Storybook",
   "author": {
-    "name": "Chromatic",
-    "email": "https://chromatic.com/"
+    "name": "Guillermo Angeles",
+    "email": "guilleangeles94@gmail.com"
   },
+  "private": false,
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
   "type": "module",
   "repository": {
     "type": "git",
@@ -15,16 +21,16 @@
     "url": "https://github.com/chromaui/intro-storybook-react-template/issues"
   },
   "license": "MIT",
-  "private": true,
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.10",
-    "styled-media-query": "^2.1.2"
+    "styled-media-query": "^2.1.2",
+    "typescript": "^5.0.4"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "rollup -c",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -32,6 +38,12 @@
     "chromatic": "npx chromatic --project-token=chpt_0dcfdd1e76a01ba"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-typescript": "^8.3.4",
+    "@svgr/rollup": "^6.3.1",
     "@storybook/addon-essentials": "^7.0.12",
     "@storybook/addon-interactions": "^7.0.12",
     "@storybook/addon-links": "^7.0.12",
@@ -48,6 +60,14 @@
     "msw": "^1.2.1",
     "msw-storybook-addon": "^1.8.0",
     "prop-types": "^15.8.1",
+    "rollup": "^2.77.2",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-import-css": "^3.0.3",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-styles": "^4.0.0",
+    "rollup-plugin-svg": "^2.0.0",
+    "rollup-plugin-terser": "^7.0.2",
     "storybook": "^7.0.12",
     "vite": "^4.2.0"
   },
