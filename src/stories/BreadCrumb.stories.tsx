@@ -12,7 +12,7 @@ export const Default = {
 		selectedStep: 3,
 		steps: 8,
 	},
-	play: async ({canvasElement}) =>{
+	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
 		canvas.getByTestId('bread-crumb');
 	}
