@@ -1,10 +1,7 @@
 {
-  "name": "react-components",
+  "name": "@adoptaunabuelo/react-components",
   "version": "0.1.0",
-  "author": {
-    "name": "Guillermo Angeles",
-    "email": "guilleangeles94@gmail.com"
-  },
+  "author": "Guillermo Angeles <guilleangeles94@gmail.com>",
   "private": false,
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -73,6 +70,10 @@
     "storybook": "^7.0.12",
     "vite": "^4.2.0"
   },
-  "readme": "ERROR: No README data found!",
-  "homepage": "https://github.com/chromaui/intro-storybook-react-template#readme"
+  "homepage": "https://github.com/Adopta-Un-Abuelo/react-components",
+  "description": "A simple, customizable, and accessible library of React components",
+  "keywords": [
+    "react",
+    "components"
+  ]
 }
