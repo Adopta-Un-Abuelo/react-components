@@ -7,12 +7,24 @@ export default {
 	tags: ['autodocs']
 };
 
-export const Default = {
+export const Paragraph = {
 	args: {
-		children: 'Text'
+		children: 'Text',
+        type: 'p'
 	},
 	play: async ({canvasElement}) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('bread-crumb');
+		canvas.getByTestId('paragraph');
+	}
+};
+
+export const Header = {
+	args: {
+		children: 'Header',
+        type: 'h1'
+	},
+	play: async ({canvasElement}) =>{
+		const canvas = within(canvasElement);
+		canvas.getByTestId('header');
 	}
 };
