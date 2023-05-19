@@ -3,7 +3,7 @@ A simple, customizable, and accessible library of React components
 
 [![npm latest package](https://img.shields.io/npm/v/@adoptaunabuelo/react-components/latest.svg)](https://www.npmjs.com/package/@adoptaunabuelo/react-components)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
-<a href="https://64650038c7589bed568201a8-eaedthpnzo.chromatic.com" target="_blank"><img src="https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg"></a>
+<a href="https://www.chromatic.com/library?appId=64650038c7589bed568201a8" target="_blank"><img src="https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg"></a>
 
 ## Installation
 
@@ -46,7 +46,7 @@ function App() {
 
 You can checkout all the library Components and its docs in our storybook
 
-[Open the Storybook](https://64650038c7589bed568201a8-eaedthpnzo.chromatic.com)
+[Open the Storybook](https://www.chromatic.com/library?appId=64650038c7589bed568201a8)
 
 ## Changelog
 

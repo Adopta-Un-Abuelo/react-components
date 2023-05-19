@@ -3,6 +3,30 @@
 #### ⚠️ Pushed to `main`
 
 - Merge branch 'feature/feedback' into main (guillermo.angeles@adoptaunabuelo.com)
+- Merge tag 'v0.1.5' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: feedback test (guillermo.angeles@adoptaunabuelo.com)
+- feat: Feedback component (guillermo.angeles@adoptaunabuelo.com)
+- Merge tag 'v0.1.4' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: readme & contributing file modification (guillermo.angeles@adoptaunabuelo.com)
+- Merge tag 'v0.1.3' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: set node version in workflows (guillermo.angeles@adoptaunabuelo.com)
+- fix: engines added to package.json (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/progress-bar' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: ProgressBar components created (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'test' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: package.json error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.1.1 (Fri May 19 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/feedback' into main (guillermo.angeles@adoptaunabuelo.com)
 - feat: Feedback component (guillermo.angeles@adoptaunabuelo.com)
 - Merge tag 'v0.1.4' into main (guillermo.angeles@adoptaunabuelo.com)
 - feat: readme & contributing file modification (guillermo.angeles@adoptaunabuelo.com)
