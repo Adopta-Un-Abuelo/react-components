@@ -4,7 +4,12 @@ import { within } from '@storybook/testing-library';
 export default {
 	title: 'Design System/Text',
 	component: Text,
-	tags: ['autodocs']
+	tags: ['autodocs'],
+	argTypes: {
+		weight:{
+			control: 'select'
+		}
+	}
 };
 
 export const Paragraph = {

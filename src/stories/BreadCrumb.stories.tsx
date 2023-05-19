@@ -4,7 +4,18 @@ import { within } from '@storybook/testing-library';
 export default {
 	title: 'Design System/BreadCrumb',
 	component: BreadCrumb,
-	tags: ['autodocs']
+	tags: ['autodocs'],
+	argTypes:{
+		steps: {
+            type: {
+                required: true,
+            },
+            table: {
+                defaultValue: { summary: 1 }
+            },
+            control: 'number'
+        },
+	}
 };
 
 export const Default = {
