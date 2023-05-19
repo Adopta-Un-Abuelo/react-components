@@ -40,6 +40,7 @@ const ButtonImage = (props: Props) =>{
             data-testid="button"
             {...props}
             disabled={props.disabled || props.loading}
+            onClick={(e: any) => (props.onClick && !props.loading && !props.disabled) && props.onClick(e)}
         >
             {props.icon ?
                 props.icon

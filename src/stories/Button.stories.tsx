@@ -14,7 +14,8 @@ export default {
         disabled: false,
         textColor: undefined,
         children: 'Button text',
-        onClick: action('onClick')
+        onClick: action('onClick'),
+        onSuccess: action('onSuccess')
     },
     argTypes: {
         design: {
@@ -42,6 +43,12 @@ export default {
                 defaultValue: { summary: false }
             }
         },
+        success: {
+            description: 'boolean',
+            table: {
+                defaultValue: { summary: false }
+            }
+        },
         disabled: {
             description: 'boolean',
             table: {
@@ -59,11 +66,56 @@ export default {
             },
             control: 'select', 
             options: ['left', 'right']
+        },
+        onClick: {
+            description: '() => void'
+        },
+        onSuccess: {
+            description: '() => void'
         }
     }
 };
 
-export const Default = {
+export const Primary = {
+    args:{
+        design: 'primary',
+        success: false
+    },
+	play: async ({canvasElement}: any) =>{
+		const canvas = within(canvasElement);
+		canvas.getByTestId('button');
+	}
+};
+
+export const PrimaryWithIcon = {
+    args:{
+        design: 'primary',
+        success: false,
+        icon: <Flag height={20} width={20}/>
+    },
+	play: async ({canvasElement}: any) =>{
+		const canvas = within(canvasElement);
+		canvas.getByTestId('button');
+	}
+};
+
+export const Secondary = {
+    args:{
+        design: 'secondary',
+        success: false
+    },
+	play: async ({canvasElement}: any) =>{
+		const canvas = within(canvasElement);
+		canvas.getByTestId('button');
+	}
+};
+
+export const SecondaryWithIcon = {
+    args:{
+        design: 'secondary',
+        success: false,
+        icon: <Flag height={20} width={20}/>
+    },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
 		canvas.getByTestId('button');
@@ -71,6 +123,16 @@ export const Default = {
 };
 
 export const ButtonText = {
+    args:{
+        design: 'text'
+    },
+	play: async ({canvasElement}: any) =>{
+		const canvas = within(canvasElement);
+		canvas.getByTestId('button');
+	}
+};
+
+export const ButtonTextWithIcon = {
     args:{
         design: 'text',
         icon: <Flag height={20} width={20}/>,
