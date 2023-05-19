@@ -34,6 +34,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "test-storybook": "test-storybook",
     "init-msw": "msw init public/",
     "chromatic": "npx chromatic --project-token=chpt_0dcfdd1e76a01ba"
   },
@@ -50,6 +51,7 @@
     "@storybook/jest": "^0.1.0",
     "@storybook/react": "^7.0.12",
     "@storybook/react-vite": "^7.0.12",
+    "@storybook/test-runner": "^0.10.0",
     "@storybook/testing-library": "^0.1.0",
     "@svgr/rollup": "^6.3.1",
     "@types/react": "^18.0.28",
