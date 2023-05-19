@@ -24,7 +24,7 @@ Guidelines for pull requests:
 
 Before creating an new component request, please search to see if someone has requested the component already. If there is an open request, please add a 👍.
 
-If the icon has not already been requested, [create an issue](https://github.com/lucide-icons/lucide/issues/new?title=Icon%20Request:) with a title of `Component request: <component name>` and add as much information as possible.
+If the icon has not already been requested, [create an issue](https://github.com/Adopta-Un-Abuelo/react-components/issues/new?title=Icon%20Request:) with a title of `Component request: <component name>` and add as much information as possible.
 
 ## Development
 
