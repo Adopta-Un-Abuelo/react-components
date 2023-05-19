@@ -1,5 +1,33 @@
 # v0.1.1 (Fri May 19 2023)
 
+#### 🐛 Bug Fix
+
+- Feature/button [#1](https://github.com/Adopta-Un-Abuelo/react-components/pull/1) ([@guillermo-angeles](https://github.com/guillermo-angeles))
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/feedback' into main ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- Merge tag 'v0.1.5' into main ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- fix: feedback test ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- feat: Feedback component ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- Merge tag 'v0.1.4' into main ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- feat: readme & contributing file modification ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- Merge tag 'v0.1.3' into main ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- fix: set node version in workflows ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- fix: engines added to package.json ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- Merge branch 'feature/progress-bar' into main ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- feat: ProgressBar components created ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- Merge branch 'test' into main ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- fix: package.json error ([@guillermo-angeles](https://github.com/guillermo-angeles))
+
+#### Authors: 1
+
+- Guillermo Angeles ([@guillermo-angeles](https://github.com/guillermo-angeles))
+
+---
+
+# v0.1.1 (Fri May 19 2023)
+
 #### ⚠️ Pushed to `main`
 
 - Merge branch 'feature/feedback' into main (guillermo.angeles@adoptaunabuelo.com)
