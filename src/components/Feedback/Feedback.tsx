@@ -41,8 +41,7 @@ const FeedBack = ({type='success', isVisible=false, ...props}: Props) =>{
     },[isVisible]);
 
     return(show ?
-        <Container 
-            data-testid="feedback" 
+        <Container
             type={type} 
             {...props}
         >
