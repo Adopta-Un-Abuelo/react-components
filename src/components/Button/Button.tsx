@@ -38,6 +38,7 @@ export interface Props extends ComponentPropsWithoutRef<"button">{
 	icon?: React.ReactElement,
 	iconPosition?: 'left' | 'right'
 	loading?: boolean,
+	disabled?: boolean,
 	success?: boolean,
 	textColor?: string,
 	animationDelay?: number,

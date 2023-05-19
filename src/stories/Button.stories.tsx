@@ -1,4 +1,4 @@
-import { within } from '@storybook/testing-library';
+import { userEvent, within } from '@storybook/testing-library';
 import { action } from '@storybook/addon-actions';
 
 import Button from '../components/Button/Button';
@@ -14,23 +14,17 @@ export default {
         disabled: false,
         textColor: undefined,
         children: 'Button text',
-        onClick: action('onClick'),
         onSuccess: action('onSuccess')
     },
     argTypes: {
         design: {
-            description: 'string',
             table: {
                 defaultValue: { summary: 'primary' }
             },
             control: 'select', 
             options: ['primary', 'secondary', 'text', 'image', 'call-to-action']
         },
-        children: {
-            description: 'React.Element'
-        },
         size: {
-            description: 'string',
             table: {
                 defaultValue: { summary: 'normal' }
             },
@@ -38,40 +32,42 @@ export default {
             options: ['normal', 'small']
         },
         loading: {
-            description: 'boolean',
             table: {
                 defaultValue: { summary: false }
             }
         },
         success: {
-            description: 'boolean',
             table: {
                 defaultValue: { summary: false }
             }
         },
         disabled: {
-            description: 'boolean',
             table: {
                 defaultValue: { summary: false }
             }
         },
         textColor: {
-            description: 'string',
-            control: 'color'
+            control: 'color',
+            table: {
+                defaultValue: { summary: '#000000C7' }
+            }
         },
         iconPosition: {
-            description: 'string',
             table: {
                 defaultValue: { summary: 'left' }
             },
             control: 'select', 
             options: ['left', 'right']
         },
-        onClick: {
-            description: '() => void'
+        animationDelay: {
+            table: {
+                defaultValue: { summary: 600 }
+            },
         },
-        onSuccess: {
-            description: '() => void'
+        animationTime: {
+            table: {
+                defaultValue: { summary: 0.3 }
+            },
         }
     }
 };
@@ -83,7 +79,8 @@ export const Primary = {
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('button');
+        const button = await canvas.getByTestId('button');
+        await userEvent.click(button);
 	}
 };
 
@@ -95,7 +92,8 @@ export const PrimaryWithIcon = {
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('button');
+		const button = await canvas.getByTestId('button');
+        await userEvent.click(button);
 	}
 };
 
@@ -106,7 +104,8 @@ export const Secondary = {
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('button');
+		const button = await canvas.getByTestId('button');
+        await userEvent.click(button);
 	}
 };
 
@@ -118,7 +117,8 @@ export const SecondaryWithIcon = {
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('button');
+		const button = await canvas.getByTestId('button');
+        await userEvent.click(button);
 	}
 };
 
@@ -128,7 +128,8 @@ export const ButtonText = {
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('button');
+		const button = await canvas.getByTestId('button');
+        await userEvent.click(button);
 	}
 };
 
@@ -139,7 +140,8 @@ export const ButtonTextWithIcon = {
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('button');
+		const button = await canvas.getByTestId('button');
+        await userEvent.click(button);
 	}
 };
 
@@ -151,7 +153,8 @@ export const ButtonImage = {
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('button');
+		const button = await canvas.getByTestId('button');
+        await userEvent.click(button);
 	}
 };
 
@@ -162,7 +165,8 @@ export const ButtonImageWithLabel = {
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('button');
+		const button = await canvas.getByTestId('button');
+        await userEvent.click(button);
 	}
 };
 
@@ -173,7 +177,8 @@ export const CallToAction = {
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('button');
+		const button = await canvas.getByTestId('button');
+        await userEvent.click(button);
 	}
 };
 
@@ -186,6 +191,7 @@ export const CallToActionWithIcon = {
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('button');
+		const button = await canvas.getByTestId('button');
+        await userEvent.click(button);
 	}
 };
