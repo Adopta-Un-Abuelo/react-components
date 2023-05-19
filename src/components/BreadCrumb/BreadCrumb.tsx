@@ -16,10 +16,10 @@ const Step = styled.div<{isSelected: boolean}>`
     background-color: ${props => props.isSelected ? Color.background.primary : Color.text.low};
 `
 
-const BreadCrumb = (props: Props) =>{
+const BreadCrumb = ({steps=1, ...props}: Props) =>{
 
     const [ selectedStep, setSelectedStep ] = useState<number>(props.selectedStep ? props.selectedStep : 0);
-    const stepsArray = Array.from(Array(props.steps).keys());
+    const stepsArray = Array.from(Array(steps).keys());
 
     useEffect(() =>{
         if(props.selectedStep)
