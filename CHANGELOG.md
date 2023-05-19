@@ -1,3 +1,15 @@
+# v0.1.8 (Fri May 19 2023)
+
+#### 🐛 Bug Fix
+
+- Multiple bugs fixed in Button stories [#2](https://github.com/Adopta-Un-Abuelo/react-components/pull/2) (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles ([@guillermo-angeles](https://github.com/guillermo-angeles))
+
+---
+
 # v0.1.1 (Fri May 19 2023)
 
 #### 🐛 Bug Fix
