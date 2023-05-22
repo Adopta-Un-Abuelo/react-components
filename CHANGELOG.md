@@ -6,6 +6,25 @@
 
 #### ⚠️ Pushed to `main`
 
+- fix: idem (guillermo.angeles@adoptaunabuelo.com)
+- Merge tag 'v0.1.9' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: react packages as dev dependencies (guillermo.angeles@adoptaunabuelo.com)
+- Merge tag 'v0.1.8' into main (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles ([@guillermo-angeles](https://github.com/guillermo-angeles))
+
+---
+
+# v0.1.8 (Mon May 22 2023)
+
+#### 🐛 Bug Fix
+
+- Multiple bugs fixed in Button stories [#2](https://github.com/Adopta-Un-Abuelo/react-components/pull/2) (guillermo.angeles@adoptaunabuelo.com)
+
+#### ⚠️ Pushed to `main`
+
 - fix: react packages as dev dependencies (guillermo.angeles@adoptaunabuelo.com)
 - Merge tag 'v0.1.8' into main (guillermo.angeles@adoptaunabuelo.com)
 
