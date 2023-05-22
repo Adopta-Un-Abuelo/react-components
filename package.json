@@ -22,8 +22,7 @@
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "lucide-react": "^0.219.0",
     "styled-components": "^5.3.10",
-    "styled-media-query": "^2.1.2",
-    "typescript": "^5.0.4"
+    "styled-media-query": "^2.1.2"
   },
   "scripts": {
     "dev": "vite",
@@ -72,6 +71,7 @@
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "storybook": "^7.0.12",
+    "typescript": "^5.0.4",
     "vite": "^4.2.0"
   },
   "homepage": "https://github.com/Adopta-Un-Abuelo/react-components",
