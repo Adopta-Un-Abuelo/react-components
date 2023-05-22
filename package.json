@@ -1,6 +1,6 @@
 {
   "name": "@adoptaunabuelo/react-components",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "author": "Guillermo Angeles <guilleangeles94@gmail.com>",
   "private": false,
   "main": "dist/cjs/index.js",
