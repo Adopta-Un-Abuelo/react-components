@@ -188,8 +188,8 @@ const Select = (props: Props) =>{
                                 </Icon>
                                 <Text type='p' style={{fontSize: 14, display: 'flex', alignItems: 'center'}}>
                                     {item.esCountry}
-                                    <span>(
-                                        {item.prefix})
+                                    <span style={{marginLeft: 4}}>
+                                        ({item.prefix})
                                     </span>
                                 </Text>
                             </Option>

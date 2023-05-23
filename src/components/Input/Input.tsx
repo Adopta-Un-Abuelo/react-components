@@ -5,7 +5,7 @@ import Country from '../../constants/Country';
 import { X } from 'lucide-react'
 import GLPN from 'google-libphonenumber';
 
-//import Select  from '../Select/SelectPhone';
+import Select  from '../Select/SelectPhone';
 import Text from '../Text/Text';
 //import InputRange from './InputRange';
 import InputStyled,  { InputStyledProps } from './InputStyled';
@@ -157,7 +157,7 @@ const Input = (props: Props) =>{
             data-testid="input"
             style={props.containerStyle}
         >
-            {props.design === 'design-2' ?
+            {props.design === 'secondary' ?
                 <InputContainer2
                     error={error ? true : false}
                     style={props.style}
@@ -168,7 +168,7 @@ const Input = (props: Props) =>{
                         <IconView>
                             {props.icon}
                         </IconView>
-                        /*: props.type === 'phone' ?
+                    : props.type === 'tel' ?
                         <IconView>
                             <Select
                                 selectedItem={country} 
@@ -177,7 +177,7 @@ const Input = (props: Props) =>{
                                 options={Country}
                                 focus={(focus || inputValue) ? true : false}
                             />
-                        </IconView>*/
+                        </IconView>
                     : null}
                     <Column>
                         <Placeholder 
@@ -210,7 +210,7 @@ const Input = (props: Props) =>{
                         <IconView>
                             {props.icon}
                         </IconView>
-                    /*: props.type === 'phone' ?
+                    : props.type === 'tel' ?
                         <IconView>
                             <Select
                                 optionStyle={{top: 45}}
@@ -220,7 +220,7 @@ const Input = (props: Props) =>{
                                 options={Country}
                                 focus={false}
                             />
-                        </IconView>*/
+                        </IconView>
                     : null}
                     <Column>
                         <InputStyled 
@@ -257,6 +257,6 @@ export interface Props extends InputStyledProps{
     min?: number | string,
     max?: number | string
     country?: string,
-    design?: 'design-1' | 'design-2',
+    design?: 'primary' | 'secondary',
     onPhoneChange?:(item:any)=>void
 }
