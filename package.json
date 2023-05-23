@@ -9,14 +9,6 @@
     "dist"
   ],
   "types": "dist/index.d.ts",
-  "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chromaui/intro-storybook-react-template.git"
-  },
-  "bugs": {
-    "url": "https://github.com/chromaui/intro-storybook-react-template/issues"
-  },
   "license": "MIT",
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.5.3",
