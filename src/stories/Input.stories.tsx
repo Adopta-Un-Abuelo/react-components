@@ -104,7 +104,7 @@ export const InputTime = {
     args: {
         design: 'secondary',
         type:'time',
-        defaultValue: undefined
+        defaultValue: '10:00'
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
@@ -116,7 +116,7 @@ export const InputNumber = {
     args: {
         design: 'secondary',
         type:'number',
-        defaultValue: undefined
+        defaultValue: 20
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
@@ -140,7 +140,7 @@ export const InputEmail = {
     args: {
         design: 'secondary',
         type:'email',
-        defaultValue: undefined
+        defaultValue: 'test@test.com'
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
@@ -152,7 +152,7 @@ export const InputDate = {
     args: {
         design: 'secondary',
         type:'date',
-        defaultValue: undefined
+        defaultValue: '2023-05-23'
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
@@ -164,7 +164,7 @@ export const InputPassword = {
     args: {
         design: 'secondary',
         type:'password',
-        defaultValue: undefined
+        defaultValue: 'password'
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
@@ -176,7 +176,25 @@ export const InputRange = {
     args: {
         design: 'secondary',
         type:'range',
-        defaultValue: undefined
+        min: 0,
+        max: 100,
+        unit: '€',
+        defaultValue: 40
+    },
+	play: async ({canvasElement}: any) =>{
+		const canvas = within(canvasElement);
+		canvas.getByTestId('input');
+	}
+};
+export const InputRangeWithoutRange = {
+    args: {
+        design: 'secondary',
+        type:'range',
+        min: 0,
+        max: 100,
+        unit: '€',
+        defaultValue: 40,
+        hideRange: true
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);

@@ -7,7 +7,7 @@ import GLPN from 'google-libphonenumber';
 
 import Select  from '../Select/SelectPhone';
 import Text from '../Text/Text';
-//import InputRange from './InputRange';
+import InputRange from './InputRange';
 import InputStyled,  { InputStyledProps } from './InputStyled';
 
 const Container = styled.div`
@@ -144,7 +144,7 @@ const Input = (props: Props) =>{
         props.onBlur && props.onBlur(e);
     }
 
-    return(/*props.type === 'range' ?
+    return(props.type === 'range' ?
         <InputRange
             {...props}
             hideRange={props.hideRange}
@@ -152,7 +152,7 @@ const Input = (props: Props) =>{
             min={typeof props.min === 'number' ? props.min : 0}
             max={typeof props.max === 'number' ? props.max : 100}
         />
-    :*/
+    :
         <Container
             data-testid="input"
             style={props.containerStyle}
@@ -193,7 +193,7 @@ const Input = (props: Props) =>{
                             {...props}
                             value={props.value ? props.value : inputValue}
                             placeholder=''
-                            style={{marginTop: 14, opacity: (props.type === 'date' || props.type === 'time') ? ((focus || inputValue) ? 1 : 0) : 1, ...props.style}}
+                            style={{marginTop: 14, opacity: (props.type === 'date' || props.type === 'time') ? ((focus || inputValue || props.defaultValue) ? 1 : 0) : 1, ...props.style}}
                             onChange={onInputChange}
                             onFocus={onInputFocus}
                             onBlur={onInputBlur}
@@ -253,9 +253,12 @@ export interface Props extends InputStyledProps{
     containerStyle?: CSSProperties,
     icon?: ReactElement,
     error?: string|undefined,
-    hideRange?: boolean,
-    min?: number | string,
-    max?: number | string
+    lineColor?: string,
+    thumbColor?: string,
+    min?: number,
+    max?: number,
+    unit?: string,
+    hideRange?: boolean
     country?: string,
     design?: 'primary' | 'secondary',
     onPhoneChange?:(item:any)=>void
