@@ -22,6 +22,7 @@
     "release": "auto shipit --base-branch=main",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
+    "prepare": "npm run build",
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook",
     "init-msw": "msw init public/",
