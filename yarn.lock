@@ -4678,6 +4678,11 @@
     "path-type" "^4.0.0"
     "yaml" "^1.10.0"
 
+"country-flag-icons@^1.5.7":
+  "integrity" "sha512-AdvXhMcmSp7nBSkpGfW4qR/luAdRUutJqya9PuwRbsBzuoknThfultbv7Ib6fWsHXC43Es/4QJ8gzQQdBNm75A=="
+  "resolved" "https://registry.npmjs.org/country-flag-icons/-/country-flag-icons-1.5.7.tgz"
+  "version" "1.5.7"
+
 "create-require@^1.1.0":
   "integrity" "sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ=="
   "resolved" "https://registry.npmjs.org/create-require/-/create-require-1.1.1.tgz"
@@ -5937,6 +5942,11 @@
   "integrity" "sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ=="
   "resolved" "https://registry.npmjs.org/functions-have-names/-/functions-have-names-1.2.3.tgz"
   "version" "1.2.3"
+
+"fuse.js@^6.6.2":
+  "integrity" "sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA=="
+  "resolved" "https://registry.npmjs.org/fuse.js/-/fuse.js-6.6.2.tgz"
+  "version" "6.6.2"
 
 "gauge@^3.0.0":
   "integrity" "sha512-+5J6MS/5XksCuXq++uFRsnUd7Ovu1XenbeuIuNRJxYWjgQbPuFhT14lAvsWfqfAmnwluf1OwMjz39HjfLPci0Q=="

@@ -16,10 +16,10 @@ export default {
     argTypes:{
         design: {
             table: {
-                defaultValue: { summary: 'design-1' }
+                defaultValue: { summary: 'primary' }
             },
             control: 'select', 
-            options: ['design-1', 'design-2']
+            options: ['primary', 'secondary']
         },
         hideCalendar: {
             table: {
@@ -38,7 +38,7 @@ export default {
 
 export const Default = {
     args: {
-        design: 'design-1'
+        design: 'primary'
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
@@ -48,7 +48,7 @@ export const Default = {
 
 export const DefaultWithIcon = {
     args: {
-        design: 'design-1',
+        design: 'primary',
         icon: <Flag width={20} height={20}/>
     },
 	play: async ({canvasElement}: any) =>{
@@ -59,7 +59,7 @@ export const DefaultWithIcon = {
 
 export const DefaultWithError = {
     args: {
-        design: 'design-1',
+        design: 'primary',
         error: 'Error message'
     },
 	play: async ({canvasElement}: any) =>{
@@ -70,7 +70,7 @@ export const DefaultWithError = {
 
 export const Secondary = {
     args: {
-        design: 'design-2'
+        design: 'secondary'
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
@@ -80,7 +80,7 @@ export const Secondary = {
 
 export const SecondaryWithIcon = {
     args: {
-        design: 'design-2',
+        design: 'secondary',
         icon: <Flag width={20} height={20}/>
     },
 	play: async ({canvasElement}: any) =>{
@@ -91,7 +91,7 @@ export const SecondaryWithIcon = {
 
 export const SecondaryWithError = {
     args: {
-        design: 'design-2',
+        design: 'secondary',
         error:'Error message'
     },
 	play: async ({canvasElement}: any) =>{
@@ -102,7 +102,7 @@ export const SecondaryWithError = {
 
 export const InputTime = {
     args: {
-        design: 'design-2',
+        design: 'secondary',
         type:'time',
         defaultValue: undefined
     },
@@ -114,7 +114,7 @@ export const InputTime = {
 
 export const InputNumber = {
     args: {
-        design: 'design-2',
+        design: 'secondary',
         type:'number',
         defaultValue: undefined
     },
@@ -126,7 +126,7 @@ export const InputNumber = {
 
 export const InputTelephone = {
     args: {
-        design: 'design-2',
+        design: 'secondary',
         type:'tel',
         defaultValue: undefined
     },
@@ -138,7 +138,7 @@ export const InputTelephone = {
 
 export const InputEmail = {
     args: {
-        design: 'design-2',
+        design: 'secondary',
         type:'email',
         defaultValue: undefined
     },
@@ -150,7 +150,7 @@ export const InputEmail = {
 
 export const InputDate = {
     args: {
-        design: 'design-2',
+        design: 'secondary',
         type:'date',
         defaultValue: undefined
     },
@@ -162,7 +162,7 @@ export const InputDate = {
 
 export const InputPassword = {
     args: {
-        design: 'design-2',
+        design: 'secondary',
         type:'password',
         defaultValue: undefined
     },
@@ -174,7 +174,7 @@ export const InputPassword = {
 
 export const InputRange = {
     args: {
-        design: 'design-2',
+        design: 'secondary',
         type:'range',
         defaultValue: undefined
     },
