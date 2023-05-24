@@ -57,7 +57,7 @@ const Button = (props: Props) => {
 
   	return (
         <ButtonSecondary
-            data-testid="button"
+            role="button"
             {...props}
             onClick={(e: any) => (props.onClick && !props.loading && !props.disabled) && props.onClick(e)}
         >
@@ -85,6 +85,7 @@ const Button = (props: Props) => {
                 <>
                 {(props.icon && props.iconPosition !== 'right') && props.icon}
                 <Label
+                    role='label'
                     type='p'
                     weight='medium'
                     loading={props.loading}

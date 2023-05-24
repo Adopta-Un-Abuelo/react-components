@@ -44,6 +44,7 @@ const FeedBack = ({type='success', isVisible=false, ...props}: Props) =>{
         <Container
             type={type} 
             {...props}
+            role="feedback"
         >
             <View>
                 {type === 'success' ?

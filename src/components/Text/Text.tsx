@@ -6,11 +6,11 @@ import Paragraph from './Paragraph';
 const Text = (props: Props) =>{
 
 	return((props.type === 'h1' || props.type === 'h2' || props.type === 'h3' || props.type === 'h4' || props.type === 'h5' || props.type === 'h6') ?
-        <Header data-testid="header" {...props}>
+        <Header role="header" {...props}>
             {props.children}
         </Header>
     :
-		<Paragraph data-testid="paragraph" {...props}>
+		<Paragraph role="paragraph" {...props}>
 			{props.children}
 		</Paragraph>
 	)

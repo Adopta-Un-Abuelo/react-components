@@ -36,7 +36,7 @@ const ProgressBar = (props: Props) =>{
     },[props.progress]);
 
     return(
-        <Container data-testid="progress-bar" {...props}>
+        <Container role="progress-bar" {...props}>
             {typeof progress === 'number' ?
                 <Progress 
                     style={{height: props.style && props.style.height ? props.style.height : 6}}

@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { userEvent, within } from '@storybook/testing-library';
 import { action } from '@storybook/addon-actions';
 
-import Feedback from '../components/Feedback/Feedback';
+import Feedback from './Feedback';
 
 export default {
-	title: 'Design System/Feedback',
+	title: 'Components/Feedback',
 	component: Feedback,
 	tags: ['autodocs'],
     args: {
@@ -55,7 +55,7 @@ export const Success = (args: any) =>{
     return(
         <div>
             <button
-                data-testid="button" 
+                role="button" 
                 onClick={() => setIsVisible(true)}
             >
                 Show feedback modal
@@ -71,10 +71,12 @@ export const Success = (args: any) =>{
         </div>
     )
 }
-Success.play = async ({canvasElement}: any) =>{
+Success.play = async ({canvasElement, step}: any) =>{
     const canvas = within(canvasElement);
-    const button = await canvas.getByTestId('button');
-    await userEvent.click(button);
+    await step('Click button to show Feedback modal', async () =>{
+        const button = await canvas.getByRole('button');
+        await userEvent.click(button);
+    });
 }
 
 export const Error = (args: any) =>{
@@ -82,7 +84,7 @@ export const Error = (args: any) =>{
     return(
         <div>
             <button
-                data-testid="button" 
+                role="button" 
                 onClick={() => setIsVisible(true)}
             >
                 Show feedback modal
@@ -101,8 +103,10 @@ export const Error = (args: any) =>{
 Error.args = {
     type: 'error'
 }
-Error.play = async ({canvasElement}: any) =>{
+Error.play = async ({canvasElement, step}: any) =>{
     const canvas = within(canvasElement);
-    const button = await canvas.getByTestId('button');
-    await userEvent.click(button);
+    await step('Click button to show Feedback modal', async () =>{
+        const button = await canvas.getByRole('button');
+        await userEvent.click(button);
+    });
 }

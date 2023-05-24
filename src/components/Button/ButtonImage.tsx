@@ -37,7 +37,7 @@ const ButtonImage = (props: Props) =>{
 
     return(
         <Container
-            data-testid="button"
+            role="button"
             {...props}
             disabled={props.disabled || props.loading}
             onClick={(e: any) => (props.onClick && !props.loading && !props.disabled) && props.onClick(e)}

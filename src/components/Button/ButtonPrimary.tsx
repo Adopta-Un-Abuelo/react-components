@@ -58,7 +58,7 @@ const Button = (props: Props) => {
 
   	return (
         <ButtonPrimary
-            data-testid="button"
+            role="button"
             type="button"
             {...props}
             onClick={(e: any) => (props.onClick && !props.loading && !props.disabled) && props.onClick(e)}
@@ -70,7 +70,7 @@ const Button = (props: Props) => {
                     loop={false}
                     keepLastFrame={true}
                     src={AnimationCheck}
-                    onEvent={(event) =>{
+                    onEvent={(event: any) =>{
                         if(event === 'complete'){
                             props.onSuccess && props.onSuccess(true);
                         }
@@ -87,6 +87,7 @@ const Button = (props: Props) => {
                 <>
                 {(props.icon && props.iconPosition !== 'right') && props.icon}
                 <Label
+                    role='label'
                     type='p'
                     weight='medium'
                     loading={props.loading}
