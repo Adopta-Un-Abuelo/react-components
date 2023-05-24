@@ -204,12 +204,12 @@ export default Select;
 export interface Props extends ComponentPropsWithoutRef<"div">{
     id: string,
     optionStyle?: any
-    options: Array<OptionProps>
-    selectedItem?: OptionProps
+    options: Array<CountryProps>
+    selectedItem?: CountryProps
     focus: boolean,
     onChange?: (a: any) => void
 }
-interface OptionProps {
+export interface CountryProps {
     countryCode: string,
     prefix: string,
     esCountry: string,
