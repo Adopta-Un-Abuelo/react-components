@@ -54,9 +54,9 @@ Root directories
 react-components
 |
 └── src
+    ├── assets
     ├── components
-    ├── constants
-    └── stories
+    └── constants
 ```
 
 ### Components
@@ -64,6 +64,8 @@ react-components
 All the components, distributed by folders. If you want to create a new component, create a new folder and generate a new .tsx file.
 
 You will need to export your new component in the index.ts file.
+
+Also, create a .stories.tsx file to add it to the Storybook. You can create the unit test for the component directly in this file using `@storybook/testing-library`
 
 ```jsx
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
@@ -73,7 +75,3 @@ export { default as ProgressBar } from './ProgressBar/ProgressBar';
 
 A group of constants like Color, that are used to give styles to the components.
 > Note: Please, do not make any changes to this files.
-
-### Stories
-
-All the Storybook components stories. If you create a new component, you will need to create a .stories.tsx file to add it to the storybook.

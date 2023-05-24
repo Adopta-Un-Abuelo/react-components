@@ -3,15 +3,17 @@ name: 'Chromatic Deployment'
 
 # Event for the workflow
 on:
-  push:
+  workflow_run:
+    workflows: [Test]
     branches: [main]
+    types:
+      - completed
 
 # List of jobs
 jobs:
   deploy:
-    # Operating System
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    # Job steps
     steps:
       - name: Use Node.js 16.x
         uses: actions/setup-node@v1

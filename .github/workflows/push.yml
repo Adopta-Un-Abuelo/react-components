@@ -3,13 +3,16 @@ name: Release
 
 # The event that will trigger the action
 on:
-  push:
+  workflow_run:
+    workflows: [Test]
     branches: [main]
+    types:
+      - completed
 
 # what the action will do
 jobs:
   release:
-    # The operating system it will run on
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     # This check needs to be in place to prevent a publish loop with auto and github actions
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
