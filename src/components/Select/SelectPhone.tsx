@@ -139,6 +139,7 @@ const Select = (props: Props) =>{
     return(
         <Container>
             <SelectStyled
+                role="select"
                 style={props.style}
                 showMenu={showMenu}
                 onClick={onSelectClick}
@@ -165,6 +166,7 @@ const Select = (props: Props) =>{
             </SelectStyled>
             {showMenu && 
                 <OptionsView
+                    role="menu"
                     id={props.id}
                     style={props.optionStyle}
                 >
@@ -180,6 +182,7 @@ const Select = (props: Props) =>{
                         const Flag = Flags2[item.countryCode];
                         return(
                             <Option
+                                role={'country'+index}
                                 key={'country'+index}
                                 onClick={(e) => onOptionClick(item, e)}
                             >

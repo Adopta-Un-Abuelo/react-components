@@ -42,11 +42,12 @@ const SearchBar = (props: Props) =>{
         //BIG
         <InputView
             id={id}
-            data-testid="search-bar"
+            role="search-bar"
             style={style}
         > 
             <IconStyle design={props.design} style={{height:24, width:24}}><Search stroke={Color.text.high}/></IconStyle>
             <InputStyled
+                role='input'
                 style={{height: "48px", paddingLeft: props.design === 'secondary' ? '36px' : "46px"}}
                 {...restProps}
             />
@@ -55,11 +56,12 @@ const SearchBar = (props: Props) =>{
         // SMALL
         <InputView
             id={id}
-            data-testid="search-bar"
+            role="search-bar"
             style={style}
         > 
             <IconStyle design={props.design} style={{height:22, width:22}}><Search stroke={Color.text.high}/></IconStyle>
             <InputStyled
+                role='input'
                 style={{fontSize:16, paddingLeft: props.design === 'secondary' ? '36px' : "46px"}}
                 {...restProps}
             />

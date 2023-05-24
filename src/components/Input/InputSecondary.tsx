@@ -105,7 +105,6 @@ const InputSecondary = (props: Props) =>{
 
     return(
         <Container
-            data-testid="input"
             style={props.containerStyle}
         >
             <InputContainer
@@ -131,6 +130,7 @@ const InputSecondary = (props: Props) =>{
                 : null}
                 <Column>
                     <Placeholder 
+                        role="placeholder"
                         type='p'
                         phone={props.type === 'tel'}
                         focus={(focus || inputValue || props.defaultValue) ? true : false}
@@ -151,7 +151,9 @@ const InputSecondary = (props: Props) =>{
                 </Column>
             </InputContainer>
             {props.error && 
-                <ErrorDiv>
+                <ErrorDiv
+                    role="error"
+                >
                     <Text type='p' style={{color: Color.status.color.error, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
                         {props.error}
                     </Text>

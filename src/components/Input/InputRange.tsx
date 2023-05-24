@@ -103,7 +103,7 @@ const BottomRow = styled.div`
 const InputRange = (props: Props) =>{
 
     const elem = createRef<any>();
-    const [ value, setValue ] = useState<number>((props.value && typeof props.value === 'number') ? props.value : 0);
+    const [ value, setValue ] = useState<number>((props.value && typeof props.value === 'number') ? props.value : ((props.defaultValue && typeof props.defaultValue === 'number') ? props.defaultValue : 0));
     const [ width, setWidth ] = useState(0);
     const { style, ...restProps} = props;
 
@@ -124,12 +124,12 @@ const InputRange = (props: Props) =>{
 
     return(
         <Container
-            data-testid="input"
             ref={elem}
             style={style}
         >
             {!props.hideRange &&
                 <RangeValue 
+                    role='range'
                     id="bubbleHeight" 
                     value={(props.min && props.max) ? ((value-props.min) / (props.max-props.min))*width : (value/100)*width}
                 >
@@ -139,6 +139,7 @@ const InputRange = (props: Props) =>{
                 </RangeValue>
             }
             <InputStyled 
+                role='input'
                 {...restProps}
                 id="rangeHeight"
                 type='range'

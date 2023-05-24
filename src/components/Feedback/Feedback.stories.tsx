@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { userEvent, within } from '@storybook/testing-library';
 import { action } from '@storybook/addon-actions';
+import { expect } from '@storybook/jest';
 
 import Feedback from './Feedback';
 
@@ -76,6 +77,8 @@ Success.play = async ({canvasElement, step}: any) =>{
     await step('Click button to show Feedback modal', async () =>{
         const button = await canvas.getByRole('button');
         await userEvent.click(button);
+        const feedback = await canvas.findByRole('feedback');
+        expect(feedback).toBeInTheDocument();
     });
 }
 
@@ -108,5 +111,7 @@ Error.play = async ({canvasElement, step}: any) =>{
     await step('Click button to show Feedback modal', async () =>{
         const button = await canvas.getByRole('button');
         await userEvent.click(button);
+        const feedback = await canvas.findByRole('feedback');
+        expect(feedback).toBeInTheDocument();
     });
 }

@@ -96,10 +96,10 @@ const Select = (props: Props) =>{
 
     return(
         <Container
-            data-testid="select"
             style={props.style}
         >
             <SelectStyled
+                role="select"
                 id={props.id}
                 showMenu={showMenu}
                 onClick={onSelectClick}
@@ -121,11 +121,13 @@ const Select = (props: Props) =>{
             </SelectStyled>
             {showMenu && 
                 <OptionsView
+                    role="menu"
                     style={props.optionStyle}
                 >
                     {props.options.map((item, index)=>{
                         return(
                             <Option
+                                role={'cell-'+index}
                                 key={props.id+'-cell-'+index}
                                 onClick={(e) => onOptionClick(item, e)}
                             >

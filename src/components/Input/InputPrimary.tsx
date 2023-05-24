@@ -95,7 +95,6 @@ const InputPrimary = (props: Props) =>{
 
     return(
         <Container
-            data-testid="input"
             style={props.containerStyle}
         >
             <InputContainer 
@@ -130,7 +129,9 @@ const InputPrimary = (props: Props) =>{
                 </Column>
             </InputContainer>
             {props.error && 
-                <ErrorDiv>
+                <ErrorDiv
+                    role="error"
+                >
                     <Text type='p' style={{color: Color.status.color.error, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
                         {props.error}
                     </Text>
