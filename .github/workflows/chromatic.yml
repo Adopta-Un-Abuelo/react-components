@@ -1,17 +1,7 @@
-# Workflow name
 name: 'Chromatic Deployment'
-
-# Event for the workflow
-on:
-  workflow_run:
-    workflows: [Test]
-    types:
-      - completed
-
-# List of jobs
+on: push
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Use Node.js 16.x
@@ -22,10 +12,7 @@ jobs:
         with:
           fetch-depth: 0
       - run: yarn
-        #👇 Adds Chromatic as a step in the workflow
       - uses: chromaui/action@v1
-        # Options required for Chromatic's GitHub Action
         with:
-          #👇 Chromatic projectToken, see https://storybook.js.org/tutorials/intro-to-storybook/react/en/deploy/ to obtain it
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,22 +1,11 @@
-# Name of our action
 name: Release
-
-# The event that will trigger the action
 on:
-  workflow_run:
-    workflows: [Test]
+  push:
     branches: [main]
-    types:
-      - completed
-
-# what the action will do
 jobs:
   release:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    # This check needs to be in place to prevent a publish loop with auto and github actions
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
-    # The list of steps that the action will go through
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')
     steps:
       - uses: actions/checkout@v2
       - name: Prepare repository
@@ -36,7 +25,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          #👇 npm token, see https://storybook.js.org/tutorials/design-systems-for-developers/react/en/distribute/ to obtain it
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           yarn install --frozen-lockfile
