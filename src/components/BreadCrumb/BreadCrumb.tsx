@@ -28,7 +28,7 @@ const BreadCrumb = ({steps=1, ...props}: Props) =>{
 
     return(
         <Container
-            data-testid="bread-crumb"
+            role="bread-crumb"
             {...props}
         >
             {stepsArray.map((item, index) =>(

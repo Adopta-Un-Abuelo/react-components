@@ -1,6 +1,6 @@
 # .github/workflows/storybook-tests.yml
 
-name: 'Storybook Tests'
+name: 'Test'
 on: push
 jobs:
   test:

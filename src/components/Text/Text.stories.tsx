@@ -1,5 +1,6 @@
-import Text from '../components/Text/Text';
+import Text from './Text';
 import { within } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 
 export default {
 	title: 'Design System/Text',
@@ -19,7 +20,8 @@ export const Paragraph = {
 	},
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('paragraph');
+		const text = await canvas.getByRole('paragraph');
+		expect(text).toBeInTheDocument();
 	}
 };
 
@@ -30,6 +32,7 @@ export const Header = {
 	},
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('header');
+		const header = canvas.getByRole('header');
+		expect(header).toBeInTheDocument();
 	}
 };

@@ -1,8 +1,9 @@
-import ProgressBar from '../components/ProgressBar/ProgressBar';
+import ProgressBar from './ProgressBar';
 import { within } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 
 export default {
-	title: 'Design System/ProgressBar',
+	title: 'Components/ProgressBar',
 	component: ProgressBar,
 	tags: ['autodocs']
 };
@@ -15,7 +16,8 @@ export const Default = {
 	},
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('progress-bar');
+		const progressBar = await canvas.getByRole('progress-bar');
+		expect(progressBar).toBeInTheDocument();
 	}
 };
 
@@ -38,6 +40,8 @@ export const Multiple = {
 	},
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('progress-bar');
+		canvas.getByRole('progress-bar');
+		const progressBar = await canvas.getByRole('progress-bar');
+		expect(progressBar).toBeInTheDocument();
 	}
 };

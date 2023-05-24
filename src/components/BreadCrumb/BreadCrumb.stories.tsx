@@ -1,8 +1,9 @@
-import BreadCrumb from '../components/BreadCrumb/BreadCrumb';
+import BreadCrumb from './BreadCrumb';
 import { within } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 
 export default {
-	title: 'Design System/BreadCrumb',
+	title: 'Components/BreadCrumb',
 	component: BreadCrumb,
 	tags: ['autodocs'],
 	argTypes:{
@@ -25,6 +26,7 @@ export const Default = {
 	},
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		canvas.getByTestId('bread-crumb');
+		const component = await canvas.getByRole('bread-crumb');
+		await expect(component).toBeInTheDocument();
 	}
 };

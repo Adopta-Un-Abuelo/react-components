@@ -25,7 +25,7 @@ const CallToAction = (props: Props) => {
     
   	return (
         <CallToActionStyled 
-            data-testid="button"
+            role="button"
             loading={props.loading}
             textColor={props.textColor}
             disabled={props.disabled}
