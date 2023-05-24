@@ -5,7 +5,6 @@ name: 'Chromatic Deployment'
 on:
   workflow_run:
     workflows: [Test]
-    branches: [main]
     types:
       - completed
 
