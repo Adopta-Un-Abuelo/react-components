@@ -1,3 +1,16 @@
+# v0.1.11 (Wed May 24 2023)
+
+#### 🐛 Bug Fix
+
+- fix: github actions [#4](https://github.com/Adopta-Un-Abuelo/react-components/pull/4) (guillermo.angeles@adoptaunabuelo.com)
+- Feature: Input [#3](https://github.com/Adopta-Un-Abuelo/react-components/pull/3) (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles ([@guillermo-angeles](https://github.com/guillermo-angeles))
+
+---
+
 # v0.1.8 (Mon May 22 2023)
 
 #### 🐛 Bug Fix
