@@ -18,6 +18,9 @@
   "license": "MIT",
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.5.3",
+    "country-flag-icons": "^1.5.7",
+    "fuse.js": "^6.6.2",
+    "google-libphonenumber": "^3.2.32",
     "lucide-react": "^0.219.0",
     "styled-components": "^5.3.10",
     "styled-media-query": "^2.1.2"
@@ -52,6 +55,7 @@
     "@storybook/test-runner": "^0.10.0",
     "@storybook/testing-library": "^0.1.0",
     "@svgr/rollup": "^6.3.1",
+    "@types/google-libphonenumber": "^7.4.23",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/styled-components": "^5.1.26",
