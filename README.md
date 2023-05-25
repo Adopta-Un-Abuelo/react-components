@@ -42,6 +42,14 @@ function App() {
 }
 ```
 
+### Watch out! 
+To be able to use Input location, you will need to add this line to your project header:
+
+```html
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&language=es"/>
+```
+Please, replace ``YOUR_API_KEY`` with your Google Maps API Key.
+
 ## Storybook
 
 You can checkout all the library Components and its docs in our storybook

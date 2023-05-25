@@ -3,12 +3,17 @@ import { ReactElement, CSSProperties } from 'react';
 import InputPrimary from './InputPrimary';
 import InputSecondary from './InputSecondary';
 import InputRange from './InputRange';
+import InputLocation from './InputLocation';
 import { InputStyledProps } from './InputStyled';
 
 const Input = (props: Props) =>{
 
     return(props.type === 'range' ?
         <InputRange
+            {...props}
+        />
+    : props.type === 'location' ?
+        <InputLocation
             {...props}
         />
     : props.design === 'secondary' ?
