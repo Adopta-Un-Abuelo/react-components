@@ -47,6 +47,7 @@ const InputLocation = (props: Props) =>{
         const result = await geocodeByAddress(address);
         const latLng = await getLatLng(result[0]);
         props.onLocationChange && props.onLocationChange({
+            address: address,
             geocoder: result[0],
             location: latLng
         })
@@ -95,6 +96,7 @@ const InputLocation = (props: Props) =>{
 export default InputLocation;
 export interface Props extends InputSecondaryProps{
     onLocationChange?: (result: {
+        address: string,
         geocoder: google.maps.GeocoderResult,
         location: google.maps.LatLngLiteral
     }) => void

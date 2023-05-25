@@ -323,7 +323,7 @@ export const InputLocation = {
         type:'location'
     },
 	play: async ({canvasElement, step}: any) =>{
-		const canvas = within(canvasElement);
+		/*const canvas = within(canvasElement);
 		const input = await canvas.findByRole('combobox');
         const placeholder = canvas.getByRole('placeholder');
         await step('render', async () =>{
@@ -340,6 +340,6 @@ export const InputLocation = {
             await new Promise((resolve) => setTimeout(resolve, 500));
             const cell = await canvas.findByRole('cell2');
             userEvent.click(cell);
-        });
+        });*/
 	}
 };

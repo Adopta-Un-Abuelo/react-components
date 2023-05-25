@@ -39,5 +39,10 @@ export interface Props extends InputStyledProps{
     hideRange?: boolean
     country?: string,
     design?: 'primary' | 'secondary',
-    onPhoneChange?:(item:any)=>void
+    onPhoneChange?:(item:any)=>void,
+    onLocationChange?: (result: {
+        address: string,
+        geocoder: google.maps.GeocoderResult,
+        location: google.maps.LatLngLiteral
+    }) => void
 }
