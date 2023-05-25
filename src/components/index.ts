@@ -7,3 +7,4 @@ export { default as Input } from './Input/Input';
 export { default as Select } from './Select/Select';
 export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as Modal } from './Modal/Modal';
+export { default as Menu } from './Menu/Menu';
