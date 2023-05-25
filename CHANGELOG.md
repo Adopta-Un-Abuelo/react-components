@@ -1,3 +1,18 @@
+# v0.1.15 (Thu May 25 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge remote-tracking branch 'origin/feature/label' into main (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/menu-list' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: MenuList component (guillermo.angeles@adoptaunabuelo.com)
+- feat: Label component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.1.14 (Thu May 25 2023)
 
 #### ⚠️ Pushed to `main`
