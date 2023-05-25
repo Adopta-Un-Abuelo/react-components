@@ -1,3 +1,16 @@
+# v0.1.16 (Thu May 25 2023)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Menu options is not mandatory (guillermo.angeles@adoptaunabuelo.com)
+- fix: Menu children is not mandatory (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.1.15 (Thu May 25 2023)
 
 #### ⚠️ Pushed to `main`
