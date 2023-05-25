@@ -140,7 +140,7 @@ export interface MenuProps{
     icon?: JSX.Element,
     Icon?: JSX.Element,
     position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left',
-    children: React.ReactNode,
+    children?: React.ReactNode,
     options: Array<OptionsProps>,
     onChange?: (visible: boolean) => void,
     onClick?: (option: OptionsProps) => void
