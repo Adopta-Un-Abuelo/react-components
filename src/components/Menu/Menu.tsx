@@ -119,7 +119,7 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
                 {props.options && props.options.map((option, index) =>(
                     <MenuCell
                         key={'action'+index}
-                        style={{borderBottom: index+1 === props.options.length ? 'none' : '1px solid '+Color.line.soft}}
+                        style={{borderBottom: index+1 === props.options?.length ? 'none' : '1px solid '+Color.line.soft}}
                         onClick={(e) => onClick(e, option)}
                     >
                         {option.icon}
@@ -141,7 +141,7 @@ export interface MenuProps{
     Icon?: JSX.Element,
     position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left',
     children?: React.ReactNode,
-    options: Array<OptionsProps>,
+    options?: Array<OptionsProps>,
     onChange?: (visible: boolean) => void,
     onClick?: (option: OptionsProps) => void
 }
