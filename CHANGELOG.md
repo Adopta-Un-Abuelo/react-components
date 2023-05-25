@@ -1,3 +1,15 @@
+# v0.1.14 (Thu May 25 2023)
+
+#### ⚠️ Pushed to `main`
+
+- fix: modal export (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.1.13 (Thu May 25 2023)
 
 #### ⚠️ Pushed to `main`
