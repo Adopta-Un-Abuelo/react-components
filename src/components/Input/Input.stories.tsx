@@ -316,3 +316,30 @@ export const InputRangeWithoutRangeView = {
         });
 	}
 };
+
+export const InputLocation = {
+    args: {
+        design: 'secondary',
+        type:'location'
+    },
+	play: async ({canvasElement, step}: any) =>{
+		const canvas = within(canvasElement);
+		const input = await canvas.findByRole('combobox');
+        const placeholder = canvas.getByRole('placeholder');
+        await step('render', async () =>{
+            expect(input).toBeInTheDocument();
+            expect(placeholder).toBeInTheDocument();
+        });
+        await step('typing', async () =>{
+            await userEvent.type(input, 'calle Alcalá', { delay: 100 });
+        });
+        await step('select address option', async () =>{
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            const menu = await canvas.findByRole('menu');
+            expect(menu).toBeVisible();
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            const cell = await canvas.findByRole('cell2');
+            userEvent.click(cell);
+        });
+	}
+};

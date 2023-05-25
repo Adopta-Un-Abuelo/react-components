@@ -50,7 +50,7 @@ const Placeholder = styled(Text)<{focus: boolean, phone: boolean, error: boolean
     font-size: ${props => props.focus ? '12px' : '15px'} !important;
     transition: top 0.1s ease-out, font-size 0.1s ease-out;
 `
-const InputSecondary = (props: Props) =>{
+const InputSecondary = (props: InputSecondaryProps) =>{
 
     const phoneUtil = GLPN.PhoneNumberUtil.getInstance();
    
@@ -163,7 +163,7 @@ const InputSecondary = (props: Props) =>{
     )
 }
 export default InputSecondary;
-export interface Props extends InputStyledProps{
+export interface InputSecondaryProps extends InputStyledProps{
     containerStyle?: CSSProperties,
     icon?: ReactElement,
     error?: string|undefined,

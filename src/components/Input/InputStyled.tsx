@@ -36,6 +36,6 @@ const InputStyled = forwardRef((props: InputStyledProps, ref: any) =>{
 })
 export default InputStyled;
 export interface InputStyledProps extends ComponentPropsWithRef<"input">{
-    type?: 'text' | 'tel' | 'email' | 'date' | 'password' | 'range' | 'time' | 'number',
+    type?: 'text' | 'tel' | 'email' | 'date' | 'password' | 'range' | 'time' | 'number' | 'location',
     hideCalendar?: boolean
 }

@@ -65,13 +65,23 @@ All the components, distributed by folders. If you want to create a new componen
 
 You will need to export your new component in the index.ts file.
 
-Also, create a .stories.tsx file to add it to the Storybook. You can create the unit test for the component directly in this file using `@storybook/testing-library`
-
 ```jsx
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
 ```
+
+Also, create a .stories.tsx file to add it to the Storybook. You can create the unit test for the component directly in this file using `@storybook/testing-library`
+
 
 ### Constants
 
 A group of constants like Color, that are used to give styles to the components.
 > Note: Please, do not make any changes to this files.
+
+
+## Watch out! 
+To be able to use `<Input type=location/>`, you will need to add a new env varible to your `.env` file:
+
+```
+    GOOGLE_MAPS_API=YOUR_API_KEY
+```
+Please, replace ``YOUR_API_KEY`` with your Google Maps API Key.
