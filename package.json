@@ -22,6 +22,7 @@
     "fuse.js": "^6.6.2",
     "google-libphonenumber": "^3.2.32",
     "lucide-react": "^0.219.0",
+    "react-modal": "^3.16.1",
     "styled-components": "^5.3.10",
     "styled-media-query": "^2.1.2"
   },
@@ -58,6 +59,7 @@
     "@types/google-libphonenumber": "^7.4.23",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/react-modal": "^3.16.0",
     "@types/styled-components": "^5.1.26",
     "@vitejs/plugin-react": "^3.1.0",
     "auto": "^10.46.0",

@@ -13,6 +13,8 @@ jobs:
           fetch-depth: 0
       - run: yarn
       - uses: chromaui/action@v1
+        env:
+          GOOGLE_MAPS_API: ${{ secrets.GOOGLE_MAPS_API }}
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}

@@ -6,7 +6,7 @@ import ButtonText from './ButtonText';
 import ButtonImage from './ButtonImage';
 import CallToAction from './CallToAction';
 
-const Button = (props: Props) => {
+const Button = (props: ButtonProps) => {
 
   	return (
 		props.design === 'secondary' ?
@@ -32,7 +32,7 @@ const Button = (props: Props) => {
   	);
 };
 export default Button;
-export interface Props extends ComponentPropsWithoutRef<"button">{
+export interface ButtonProps extends ComponentPropsWithoutRef<"button">{
 	design?: 'primary' | 'secondary' | 'text' | 'image' | 'call-to-action',
 	size?: 'small' | 'normal',
 	icon?: React.ReactElement,
