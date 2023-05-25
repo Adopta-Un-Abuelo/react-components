@@ -1,3 +1,19 @@
+# v0.1.12 (Thu May 25 2023)
+
+#### ⚠️ Pushed to `main`
+
+- fix: yarn.lock error (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/input' into main (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/modal' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: modal component (guillermo.angeles@adoptaunabuelo.com)
+- feat: input location (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.1.11 (Wed May 24 2023)
 
 #### 🐛 Bug Fix
