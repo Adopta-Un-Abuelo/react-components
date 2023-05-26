@@ -1,3 +1,18 @@
+# v0.1.17 (Fri May 26 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/avatar' into main (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/select' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: select style error (guillermo.angeles@adoptaunabuelo.com)
+- feat: Avatar component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.1.16 (Thu May 25 2023)
 
 #### ⚠️ Pushed to `main`
