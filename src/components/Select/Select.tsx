@@ -44,14 +44,6 @@ const Option = styled.div`
         background-color: ${Color.background.soft};
     }
 `
-const Icon = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 24px;
-    width: 24px;
-    margin-right: 8px;
-`
 
 const Select = (props: Props) =>{
 
@@ -95,13 +87,12 @@ const Select = (props: Props) =>{
     }
 
     return(
-        <Container
-            style={props.style}
-        >
+        <Container>
             <SelectStyled
                 role="select"
                 id={props.id}
                 showMenu={showMenu}
+                style={props.style}
                 onClick={onSelectClick}
             >
                 {selectedItem?.icon}
