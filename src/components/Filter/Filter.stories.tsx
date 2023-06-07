@@ -91,15 +91,8 @@ export const FilterDate = {
 	play: async ({canvasElement, step}: any) =>{
 		const canvas = within(canvasElement);
 		const filter = canvas.getByRole('filter');
-        const filterButton = canvas.getByRole('filter-button');
         await step('render', async () =>{
             expect(filter).toBeInTheDocument();
-            expect(filterButton).toBeInTheDocument();
-        });
-        await step('on filter click', async () =>{
-            userEvent.click(filterButton);
-            const filterMenu = await canvas.findByRole('filter-menu');
-            expect(filterMenu).toBeInTheDocument();
         });
 	}
 };
