@@ -1,5 +1,5 @@
-import { ComponentPropsWithoutRef, forwardRef, Ref, useEffect, useImperativeHandle, useState } from 'react';
-import styled, { CSSProperties } from 'styled-components';
+import { forwardRef, Ref, useEffect, useImperativeHandle, useState, ComponentPropsWithoutRef, CSSProperties } from 'react';
+import styled from 'styled-components';
 import Button, { ButtonProps } from '../Button/Button'
 import Text from '../Text/Text'
 import { X } from 'lucide-react'
@@ -62,6 +62,25 @@ const ErrorView = styled.div`
     padding: 12px 24px;
     margin-top: 24px;
 `
+const Row = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+`
+const LabelColumn = styled.div`
+    display: flex;
+    width: 112px;
+    align-items: center;
+`
+const DataColumn = styled.div`
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+`
+const Separator = styled.div`
+    content: none;
+    margin-bottom: 24px;
+`;
 
 const ModalComponent = forwardRef((props: ModalProps, ref: Ref<ModalRef>) =>{
 
@@ -111,17 +130,17 @@ const ModalComponent = forwardRef((props: ModalProps, ref: Ref<ModalRef>) =>{
             style={{
                 content: {
                     position: 'absolute',
-                    width: props.design === 'full-screen' ? '100%' : 500,
-                    maxWidth: props.design === 'full-screen' ? '100%' : 'calc(100% - 24px)',
+                    width: props.type === 'full-screen' ? '100%' : 500,
+                    maxWidth: props.type === 'full-screen' ? '100%' : 'calc(100% - 24px)',
                     maxHeight: 'calc(100% - 24px)',
                     background: '#FFFFFF',
                     boxShadow:'0px 4px 8px rgba(0, 0, 0, 0.1)',
-                    borderRadius: props.design === 'full-screen' ? '12px 12px 0px 0px' : 12,
-                    top: props.design !== 'full-screen' ? (show ? '50%' : '150%') : 'unset',
-                    bottom: props.design === 'full-screen' ? (show ? '0px' : '-100vh') : 'unset',
+                    borderRadius: props.type === 'full-screen' ? '12px 12px 0px 0px' : 12,
+                    top: props.type !== 'full-screen' ? (show ? '50%' : '150%') : 'unset',
+                    bottom: props.type === 'full-screen' ? (show ? '0px' : '-100vh') : 'unset',
                     transition: 'top 0.3s ease-out, bottom 0.3s ease-out, transform 0.3s ease-in-out',
                     left: '50%',
-                    transform: props.design === 'full-screen' ? 'translate(-50%, 0%)' : 'translate(-50%, -50%) scale('+(show ? 1 : 0.2)+')',
+                    transform: props.type === 'full-screen' ? 'translate(-50%, 0%)' : 'translate(-50%, -50%) scale('+(show ? 1 : 0.2)+')',
                     overflow:'hidden',
                     overflowY: 'auto',
                     border: 'none',
@@ -157,6 +176,30 @@ const ModalComponent = forwardRef((props: ModalProps, ref: Ref<ModalRef>) =>{
             <ChildrenView
                 style={props.contentStyle}
             >
+                {props.options && props.options.map((item, index) =>{
+                    if(item.hidden){
+                        return null;
+                    }
+                    else if(item.id === 'separator')
+                        return(
+                            <Separator key={'separator-'+index}/>
+                        )
+                    else
+                        return (
+                            <Row
+                                key={'option-'+item.id}
+                            >
+                                <LabelColumn>
+                                    <Text type='c1' weight="medium">
+                                        {item.title}
+                                    </Text>
+                                </LabelColumn>
+                                <DataColumn>
+                                    {item.Data}
+                                </DataColumn>
+                            </Row>
+                        )
+                })}
                 {props.children}
             </ChildrenView>
             {props.error && 
@@ -184,7 +227,7 @@ const ModalComponent = forwardRef((props: ModalProps, ref: Ref<ModalRef>) =>{
 export default ModalComponent;
 export interface ModalProps extends ComponentPropsWithoutRef<"div">{
     isVisible: boolean,
-    design?: 'default' | 'full-screen',
+    type?: 'default' | 'full-screen' | 'form',
     title?:string,
     subtitle?:string,
     error?:string,
@@ -194,6 +237,12 @@ export interface ModalProps extends ComponentPropsWithoutRef<"div">{
     Header?: JSX.Element,
     Bottom?: JSX.Element,
     buttonProps?: ButtonProps,
+    options?: Array<{
+        id: string,
+        title?: string,
+        Data?: JSX.Element,
+        hidden?: boolean
+    }>
     onClose:()=>void
 }
 export interface ModalRef{
