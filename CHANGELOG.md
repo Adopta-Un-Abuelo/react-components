@@ -1,3 +1,18 @@
+# v0.1.18 (Wed Jun 07 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/filter' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: filter date test error (guillermo.angeles@adoptaunabuelo.com)
+- feat: Filter component (guillermo.angeles@adoptaunabuelo.com)
+- feat: Checkbox component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.1.17 (Fri May 26 2023)
 
 #### ⚠️ Pushed to `main`
