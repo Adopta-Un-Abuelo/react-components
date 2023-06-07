@@ -1,15 +1,11 @@
-import React, { CSSProperties, useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, CSSProperties } from 'react';
 import styled from 'styled-components';
-import moment from 'moment';
-import 'react-dates/initialize';
-import './filter-date.css';
-import 'react-dates/lib/css/_datepicker.css'
 
 import Color from '../../constants/Color';
 import Text from '../Text/Text';
 import Button from '../Button/Button';
+import Input from '../Input/Input';
 import { ChevronDown } from 'lucide-react';
-import { DayPickerRangeController, FocusedInputShape } from 'react-dates';
 
 const Container = styled.div`
     position: relative;
@@ -34,23 +30,31 @@ const FilterView = styled.div<{position?: 'bottom-right' | 'bottom-left'}>`
     position: absolute;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     top: 36px;
     right: ${props => props.position === 'bottom-right' ? undefined : 0};
     left: ${props => props.position === 'bottom-left' ? undefined : 0};
-    padding: 0px 0px 8px;
+    padding: 8px 16px;
     border-radius: 6px;
+    height: 150px;
     width: 320px;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 10;
 `
+const ContentView = styled.div`
+    display: flex;
+    flex: 1;
+    overflow-y: auto;
+    align-items: center;
+`
 const BottomBar = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    padding: 8px 16px 0px;
+    padding-top: 8px;
     border-top: 1px solid ${Color.line.soft};
 `
 const BadgeView = styled.div`
@@ -63,12 +67,11 @@ const BadgeView = styled.div`
     background-color: ${Color.background.full};
 `
 
-const Filter = (props: FilterDateProps) =>{
+const Filter = (props: FilterRatioProps) =>{
 
     const [ showView, _setShowView ] = useState(false);
-    const [ startDate, setStartDate ] = useState<moment.Moment | null>(null);
-    const [ endDate, setEndDate ] = useState<moment.Moment | null>(null);
-    const [ focusedInput, setFocusedInput ] = useState<FocusedInputShape | null>('startDate');
+    const [ selection, setSelection ] = useState<number>(0);
+    const [ inputValue, setInputValue ] = useState<undefined | number>(undefined)
 
     const showViewRef = useRef(showView);
     const setShowView = (data: boolean) => {
@@ -77,53 +80,46 @@ const Filter = (props: FilterDateProps) =>{
     };
 
     useEffect(() =>{
+        if(props.selected)
+            setSelection(props.selected);
+    },[props.selected]);
+
+    useEffect(() =>{
         //On click outside the filter view
         document.addEventListener('mousedown', (e: any) => {
             const element = document.getElementById(props.id);
             if(element !== null){
-                if(!element.contains(e.target)){
-                    setShowView(false);
-                }
+                if(!element.contains(e.target))
+                    if(showView) onFilterClick(e);
             }
         });
         return document.removeEventListener('mousedown', onFilterClick);
-    }, []);
+    });
 
-    useEffect(() =>{
-        if(props.selectedOptions){
-            setStartDate(props.selectedOptions.startDate);
-            setEndDate(props.selectedOptions.endDate);
-        }
-        else{
-            setStartDate(null);
-            setEndDate(null);
-        }
-    },[props.selectedOptions]);
+    const onInputChange = (e: any) =>{
+        setInputValue(e.target.value);
+    }
 
     const onSave = () =>{
         setShowView(false);
-        props.onChange && props.onChange({
-            startDate: startDate,
-            endDate: endDate
-        });
+        if(inputValue){
+            setSelection(inputValue)
+            props.onChange && props.onChange(inputValue);
+        }
     }
 
     const onRemove = () =>{
-        setEndDate(null);
-        setStartDate(null);
-        setFocusedInput('startDate');
-        props.onChange && props.onChange({
-            startDate: null,
-            endDate: null
-        });
+        setShowView(false);
+        setSelection(0);
+        setInputValue(undefined);
+        props.onChange && props.onChange(undefined);
     }
 
     const onFilterClick = (e: any) =>{
         e.stopPropagation();
-        if(showView){
+        if(showView)
             setShowView(false);
-        }
-        else
+        else 
             setShowView(true);
     }
 
@@ -134,15 +130,14 @@ const Filter = (props: FilterDateProps) =>{
             style={props.style}
         >
             <ButtonFilter
-                role="filter-button"
-                selected={(startDate && endDate) ? true : false}
+                selected={(selection > 0) ? true : false}
                 disabled={props.disabled}
                 onClick={onFilterClick}
             >
-                <Text type='p' style={{color: props.disabled ? Color.text.low : (startDate && endDate) ? Color.text.full : Color.text.high, fontSize: 14, marginRight: 4}}>
+                <Text type='p' style={{color: props.disabled ? Color.text.low : selection > 0 ? Color.text.full : Color.text.high, fontSize: 14, marginRight: 4}}>
                     {props.label}
                 </Text>
-                {(startDate && endDate) ?
+                {selection > 0 ?
                     <BadgeView>
                         <Text type='p' style={{color: 'white', fontSize: 12, fontWeight: 600}}>
                             1
@@ -153,19 +148,17 @@ const Filter = (props: FilterDateProps) =>{
                 }
             </ButtonFilter>
             {showView &&
-                <FilterView position={props.position}>
-                    <DayPickerRangeController
-                        startDate={startDate}
-                        endDate={endDate}
-                        onDatesChange={({ startDate, endDate }) => {
-                            setStartDate(startDate);
-                            setEndDate(endDate);
-                        }}
-                        focusedInput={focusedInput}
-                        noBorder={true}
-                        onFocusChange={focusedInput => setFocusedInput(focusedInput)}
-                        initialVisibleMonth={() => moment()}
-                    />
+                <FilterView style={props.menuStyle} position={props.position}>
+                    <ContentView>
+                        <Input
+                            style={{width: '100%', margin: 20}}
+                            type='range'
+                            min={props.min}
+                            max={props.max}
+                            defaultValue={selection}
+                            onChange={onInputChange}
+                        />
+                    </ContentView>
                     <BottomBar>
                         <Button
                             design={'text'}
@@ -181,7 +174,7 @@ const Filter = (props: FilterDateProps) =>{
                             size={'small'}
                             onClick={onSave}
                         >
-                            Aplicar
+                            Guardar
                         </Button>
                     </BottomBar>
                 </FilterView>
@@ -190,19 +183,16 @@ const Filter = (props: FilterDateProps) =>{
     )
 }
 export default Filter;
-export interface FilterDateProps{
+export interface FilterRatioProps{
     id: string,
     label: string,
     disabled?: boolean,
-    position?: 'bottom-right' | 'bottom-left',
-    type: 'date',
+    type: 'ratio',
+    position?: 'bottom-right' | 'bottom-left'
+    min: number, 
+    max: number
+    selected?: number
     style?: CSSProperties,
-    selectedOptions?: {
-        startDate: moment.Moment | null,
-        endDate: moment.Moment | null,
-    },
-    onChange?: (r: {
-        startDate: moment.Moment | null,
-        endDate: moment.Moment | null
-    }) => void
+    menuStyle?: CSSProperties,
+    onChange?: (result: number | undefined) => void
 }

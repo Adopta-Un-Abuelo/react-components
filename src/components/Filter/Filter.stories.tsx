@@ -96,3 +96,19 @@ export const FilterDate = {
         });
 	}
 };
+
+export const FilterRatio = {
+    args: {
+        type: 'ratio',
+        min: 0,
+        max: 100,
+        selected: 40
+    },
+	play: async ({canvasElement, step}: any) =>{
+		const canvas = within(canvasElement);
+		const filter = canvas.getByRole('filter');
+        await step('render', async () =>{
+            expect(filter).toBeInTheDocument();
+        });
+	}
+};
