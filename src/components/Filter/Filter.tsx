@@ -1,4 +1,4 @@
-import { useEffect, useState, ChangeEvent, CSSProperties } from 'react';
+import { useEffect, useState, ChangeEvent, CSSProperties, useRef } from 'react';
 import styled from 'styled-components';
 import Fuse from 'fuse.js';
 import moment from 'moment';
@@ -58,6 +58,7 @@ const BottomBar = styled.div`
     justify-content: space-between;
     padding-top: 8px;
     border-top: 1px solid ${Color.line.soft};
+    margin-top: 8px;
 `
 const BadgeView = styled.div`
     display: flex;
@@ -71,11 +72,22 @@ const BadgeView = styled.div`
 
 const Filter = (props: Props) =>{
 
-    const [ showView, setShowView ] = useState(false);
-    const [ preSelectedOptions, setPreSelectedOptions ] = useState<any>([]);
-    const [ selectedOptions, setSelectedOptions ] = useState<any>([]);
+    const [ showView, _setShowView ] = useState(false);
+    const [ selectedOptions, _setSelectedOptions ] = useState<any>([]);
     const [ options, setOptions ] = useState(props.options);
     const [ fuse, setFuse ] = useState<any>(undefined);
+
+    const selectedOptionsRef = useRef(selectedOptions);
+    const setSelectedOptions = (data: any) => {
+        selectedOptionsRef.current = data;
+        _setSelectedOptions(data);
+    };
+
+    const showViewRef = useRef(selectedOptions);
+    const setShowView = (data: any) => {
+        showViewRef.current = data;
+        _setShowView(data);
+    };
 
     useEffect(() =>{
         if(props.options){
@@ -90,7 +102,6 @@ const Filter = (props: Props) =>{
     useEffect(() =>{
         if(props.selectedOptions){
             setSelectedOptions(props.selectedOptions);
-            setPreSelectedOptions(props.selectedOptions);
         }
     },[props.selectedOptions]);
 
@@ -99,11 +110,10 @@ const Filter = (props: Props) =>{
         document.addEventListener('mousedown', (e: any) => {
             const element = document.getElementById(props.id);
             if(element !== null){
-                if(!element.contains(e.target)){
+                if(!element.contains(e.target) && showViewRef.current === true){
                     setShowView(false);
                     setOptions(props.options);
-                    console.log('selectedOptions', selectedOptions)
-                    setPreSelectedOptions(selectedOptions);
+                    props.onChange && props.onChange(selectedOptionsRef.current);
                 }
             }
         });
@@ -111,29 +121,29 @@ const Filter = (props: Props) =>{
     }, []);
 
     const onOptionChange = (selection: Array<any>) =>{
-        setPreSelectedOptions(selection);
+        const temp = [...selection]
+        setSelectedOptions(temp);
     }
 
     const onSave = () =>{
         setShowView(false);
-        setSelectedOptions(preSelectedOptions);
-        props.onChange && props.onChange(preSelectedOptions);
+        props.onChange && props.onChange(selectedOptions);
     }
 
     const onRemove = () =>{
-        setPreSelectedOptions([]);
+        setSelectedOptions([]);
     }
 
     const onSelectAll = () =>{
-        setPreSelectedOptions(props.options);
+        setSelectedOptions(props.options);
     }
 
     const onFilterClick = (e: any) =>{
         e.stopPropagation();
-        setPreSelectedOptions(selectedOptions);
         if(showView){
             setShowView(false);
             setOptions(props.options);
+            props.onChange && props.onChange(selectedOptions);
         }
         else{
             setShowView(true);
@@ -194,15 +204,17 @@ const Filter = (props: Props) =>{
                         />
                     }
                     <ContentView>
-                        <CheckboxList
-                            style={{paddingTop: 16}}
-                            options={options}
-                            selectedOptions={preSelectedOptions}
-                            type={props.type === 'multiple' ? 'multiple' : 'single'}
-                            height={18}
-                            width={18}
-                            onChange={onOptionChange}
-                        />
+                        {options && options.length > 0 &&
+                            <CheckboxList
+                                style={{paddingTop: 16}}
+                                options={options}
+                                selectedOptions={selectedOptions}
+                                type={props.type === 'multiple' ? 'multiple' : 'single'}
+                                height={18}
+                                width={18}
+                                onChange={onOptionChange}
+                            />
+                        }
                     </ContentView>
                     <BottomBar>
                         {props.type === 'multiple' &&
@@ -243,7 +255,7 @@ export interface Props{
     disabled?: boolean,
     type?: 'single' | 'multiple' | 'date',
     position?: 'bottom-right' | 'bottom-left',
-    options: Array<{
+    options?: Array<{
         id: string,
         label: string,
         sublabel?: string
