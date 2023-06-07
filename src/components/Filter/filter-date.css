@@ -1,0 +1,9 @@
+.DayPicker{
+    border-radius: 0px;
+    box-shadow: none;
+    font-family: Poppins;
+}
+
+.DayPickerKeyboardShortcuts_show__bottomRight{
+    display: none;
+}

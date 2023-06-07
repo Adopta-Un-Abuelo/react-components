@@ -1,4 +1,4 @@
-import { useEffect, useState, ChangeEvent } from 'react';
+import { useEffect, useState, ChangeEvent, CSSProperties } from 'react';
 import styled from 'styled-components';
 import Fuse from 'fuse.js';
 import moment from 'moment';
@@ -72,8 +72,9 @@ const BadgeView = styled.div`
 const Filter = (props: Props) =>{
 
     const [ showView, setShowView ] = useState(false);
+    const [ preSelectedOptions, setPreSelectedOptions ] = useState<any>([]);
     const [ selectedOptions, setSelectedOptions ] = useState<any>([]);
-    const [ options, setOptions ] = useState(props.options ? props.options : []);
+    const [ options, setOptions ] = useState(props.options);
     const [ fuse, setFuse ] = useState<any>(undefined);
 
     useEffect(() =>{
@@ -87,8 +88,10 @@ const Filter = (props: Props) =>{
     },[props.options]);
 
     useEffect(() =>{
-        if(props.selectedOptions)
+        if(props.selectedOptions){
             setSelectedOptions(props.selectedOptions);
+            setPreSelectedOptions(props.selectedOptions);
+        }
     },[props.selectedOptions]);
 
     useEffect(() =>{
@@ -98,6 +101,9 @@ const Filter = (props: Props) =>{
             if(element !== null){
                 if(!element.contains(e.target)){
                     setShowView(false);
+                    setOptions(props.options);
+                    console.log('selectedOptions', selectedOptions)
+                    setPreSelectedOptions(selectedOptions);
                 }
             }
         });
@@ -105,74 +111,33 @@ const Filter = (props: Props) =>{
     }, []);
 
     const onOptionChange = (selection: Array<any>) =>{
-        //Search if, in current options, is this selection
-        const temp = options;
-        options.map((item, index) =>{
-            const some = selection.some(e => item.id === e.id);
-            if(some)
-                temp[index].defaultSelection = true;
-            else
-                temp[index].defaultSelection = false;
-            return item;
-        })
-        setOptions(temp);
+        setPreSelectedOptions(selection);
     }
 
     const onSave = () =>{
         setShowView(false);
-        //Get the selected options
-        if(props.options){
-            const temp = props.options.filter(item => item.defaultSelection);
-            setSelectedOptions(temp);
-            setOptions(props.options);
-            props.onChange && props.onChange(temp);
-        }
+        setSelectedOptions(preSelectedOptions);
+        props.onChange && props.onChange(preSelectedOptions);
     }
 
     const onRemove = () =>{
-        //Remove all selections
-        if(props.options){
-            const temp = props.options;
-            props.options.map((item, index) =>{
-                temp[index].defaultSelection = false;
-                return item;
-            })
-            setOptions(temp);
-            setSelectedOptions([]);
-        }
+        setPreSelectedOptions([]);
     }
 
     const onSelectAll = () =>{
-        if(props.options){
-            const temp = props.options;
-            props.options.map((item, index) =>{
-                temp[index].defaultSelection = true;
-                return item;
-            })
-            setOptions(temp);
-            setSelectedOptions(temp);
-        }
+        setPreSelectedOptions(props.options);
     }
 
     const onFilterClick = (e: any) =>{
         e.stopPropagation();
+        setPreSelectedOptions(selectedOptions);
         if(showView){
-            if(props.options){
-                const temp = props.options;
-                props.options.map((item, index) =>{
-                    const some = selectedOptions.some((e: any) => item.id === e.id);
-                    if(some)
-                        temp[index].defaultSelection = true;
-                    else
-                        temp[index].defaultSelection = false;
-                    return item;
-                })
-                setOptions(temp);
-            }
             setShowView(false);
+            setOptions(props.options);
         }
-        else
+        else{
             setShowView(true);
+        }
     }
 
     const onSearchChange = (e: ChangeEvent<HTMLInputElement>) =>{
@@ -183,21 +148,21 @@ const Filter = (props: Props) =>{
             setOptions(temp);
         }
         else
-            if(props.options)
-                setOptions(props.options);
+            setOptions(props.options);
     }
 
-    return(props.design === 'date' ? 
+    return((props.type === 'date') ? 
         <FilterDate
             {...props}
         /> 
     : props.options && props.options.length > 0 ?
         <Container
             id={props.id}
-            data-testid="filter"
+            role="filter"
             style={props.style}
         >
             <ButtonFilter
+                role="filter-button"
                 selected={(selectedOptions.length > 0) ? true : false}
                 disabled={props.disabled}
                 onClick={onFilterClick}
@@ -216,7 +181,10 @@ const Filter = (props: Props) =>{
                 }
             </ButtonFilter>
             {showView &&
-                <FilterView position={props.position}>
+                <FilterView
+                    role="filter-menu"
+                    position={props.position}
+                >
                     {!props.hideSearchBar &&
                         <SearchBar
                             style={{borderBottom: '1px solid '+Color.line.soft}}
@@ -229,15 +197,15 @@ const Filter = (props: Props) =>{
                         <CheckboxList
                             style={{paddingTop: 16}}
                             options={options}
-                            selectedOptions={selectedOptions}
-                            selection={props.design === 'multiple' ? 'multiple' : 'single'}
+                            selectedOptions={preSelectedOptions}
+                            type={props.type === 'multiple' ? 'multiple' : 'single'}
                             height={18}
                             width={18}
                             onChange={onOptionChange}
                         />
                     </ContentView>
                     <BottomBar>
-                        {props.design === 'multiple' &&
+                        {props.type === 'multiple' &&
                             <Button
                                 design={'text'}
                                 size={'small'}
@@ -273,13 +241,12 @@ export interface Props{
     id: string,
     label: string,
     disabled?: boolean,
-    design?: 'single' | 'multiple' | 'date',
+    type?: 'single' | 'multiple' | 'date',
     position?: 'bottom-right' | 'bottom-left',
-    options?: Array<{
+    options: Array<{
         id: string,
         label: string,
-        sublabel?: string,
-        defaultSelection?: boolean
+        sublabel?: string
     }>
     selectedOptions?: {
         startDate: moment.Moment,
@@ -288,6 +255,6 @@ export interface Props{
         id: string
     }>
     hideSearchBar?: boolean,
-    style?: any,
-    onChange?: (r: any) => void
+    style?: CSSProperties,
+    onChange?: (r: Array<any>) => void
 }

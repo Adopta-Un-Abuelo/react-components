@@ -29,11 +29,12 @@ const CheckboxList = (props: Props) =>{
     }
 
     return(
-        <Container data-testid="checkboxlist" style={props.style}>
-            {props.options.map(item => {
+        <Container role="checkboxlist" style={props.style}>
+            {props.options.map((item, index) => {
                 const active = selection.some(e => e.id === item.id);
                 return(
                     <Checkbox
+                        role={'checkbox-'+index}
                         key={item.id}
                         style={{marginBottom: 16, ...props.elementStyle}}
                         label={item.label}
