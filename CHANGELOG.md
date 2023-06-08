@@ -1,3 +1,18 @@
+# v0.1.23 (Thu Jun 08 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/label' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: Dropdown component (guillermo.angeles@adoptaunabuelo.com)
+- fix: label test error (guillermo.angeles@adoptaunabuelo.com)
+- feat: label type chip (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.1.22 (Thu Jun 08 2023)
 
 #### ⚠️ Pushed to `main`
