@@ -12,3 +12,5 @@ export { default as Label } from './Label/Label';
 export { default as Avatar } from './Avatar/Avatar';
 export { default as Filter } from './Filter/Filter';
 export { default as Checkbox } from './Checkbox/CheckboxList';
+export { default as Dropdown } from './Dropdown/Dropdown';
+export { default as TextArea } from './TextArea/TextArea';
