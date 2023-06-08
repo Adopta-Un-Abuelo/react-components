@@ -1,3 +1,16 @@
+# v0.1.22 (Thu Jun 08 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/modal' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: Modal ref (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.1.21 (Thu Jun 08 2023)
 
 #### ⚠️ Pushed to `main`
