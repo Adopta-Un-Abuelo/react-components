@@ -1,3 +1,17 @@
+# v0.1.21 (Thu Jun 08 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/modal' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: Modal web view component (guillermo.angeles@adoptaunabuelo.com)
+- feat: Modal form component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.1.20 (Wed Jun 07 2023)
 
 #### ⚠️ Pushed to `main`
