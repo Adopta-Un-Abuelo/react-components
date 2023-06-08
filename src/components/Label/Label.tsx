@@ -13,6 +13,40 @@ const LabelStyled = styled.div`
     height: 28px;
     border-radius: 3px;
 `
+const ChipsContainerSmall = styled.div<{disabled?: boolean}>`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: ${props => props.disabled ? Color.background.soft : Color.background.primaryLow};
+`
+const ChipsContainerBig = styled.div<{disabled?: boolean}>`
+     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 12px;
+    height: 32px;
+    left: 118px;
+    top: 1082px;
+    border-radius: 555px;
+    background-color: ${props => props.disabled ? Color.background.soft : Color.background.primaryLow};
+`
+const ChipSelector = styled.div<{disabled?: boolean}>`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 12px;
+    height: 32px;
+    border: 1px solid ${props => props.disabled ? Color.line.low : Color.line.full};
+    opacity: ${props => props.disabled ? 0.6 : 1};
+    box-sizing: border-box;
+    border-radius: 555px;
+`;
 const Label = (props: Props) =>{
 
     const [ selectedColor, setSelectedColor ] = useState<{color: string, backgroundColor: string, text: string} | undefined>(undefined);
@@ -128,39 +162,56 @@ const Label = (props: Props) =>{
         }
     }
 
-    return(selectedColor ?
-        <LabelStyled 
-            role="label" 
-            id="Label" 
-            {...props}
-            style={{background: selectedColor.backgroundColor, ...props.style}}
-        >
-            <Text
-                type='p' 
-                style={{fontSize: props.style?.fontSize ? props.style.fontSize : 14, fontWeight: 500, color: selectedColor.color}}
+    return(props.type === 'chip' ? 
+        props.size === 'big' ?
+            <ChipsContainerBig 
+                role="chip" 
+                {...props}
             >
-                {selectedColor.text}
-            </Text>
-        </LabelStyled>
+                <Text type='p2' weight='medium' style={{color:props.disabled ? Color.text.high : Color.text.primary}}>
+                    {props.text.slice(0,1).toLocaleUpperCase()+props.text.slice(1,props.text.length).toLocaleLowerCase()}
+                </Text> 
+            </ChipsContainerBig>
+        : props.size === 'selector' ?
+            <ChipSelector 
+                role="chip" 
+                {...props}
+            >
+                <Text type='p2' weight='medium'>
+                    {props.text}
+                </Text> 
+            </ChipSelector>
+        :
+            <ChipsContainerSmall 
+                role="chip" 
+                style={{...props.style, background: props.disabled ? Color.background.soft : Color.background.primaryLow}}
+            >
+                <Text type='p2' weight='medium' style={{color:props.disabled ? Color.text.high : Color.text.primary}}>
+                    {props.text.slice(0,1).toLocaleUpperCase()+props.text.slice(1,2)}
+                </Text> 
+            </ChipsContainerSmall>
     :
         <LabelStyled 
             role="label" 
             id="Label" 
             {...props} 
-            style={{background: props.backgroundColor ? props.backgroundColor: Color.background.soft, ...props.style}}
+            style={{background: props.backgroundColor ? props.backgroundColor: (selectedColor ? selectedColor.backgroundColor : Color.background.soft), ...props.style}}
         >
             <Text 
                 type='p' 
-                style={{fontSize: props.style?.fontSize ? props.style.fontSize : 14, fontWeight: 500, color: props.color}}
+                style={{fontSize: props.style?.fontSize ? props.style.fontSize : 14, fontWeight: 500, color: props.color ? props.color : (selectedColor ? selectedColor.color : Color.text.full)}}
             >
-                {props.text}
+                {selectedColor?.text ? selectedColor.text : props.text}
             </Text>
         </LabelStyled>
     )
 }
 export default Label;
 export interface Props extends ComponentPropsWithoutRef<"div">{
-    text?: string,
+    text: string,
+    disabled?: boolean,
+    type?: 'label' | 'chip'
+    size?: 'big' | 'small' | 'selector'
     backgroundColor?:string,
     color?:string,
 }
