@@ -1,3 +1,15 @@
+# v0.1.24 (Thu Jun 08 2023)
+
+#### ⚠️ Pushed to `main`
+
+- version updated (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.1.23 (Thu Jun 08 2023)
 
 #### ⚠️ Pushed to `main`
