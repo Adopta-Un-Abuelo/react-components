@@ -1,0 +1,36 @@
+import TextArea from './TextArea';
+import { within } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
+import { action } from '@storybook/addon-actions';
+
+export default {
+	title: 'Components/TextArea',
+	component: TextArea,
+	tags: ['autodocs'],
+    args: {
+        placeholder: 'Placeholder',
+        onChange: action('onChange')
+    }
+};
+
+export const Default = {
+    args: {
+        type: 'default'
+    },
+	play: async ({canvasElement}: any) =>{
+		const canvas = within(canvasElement);
+		const searchBar = await canvas.getByRole('text-area');
+        expect(searchBar).toBeInTheDocument();
+	}
+};
+
+export const Editor = {
+    args: {
+        type: 'edit'
+    },
+	play: async ({canvasElement}: any) =>{
+		const canvas = within(canvasElement);
+		const searchBar = await canvas.getByRole('text-area');
+        expect(searchBar).toBeInTheDocument();
+	}
+};
