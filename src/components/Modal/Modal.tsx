@@ -1,6 +1,7 @@
+import { forwardRef, Ref } from 'react';
 import styled from 'styled-components';
 import Text from '../Text/Text'
-import ModalPrimary, { ModalPrimaryProps } from './ModalPrimary';
+import ModalPrimary, { ModalPrimaryProps, ModalRef } from './ModalPrimary';
 
 const Row = styled.div`
     display: flex;
@@ -23,14 +24,13 @@ const Separator = styled.div`
 `;
 const WebView = styled.iframe``
 
-const ModalComponent = (props: ModalProps) =>{
-
-    const { children, ...restProps } = props;
+const ModalComponent = forwardRef((props: ModalProps, ref: Ref<ModalRef>) =>{
 
     return(
         props.type === 'form' ?
             <ModalPrimary
-                {...restProps}
+                ref={ref}
+                {...props}
             >
                 {props.options && props.options.map((item, index) =>{
                     if(item.hidden){
@@ -59,7 +59,8 @@ const ModalComponent = (props: ModalProps) =>{
             </ModalPrimary>
         : props.type === 'web' ?
             <ModalPrimary
-                {...restProps}
+                ref={ref}
+                {...props}
             >
                 <WebView
                     id={'web-iframe'}
@@ -71,10 +72,11 @@ const ModalComponent = (props: ModalProps) =>{
             </ModalPrimary>
         :
             <ModalPrimary
+                ref={ref}
                 {...props}
             />
     )
-}
+})
 export default ModalComponent;
 export interface ModalProps extends ModalPrimaryProps{
     options?: Array<{
