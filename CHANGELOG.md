@@ -1,3 +1,16 @@
+# v0.2.2 (Thu Jun 08 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/text-area' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: TextArea component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.1.24 (Thu Jun 08 2023)
 
 #### ⚠️ Pushed to `main`
