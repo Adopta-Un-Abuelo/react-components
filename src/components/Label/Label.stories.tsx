@@ -28,7 +28,7 @@ export const Chip = {
 	},
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
-		const label = await canvas.getByRole('label');
+		const label = await canvas.getByRole('chip');
         expect(label).toBeInTheDocument();
 	}
 };
