@@ -51,10 +51,10 @@ export default {
             description: 'string',
             control: 'text',
         },
-        design: {
-            description: 'default | full-screen',
+        type: {
+            description: 'default | full-screen | web | form',
             control: 'select',
-            options: ['default', 'full-screen'],
+            options: ['default', 'full-screen', 'web', 'form'],
             table: {
                 defaultValue: { summary: 'default' }
             }
@@ -131,7 +131,7 @@ export const FullScreen = (args: any) =>{
     )
 }
 FullScreen.args = {
-    design: 'full-screen'
+    type: 'full-screen'
 }
 
 export const Form = (args: any) =>{
@@ -150,13 +150,7 @@ export const Form = (args: any) =>{
                 options={[
                     {
                         id: 'input1',
-                        title: 'Input 1',
-                        Data: <Input/>
-                    },
-                    {
-                        id: 'input2',
-                        title: 'Input 2',
-                        Data: <Input/>
+                        title: 'Input 1'
                     }
                 ]}
                 onClose={() => {
@@ -168,5 +162,31 @@ export const Form = (args: any) =>{
     )
 }
 Form.args = {
-    design: 'form'
+    type: 'form'
+}
+
+export const Web = (args: any) =>{
+    const [ isVisible, setIsVisible ] = useState(false);
+    return(
+        <div>
+            <button
+                role="button" 
+                onClick={() => setIsVisible(true)}
+            >
+                Show modal
+            </button>
+            <Modal
+                {...args}
+                isVisible={isVisible}
+                url={'https://adoptaunabuelo.org'}
+                onClose={() => {
+                    setIsVisible(false);
+                    action('onClose');
+                }}
+            />
+        </div>
+    )
+}
+Web.args = {
+    type: 'web'
 }
