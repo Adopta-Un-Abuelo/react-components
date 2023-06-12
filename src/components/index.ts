@@ -14,3 +14,4 @@ export { default as Filter } from './Filter/Filter';
 export { default as Checkbox } from './Checkbox/CheckboxList';
 export { default as Dropdown } from './Dropdown/Dropdown';
 export { default as TextArea } from './TextArea/TextArea';
+export { default as InputImage } from './Input/InputImage';
