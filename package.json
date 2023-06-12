@@ -19,6 +19,7 @@
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "@types/react-dates": "^21.8.3",
+    "compressorjs": "^1.2.1",
     "country-flag-icons": "^1.5.7",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
@@ -28,6 +29,7 @@
     "moment": "^2.29.4",
     "react-dates": "^21.8.0",
     "react-draft-wysiwyg": "^1.15.0",
+    "react-image-crop": "^10.1.4",
     "react-modal": "^3.16.1",
     "react-places-autocomplete": "^7.3.0",
     "styled-components": "^5.3.11",
