@@ -1,3 +1,18 @@
+# v0.2.3 (Mon Jun 12 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/input' into main (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/radio-button' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: Radio Button component (guillermo.angeles@adoptaunabuelo.com)
+- feat: InputImage component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.2 (Thu Jun 08 2023)
 
 #### ⚠️ Pushed to `main`
