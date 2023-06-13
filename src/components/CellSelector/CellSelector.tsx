@@ -7,7 +7,7 @@ const Container = styled.div`
     display: flex;
     flex: 1;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 `
 const CellContainer = styled.div<{disabled?: boolean}>`
     display: flex;
