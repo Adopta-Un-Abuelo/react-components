@@ -19,3 +19,4 @@ export { default as RadioButton } from './RadioButton/RadioButtonList';
 export { default as CellSelector } from './CellSelector/CellSelector';
 export { default as Tabs } from './Tabs/Tabs';
 export { default as Payout } from './Payout/Payout';
+export { default as Switch } from './Switch/Switch';
