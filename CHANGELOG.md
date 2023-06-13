@@ -1,3 +1,20 @@
+# v0.2.5 (Tue Jun 13 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/pagination' into main (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/switch' into main (guillermo.angeles@adoptaunabuelo.com)
+- Merge remote-tracking branch 'origin/feature/payout' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: Pagination component (guillermo.angeles@adoptaunabuelo.com)
+- feat: Switch component (guillermo.angeles@adoptaunabuelo.com)
+- feat: Payout component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.4 (Tue Jun 13 2023)
 
 #### ⚠️ Pushed to `main`
