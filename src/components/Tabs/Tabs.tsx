@@ -55,7 +55,7 @@ const Tabs = (props: Props) =>{
         props.onChange && props.onChange(option);
     }
 
-    return(props.type === 'secondary' ?
+    return(props.design === 'secondary' ?
         <Container2
             role={'container'}
             style={{backgroundColor: props.backgroundColor, ...props.style}}
@@ -123,7 +123,7 @@ export interface Props{
     backgroundColor?: string,
     options: Array<OptionProps>
     selectedOption?: OptionProps,
-    type?: 'primary' | 'secondary'
+    design?: 'primary' | 'secondary'
     onChange?: (option: OptionProps) => void
 }
 export interface OptionProps{

@@ -28,7 +28,7 @@ export default {
 
 export const Primary = {
     args: {
-        type: 'primary'
+        design: 'primary'
     },
 	play: async ({canvasElement, step}: any) =>{
 		const canvas = within(canvasElement);
@@ -46,7 +46,7 @@ export const Primary = {
 
 export const Secondary = {
     args: {
-        type: 'secondary'
+        design: 'secondary'
     },
 	play: async ({canvasElement, step}: any) =>{
 		const canvas = within(canvasElement);
