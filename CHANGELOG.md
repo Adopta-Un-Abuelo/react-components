@@ -1,3 +1,18 @@
+# v0.2.4 (Tue Jun 13 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/cell-selector' into main (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/tabs' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: Tabs component (guillermo.angeles@adoptaunabuelo.com)
+- feat: cell selector component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.3 (Mon Jun 12 2023)
 
 #### ⚠️ Pushed to `main`
