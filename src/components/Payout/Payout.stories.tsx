@@ -1,12 +1,11 @@
 import Payout from './Payout';
-import { userEvent, within } from '@storybook/testing-library';
-import { action } from '@storybook/addon-actions';
+import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
 export default {
 	title: 'Components/Payout',
 	component: Payout,
-	tags: ['autodocs'],
+	tags: ['autodocs']
 };
 
 export const CardPrimary = {
