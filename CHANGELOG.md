@@ -1,3 +1,15 @@
+# v0.2.6 (Tue Jun 13 2023)
+
+#### ⚠️ Pushed to `main`
+
+- fix: test error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.5 (Tue Jun 13 2023)
 
 #### ⚠️ Pushed to `main`
