@@ -18,3 +18,4 @@ export { default as InputImage } from './Input/InputImage';
 export { default as RadioButton } from './RadioButton/RadioButtonList';
 export { default as CellSelector } from './CellSelector/CellSelector';
 export { default as Tabs } from './Tabs/Tabs';
+export { default as Pagination } from './Pagination/Pagination';
