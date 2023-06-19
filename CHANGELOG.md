@@ -1,3 +1,17 @@
+# v0.2.7 (Mon Jun 19 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/input' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: chat input component (guillermo.angeles@adoptaunabuelo.com)
+- feat: input date range component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.6 (Tue Jun 13 2023)
 
 #### ⚠️ Pushed to `main`
