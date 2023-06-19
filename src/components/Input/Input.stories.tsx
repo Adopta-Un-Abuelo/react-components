@@ -364,3 +364,10 @@ export const InputImage = {
         });
 	}
 };
+
+export const InputChat = {
+    args: {
+        design: 'secondary',
+        type:'chat'
+    }
+};
