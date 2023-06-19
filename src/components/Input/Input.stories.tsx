@@ -343,3 +343,24 @@ export const InputLocation = {
         });*/
 	}
 };
+
+export const InputDateRange = {
+    args: {
+        design: 'secondary',
+        type:'range-date'
+    }
+};
+
+export const InputImage = {
+    args: {
+        design: 'secondary',
+        type:'image'
+    },
+	play: async ({canvasElement, step}: any) =>{
+		const canvas = within(canvasElement);
+		const button = canvas.getByRole('button');
+        await step('render', async () =>{
+            expect(button).toBeInTheDocument();
+        });
+	}
+};

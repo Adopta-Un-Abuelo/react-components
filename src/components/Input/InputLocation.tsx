@@ -34,7 +34,7 @@ const SuggestionView = styled.div`
     }
 `
 
-const InputLocation = (props: Props) =>{
+const InputLocation = (props: InputLocationProps) =>{
 
     const [ searchText, setSearchText ] = useState<string | undefined>(undefined);
 
@@ -94,7 +94,7 @@ const InputLocation = (props: Props) =>{
     )
 }
 export default InputLocation;
-export interface Props extends InputSecondaryProps{
+export interface InputLocationProps extends InputSecondaryProps{
     onLocationChange?: (result: {
         address: string,
         geocoder: google.maps.GeocoderResult,
