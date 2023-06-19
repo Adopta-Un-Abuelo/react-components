@@ -70,7 +70,7 @@ const InputChat = (props: InputChatProps) =>{
             />
             {props.loading ?
                 <Player 
-                    style={{height: 42, width: 42}}
+                    style={{height: 48, width: 48}}
                     src={AnimationLoading}
                     loop={true}
                     autoplay={true}

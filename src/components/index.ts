@@ -20,3 +20,4 @@ export { default as Tabs } from './Tabs/Tabs';
 export { default as Payout } from './Payout/Payout';
 export { default as Switch } from './Switch/Switch';
 export { default as Pagination } from './Pagination/Pagination';
+export { default as TagSelector } from './TagSelector/TagSelector';
