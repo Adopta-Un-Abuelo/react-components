@@ -100,7 +100,7 @@ const BottomRow = styled.div`
     margin-top: 8px;
 `
 
-const InputRange = (props: Props) =>{
+const InputRange = (props: InputRangeProps) =>{
 
     const elem = createRef<any>();
     const [ value, setValue ] = useState<number>((props.value && typeof props.value === 'number') ? props.value : ((props.defaultValue && typeof props.defaultValue === 'number') ? props.defaultValue : 0));
@@ -160,7 +160,7 @@ const InputRange = (props: Props) =>{
     )
 }
 export default InputRange;
-export interface Props extends ComponentPropsWithoutRef<"input">{
+export interface InputRangeProps extends ComponentPropsWithoutRef<"input">{
     lineColor?: string,
     thumbColor?: string,
     min?: number,

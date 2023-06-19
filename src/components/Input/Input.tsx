@@ -2,11 +2,14 @@ import { ReactElement, CSSProperties } from 'react';
 
 import InputPrimary from './InputPrimary';
 import InputSecondary from './InputSecondary';
-import InputRange from './InputRange';
-import InputLocation from './InputLocation';
+import InputRange, { InputRangeProps } from './InputRange';
+import InputLocation, { InputLocationProps } from './InputLocation';
+import InputDateRange, { InputDateRangeProps } from './InputDateRange';
+import InputImage, { InputImageProps } from './InputImage';
+import InputChat, { InputChatProps } from './InputChat';
 import { InputStyledProps } from './InputStyled';
 
-const Input = (props: Props) =>{
+const Input = (props: InputProps | LocationProps | RangeProps | DateRangeProps | ImageProps | ChatProps) =>{
 
     return(props.type === 'range' ?
         <InputRange
@@ -14,6 +17,18 @@ const Input = (props: Props) =>{
         />
     : props.type === 'location' ?
         <InputLocation
+            {...props}
+        />
+    : props.type === 'range-date' ?
+        <InputDateRange
+            {...props}
+        />
+    : props.type === 'image' ?
+        <InputImage
+            {...props}
+        />
+    : props.type === 'chat' ?
+        <InputChat
             {...props}
         />
     : props.design === 'secondary' ?
@@ -27,22 +42,32 @@ const Input = (props: Props) =>{
     )
 }
 export default Input;
-export interface Props extends InputStyledProps{
+export interface InputProps extends InputStyledProps{
+    type: 'text' | 'tel' | 'email' | 'date' | 'password' | 'time' | 'number',
     containerStyle?: CSSProperties,
     icon?: ReactElement,
     error?: string|undefined,
-    lineColor?: string,
-    thumbColor?: string,
-    min?: number,
-    max?: number,
-    unit?: string,
-    hideRange?: boolean
     country?: string,
     design?: 'primary' | 'secondary',
     onPhoneChange?:(item:any)=>void,
-    onLocationChange?: (result: {
-        address: string,
-        geocoder: google.maps.GeocoderResult,
-        location: google.maps.LatLngLiteral
-    }) => void
+}
+
+export interface LocationProps extends InputLocationProps{
+    type: 'location'
+}
+
+export interface RangeProps extends InputRangeProps{
+    type: 'range'
+}
+
+export interface DateRangeProps extends InputDateRangeProps{
+    type: 'range-date'
+}
+
+export interface ImageProps extends InputImageProps{
+    type: 'image'
+}
+
+export interface ChatProps extends InputChatProps{
+    type: 'chat'
 }

@@ -45,7 +45,7 @@ function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: numbe
     return centerCrop(makeAspectCrop({ unit: '%', width: 60 }, aspect, mediaWidth, mediaHeight), mediaWidth, mediaHeight)
 }
 
-const InputImage = (props: Props) =>{
+const InputImage = (props: InputImageProps) =>{
 
     const inputRef = useRef<HTMLInputElement>(null);
     const previewCanvasRef = useRef<HTMLCanvasElement>(null)
@@ -221,7 +221,7 @@ const InputImage = (props: Props) =>{
     )
 }
 export default InputImage;
-export interface Props{
+export interface InputImageProps{
     children?: ReactElement,
     style?: CSSProperties,
     buttonStyle?: CSSProperties,
