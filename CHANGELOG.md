@@ -1,3 +1,18 @@
+# v0.2.9 (Tue Jun 20 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/input' into main (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/faqs' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: FAQs component (guillermo.angeles@adoptaunabuelo.com)
+- feat: input code component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.8 (Mon Jun 19 2023)
 
 #### ⚠️ Pushed to `main`
