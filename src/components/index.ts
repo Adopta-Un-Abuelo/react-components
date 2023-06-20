@@ -22,3 +22,4 @@ export { default as Switch } from './Switch/Switch';
 export { default as Pagination } from './Pagination/Pagination';
 export { default as Countdown } from './Countdown/Countdown';
 export { default as TagSelector } from './TagSelector/TagSelector';
+export { default as FAQs } from './FAQs/FAQs';
