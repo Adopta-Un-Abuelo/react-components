@@ -371,3 +371,20 @@ export const InputChat = {
         type:'chat'
     }
 };
+
+export const InputCode = {
+    args: {
+        design: 'secondary',
+        type:'code'
+    },
+    play: async ({canvasElement, step}: any) =>{
+		const canvas = within(canvasElement);
+		const input = canvas.getByRole('input');
+        await step('render', async () =>{
+            expect(input).toBeInTheDocument();
+        });
+        await step('typing', async () =>{
+            userEvent.type(input, '000000', { delay: 200 });
+        });
+	}
+};

@@ -7,9 +7,10 @@ import InputLocation, { InputLocationProps } from './InputLocation';
 import InputDateRange, { InputDateRangeProps } from './InputDateRange';
 import InputImage, { InputImageProps } from './InputImage';
 import InputChat, { InputChatProps } from './InputChat';
+import InputCode, { InputCodeProps } from './InputCode';
 import { InputStyledProps } from './InputStyled';
 
-const Input = (props: InputProps | LocationProps | RangeProps | DateRangeProps | ImageProps | ChatProps) =>{
+const Input = (props: InputProps | LocationProps | RangeProps | DateRangeProps | ImageProps | ChatProps | CodeProps) =>{
 
     return(props.type === 'range' ?
         <InputRange
@@ -29,6 +30,10 @@ const Input = (props: InputProps | LocationProps | RangeProps | DateRangeProps |
         />
     : props.type === 'chat' ?
         <InputChat
+            {...props}
+        />
+    : props.type === 'code' ?
+        <InputCode
             {...props}
         />
     : props.design === 'secondary' ?
@@ -70,4 +75,8 @@ export interface ImageProps extends InputImageProps{
 
 export interface ChatProps extends InputChatProps{
     type: 'chat'
+}
+
+export interface CodeProps extends InputCodeProps{
+    type: 'code'
 }
