@@ -1,21 +1,40 @@
-import React from 'react';
 import { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
 import Color from '../../constants/Color';
 
+const D1 = styled.h1`
+	padding: 0px;
+	margin: 0px;
+	font-family: 'Poppins', 'sans-serif';
+	color: ${Color.text.full};
+	font-size: 52px;
+	${media.lessThan("medium")`
+		font-size: 48px;
+    `}
+`
 const H1 = styled.h1`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
 	color: ${Color.text.full};
-	font-size: 36px;
+	font-size: 48px;
+	${media.lessThan("medium")`
+		font-size: 32px;
+    `}
+`
+const H2 = styled.h2`
+	padding: 0px;
+	margin: 0px;
+	font-family: 'Poppins', 'sans-serif';
+	color: ${Color.text.full};
+	font-size: 40px;
 	${media.lessThan("medium")`
 		font-size: 28px;
     `}
 `
-const H2 = styled.h2`
+const H3 = styled.h3`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
@@ -25,7 +44,7 @@ const H2 = styled.h2`
 		font-size: 24px;
     `}
 `
-const H3 = styled.h3`
+const H4 = styled.h4`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
@@ -35,7 +54,7 @@ const H3 = styled.h3`
 		font-size: 20px;
     `}
 `
-const H4 = styled.h4`
+const H5 = styled.h5`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
@@ -45,33 +64,38 @@ const H4 = styled.h4`
 		font-size: 18px;
     `}
 `
-const H5 = styled.h5`
+const H6 = styled.h6`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
 	color: ${Color.text.full};
 	font-size: 18px;
 	${media.lessThan("medium")`
-		font-size: 17px;
+		font-size: 16px;
     `}
 `
-const H6 = styled.h6`
-	padding: 0px;
-	margin: 0px;
-	font-family: 'Poppins', 'sans-serif';
-	color: ${Color.text.full};
-	font-size: 16px;
-`
 
-const Header = (props: Props) =>{
+const Header = (props: HeaderProps) =>{
 
 	const { children, type, weight, style, ...rest } = props;
 
-	if(type === 'h1')
+	if(type === 'd1')
+		return(
+			<D1
+				style={{
+					fontWeight: weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
+					...style
+				}}
+				{...rest}
+			>
+				{children}
+			</D1>
+		)
+	else if(type === 'h1')
 		return(
 			<H1
 				style={{
-					fontWeight: weight === 'bold' ? 700 : weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
+					fontWeight: weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
 					...style
 				}}
 				{...rest}
@@ -83,7 +107,7 @@ const Header = (props: Props) =>{
 		return(
 			<H2
 				style={{
-					fontWeight: weight === 'bold' ? 700 : weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
+					fontWeight: weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
 					...style
 				}}
 				{...rest}
@@ -95,7 +119,7 @@ const Header = (props: Props) =>{
 		return(
 			<H3
 				style={{
-					fontWeight: weight === 'bold' ? 700 : weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
+					fontWeight: weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
 					...style
 				}}
 				{...rest}
@@ -107,7 +131,7 @@ const Header = (props: Props) =>{
 		return(
 			<H4
 				style={{
-					fontWeight: weight === 'bold' ? 700 : weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
+					fontWeight: weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
 					...style
 				}}
 				{...rest}
@@ -119,7 +143,7 @@ const Header = (props: Props) =>{
 		return(
 			<H5
 				style={{
-					fontWeight: weight === 'bold' ? 700 : weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
+					fontWeight: weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
 					...style
 				}}
 				{...rest}
@@ -131,7 +155,7 @@ const Header = (props: Props) =>{
 		return(
 			<H6
 				style={{
-					fontWeight: weight === 'bold' ? 700 : weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
+					fontWeight: weight === 'semibold' ? 600 : weight === 'medium' ? 500 : 400,
 					...style
 				}}
 				{...rest}
@@ -141,7 +165,7 @@ const Header = (props: Props) =>{
 		)
 }
 export default Header;
-export interface Props extends ComponentPropsWithoutRef<"h1">{
-	type: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | any,
-	weight?: 'semibold' | 'medium' | any
+export interface HeaderProps extends ComponentPropsWithoutRef<"h1">{
+	type: 'd1' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6',
+	weight?: 'semibold' | 'medium' | 'regular'
 }
