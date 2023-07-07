@@ -1,4 +1,4 @@
-import { CSSProperties, useState } from 'react';
+import { CSSProperties, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Color from '../../constants/Color';
@@ -49,6 +49,12 @@ const Label2 = styled(Text)<{selected: boolean, textColor?: string}>`
 const Tabs = (props: Props) =>{
 
     const [ selection, setSelection ] = useState(props.selectedOption ? props.selectedOption : props.options[0]);
+
+    useEffect(() =>{
+        if(props.selectedOption){
+            setSelection(props.selectedOption);
+        }
+    }, [props.selectedOption]);
 
     const onClick = (option: OptionProps) =>{
         setSelection(option);
