@@ -14,7 +14,7 @@ const CallToActionStyled = styled.button<{loading?: boolean, disabled?: boolean,
 	color: ${props => props.textColor ? props.textColor : Color.text.primary};
     font-family: 'Poppins', 'sans-serif';
 	font-size: ${props => props.size === 'small' ? '14px' : '16px'};
-	:hover{
+	&:hover{
 		text-decoration: ${props => (props.disabled || props.loading) ? 'none' : 'underline'};;
 	}
 `

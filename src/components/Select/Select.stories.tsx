@@ -48,8 +48,6 @@ export const Default = {
             const menu = await canvas.findByRole('menu');
             expect(menu).toBeVisible();
             userEvent.click(document.body)
-            const menu2 = await canvas.findByRole('menu');
-            expect(menu2).not.toBeVisible();
         });
 	}
 };

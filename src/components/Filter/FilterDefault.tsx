@@ -24,7 +24,7 @@ const ButtonFilter = styled.button<{selected: boolean}>`
 	border: ${props => props.disabled ? '0px solid' : (props.selected ? '2px solid '+Color.text.full : '1px solid '+ Color.line.soft)};
 	background-color: ${props => props.disabled ? Color.status.neutral.hover : 'transparent'};
 	cursor: ${props => props.disabled ? 'default' : 'pointer'};
-	:hover{
+	&:hover{
 		background-color: ${props => props.disabled ? Color.status.neutral.hover : Color.background.low};
 	}
 `

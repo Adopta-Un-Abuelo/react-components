@@ -19,10 +19,10 @@ const ButtonText = styled.button<{size?: 'small' | 'normal', textColor?: string,
 	font-size: ${props => props.size === 'small' ? '14px' : '16px'};
     color: ${props => props.textColor ? props.textColor : Color.text.full};
     opacity: ${props => props.disabled ? 0.5 : 1};
-	:hover{
+	&:hover{
 		background-color: ${props => props.disabled ? 'transparent' : Color.status.neutral.hover};
 	}
-	:active {
+	&:active {
 		transform: scale(0.95);
 	}
 `

@@ -13,7 +13,7 @@ const Cell = styled.div<{selected: boolean}>`
     flex-direction: row;
     margin-bottom: 24px;
     cursor: pointer;
-    :hover{
+    &:hover{
         text-decoration: ${props => props.selected ? 'none' : 'underline'};
     }
 `

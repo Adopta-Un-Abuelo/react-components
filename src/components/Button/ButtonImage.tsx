@@ -18,10 +18,10 @@ const Container = styled.button<{disabled?: boolean, textColor?: string}>`
     font-family: 'Poppins', 'sans-serif';
 	font-size: 14px;
     color: ${props => props.textColor ? props.textColor : Color.text.full};
-    :hover{
+    &:hover{
         background-color: ${props => !props.disabled && Color.status.neutral.hover}
     }
-    :active {
+    &:active {
 		transform: scale(0.95);
 	}
 `

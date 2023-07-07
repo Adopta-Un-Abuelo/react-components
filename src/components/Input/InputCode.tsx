@@ -7,7 +7,7 @@ import Text from '../Text/Text';
 const Container = styled.div`
     width: fit-content;
 `
-const InputContainer = styled.div<{focus: boolean, error: boolean}>`
+const InputContainer = styled.div<{focus: boolean, error: boolean, loading?: boolean}>`
     position: relative;
     display: flex;
     align-items: center;
@@ -18,7 +18,8 @@ const InputContainer = styled.div<{focus: boolean, error: boolean}>`
     outline: none;
     box-shadow: 0 0 0 ${props => props.focus ? '2px '+Color.line.full : (props.error ? '1px '+Color.status.color.error : '1px '+Color.line.soft)};
     background-color: transparent;
-    cursor: text;
+    opacity: ${props => props.loading ? 0.5 : 1};
+    cursor: ${props => props.loading ? 'default' : 'text'};
 `
 const ErrorDiv = styled.div`
     margin: 0px 12px;
@@ -43,11 +44,11 @@ const Input = styled.input`
     cursor: inherit;
     appearance: textfield;
     letter-spacing: 12px;
-    ::placeholder{
+    &::placeholder{
         color: ${Color.text.medium}
     }
-    ::-webkit-outer-spin-button,
-    ::-webkit-inner-spin-button {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
@@ -77,6 +78,7 @@ const InputCode = (props: InputCodeProps) =>{
                 error={props.error ? true : false}
                 style={props.style}
                 focus={focus}
+                loading={props.loading}
                 onClick={() => input.current?.focus()}
             >
                 <Input
@@ -84,6 +86,7 @@ const InputCode = (props: InputCodeProps) =>{
                     type='number'
                     value={value}
                     placeholder='------'
+                    disabled={props.loading}
                     onFocus={() => setFocus(true)}
                     onBlur={() => setFocus(false)}
                     onChange={onTextChange}
@@ -106,5 +109,6 @@ export interface InputCodeProps{
     style?: CSSProperties,
     containerStyle?: CSSProperties,
     error?: string,
+    loading?: boolean,
     onChange?: (code: string) => void
 }

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import styled, { CSSProperties } from 'styled-components';
+import { useState, useEffect, CSSProperties } from 'react';
+import styled from 'styled-components';
 
 import Text from '../Text/Text'
 import Color from '../../constants/Color';
@@ -56,7 +56,7 @@ const Option = styled.div`
     background: #FFFFFF;
     border-radius: 6px;
     cursor: pointer;
-    :hover{
+    &:hover{
         background-color: ${Color.status.neutral.hover};
     }
 `;

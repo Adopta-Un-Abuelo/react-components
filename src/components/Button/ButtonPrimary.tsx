@@ -23,10 +23,10 @@ const ButtonPrimary = styled.button<{size?: 'small' | 'normal', loading?: boolea
 	transition: transform .05s ease-out, width 0.2s ease-out, background-color 0.2s ease-out, opacity 0.2s ease-out; 
 	min-width: ${props => props.size === 'small' ? '80px' : '100px'};
 	cursor: ${props => (props.disabled || props.loading) ? 'default' : 'pointer'};
-	:hover{
+	&:hover{
 		background-color: ${props => (props.disabled || props.loading) ? Color.background.primary : Color.status.primary.hover};
 	}
-	:active {
+	&:active {
 		transform: ${props => (props.disabled || props.loading) ? 'none' : 'scale(0.95)'};
 	}
 `

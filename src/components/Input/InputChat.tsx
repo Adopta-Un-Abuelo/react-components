@@ -25,7 +25,7 @@ const Input = styled.input<{loading?: boolean}>`
     border: none;
     color: ${Color.text.full};
     background-color: transparent;
-    :focus{
+    &:focus{
         outline: none;
     }
 `
