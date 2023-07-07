@@ -18,10 +18,10 @@ const InputStyled = styled.input<{design?: 'primary' | 'secondary'}>`
     padding: 0px;
     width: -webkit-fill-available;
     outline: none;
-    :hover{
+    &:hover{
         cursor: pointer;
     }
-    :focus{
+    &:focus{
         border: ${props => props.design === 'secondary' ? 'none' : '2px solid '+Color.text.full};
         background: white;
         cursor:text;

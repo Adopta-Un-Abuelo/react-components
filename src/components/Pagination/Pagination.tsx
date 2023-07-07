@@ -16,7 +16,7 @@ const Icon = styled.div`
     width: 26px;
     height: 26px;
     border-radius: 42px;
-    :hover{
+    &:hover{
         background-color: ${Color.background.soft};
     }
 `;

@@ -22,7 +22,7 @@ const InputStyled = styled.input<{lineColor?: string, thumbColor?: string, backV
     margin: 18px 0px;
     -webkit-appearance: none;
 
-    ::-moz-range-thumb{
+    &::-moz-range-thumb{
         -webkit-appearance: none;
         height: 44px;
         width: 44px;
@@ -37,7 +37,7 @@ const InputStyled = styled.input<{lineColor?: string, thumbColor?: string, backV
         cursor: pointer;
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.18);
     }
-    ::-webkit-slider-thumb{
+    &::-webkit-slider-thumb{
         -webkit-appearance: none;
         height: 44px;
         width: 44px;
@@ -52,7 +52,7 @@ const InputStyled = styled.input<{lineColor?: string, thumbColor?: string, backV
         cursor: pointer;
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
         transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-        :active{
+        &:active{
             transform: scale(1.2);
             box-shadow: 0px 10px 12px rgba(0, 0, 0, 0.1);
         }
@@ -78,7 +78,7 @@ const RangeValueSpan = styled.span`
     left: 50%;
     transform: translate(-50%, 0);
     border-radius: 6px;
-    ::before{
+    &::before{
         content: "";
         position: absolute;
         width: 0;

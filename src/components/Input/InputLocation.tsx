@@ -29,7 +29,7 @@ const SuggestionView = styled.div`
     padding: 12px 16px;
     cursor: pointer;
     background-color: white;
-    :hover{
+    &:hover{
         background-color: ${Color.background.soft};
     }
 `

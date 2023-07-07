@@ -38,7 +38,7 @@ const Option = styled.div`
     align-items: center;
     padding: 8px 16px;
     cursor: pointer;
-    :hover{
+    &:hover{
         background-color: ${Color.background.soft};
     }
 `
@@ -184,7 +184,7 @@ const Select = (props: Props) =>{
                             <Option
                                 role={'country'+index}
                                 key={'country'+index}
-                                onClick={(e) => onOptionClick(item, e)}
+                                onClick={(e: any) => onOptionClick(item, e)}
                             >
                                 <Icon>
                                     <Flag height={24} width={24}/>

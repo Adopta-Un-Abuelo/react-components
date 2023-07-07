@@ -12,14 +12,14 @@ const Input = styled.input<{hideCalendar?: boolean}>`
     color: ${Color.text.full};
     width: 100%;
     cursor: inherit;
-    ::placeholder{
+    &::placeholder{
         color: ${Color.text.high}
     }
-    ::-webkit-calendar-picker-indicator {
+    &::-webkit-calendar-picker-indicator {
         display: ${props => props.hideCalendar && 'none'};
         -webkit-appearance: ${props => props.hideCalendar && 'none'};
     }
-    ::-webkit-calendar-picker-indicator {
+    &::-webkit-calendar-picker-indicator {
         background: none;
     }
 `

@@ -1,5 +1,5 @@
-import { useState, useEffect, ComponentPropsWithoutRef } from 'react';
-import styled, { CSSProperties } from 'styled-components';
+import { useState, useEffect, ComponentPropsWithoutRef, CSSProperties } from 'react';
+import styled from 'styled-components';
 
 import Text from '../Text/Text';
 import Color from '../../constants/Color';
@@ -40,7 +40,7 @@ const Option = styled.div`
     padding: 8px 16px;
     cursor: pointer;
     gap: 8px;
-    :hover{
+    &:hover{
         background-color: ${Color.background.soft};
     }
 `
@@ -120,7 +120,7 @@ const Select = (props: Props) =>{
                             <Option
                                 role={'cell-'+index}
                                 key={props.id+'-cell-'+index}
-                                onClick={(e) => onOptionClick(item, e)}
+                                onClick={(e: any) => onOptionClick(item, e)}
                             >
                                 {item.icon}
                                 <Text type='p'>{item.label}</Text>

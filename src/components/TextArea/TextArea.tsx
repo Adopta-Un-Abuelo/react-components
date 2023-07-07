@@ -33,23 +33,23 @@ const TextAreaView = styled.textarea<{design?: 'design-1' | 'design-2'}>`
     overflow: auto;
     outline: none;
     background-color: ${props => props.design === 'design-2' ? 'white' : Color.background.soft};
-    :placeholder-shown{
-        :focus{
+    &:placeholder-shown{
+        &:focus{
             box-shadow: 0 0 0 ${props => props.design === 'design-2' ? '2px '+Color.line.full : '1px '+Color.line.primarySoft};
             cursor:text;
         }
     }
-    :hover{
+    &:hover{
         cursor: pointer;
     }
-    :focus{
+    &:focus{
         box-shadow: 0 0 0 ${props => props.design === 'design-2' ? '2px '+Color.line.full : '1px '+Color.line.primarySoft};
         cursor:text;
     }
-    ::-webkit-scrollbar{
-	width: 12px;
-}
-    ::-webkit-scrollbar-thumb {
+    &::-webkit-scrollbar{
+        width: 12px;
+    }
+    &::-webkit-scrollbar-thumb {
         box-shadow: 0 0 0 4px rgba(0, 0, 0, 0);
         background-clip: padding-box;
         border-radius: 9999px;

@@ -1,5 +1,5 @@
-import { useEffect, useState, forwardRef, Ref, useImperativeHandle, ComponentPropsWithRef } from 'react';
-import styled, { CSSProperties } from 'styled-components';
+import { useEffect, useState, forwardRef, Ref, useImperativeHandle, CSSProperties } from 'react';
+import styled from 'styled-components';
 
 import { MoreVertical } from 'lucide-react'; 
 import Button from '../Button/Button';
@@ -41,7 +41,7 @@ const MenuCell = styled.div`
     padding: 12px 16px;
     gap: 12px;
     cursor: pointer;
-    :hover{
+    &:hover{
         background-color: ${Color.status.neutral.hover};
     }
 `
@@ -120,7 +120,7 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
                     <MenuCell
                         key={'action'+index}
                         style={{borderBottom: index+1 === props.options?.length ? 'none' : '1px solid '+Color.line.soft}}
-                        onClick={(e) => onClick(e, option)}
+                        onClick={(e: any) => onClick(e, option)}
                     >
                         {option.icon}
                         <Text type='p'>

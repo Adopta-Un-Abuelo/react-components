@@ -35,7 +35,7 @@ const Cell2 = styled.div<{selected: boolean, color?: string}>`
     border-radius: 32px;
     background-color: ${props => props.selected ? (props.color ? props.color : Color.background.primaryLow) : 'transparent'};
     transition: background-color 0.15s ease-in;
-    :hover{
+    &:hover{
         background-color: ${props => props.selected ? Color.background.primaryLow : Color.status.neutral.hover};
     }
 `

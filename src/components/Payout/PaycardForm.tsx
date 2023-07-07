@@ -146,11 +146,12 @@ const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) =>{
             style={props.style}
         >
             <Input
+                type='text'
                 title={props.placeholderName ? props.placeholderName : 'Nombre del titular'}
                 placeholder={props.placeholderName ? props.placeholderName : 'Nombre del titular'}
                 containerStyle={{marginBottom: 8}}
                 design={props.design}
-                onChange={(e) => e && onInputChange(e.target.value)}
+                onChange={(e: any) => e && onInputChange(e.target.value)}
                 error={inputNameError}
             />
             {props.option === 'sepa_debit' && !props.userData?.email &&

@@ -23,10 +23,10 @@ const ButtonSecondary = styled.button<{size?: 'small' | 'normal', loading?: bool
 	min-width: ${props => props.size === 'small' ? '80px' : '100px'};
     gap: 8px;
 	cursor: ${props => (props.disabled || props.loading) ? 'default' : 'pointer'};
-	:hover{
+	&:hover{
 		background-color: ${props => (props.disabled || props.loading) ? 'transparent' : Color.background.primary+'30'};
 	}
-	:active {
+	&:active {
 		transform: ${props => (props.disabled || props.loading) ? 'none' : 'scale(0.95)'};
 	}
 `

@@ -28,10 +28,10 @@ const Box = styled.div<{selected: boolean, error?: boolean, height?: number, wid
     border: ${props => props.selected ? '1px solid '+(props.error ? Color.status.color.error : Color.background.primary) : '1px solid '+(props.error ? Color.line.redSoft : Color.line.primarySoft)};
     border-radius: 4px;
     transition: background-color 0.2s ease-in-out, border 0.2s ease-in-out, transform .05s ease-out;
-    :hover{
+    &:hover{
         background-color: ${props => props.selected ? (props.error ? Color.status.color.error : Color.background.primary) : (props.error ? Color.status.color.errorDefault : Color.line.primarySoft)};
     }
-    :active{
+    &:active{
         transform: scale(0.90);
     }
 `
