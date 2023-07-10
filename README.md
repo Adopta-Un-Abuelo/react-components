@@ -28,7 +28,7 @@ yarn add @adoptaunabuelo/react-components
 Here is an example of a basic app using React Components `ProgressBar` component:
 
 ```jsx
-import * as React from 'react';
+import React from 'react';
 import { ProgressBar } from '@adoptaunabuelo/react-components';
 
 function App() {
@@ -43,10 +43,10 @@ function App() {
 ```
 
 ### Watch out! 
-To be able to use Input location, you will need to add this line to your project header:
+To be able to use Input type location, you will need to add this line to your project header:
 
 ```html
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&language=es"/>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&language=es"/>
 ```
 Please, replace ``YOUR_API_KEY`` with your Google Maps API Key.
 

@@ -39,7 +39,8 @@ export default [
             svgr(),
             replace({
                 preventAssignment: true,
-                "ReactComponent": "default"
+                "ReactComponent": "default",
+                'process.env.NODE_ENV': JSON.stringify( 'production' )
             })
         ],
     },
