@@ -1,3 +1,16 @@
+# v0.2.14 (Mon Jul 10 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'hotfix/styled-components' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: styled-components (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.13 (Mon Jul 10 2023)
 
 #### ⚠️ Pushed to `main`
