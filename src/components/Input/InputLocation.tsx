@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import PlacesAutocomplete, { Suggestion, geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 import InputSecondary, { InputSecondaryProps } from './InputSecondary';
 import Color from '../../constants/Color';
@@ -22,13 +22,13 @@ const DropdownMenu = styled.div`
     top: 64px;
     border: 1px solid ${Color.line.soft};
 `
-const SuggestionView = styled.div`
+const SuggestionView = styled.div<{selected: boolean}>`
     display: flex;
     flex: 1;
     align-items: center;
     padding: 12px 16px;
     cursor: pointer;
-    background-color: white;
+    background-color: ${props => props.selected ? Color.background.soft : 'white'};
     &:hover{
         background-color: ${Color.background.soft};
     }
@@ -37,6 +37,7 @@ const SuggestionView = styled.div`
 const InputLocation = (props: InputLocationProps) =>{
 
     const [ searchText, setSearchText ] = useState<string | undefined>(undefined);
+    const [ pointerPosition, setPointerPosition ] = useState<number | undefined>(undefined);
 
     const onLocationChange = (address: string) => {
         setSearchText(address);
@@ -51,6 +52,31 @@ const InputLocation = (props: InputLocationProps) =>{
             geocoder: result[0],
             location: latLng
         })
+    }
+
+    const onKeyDown = (e: any, suggestions: Readonly<Array<Suggestion>>) =>{
+        if(suggestions && suggestions.length > 0){
+            if (e.key === 'Enter') {
+                const index = pointerPosition ? pointerPosition : 0;
+                handleSelect(suggestions[index].description);
+            }
+            else if(e.key === 'ArrowDown'){
+                if(pointerPosition === undefined){
+                    setPointerPosition(0);
+                }
+                else if(pointerPosition < suggestions.length-1){
+                    setPointerPosition(pointerPosition+1);
+                }
+            }
+            else if(e.key === 'ArrowUp'){
+                if(pointerPosition === undefined){
+                    setPointerPosition(0);
+                }
+                else if(pointerPosition > 0){
+                    setPointerPosition(pointerPosition-1);
+                }
+            }
+        }
     }
 
     return(
@@ -71,6 +97,7 @@ const InputLocation = (props: InputLocationProps) =>{
                         })}
                         containerStyle={{flex: 1}}
                         value={searchText}
+                        onKeyDown={(e: any) => onKeyDown(e, suggestions)}
                     />
                     {suggestions.length > 0 &&
                         <DropdownMenu
@@ -81,6 +108,7 @@ const InputLocation = (props: InputLocationProps) =>{
                                     <SuggestionView
                                         {...getSuggestionItemProps(suggestion)}
                                         role={"cell"+index}
+                                        selected={pointerPosition === index}
                                     >
                                         <Text type='p2' style={{textOverflow: 'ellipsis'}}>{suggestion.description}</Text>
                                     </SuggestionView>
