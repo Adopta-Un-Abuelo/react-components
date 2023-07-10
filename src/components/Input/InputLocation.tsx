@@ -59,7 +59,7 @@ const InputLocation = (props: InputLocationProps) =>{
             onChange={onLocationChange}
             onSelect={handleSelect}
             searchOptions={{
-                types: ['geocode']
+                types: ['address']
             }}
         >
             {({ getInputProps, suggestions, getSuggestionItemProps }) => (
