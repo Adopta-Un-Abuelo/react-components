@@ -25,6 +25,14 @@ const Cell = styled.div<{selected: boolean, disabled?: boolean}>`
     box-shadow: 0 0 0 ${props => props.selected ? '2px '+Color.line.primary : '1px '+Color.line.soft};
     background-color: ${props => props.disabled ? Color.line.soft : (props.selected ? Color.background.primaryLow : 'white')};
     opacity: ${props => props.disabled ? 0.3 : 1};
+    transition: transform .05s ease-out, background-color 0.1s ease-out;
+    &:hover{
+        background-color: ${props => props.disabled ? Color.line.soft : (props.selected ? Color.background.primaryLow : Color.line.soft)};
+    }
+    &:active{
+        transform: ${props => (props.disabled) ? 'none' : 'scale(0.95)'};
+        transition: background-color 1.2s ease-out;
+    }
 `
 const TextView = styled.div`
     display: flex;
