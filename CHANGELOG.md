@@ -1,3 +1,19 @@
+# v0.2.15 (Mon Jul 10 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/input' into main (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/cell-selector' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: input location keyboard navigation (guillermo.angeles@adoptaunabuelo.com)
+- feat: input location types to address (guillermo.angeles@adoptaunabuelo.com)
+- feat: cell selector transitions (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.14 (Mon Jul 10 2023)
 
 #### ⚠️ Pushed to `main`
