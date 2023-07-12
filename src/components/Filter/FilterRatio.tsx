@@ -80,9 +80,11 @@ const Filter = (props: FilterRatioProps) =>{
     };
 
     useEffect(() =>{
-        if(props.selected)
-            setSelection(props.selected);
-    },[props.selected]);
+        if(props.selectedOptions)
+            setSelection(props.selectedOptions);
+        else
+            setSelection(0);
+    },[props.selectedOptions]);
 
     useEffect(() =>{
         //On click outside the filter view
@@ -190,8 +192,9 @@ export interface FilterRatioProps{
     type: 'ratio',
     position?: 'bottom-right' | 'bottom-left'
     min: number, 
-    max: number
-    selected?: number
+    max: number,
+    selectedOptions?: number,
+    restart?: boolean,
     style?: CSSProperties,
     menuStyle?: CSSProperties,
     onChange?: (result: number | undefined) => void
