@@ -11,7 +11,7 @@ const InputView = styled.div`
 `
 const InputStyled = styled.input<{design?: 'primary' | 'secondary'}>`
     height: 38px;
-    border-radius: 6px;
+    border-radius: 100px;
     border: ${props => props.design === 'secondary' ? 'none' : '1px solid '+Color.line.soft};
     font-family: 'Poppins';
     font-size: 14px;
