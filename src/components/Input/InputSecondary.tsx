@@ -1,9 +1,9 @@
 import { ReactElement, useEffect, useState, useRef, CSSProperties } from 'react';
 import styled from 'styled-components';
-import Color from '../../constants/Color';
 import Country from '../../constants/Country';
 import GLPN from 'google-libphonenumber';
 
+import Color from '../../constants/ColorV2';
 import Select  from '../Select/SelectPhone';
 import Text from '../Text/Text';
 import InputStyled,  { InputStyledProps } from './InputStyled';
@@ -20,9 +20,9 @@ const InputContainer = styled.div<{focus: boolean, error: boolean}>`
     height: 56px;
     min-height: 56px;
     outline: none;
-    box-shadow: 0 0 0 ${props => props.focus ? '2px '+Color.line.full : (props.error ? '1px '+Color.status.color.error : '1px '+Color.line.soft)};
+    box-shadow: 0 0 0 ${props => props.focus ? '2px '+Color.border.neutralMedium : (props.error ? '1px '+Color.text.red : '1px '+Color.border.neutralSoft)};
     padding: 0px 16px;
-    background-color: transparent;
+    background-color: white;
     cursor: text;
 `
 const ErrorDiv = styled.div`
@@ -32,7 +32,7 @@ const ErrorDiv = styled.div`
     font-size: 14px;
     line-height: 12px;
     display: flex;
-    color: ${Color.status.color.error};
+    color: ${Color.text.red};
 `;
 const Column = styled.div`
     display: flex;
@@ -46,7 +46,7 @@ const Placeholder = styled(Text)<{focus: boolean, phone: boolean, error: boolean
     position: absolute;
     top: ${props => props.focus ? '8px' : '16px'};
     left: ${props => props.phone ? (props.focus ? '74px' : '112px') : 'unset'};
-    color: ${props => props.error ? Color.status.color.error : Color.text.high};
+    color: ${props => props.error ? Color.text.red : Color.text.neutralMedium};
     font-size: ${props => props.focus ? '12px' : '15px'} !important;
     transition: top 0.1s ease-out, font-size 0.1s ease-out;
 `
@@ -154,7 +154,7 @@ const InputSecondary = (props: InputSecondaryProps) =>{
                 <ErrorDiv
                     role="error"
                 >
-                    <Text type='p' style={{color: Color.status.color.error, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
+                    <Text type='p' style={{color: Color.text.red, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
                         {props.error}
                     </Text>
                 </ErrorDiv>

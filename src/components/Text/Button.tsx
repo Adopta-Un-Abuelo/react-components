@@ -2,13 +2,13 @@ import { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-import Color from '../../constants/Color';
+import Color from '../../constants/ColorV2';
 
 const B1 = styled.p`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
-	color: ${Color.text.full};
+	color: ${Color.text.neutralHard};
 	font-size: 18px;
 	${media.lessThan("medium")`
 		font-size: 15px;
@@ -18,7 +18,7 @@ const B2 = styled.p`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
-	color: ${Color.text.full};
+	color: ${Color.text.neutralHard};
 	font-size: 15px;
 	${media.lessThan("medium")`
 		font-size: 14px;
@@ -28,7 +28,7 @@ const B3 = styled.p`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
-	color: ${Color.text.full};
+	color: ${Color.text.neutralHard};
 	font-size: 13px;
 	${media.lessThan("medium")`
 		font-size: 13px;

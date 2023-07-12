@@ -1,12 +1,12 @@
-import React, { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
 
-import Color from '../../constants/Color';
+import Color from '../../constants/ColorV2';
 
 const PStyled = styled.p`
     font-family: 'Poppins';
     margin: 0px;
-    color: ${Color.text.full};
+    color: ${Color.text.neutralHard};
 `
 
 const P = (props: ParagraphProps) =>{
