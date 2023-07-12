@@ -106,7 +106,8 @@ const Filter = (props: FilterDefaultProps) =>{
             const element = document.getElementById(props.id);
             if(element !== null){
                 if(!element.contains(e.target) && showViewRef.current === true){
-                    onSave(selectedOptionsRef.current);
+                    //onSave(selectedOptionsRef.current);
+                    setShowView(false);
                 }
             }
         });

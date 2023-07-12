@@ -102,7 +102,8 @@ export const FilterRatio = {
         type: 'ratio',
         min: 0,
         max: 100,
-        selected: 40
+        selectedOptions: 40,
+        restart: false
     },
 	play: async ({canvasElement, step}: any) =>{
 		const canvas = within(canvasElement);
