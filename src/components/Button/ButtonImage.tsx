@@ -3,10 +3,9 @@ import styled from 'styled-components';
 
 import Color from '../../../src/constants/Color';
 
-const Container = styled.button<{disabled?: boolean, textColor?: string}>`
+const Container = styled.button<{disabled?: boolean, textColor?: string, children?: any}>`
     display: inline-flex;
-    padding: 8px;
-    border-radius: 1000px;
+    padding: 0px;
     cursor: ${props => !props.disabled && 'pointer'};
     flex-direction: column;
     align-items: center;
@@ -18,6 +17,16 @@ const Container = styled.button<{disabled?: boolean, textColor?: string}>`
     font-family: 'Poppins', 'sans-serif';
 	font-size: 14px;
     color: ${props => props.textColor ? props.textColor : Color.text.full};
+    &:active {
+		transform: scale(0.95);
+	}
+`
+const IconContainer = styled.div<{disabled?: boolean, textColor?: string, children?: any}>`
+    display: inline-flex;
+    padding: 12px;
+    border-radius: 1000px;
+    align-items: center;
+    justify-content: center;
     &:hover{
         background-color: ${props => !props.disabled && Color.status.neutral.hover}
     }
@@ -42,13 +51,15 @@ const ButtonImage = (props: Props) =>{
             disabled={props.disabled || props.loading}
             onClick={(e: any) => (props.onClick && !props.loading && !props.disabled) && props.onClick(e)}
         >
-            {props.icon ?
-                props.icon
-            :
-                <Icon
-                    src={props.src}
-                />
-            }
+            <IconContainer>
+                {props.icon ?
+                    props.icon
+                :
+                    <Icon
+                        src={props.src}
+                    />
+                }
+            </IconContainer>
             <ChildrenView>
                 {props.children}
             </ChildrenView>

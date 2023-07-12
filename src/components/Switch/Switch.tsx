@@ -1,22 +1,24 @@
 import React, { CSSProperties, ReactElement, useState } from 'react';
 import styled from 'styled-components';
 
-import Color from '../../constants/Color';
+import Color from '../../constants/ColorV2';
 
 const Container = styled.div`
     display: flex;
     flex-direction: row;
-    border: 1px solid ${Color.line.soft};
+    border: 1px solid ${Color.border.neutralSoft};
     width: fit-content;
-    border-radius: 12px;
+    border-radius: 100px;
     overflow: hidden;
+    padding: 2px;
+    background-color: ${Color.surface.invert};
 `
 const Cell = styled.div<{selected: boolean}>`
     display: flex;
-    padding: 12px 16px;
+    padding: 8px;
     cursor: pointer;
-    background-color: ${props => props.selected ? Color.background.soft : 'transparent'};
-    border-radius: 12px;
+    background-color: ${props => props.selected ? Color.surface.neutralSoft : 'transparent'};
+    border-radius: 100px;
     align-items: center;
     justify-content: center;
 `
@@ -43,7 +45,7 @@ const IconSwitch = (props: Props) =>{
                         }}
                     >
                         {React.cloneElement(item.icon, {
-                            color: selected ? Color.text.primary : Color.text.high,
+                            color: selected ? Color.border.primary : Color.border.neutralMedium,
                             height: 20,
                             width: 20,
                             ...item.icon.props

@@ -2,13 +2,13 @@ import { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-import Color from '../../constants/Color';
+import Color from '../../constants/ColorV2';
 
 const D1 = styled.h1`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
-	color: ${Color.text.full};
+	color: ${Color.text.neutralHard};
 	font-size: 52px;
 	${media.lessThan("medium")`
 		font-size: 48px;
@@ -18,7 +18,7 @@ const H1 = styled.h1`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
-	color: ${Color.text.full};
+	color: ${Color.text.neutralHard};
 	font-size: 48px;
 	${media.lessThan("medium")`
 		font-size: 32px;
@@ -28,7 +28,7 @@ const H2 = styled.h2`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
-	color: ${Color.text.full};
+	color: ${Color.text.neutralHard};
 	font-size: 40px;
 	${media.lessThan("medium")`
 		font-size: 28px;
@@ -38,7 +38,7 @@ const H3 = styled.h3`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
-	color: ${Color.text.full};
+	color: ${Color.text.neutralHard};
 	font-size: 28px;
 	${media.lessThan("medium")`
 		font-size: 24px;
@@ -48,7 +48,7 @@ const H4 = styled.h4`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
-	color: ${Color.text.full};
+	color: ${Color.text.neutralHard};
 	font-size: 24px;
 	${media.lessThan("medium")`
 		font-size: 20px;
@@ -58,7 +58,7 @@ const H5 = styled.h5`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
-	color: ${Color.text.full};
+	color: ${Color.text.neutralHard};
 	font-size: 20px;
 	${media.lessThan("medium")`
 		font-size: 18px;
@@ -68,7 +68,7 @@ const H6 = styled.h6`
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Poppins', 'sans-serif';
-	color: ${Color.text.full};
+	color: ${Color.text.neutralHard};
 	font-size: 18px;
 	${media.lessThan("medium")`
 		font-size: 16px;
