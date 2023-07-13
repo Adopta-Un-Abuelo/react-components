@@ -1,3 +1,16 @@
+# v0.2.19 (Thu Jul 13 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/color-v2' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: modal colors change (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.18 (Wed Jul 12 2023)
 
 #### ⚠️ Pushed to `main`
