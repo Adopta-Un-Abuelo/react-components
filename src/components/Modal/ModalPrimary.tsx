@@ -4,7 +4,7 @@ import Button, { ButtonProps } from '../Button/Button'
 import Text from '../Text/Text'
 import { X } from 'lucide-react'
 import media from 'styled-media-query';
-import Color from '../../constants/Color';
+import Color from '../../constants/ColorV2';
 import Modal from 'react-modal';
 
 const TitleView = styled.div`
@@ -21,28 +21,6 @@ const TitleView = styled.div`
 const ChildrenView = styled.div`
     padding: 0px 24px;
 `
-const Title = styled.div`
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 28px;
-    color: ${Color.text.full};
-    ${media.lessThan("small")`
-        font-size: 22px;
-    `}
-`;
-const Subtitle = styled.div`
-    font-family: Poppins;
-    font-style: normal;
-    font-size: 14px;
-    line-height: 22px;
-    color: #828282;
-    ${media.lessThan("small")`
-        font-size: 16px;
-        margin-top: 8px;
-    `}
-`;
 const Buttons = styled.div`
     position: sticky;
     display: flex;
@@ -51,14 +29,14 @@ const Buttons = styled.div`
     align-items: center;
     justify-content: flex-end;
     padding: 8px 24px;
-    border-top: 1px solid ${Color.line.soft};
+    border-top: 1px solid ${Color.border.neutralSoft};
     background-color: white;
     ${media.lessThan("small")`
         padding: 8px 16px;
     `}
 `;
 const ErrorView = styled.div`
-    background-color: ${Color.background.redLow};
+    background-color: ${Color.surface.redSoft};
     padding: 12px 24px;
     margin-top: 24px;
 `
@@ -139,17 +117,27 @@ const ModalComponent = forwardRef((props: ModalPrimaryProps, ref: Ref<ModalRef>)
                 <TitleView>
                     {!props.hideClose &&
                         <Button
-                            style={{position:"absolute", alignSelf:"flex-end", cursor:"pointer"}}
-                            icon={<X height={20} width={20} color={Color.text.full}/>}
+                            style={{position:"absolute", top: 12, right: 14}}
+                            icon={<X height={20} width={20} color={Color.text.neutralHard}/>}
                             design='image'
                             onClick={onClose}
                         />
                     }
                     {props.title &&
-                        <Title>{props.title}</Title>
+                        <Text
+                            type='h5'
+                            weight='semibold'
+                        >
+                            {props.title}
+                        </Text>
                     }
                     {props.subtitle &&
-                        <Subtitle>{props.subtitle}</Subtitle>
+                        <Text
+                            type='p2'
+                            style={{color: Color.text.neutralMedium}}
+                        >
+                            {props.subtitle}
+                        </Text>
                     }
                     {props.Header}
                 </TitleView>
@@ -161,7 +149,7 @@ const ModalComponent = forwardRef((props: ModalPrimaryProps, ref: Ref<ModalRef>)
             </ChildrenView>
             {props.error && 
                 <ErrorView>
-                    <Text type='p' style={{color: Color.status.color.error, fontSize:12}}>
+                    <Text type='p' style={{color: Color.text.red, fontSize:12}}>
                         {props.error}
                     </Text>
                 </ErrorView>
@@ -171,6 +159,7 @@ const ModalComponent = forwardRef((props: ModalPrimaryProps, ref: Ref<ModalRef>)
                     {props.Bottom}
                     {props.buttonProps &&
                         <Button 
+                            size='small'
                             {...props.buttonProps}
                         >
                             {props.buttonProps.children ? props.buttonProps.children : 'Guardar'}
