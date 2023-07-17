@@ -71,7 +71,7 @@ const Payout = forwardRef((props: PayoutProps, ref: Ref<PayoutRef>) =>{
                 }}
             >
                 <PaycardForm
-                    ref={ref}
+                    ref={form}
                     option={props.paymentOption}
                     style={props.cardStyle}
                     onLoading={onLoading}
