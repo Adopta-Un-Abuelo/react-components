@@ -1,6 +1,5 @@
-import Payout from './Payout';
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import Payout, { PayoutRef } from './Payout';
+import { useRef } from 'react';
 
 export default {
 	title: 'Components/Payout',
@@ -29,12 +28,30 @@ export const CardSecondary = {
     }
 };
 
-export const IBANPrimary = {
-    args: {
-        paymentOption: 'sepa_debit',
-        design: 'primary'
-    }
-};
+export const IBANPrimary = (args: any) =>{
+    const payout = useRef<PayoutRef>(null);
+    return(
+        <div>
+            <Payout
+                {...args}
+                ref={payout}
+            />
+            <button
+                role="button" 
+                onClick={async () => {
+                    const result = await payout.current?.getPaymentMethod();
+                    console.log(result);
+                }}
+            >
+                Get IBAN
+            </button>
+        </div>
+    )
+}
+IBANPrimary.args = {
+    paymentOption: 'sepa_debit',
+    design: 'primary'
+}
 
 export const IBANSecondary = {
     args: {
