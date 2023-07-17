@@ -1,3 +1,16 @@
+# v0.2.20 (Mon Jul 17 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'hotfix/payout' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: ref error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.19 (Thu Jul 13 2023)
 
 #### ⚠️ Pushed to `main`
