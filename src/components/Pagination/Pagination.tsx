@@ -2,7 +2,7 @@ import { CSSProperties, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Color } from '../../constants';
 import Text from '../Text/Text'
-import { ArrowLeft,ArrowRight, ChevronLast, ChevronFirst } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronLast, ChevronFirst } from 'lucide-react';
 
 const Container = styled.div`
     display: flex;
@@ -84,23 +84,22 @@ const Pagination = (props: Props) =>{
                 onClick={prevPage}
                 style={{cursor:start===0 ? "auto":"pointer"}}
             >
-                <ArrowLeft
+                <ChevronLeft
                     style={{stroke:start===0 ? Color.text.low : Color.text.full}}
                 />
             </Icon>
             <Text 
                 type='p' 
-                weight={"semibold"} 
                 style={{color:Color.text.full, margin: '0px 12px'}}
             >
-                {start+1} de {steps}
+                <span style={{fontWeight: 700}}>{start+1}</span> de <span style={{fontWeight: 700}}>{steps}</span>
             </Text>
             <Icon 
                 role="right-arrow" 
                 onClick={nextPage} 
                 style={{cursor:start===steps-1 ? "auto":"pointer"}}
             >
-                <ArrowRight 
+                <ChevronRight 
                     style={{stroke:start===steps-1 ? Color.text.low : Color.text.full}}
                 />
             </Icon>
