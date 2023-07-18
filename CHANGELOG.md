@@ -1,3 +1,16 @@
+# v0.2.21 (Tue Jul 18 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'hotfix/button' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: button image error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.20 (Mon Jul 17 2023)
 
 #### ⚠️ Pushed to `main`
