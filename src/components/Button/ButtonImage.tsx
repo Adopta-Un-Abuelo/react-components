@@ -60,9 +60,11 @@ const ButtonImage = (props: Props) =>{
                     />
                 }
             </IconContainer>
-            <ChildrenView>
-                {props.children}
-            </ChildrenView>
+            {props.children &&
+                <ChildrenView>
+                    {props.children}
+                </ChildrenView>
+            }
         </Container>
     )
 }
