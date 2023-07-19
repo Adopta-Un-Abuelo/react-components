@@ -1,3 +1,16 @@
+# v0.2.22 (Wed Jul 19 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/filter' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: filter UI update (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.21 (Tue Jul 18 2023)
 
 #### ⚠️ Pushed to `main`
