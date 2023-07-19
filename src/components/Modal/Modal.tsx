@@ -31,6 +31,7 @@ const ModalComponent = forwardRef((props: ModalProps, ref: Ref<ModalRef>) =>{
             <ModalPrimary
                 ref={ref}
                 {...props}
+                style={{width: '80%', maxWidth: 600, ...props.style}}
             >
                 {props.options && props.options.map((item, index) =>{
                     if(item.hidden){

@@ -2,7 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import PlacesAutocomplete, { Suggestion, geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
-import InputSecondary, { InputSecondaryProps } from './InputSecondary';
+import { InputStyledProps } from './InputStyled';
+import InputPrimary from './InputPrimary';
+import InputSecondary from './InputSecondary';
 import Color from '../../constants/Color';
 import Text from '../Text/Text';
 
@@ -90,18 +92,31 @@ const InputLocation = (props: InputLocationProps) =>{
         >
             {({ getInputProps, suggestions, getSuggestionItemProps }) => (
                 <SearchView>
-                    <InputSecondary
-                        {...getInputProps({
-                            className: 'location-search-input',
-                            placeholder: props.placeholder
-                        })}
-                        containerStyle={{flex: 1}}
-                        value={searchText}
-                        onKeyDown={(e: any) => onKeyDown(e, suggestions)}
-                    />
+                    {props.design === 'primary' ?
+                        <InputPrimary
+                            {...getInputProps({
+                                className: 'location-search-input',
+                                placeholder: props.placeholder
+                            })}
+                            containerStyle={{flex: 1}}
+                            value={searchText}
+                            onKeyDown={(e: any) => onKeyDown(e, suggestions)}
+                        />
+                    :
+                        <InputSecondary
+                            {...getInputProps({
+                                className: 'location-search-input',
+                                placeholder: props.placeholder
+                            })}
+                            containerStyle={{flex: 1}}
+                            value={searchText}
+                            onKeyDown={(e: any) => onKeyDown(e, suggestions)}
+                        />
+                    }
                     {suggestions.length > 0 &&
                         <DropdownMenu
                             role="menu"
+                            style={{top: props.design === 'primary' ? 48 : 64}}
                         >
                             {suggestions.map((suggestion, index) => {
                                 return (
@@ -122,7 +137,8 @@ const InputLocation = (props: InputLocationProps) =>{
     )
 }
 export default InputLocation;
-export interface InputLocationProps extends InputSecondaryProps{
+export interface InputLocationProps extends InputStyledProps{
+    design?: 'primary' | 'secondary',
     onLocationChange?: (result: {
         address: string,
         geocoder: google.maps.GeocoderResult,
