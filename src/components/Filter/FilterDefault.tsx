@@ -21,11 +21,11 @@ const ButtonFilter = styled.button<{selected: boolean}>`
 	height: 32px;
 	padding: 0px 12px;
 	border-radius: 20px;
-	border: ${props => props.disabled ? '0px solid' : (props.selected ? '2px solid '+Color.text.full : '1px solid '+ Color.line.soft)};
-	background-color: ${props => props.disabled ? Color.status.neutral.hover : 'transparent'};
+	border: ${props => props.disabled ? '0px solid' : (props.selected ? '0px solid' : '1px solid '+ Color.line.soft)};
+	background-color: ${props => props.disabled ? Color.status.neutral.hover : (props.selected ? Color.background.deepBlue : 'transparent')};
 	cursor: ${props => props.disabled ? 'default' : 'pointer'};
 	&:hover{
-		background-color: ${props => props.disabled ? Color.status.neutral.hover : Color.background.low};
+		background-color: ${props => props.disabled ? Color.status.neutral.hover : (props.selected ? Color.background.deepBlue : Color.background.low)};
 	}
 `
 const FilterView = styled.div<{position?: 'bottom-right' | 'bottom-left'}>`
@@ -167,18 +167,10 @@ const Filter = (props: FilterDefaultProps) =>{
                 disabled={props.disabled}
                 onClick={onFilterClick}
             >
-                <Text type='p' style={{color: props.disabled ? Color.text.low : selectedOptions.length > 0 ? Color.text.full : Color.text.high, fontSize: 14, marginRight: 4}}>
+                <Text type='p' style={{color: props.disabled ? Color.text.low : selectedOptions.length > 0 ? 'white' : Color.text.high, fontSize: 14, marginRight: 4}}>
                     {props.label}
                 </Text>
-                {selectedOptions.length > 0 ?
-                    <BadgeView>
-                        <Text type='p' style={{color: 'white', fontSize: 12, fontWeight: 600}}>
-                            {selectedOptions.length}
-                        </Text>
-                    </BadgeView>
-                :
-                    <ChevronDown height={18} width={18} color={props.disabled ? Color.text.low : Color.text.high}/>
-                }
+                <ChevronDown height={18} width={18} color={props.disabled ? Color.text.low : (selectedOptions.length > 0 ? 'white' : Color.text.high)}/>
             </ButtonFilter>
             {showView &&
                 <FilterView
