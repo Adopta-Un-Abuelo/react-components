@@ -3,7 +3,7 @@ import { userEvent, within } from '@storybook/testing-library';
 import { action } from '@storybook/addon-actions';
 import { expect } from '@storybook/jest';
 
-import { Flag, Search } from 'lucide-react';
+import { Flag, Search, Clock } from 'lucide-react';
 
 export default {
 	title: 'Components/Input',
@@ -12,7 +12,8 @@ export default {
     args: {
         placeholder: 'Placeholder',
         defaultValue: 'Default value',
-        onChange: action('onChange')
+        onChange: action('onChange'),
+        onOptionClick: action('onOptionClick')
     },
     argTypes:{
         design: {
@@ -373,6 +374,21 @@ export const InputChat = {
         type:'chat'
     }
 };
+
+export const InputChatWithOptions = {
+    args: {
+        design: 'secondary',
+        type:'chat',
+        options: [
+            {
+                id: 'reminder',
+                label: 'Crear recordatorio',
+                icon: <Clock/>
+            }
+        ]
+    }
+};
+
 
 export const InputCode = {
     args: {
