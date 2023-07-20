@@ -1,3 +1,17 @@
+# v0.2.26 (Thu Jul 20 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge remote-tracking branch 'origin/main' into main (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/input' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: payout UI changes (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.25 (Thu Jul 20 2023)
 
 #### ⚠️ Pushed to `main`
