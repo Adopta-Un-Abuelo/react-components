@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { CardElement, useElements, useStripe, IbanElement } from '@stripe/react-stripe-js';
 import { StripeElementChangeEvent, PaymentMethod } from "@stripe/stripe-js";
 
-import Color from '../../constants/Color';
+import Color from '../../constants/ColorV2';
 import Input from '../Input/Input';
 import Text from '../Text/Text';
 
 const InputContainer = styled.div<{error?: boolean, focus: boolean, design?: string}>`
-    box-shadow: 0 0 0 ${props => props.focus ? (props.design === 'secondary' ? '2px '+Color.line.full : '1px '+Color.line.primarySoft) : (props.design === 'secondary' ? '1px '+Color.line.soft : 'none')};
-    background-color: ${props => props.focus ? 'white' : (props.design === 'secondary' ? 'white' : (props.error ? Color.status.color.errorDefault : Color.background.soft))};
+    box-shadow: 0 0 0 ${props => props.focus ? (props.design === 'secondary' ? '2px '+Color.border.neutralMedium : '1px '+Color.border.primarySoft) : (props.design === 'secondary' ? '1px '+Color.border.neutralSoft : 'none')};
+    background-color: ${props => props.focus ? 'white' : (props.design === 'secondary' ? 'white' : (props.error ? Color.text.red : Color.surface.background))};
     border-radius: ${props => props.design === 'secondary' ? '12px' : '6px'};
     padding: ${props => props.design === 'secondary' ? '19px 16px' : '10px 16px'};
 `
@@ -20,7 +20,7 @@ const ErrorDiv = styled.div`
     font-size: 14px;
     line-height: 12px;
     display: flex;
-    color: ${Color.status.color.error};
+    color: ${Color.text.red};
 `;
 
 const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) =>{
@@ -177,7 +177,7 @@ const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) =>{
                                 base: {
                                     fontFamily: 'Poppins',
                                     fontSize: '15px',
-                                    '::placeholder': {color: Color.text.high},
+                                    '::placeholder': {color: Color.text.neutralMedium},
                                 }
                             },
                             hidePostalCode: true
@@ -194,7 +194,7 @@ const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) =>{
                                 base: {
                                     fontFamily: 'Poppins',
                                     fontSize: '15px',
-                                    '::placeholder': {color: Color.text.high},
+                                    '::placeholder': {color: Color.text.neutralMedium},
                                 }
                             }
                         }}
@@ -206,7 +206,7 @@ const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) =>{
             </InputContainer>
             {inputPaymentError && 
                 <ErrorDiv>
-                    <Text type='p' style={{color: Color.status.color.error, marginTop: 8, fontSize: 14}}>
+                    <Text type='p' style={{color: Color.text.red, marginTop: 8, fontSize: 14}}>
                         {inputPaymentError}
                     </Text>
                 </ErrorDiv>
