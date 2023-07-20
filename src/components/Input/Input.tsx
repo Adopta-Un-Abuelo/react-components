@@ -3,14 +3,14 @@ import { ReactElement, CSSProperties } from 'react';
 import InputPrimary from './InputPrimary';
 import InputSecondary from './InputSecondary';
 import InputRange, { InputRangeProps } from './InputRange';
-import InputLocation, { InputLocationProps } from './InputLocation';
+import InputLocation, { InputLocationPrimaryProps, InputLocationSecondaryProps } from './InputLocation';
 import InputDateRange, { InputDateRangeProps } from './InputDateRange';
 import InputImage, { InputImageProps } from './InputImage';
 import InputChat, { InputChatProps } from './InputChat';
 import InputCode, { InputCodeProps } from './InputCode';
 import { InputStyledProps } from './InputStyled';
 
-const Input = (props: InputProps | LocationProps | RangeProps | DateRangeProps | ImageProps | ChatProps | CodeProps) =>{
+const Input = (props: InputProps | LocationPrimaryProps | LocationSecondaryProps | RangeProps | DateRangeProps | ImageProps | ChatProps | CodeProps) =>{
 
     return(props.type === 'range' ?
         <InputRange
@@ -57,7 +57,13 @@ export interface InputProps extends InputStyledProps{
     onPhoneChange?:(item:any)=>void,
 }
 
-export interface LocationProps extends InputLocationProps{
+export interface LocationPrimaryProps extends InputLocationPrimaryProps{
+    design: 'primary',
+    type: 'location'
+}
+
+export interface LocationSecondaryProps extends InputLocationSecondaryProps{
+    design: 'secondary',
     type: 'location'
 }
 

@@ -1,7 +1,7 @@
-import { ReactElement, useEffect, useState, useRef, CSSProperties } from 'react';
+import { useState, useRef, CSSProperties } from 'react';
 import styled from "styled-components";
 
-import Color from '../../constants/Color';
+import Color from '../../constants/ColorV2';
 import Text from '../Text/Text';
 
 const Container = styled.div`
@@ -16,8 +16,8 @@ const InputContainer = styled.div<{focus: boolean, error: boolean, loading?: boo
     height: 56px;
     min-height: 56px;
     outline: none;
-    box-shadow: 0 0 0 ${props => props.focus ? '2px '+Color.line.full : (props.error ? '1px '+Color.status.color.error : '1px '+Color.line.soft)};
-    background-color: transparent;
+    box-shadow: 0 0 0 ${props => props.focus ? '2px '+Color.border.neutralMedium : (props.error ? '1px '+Color.text.red : '1px '+Color.border.neutralSoft)};
+    background-color: white;
     opacity: ${props => props.loading ? 0.5 : 1};
     cursor: ${props => props.loading ? 'default' : 'text'};
 `
@@ -28,7 +28,7 @@ const ErrorDiv = styled.div`
     font-size: 14px;
     line-height: 12px;
     display: flex;
-    color: ${Color.status.color.error};
+    color: ${Color.text.red};
 `;
 const Input = styled.input`
     display: flex;
@@ -40,12 +40,12 @@ const Input = styled.input`
     height: 100%;
     padding: 0px 16px;
     background-color: transparent;
-    color: ${Color.text.full};
+    color: ${Color.text.neutralHard};
     cursor: inherit;
     appearance: textfield;
     letter-spacing: 12px;
     &::placeholder{
-        color: ${Color.text.medium}
+        color: ${Color.text.neutralSoft}
     }
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -96,7 +96,7 @@ const InputCode = (props: InputCodeProps) =>{
                 <ErrorDiv
                     role="error"
                 >
-                    <Text type='p' style={{color: Color.status.color.error, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
+                    <Text type='p' style={{color: Color.text.red, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
                         {props.error}
                     </Text>
                 </ErrorDiv>

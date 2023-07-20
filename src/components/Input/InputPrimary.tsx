@@ -41,7 +41,7 @@ const Column = styled.div`
 const IconView = styled.div`
     margin-right: 8px;
 `
-const InputPrimary = (props: Props) =>{
+const InputPrimary = (props: InputPrimaryProps) =>{
 
     const phoneUtil = GLPN.PhoneNumberUtil.getInstance();
    
@@ -141,7 +141,7 @@ const InputPrimary = (props: Props) =>{
     )
 }
 export default InputPrimary;
-export interface Props extends InputStyledProps{
+export interface InputPrimaryProps extends InputStyledProps{
     containerStyle?: CSSProperties,
     icon?: ReactElement,
     error?: string|undefined,
