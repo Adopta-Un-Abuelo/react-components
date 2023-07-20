@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, useEffect, useState, createRef } from 'react';
 import styled from 'styled-components';
 
-import Color from '../../constants/Color';
+import Color from '../../constants/ColorV2';
 import Text from '../Text/Text';
 
 const Container = styled.div`
@@ -11,12 +11,12 @@ const Container = styled.div`
     width: 100%;
     padding-top: 25px;
 `
-const InputStyled = styled.input<{lineColor?: string, thumbColor?: string, backValue: number}>`
+const InputStyled = styled.input<{lineColor?: string, thumbColor?: string, backValue: number, backgroundColor?: string}>`
     width: 100%;
     -webkit-appearance: none;
     appearance: none;
     height: 8px;
-    background: ${props => "linear-gradient(to right, "+Color.text.primary+", "+Color.text.primary+" " + props.backValue +"px, "+Color.background.primaryLow+" " + props.backValue + "px, "+Color.background.primaryLow+" 100%)"};
+    background: ${props => "linear-gradient(to right, "+(props.lineColor ? props.lineColor : Color.text.primary)+", "+(props.lineColor ? props.lineColor : Color.text.primary)+" " + props.backValue +"px, "+(props.backgroundColor ? props.backgroundColor : Color.surface.primaryLow)+" " + props.backValue + "px, "+(props.backgroundColor ? props.backgroundColor : Color.surface.primaryLow)+" 100%)"};
     outline: none;
     border-radius: 10px;
     margin: 18px 0px;
@@ -29,7 +29,7 @@ const InputStyled = styled.input<{lineColor?: string, thumbColor?: string, backV
         border: 2px solid white;
         appearance: none;
         border-radius: 50%;
-        background-color: ${props => props.thumbColor ? props.thumbColor : Color.background.primary};
+        background-color: ${props => props.thumbColor ? props.thumbColor : Color.surface.primary};
         background-image: url('https://adoptaunabuelo.org/wp-content/uploads/2023/03/heart_icon.svg');
         background-position: center;
         background-size: 20px;
@@ -44,7 +44,7 @@ const InputStyled = styled.input<{lineColor?: string, thumbColor?: string, backV
         border: 2px solid white;
         appearance: none;
         border-radius: 50%;
-        background-color: ${props => props.thumbColor ? props.thumbColor : Color.background.primary};
+        background-color: ${props => props.thumbColor ? props.thumbColor : Color.surface.primary};
         background-image: url('https://adoptaunabuelo.org/wp-content/uploads/2023/03/heart_icon.svg');
         background-position: center;
         background-size: 20px;
@@ -68,8 +68,8 @@ const RangeValueSpan = styled.span`
     padding: 0 1em;
     line-height: 24px;
     text-align: center;
-    background: ${Color.background.primaryLow};
-    color: ${Color.text.full};
+    background: ${Color.surface.neutralLow};
+    color: ${Color.text.neutralHard};
     font-family: "Poppins";
     font-size: 12px;
     display: block;
@@ -83,7 +83,7 @@ const RangeValueSpan = styled.span`
         position: absolute;
         width: 0;
         height: 0;
-        border-top: 10px solid ${Color.background.primaryLow};
+        border-top: 10px solid ${Color.surface.neutralLow};
         border-left: 5px solid transparent;
         border-right: 5px solid transparent;
         top: 100%;
@@ -148,10 +148,10 @@ const InputRange = (props: InputRangeProps) =>{
             />
             {(props.min && props.max) ?
                 <BottomRow>
-                    <Text type='p2' style={{color: Color.text.high}}>
+                    <Text type='p2' style={{color: Color.text.neutralMedium}}>
                         {props.min} {props.unit}
                     </Text>
-                    <Text type='p2' style={{color: Color.text.high}}>
+                    <Text type='p2' style={{color: Color.text.neutralMedium}}>
                         {props.max} {props.unit}
                     </Text>
                 </BottomRow>
@@ -162,6 +162,7 @@ const InputRange = (props: InputRangeProps) =>{
 export default InputRange;
 export interface InputRangeProps extends ComponentPropsWithoutRef<"input">{
     lineColor?: string,
+    backgroundColor?: string,
     thumbColor?: string,
     min?: number,
     max?: number,

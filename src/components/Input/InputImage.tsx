@@ -7,7 +7,7 @@ import './input-image.css'
 
 import { Crop as CropIcon, X } from 'lucide-react';
 import Button from '../Button/Button';
-import Color  from '../../constants/Color';
+import Color  from '../../constants/ColorV2';
 
 const Container = styled.div`
 `
@@ -29,7 +29,7 @@ const ToolBar = styled.div`
     justify-content: flex-end;
     height: 50px;
     background-color: white;
-    border-bottom: 1px solid ${Color.line.soft};
+    border-bottom: 1px solid ${Color.border.neutralSoft};
 `
 const Preview = styled.canvas`
     position: absolute;

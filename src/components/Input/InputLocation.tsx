@@ -4,7 +4,7 @@ import PlacesAutocomplete, { Suggestion, geocodeByAddress, getLatLng } from 'rea
 
 import InputPrimary, { InputPrimaryProps } from './InputPrimary';
 import InputSecondary, { InputSecondaryProps } from './InputSecondary';
-import Color from '../../constants/Color';
+import Color from '../../constants/ColorV2';
 import Text from '../Text/Text';
 
 const SearchView = styled.div`
@@ -21,7 +21,7 @@ const DropdownMenu = styled.div`
     border-radius: 12px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
     top: 64px;
-    border: 1px solid ${Color.line.soft};
+    border: 1px solid ${Color.border.neutralSoft};
 `
 const SuggestionView = styled.div<{selected: boolean}>`
     display: flex;
@@ -29,9 +29,9 @@ const SuggestionView = styled.div<{selected: boolean}>`
     align-items: center;
     padding: 12px 16px;
     cursor: pointer;
-    background-color: ${props => props.selected ? Color.background.soft : 'white'};
+    background-color: ${props => props.selected ? Color.surface.neutralSoft : 'white'};
     &:hover{
-        background-color: ${Color.background.soft};
+        background-color: ${Color.surface.neutralSoft};
     }
 `
 
