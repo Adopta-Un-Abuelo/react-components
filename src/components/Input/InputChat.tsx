@@ -1,21 +1,22 @@
-import { ComponentPropsWithoutRef, useState, useRef } from 'react';
+import { ComponentPropsWithoutRef, useState, useRef, ReactElement } from 'react';
 import styled from 'styled-components';
 import { Player } from '@lottiefiles/react-lottie-player';
 
 import AnimationLoading from '../../assets/animations/loading-small.json';
 
-import { Send } from 'lucide-react';
+import { Send, Plus } from 'lucide-react';
 import Color from '../../constants/ColorV2';
 import Button from '../Button/ButtonImage';
+import Menu from '../Menu/Menu';
 
-const Container = styled.div<{loading?: boolean, focus?: boolean}>`
+const Container = styled.div<{loading?: boolean, focus?: boolean, options?: Array<any>}>`
     display: flex;
     align-items: center;
     height: 48px;
     border-radius: 100px;
     outline: none;
     box-shadow: 0 0 0 ${props => props.focus ? '2px '+Color.border.neutralMedium : '1px '+Color.border.neutralSoft};
-    padding: 0px 20px;
+    padding: 0px 20px 0px ${props => props.options ? '10px' : '20px'};
     background-color: ${props => props.loading ? Color.surface.neutralSoft : 'white'};
 `
 const Input = styled.input<{loading?: boolean}>`
@@ -67,12 +68,26 @@ const InputChat = (props: InputChatProps) =>{
         props.onBlur && props.onBlur(e);
     }
 
+    const onOptionClick = (op: any) =>{
+        props.onOptionClick && props.onOptionClick(op.id);
+    }
+
     return(
         <Container
             style={style}
             loading={props.loading}
             focus={focus}
+            options={props.options}
         >
+            {props.options &&
+                <Menu
+                    id={'add-menu'}
+                    position={'bottom-right'}
+                    options={props.options}
+                    icon={<Plus color={Color.text.primary}/>}
+                    onClick={onOptionClick}
+                />
+            }
             <Input
                 {...rest}
                 value={text}
@@ -102,6 +117,12 @@ const InputChat = (props: InputChatProps) =>{
 }
 export default InputChat;
 export interface InputChatProps extends ComponentPropsWithoutRef<"input">{
-    loading?: boolean
+    loading?: boolean,
+    options?: Array<{
+        id: string,
+        label: string,
+        icon?: ReactElement
+    }>,
+    onOptionClick?: (id: string) => void
     onSend?: (text: string) => void
 }
