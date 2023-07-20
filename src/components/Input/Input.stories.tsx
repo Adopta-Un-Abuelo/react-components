@@ -3,7 +3,7 @@ import { userEvent, within } from '@storybook/testing-library';
 import { action } from '@storybook/addon-actions';
 import { expect } from '@storybook/jest';
 
-import { Flag } from 'lucide-react';
+import { Flag, Search } from 'lucide-react';
 
 export default {
 	title: 'Components/Input',
@@ -320,7 +320,9 @@ export const InputRangeWithoutRangeView = {
 export const InputLocation = {
     args: {
         design: 'secondary',
-        type:'location'
+        type:'location',
+        icon: <Search role="icon"/>,
+        defaultValue: undefined
     },
 	play: async ({canvasElement, step}: any) =>{
 		/*const canvas = within(canvasElement);

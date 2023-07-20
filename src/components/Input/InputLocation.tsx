@@ -2,9 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import PlacesAutocomplete, { Suggestion, geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
-import { InputStyledProps } from './InputStyled';
-import InputPrimary from './InputPrimary';
-import InputSecondary from './InputSecondary';
+import InputPrimary, { InputPrimaryProps } from './InputPrimary';
+import InputSecondary, { InputSecondaryProps } from './InputSecondary';
 import Color from '../../constants/Color';
 import Text from '../Text/Text';
 
@@ -36,7 +35,7 @@ const SuggestionView = styled.div<{selected: boolean}>`
     }
 `
 
-const InputLocation = (props: InputLocationProps) =>{
+const InputLocation = (props: InputLocationPrimaryProps | InputLocationSecondaryProps) =>{
 
     const [ searchText, setSearchText ] = useState<string | undefined>(undefined);
     const [ pointerPosition, setPointerPosition ] = useState<number | undefined>(undefined);
@@ -98,9 +97,11 @@ const InputLocation = (props: InputLocationProps) =>{
                                 className: 'location-search-input',
                                 placeholder: props.placeholder
                             })}
-                            containerStyle={{flex: 1}}
                             value={searchText}
                             onKeyDown={(e: any) => onKeyDown(e, suggestions)}
+                            containerStyle={{flex: 1, ...props.containerStyle}}
+                            icon={props.icon}
+                            error={props.error}
                         />
                     :
                         <InputSecondary
@@ -108,9 +109,11 @@ const InputLocation = (props: InputLocationProps) =>{
                                 className: 'location-search-input',
                                 placeholder: props.placeholder
                             })}
-                            containerStyle={{flex: 1}}
                             value={searchText}
                             onKeyDown={(e: any) => onKeyDown(e, suggestions)}
+                            containerStyle={{flex: 1, ...props.containerStyle}}
+                            icon={props.icon}
+                            error={props.error}
                         />
                     }
                     {suggestions.length > 0 &&
@@ -137,8 +140,16 @@ const InputLocation = (props: InputLocationProps) =>{
     )
 }
 export default InputLocation;
-export interface InputLocationProps extends InputStyledProps{
-    design?: 'primary' | 'secondary',
+export interface InputLocationPrimaryProps extends InputPrimaryProps {
+    design?: 'primary',
+    onLocationChange?: (result: {
+        address: string,
+        geocoder: google.maps.GeocoderResult,
+        location: google.maps.LatLngLiteral
+    }) => void
+}
+export interface InputLocationSecondaryProps extends InputSecondaryProps {
+    design?: 'secondary',
     onLocationChange?: (result: {
         address: string,
         geocoder: google.maps.GeocoderResult,
