@@ -6,7 +6,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import '../../assets/css/react_dates_overrides.css';
 import { DateRangePicker, FocusedInputShape } from 'react-dates';
-import { Color } from '../../constants';
+import Color from '../../constants/ColorV2';
 
 const InputContainer = styled.div<{focus: boolean}>`
     display: flex;
@@ -15,7 +15,7 @@ const InputContainer = styled.div<{focus: boolean}>`
     padding: 0px;
     height: 56px;
     outline: none;
-    border: ${props => props.focus ? '2px solid'+Color.line.primarySoft : '1px solid'+Color.line.soft};
+    box-shadow: 0 0 0 ${props => props.focus ? '2px '+Color.border.neutralMedium : '1px '+Color.border.neutralSoft};
     padding: 0px 6px;
 `
 
