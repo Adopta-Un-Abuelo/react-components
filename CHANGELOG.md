@@ -1,3 +1,17 @@
+# v0.2.28 (Wed Aug 09 2023)
+
+#### ⚠️ Pushed to `main`
+
+- fix: yaml error (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/input' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: input date error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.27 (Thu Jul 20 2023)
 
 #### ⚠️ Pushed to `main`
