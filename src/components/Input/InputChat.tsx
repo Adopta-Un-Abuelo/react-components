@@ -82,7 +82,7 @@ const InputChat = (props: InputChatProps) =>{
             {props.options &&
                 <Menu
                     id={'add-menu'}
-                    position={'bottom-right'}
+                    position={'top-right'}
                     options={props.options}
                     icon={<Plus color={Color.text.primary}/>}
                     onClick={onOptionClick}
