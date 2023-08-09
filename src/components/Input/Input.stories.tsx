@@ -255,7 +255,7 @@ export const InputDate = {
             expect(placeholder).toBeInTheDocument();
         });
         await step('typing', async () =>{
-            userEvent.type(input, '2023-05-23', { delay: 100 });
+            userEvent.type(input, '23052023', { delay: 100 });
         });
 	}
 };

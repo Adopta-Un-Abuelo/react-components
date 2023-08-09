@@ -30,7 +30,7 @@ const InputStyled = forwardRef((props: InputStyledProps, ref: any) =>{
             ref={ref}
             role="input"
             {...props}
-            maxLength={props.type === 'date' ? 10 : undefined}
+            maxLength={props.type === 'date' ? 10 : props.maxLength}
         />
     )
 })
