@@ -123,7 +123,6 @@ const InputImage = (props: InputImageProps) =>{
     }
 
     const onSelectFile = async(e:any) => {
-        console.log('HOLA');
         if(e && e.target && e.target.files && e.target.files[0]){
             setCrop(undefined)
             const base64: any = await toBase64(e.target.files[0]);
@@ -157,7 +156,7 @@ const InputImage = (props: InputImageProps) =>{
                 });
             }
             else setLoading(false);
-        });
+        }, 'image/webp');
     }
 
     const cancelCrop = () =>{

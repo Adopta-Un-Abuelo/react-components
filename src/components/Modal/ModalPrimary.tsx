@@ -14,6 +14,7 @@ const TitleView = styled.div`
     padding: 18px 24px;
     top: 0px;
     background-color: white;
+    z-index: 100;
     ${media.lessThan("small")`
         padding: 16px;
     `}
