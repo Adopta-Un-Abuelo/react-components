@@ -1,3 +1,17 @@
+# v0.2.29 (Thu Aug 31 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/input' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: header error (guillermo.angeles@adoptaunabuelo.com)
+- fix: image format in image input to webp (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.28 (Wed Aug 09 2023)
 
 #### ⚠️ Pushed to `main`
