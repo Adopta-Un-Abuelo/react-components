@@ -1,3 +1,16 @@
+# v0.2.31 (Thu Sep 07 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/counter' into main (guillermo.angeles@adoptaunabuelo.com)
+- feat: counter animation (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.30 (Thu Sep 07 2023)
 
 #### ⚠️ Pushed to `main`
