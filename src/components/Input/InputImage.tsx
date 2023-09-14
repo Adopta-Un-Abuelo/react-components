@@ -91,7 +91,7 @@ const InputImage = (props: InputImageProps) =>{
     useEffect(() => {
         const t = setTimeout(() => {
             canvasPreview.apply([completedCrop])
-        }, 100)
+        }, 100);
 
         return () => clearTimeout(t);
     }, [completedCrop]);
@@ -212,7 +212,7 @@ const InputImage = (props: InputImageProps) =>{
             setShowWebcam(false);
             setImgSrc(image);
         }
-      }, [webcamRef]);
+    }, [webcamRef]);
 
     return(
         <Container style={props.style}>
@@ -267,9 +267,10 @@ const InputImage = (props: InputImageProps) =>{
                         inputRef.current?.click()
                 }}
                 style={{height:32, padding: '0px 12px', fontSize: 14, fontWeight: 500, ...props.buttonStyle}} 
+                icon={props.icon}
                 design={"secondary"}
             >
-                {props.children ? props.children : "Subir foto"}
+                {props.buttonText ? props.buttonText : "Subir foto"}
             </Button>
             <input name="image" accept="image/*" onChange={onSelectFile} hidden={true} type="file" ref={inputRef}/>
             {imgSrc && (
@@ -320,9 +321,10 @@ const InputImage = (props: InputImageProps) =>{
 export default InputImage;
 export interface InputImageProps{
     options?: Array<'camera' | 'library'>
-    children?: ReactElement,
+    icon?: ReactElement,
     style?: CSSProperties,
     buttonStyle?: CSSProperties,
+    buttonText?: string,
     previewStyle?: CSSProperties,
     label?: string,
     maxHeight?: number,
