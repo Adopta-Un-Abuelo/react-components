@@ -1,13 +1,16 @@
-import { useState, useRef, useEffect, CSSProperties, ReactElement } from 'react';
+import { useState, useRef, useEffect, CSSProperties, ReactElement, useCallback } from 'react';
 import styled from 'styled-components';
 import Compressor from 'compressorjs';
 import ReactCrop, { centerCrop, makeAspectCrop, Crop, PixelCrop } from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
 import './input-image.css'
+import Webcam from "react-webcam";
 
-import { Crop as CropIcon, X } from 'lucide-react';
+import { Crop as CropIcon, X, Camera, Image } from 'lucide-react';
 import Button from '../Button/Button';
 import Color  from '../../constants/ColorV2';
+import Modal from '../Modal/Modal';
+import Text from '../Text/Text';
 
 const Container = styled.div`
 `
@@ -40,6 +43,31 @@ const Preview = styled.canvas`
     height: 150px;
     border-radius: 6px;
 `
+const Cell = styled.div`
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    gap: 12px;
+    padding: 12px 24px;
+    :hover {
+        background-color: ${Color.surface.background};
+    }
+`
+const Row = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+const CaptureButton = styled.div`
+    height: 48px;
+    width: 48px;
+    border-radius: 400px;
+    background-color: white;
+    cursor: pointer;
+    margin-top: 8px;
+    :hover{
+        background-color: ${Color.surface.primaryLow};
+    }
+`
 
 function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
     return centerCrop(makeAspectCrop({ unit: '%', width: 60 }, aspect, mediaWidth, mediaHeight), mediaWidth, mediaHeight)
@@ -47,6 +75,8 @@ function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: numbe
 
 const InputImage = (props: InputImageProps) =>{
 
+    const isMobile = window.innerWidth <= 768;
+    const webcamRef = useRef<Webcam>(null)
     const inputRef = useRef<HTMLInputElement>(null);
     const previewCanvasRef = useRef<HTMLCanvasElement>(null)
     const imgRef = useRef<HTMLImageElement>(null)
@@ -55,6 +85,8 @@ const InputImage = (props: InputImageProps) =>{
     const [ crop, setCrop ] = useState<Crop>()
     const [ completedCrop, setCompletedCrop ] = useState<PixelCrop>();
     const [ loading, setLoading ] = useState(false);
+    const [ showModal, setShowModal ] = useState(false);
+    const [ showWebcam, setShowWebcam ] = useState(false);
 
     useEffect(() => {
         const t = setTimeout(() => {
@@ -163,11 +195,77 @@ const InputImage = (props: InputImageProps) =>{
         setImgSrc('');
     }
 
+    const onOptionClick = (op: string) =>{
+        if(op === 'camera'){
+            setShowWebcam(true);
+        }
+        else if(op === 'library'){
+            setShowModal(false);
+            inputRef.current?.click();
+        }
+    }
+
+    const onCaptureClick = useCallback(() => {
+        const image = webcamRef.current?.getScreenshot();
+        if(image){
+            setShowModal(false);
+            setShowWebcam(false);
+            setImgSrc(image);
+        }
+      }, [webcamRef]);
+
     return(
         <Container style={props.style}>
+            <Modal
+                isVisible={showModal}
+                type={isMobile ? 'full-screen' : 'default'}
+                contentStyle={{padding: 0, paddingBottom: 12, backgroundColor: showWebcam ? 'black' : 'white'}}
+                onClose={() => setShowModal(false)}
+            >
+                {showWebcam ?
+                    <>
+                    <Webcam
+                        ref={webcamRef}
+                        height={'100%'}
+                        width={'100%'}
+                    />
+                    <Row
+                        style={{justifyContent: 'center'}}
+                    >
+                        <CaptureButton
+                            onClick={onCaptureClick}
+                        />
+                    </Row>
+                    </>
+                :
+                    <>
+                    <Cell
+                        onClick={() => onOptionClick('camera')}
+                    >
+                        <Camera/>
+                        <Text type='p'>
+                            Cámara
+                        </Text>
+                    </Cell>
+                    <Cell
+                        onClick={() => onOptionClick('library')}
+                    >
+                        <Image/>
+                        <Text type='p'>
+                            Imagen de librería
+                        </Text>
+                    </Cell>
+                    </>
+                }
+            </Modal>
             <Button 
                 role={'button'}
-                onClick={() => inputRef.current?.click()}
+                onClick={() => {
+                    if(props.options && props.options.length > 1)
+                        setShowModal(true);
+                    else
+                        inputRef.current?.click()
+                }}
                 style={{height:32, padding: '0px 12px', fontSize: 14, fontWeight: 500, ...props.buttonStyle}} 
                 design={"secondary"}
             >
@@ -221,6 +319,7 @@ const InputImage = (props: InputImageProps) =>{
 }
 export default InputImage;
 export interface InputImageProps{
+    options?: Array<'camera' | 'library'>
     children?: ReactElement,
     style?: CSSProperties,
     buttonStyle?: CSSProperties,

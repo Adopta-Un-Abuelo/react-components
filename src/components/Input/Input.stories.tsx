@@ -357,7 +357,8 @@ export const InputDateRange = {
 export const InputImage = {
     args: {
         design: 'secondary',
-        type:'image'
+        type:'image',
+        options: ['camera', 'library']
     },
 	play: async ({canvasElement, step}: any) =>{
 		const canvas = within(canvasElement);
