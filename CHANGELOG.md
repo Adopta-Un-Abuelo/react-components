@@ -1,3 +1,16 @@
+# v0.2.33 (Thu Sep 14 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/input' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: input image error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.32 (Thu Sep 14 2023)
 
 #### ⚠️ Pushed to `main`
