@@ -1,3 +1,15 @@
+# v0.2.32 (Thu Sep 14 2023)
+
+#### ⚠️ Pushed to `main`
+
+- feat: input image with camera option (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.31 (Thu Sep 07 2023)
 
 #### ⚠️ Pushed to `main`
