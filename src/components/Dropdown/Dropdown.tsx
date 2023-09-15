@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Text from '../Text/Text'
 import Color from '../../constants/Color';
+import ColorV2 from '../../constants/ColorV2';
 import SearchBar from '../SearchBar/SearchBar';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -153,7 +154,8 @@ const Dropdown = (props: Props) =>{
                         textOverflow: 'ellipsis',
                         display: '-webkit-box',
                         WebkitLineClamp : 1,
-                        WebkitBoxOrient: 'vertical'
+                        WebkitBoxOrient: 'vertical',
+                        color: selected.length > 0 ? ColorV2.text.neutralHard : ColorV2.text.neutralMedium
                     }}
                 >
                     {selected.length > 0 ? selected.map((item, index) => index === 0 ? item.title : ', '+item.title) : props.placeholder}
