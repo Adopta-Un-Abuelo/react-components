@@ -39,7 +39,6 @@
     "styled-media-query": "^2.1.2"
   },
   "scripts": {
-    "dev": "vite",
     "build": "rollup -c",
     "release": "auto shipit --base-branch=main",
     "storybook": "storybook dev -p 6006",
@@ -53,20 +52,23 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.22.15",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-typescript": "^7.22.15",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-replace": "^4.0.0",
     "@rollup/plugin-typescript": "^8.3.4",
-    "@storybook/addon-essentials": "^7.2.1",
-    "@storybook/addon-interactions": "^7.2.1",
-    "@storybook/addon-links": "^7.2.1",
-    "@storybook/blocks": "^7.2.1",
-    "@storybook/jest": "^0.1.0",
-    "@storybook/react": "^7.2.1",
-    "@storybook/react-vite": "^7.2.1",
+    "@storybook/addon-essentials": "^7.4.1",
+    "@storybook/addon-interactions": "^7.4.1",
+    "@storybook/addon-links": "^7.4.1",
+    "@storybook/blocks": "^7.4.1",
+    "@storybook/jest": "^0.2.2",
+    "@storybook/react": "^7.4.1",
+    "@storybook/react-webpack5": "^7.4.1",
     "@storybook/test-runner": "^0.13.0",
-    "@storybook/testing-library": "^0.2.0",
+    "@storybook/testing-library": "^0.2.1",
     "@svgr/rollup": "^6.3.1",
     "@types/draftjs-to-html": "^0.8.1",
     "@types/google-libphonenumber": "^7.4.23",
@@ -76,11 +78,10 @@
     "@types/react-modal": "^3.16.0",
     "@types/react-places-autocomplete": "^7.2.9",
     "@types/styled-components": "^5.1.26",
-    "@vitejs/plugin-react": "^3.1.0",
     "auto": "^10.46.0",
     "chromatic": "^6.19.9",
+    "eslint-plugin-storybook": "^0.6.13",
     "msw": "^1.2.2",
-    "msw-storybook-addon": "^1.8.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -92,9 +93,8 @@
     "rollup-plugin-styles": "^4.0.0",
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-terser": "^7.0.2",
-    "storybook": "^7.2.1",
-    "typescript": "^5.1.6",
-    "vite": "^4.3.9"
+    "storybook": "^7.4.1",
+    "typescript": "^5.1.6"
   },
   "engines": {
     "node": "16"
@@ -102,7 +102,8 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:storybook/recommended"
     ],
     "overrides": [
       {
