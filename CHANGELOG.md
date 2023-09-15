@@ -1,3 +1,20 @@
+# v0.2.34 (Fri Sep 15 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/dropdown' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: idem (guillermo.angeles@adoptaunabuelo.com)
+- fix: yarn (guillermo.angeles@adoptaunabuelo.com)
+- fix: clsx installed (guillermo.angeles@adoptaunabuelo.com)
+- feat: storybook updated (guillermo.angeles@adoptaunabuelo.com)
+- fix: dropdown color error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.33 (Thu Sep 14 2023)
 
 #### ⚠️ Pushed to `main`
