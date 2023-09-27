@@ -260,6 +260,27 @@ export const InputDate = {
 	}
 };
 
+export const InputDateWithCalendar = {
+    args: {
+        design: 'secondary',
+        type:'date',
+        showCalendar: true,
+        defaultValue: undefined
+    },
+	play: async ({canvasElement, step}: any) =>{
+		const canvas = within(canvasElement);
+		const input = canvas.getByRole('input');
+        const placeholder = canvas.getByRole('placeholder');
+        await step('render', async () =>{
+            expect(input).toBeInTheDocument();
+            expect(placeholder).toBeInTheDocument();
+        });
+        await step('typing', async () =>{
+            userEvent.type(input, '23052023', { delay: 100 });
+        });
+	}
+};
+
 export const InputPassword = {
     args: {
         design: 'secondary',
