@@ -1,3 +1,16 @@
+# v0.2.35 (Wed Sep 27 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/input' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: date input with calendar (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.34 (Fri Sep 15 2023)
 
 #### ⚠️ Pushed to `main`
