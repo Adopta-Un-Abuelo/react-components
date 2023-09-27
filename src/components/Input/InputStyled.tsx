@@ -15,13 +15,6 @@ const Input = styled.input<{hideCalendar?: boolean}>`
     &::placeholder{
         color: ${Color.text.neutralMedium}
     }
-    &::-webkit-calendar-picker-indicator {
-        display: ${props => props.hideCalendar && 'none'};
-        -webkit-appearance: ${props => props.hideCalendar && 'none'};
-    }
-    &::-webkit-calendar-picker-indicator {
-        background: none;
-    }
 `
 const InputStyled = forwardRef((props: InputStyledProps, ref: any) =>{
 

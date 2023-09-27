@@ -10,19 +10,25 @@ const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) =>{
 
     const onChange = (e: any) =>{
         const value = e.target.value;
-        if(value.length === 2 || value.length === 5){
-            if(text && value.length < text.length){
-                //Remove
-                setText(value.slice(0, -1));
-            }
-            else setText(value+'/');
-        }
-        else if(value.length === 10){
-            setText(value);
-            const date:any  = moment(value, 'DD/MM/YYYY').toDate();
+        if(props.showCalendar){
+            const date:any  = moment(value, 'YYYY-MM-DD').toDate();
             props.onChange && props.onChange(date);
         }
-        else setText(value);
+        else{
+            if(value.length === 2 || value.length === 5){
+                if(text && value.length < text.length){
+                    //Remove
+                    setText(value.slice(0, -1));
+                }
+                else setText(value+'/');
+            }
+            else if(value.length === 10){
+                setText(value);
+                const date:any  = moment(value, 'DD/MM/YYYY').toDate();
+                props.onChange && props.onChange(date);
+            }
+            else setText(value);
+        }
     }
 
 
@@ -31,7 +37,7 @@ const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) =>{
             value={text}
             containerStyle={{flex: 1, ...props.containerStyle}}
             {...props}
-            type='text'
+            type={props.showCalendar ? 'date' : 'text'}
             maxLength={10}
             onChange={onChange}
         />
@@ -40,7 +46,7 @@ const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) =>{
             value={text}
             containerStyle={{flex: 1, ...props.containerStyle}}
             {...props}
-            type='text'
+            type={props.showCalendar ? 'date' : 'text'}
             maxLength={10}
             onChange={onChange}
         />
@@ -49,9 +55,9 @@ const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) =>{
 export default InputDate;
 export interface InputDatePrimaryProps extends InputPrimaryProps {
     design?: 'primary',
-    
+    showCalendar?: boolean
 }
 export interface InputDateSecondaryProps extends InputSecondaryProps {
     design?: 'secondary',
-    
+    showCalendar?: boolean
 }
