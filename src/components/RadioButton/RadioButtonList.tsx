@@ -34,7 +34,7 @@ const RadioButtonList = (props: Props) =>{
                     <RadioButton
                         id={item.id}
                         key={item.id+'-'+index}
-                        style={{marginBottom: 16, ...props.cellStyle}}
+                        style={props.cellStyle}
                         children={item.children}
                         selected={active}
                         onClick={() => onClick(item)}
