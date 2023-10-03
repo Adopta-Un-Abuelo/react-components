@@ -45,6 +45,7 @@ const RadioButton = (props: Props) =>{
     return(
         <RadioButtonContainer 
             role={props.id}
+            style={props.style}
             onClick={onClick}
         >
             <RadioOuterCircle 
