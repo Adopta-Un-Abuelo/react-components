@@ -1,3 +1,16 @@
+# v0.2.36 (Tue Oct 03 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/radio-button' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: cell style (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.35 (Wed Sep 27 2023)
 
 #### ⚠️ Pushed to `main`
