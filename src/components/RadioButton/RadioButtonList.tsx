@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { CSSProperties, ReactElement, useState } from 'react';
 import styled from 'styled-components';
 import RadioButton from './RadioButton';
 
@@ -24,14 +24,17 @@ const RadioButtonList = (props: Props) =>{
     }
 
     return(
-        <Container role="radiobuttonlist">
+        <Container 
+            style={props.style}
+            role="radiobuttonlist"
+        >
             {props.options.map((item, index) => {
                 const active = selection.some(e => e.id === item.id);
                 return(
                     <RadioButton
                         id={item.id}
                         key={item.id+'-'+index}
-                        style={{marginBottom: 16}}
+                        style={{marginBottom: 16, ...props.cellStyle}}
                         children={item.children}
                         selected={active}
                         onClick={() => onClick(item)}
@@ -45,6 +48,8 @@ export default RadioButtonList;
 export interface Props{
     options: Array<OptionProps>,
     type: 'single' | 'multiple',
+    style?: CSSProperties,
+    cellStyle?: CSSProperties,
     onChange?: (data: Array<OptionProps>) => void
 }
 interface OptionProps {
