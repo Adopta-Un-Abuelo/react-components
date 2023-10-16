@@ -1,3 +1,16 @@
+# v0.2.38 (Mon Oct 16 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/modal' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: modal form error solved (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.37 (Tue Oct 03 2023)
 
 #### ⚠️ Pushed to `main`
