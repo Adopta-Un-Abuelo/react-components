@@ -228,6 +228,9 @@ const InputImage = (props: InputImageProps) =>{
                         ref={webcamRef}
                         height={'100%'}
                         width={'100%'}
+                        videoConstraints={{
+                            facingMode: 'environment'
+                        }}
                     />
                     <Row
                         style={{justifyContent: 'center'}}
