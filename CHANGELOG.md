@@ -1,3 +1,16 @@
+# v0.2.39 (Tue Oct 17 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/input' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: input image webcam open back camera (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.38 (Mon Oct 16 2023)
 
 #### ⚠️ Pushed to `main`
