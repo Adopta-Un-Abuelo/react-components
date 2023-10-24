@@ -26,7 +26,8 @@ export default {
 
 export const Default = {
 	args: {
-		name: 'Test'
+		name: 'Test',
+		style: {}
 	},
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);

@@ -12,7 +12,7 @@ function Counter(props: Props) {
 
     useEffect(() => {
         clearTimer();
-        setCounter(props.amount > 0 ? props.amount-10 : 0)
+        setCounter(props.amount > 0 ? props.amount-(props.amount >= 10 ? 10 : props.amount) : 0)
         countdownRef.current = window.setInterval(tick, 400);
         return () => clearTimer();
     }, [props.amount]);
