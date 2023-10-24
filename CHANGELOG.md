@@ -1,3 +1,16 @@
+# v0.2.40 (Tue Oct 24 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'hotfix/r-544' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: style fix (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.39 (Tue Oct 17 2023)
 
 #### ⚠️ Pushed to `main`
