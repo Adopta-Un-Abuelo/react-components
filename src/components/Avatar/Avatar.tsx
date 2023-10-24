@@ -99,7 +99,7 @@ const Avatar = (props: Props) =>{
             {props.icon ?
                 <Icon src={props.icon}/> 
             : props.name ? 
-                <Text style={{fontSize: props.style?.fontSize ? props.style.fontSize : 24, fontWeight: 600}}>
+                <Text style={{color: props.style?.color ? props.style?.color : Color.text.primary, fontSize: props.style?.fontSize ? props.style.fontSize : 24, fontWeight: 600}}>
                     {props.name.substring(0,1).toLocaleUpperCase()}
                 </Text>
             :null}
