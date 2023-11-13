@@ -1,3 +1,16 @@
+# v0.2.42 (Mon Nov 13 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'hotfix/button' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: idem (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.41 (Mon Nov 13 2023)
 
 #### ⚠️ Pushed to `main`
