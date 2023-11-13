@@ -4,6 +4,7 @@ import { Player } from '@lottiefiles/react-lottie-player';
 
 import AnimationCheck from '../../assets/animations/button-check.json';
 import AnimationLoadingBlack from '../../assets/animations/button-loading-black.json';
+import AnimationLoading from '../../assets/animations/button-loading.json';
 
 import Text from '../Text/Text';
 import Color from '../../constants/Color';
@@ -40,6 +41,11 @@ const Button = (props: Props) => {
 
 	const [ showLabel, setShowLabel ] = useState(true);
 	const [ prevLabel, setPrevLabel ] = useState(props.children);
+    const [ loadingAnimation, setLoadingAnimation ] = useState(undefined);
+
+    useEffect(() =>{
+        createAnimation();
+    },[]);
 
 	useEffect(() =>{
 		if(prevLabel !== props.children){
@@ -50,6 +56,30 @@ const Button = (props: Props) => {
 			});
 		}
 	},[props.children]);
+
+    const createAnimation = () =>{
+        const json = JSON.stringify(AnimationLoading);
+        const jsonBlack = JSON.stringify(AnimationLoadingBlack);
+        if(props.textColor){
+            //Get rgb colors
+            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(props.textColor);
+            if(result){
+                const rgb = {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                }
+                let temp = json.replaceAll('[1,1,1]', `[${rgb.r/255},${rgb.g/255},${rgb.b/255}]`);
+                setLoadingAnimation(JSON.parse(temp));
+            }
+            else{
+                setLoadingAnimation(JSON.parse(jsonBlack));
+            }
+        }
+        else {
+            setLoadingAnimation(JSON.parse(jsonBlack));
+        }
+    }
 
 	const delay = (ms: number) => new Promise(
         resolve => setTimeout(resolve, ms)
@@ -74,12 +104,12 @@ const Button = (props: Props) => {
                         }
                     }}
                 />
-            : props.loading ?
+            : (props.loading && loadingAnimation) ?
                 <Player 
                     style={{width: props.size === 'small' ? 80 : 100}}
                     autoplay={true}
                     loop={true}
-                    src={AnimationLoadingBlack}
+                    src={loadingAnimation}
                 />
             :
                 <>
