@@ -59,7 +59,6 @@ const Button = (props: Props) => {
 
     const createAnimation = () =>{
         const json = JSON.stringify(AnimationLoading);
-        const jsonBlack = JSON.stringify(AnimationLoadingBlack);
         if(props.textColor){
             //Get rgb colors
             var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(props.textColor);
@@ -73,11 +72,13 @@ const Button = (props: Props) => {
                 setLoadingAnimation(JSON.parse(temp));
             }
             else{
-                setLoadingAnimation(JSON.parse(jsonBlack));
+                let temp = json.replaceAll('[1,1,1]', `[${0/255},${143/255},${245/255}]`);
+                setLoadingAnimation(JSON.parse(temp));
             }
         }
         else {
-            setLoadingAnimation(JSON.parse(jsonBlack));
+            let temp = json.replaceAll('[1,1,1]', `[${0/255},${143/255},${245/255}]`);
+            setLoadingAnimation(JSON.parse(temp));
         }
     }
 
