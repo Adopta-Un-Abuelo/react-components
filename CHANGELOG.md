@@ -1,3 +1,16 @@
+# v0.2.43 (Wed Nov 15 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/tabs' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: tabs mobile hover problem solve (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.42 (Mon Nov 13 2023)
 
 #### ⚠️ Pushed to `main`
