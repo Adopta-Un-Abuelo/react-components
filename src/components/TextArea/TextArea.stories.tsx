@@ -26,7 +26,10 @@ export const Default = {
 
 export const Editor = {
     args: {
-        type: 'edit'
+        type: 'edit',
+        style: {
+            height: 300
+        }
     },
 	play: async ({canvasElement}: any) =>{
 		const canvas = within(canvasElement);
