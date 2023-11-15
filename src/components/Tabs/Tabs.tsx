@@ -1,5 +1,6 @@
 import { CSSProperties, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 import Color from '../../constants/Color';
 import Text from '../Text/Text';
@@ -38,6 +39,11 @@ const Cell2 = styled.div<{selected: boolean, color?: string}>`
     &:hover{
         background-color: ${props => props.selected ? Color.background.primaryLow : Color.status.neutral.hover};
     }
+    ${(props) => media.lessThan("medium")`
+        &:hover{
+            background-color: ${props.color ? props.color : Color.status.neutral.hover};
+        }
+    `}
 `
 const Label2 = styled(Text)<{selected: boolean, textColor?: string}>`
     font-size: 14px;
