@@ -1,3 +1,16 @@
+# v0.2.44 (Thu Nov 16 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/input' into main (guillermo.angeles@adoptaunabuelo.com)
+- fix: phone input error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.43 (Wed Nov 15 2023)
 
 #### ⚠️ Pushed to `main`
