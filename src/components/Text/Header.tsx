@@ -10,8 +10,10 @@ const D1 = styled.h1`
 	font-family: 'Poppins', 'sans-serif';
 	color: ${Color.text.neutralHard};
 	font-size: 52px;
+	line-height: 64px;
 	${media.lessThan("medium")`
 		font-size: 48px;
+		line-height: 60px;
     `}
 `
 const H1 = styled.h1`
@@ -20,8 +22,10 @@ const H1 = styled.h1`
 	font-family: 'Poppins', 'sans-serif';
 	color: ${Color.text.neutralHard};
 	font-size: 48px;
+	line-height: 56px;
 	${media.lessThan("medium")`
 		font-size: 32px;
+		line-height: 40px;
     `}
 `
 const H2 = styled.h2`
@@ -30,8 +34,10 @@ const H2 = styled.h2`
 	font-family: 'Poppins', 'sans-serif';
 	color: ${Color.text.neutralHard};
 	font-size: 40px;
+	line-height: 48px;
 	${media.lessThan("medium")`
 		font-size: 28px;
+		line-height: 36px;
     `}
 `
 const H3 = styled.h3`
@@ -40,8 +46,10 @@ const H3 = styled.h3`
 	font-family: 'Poppins', 'sans-serif';
 	color: ${Color.text.neutralHard};
 	font-size: 28px;
+	line-height: 36px;
 	${media.lessThan("medium")`
 		font-size: 24px;
+		line-height: 32px;
     `}
 `
 const H4 = styled.h4`
@@ -50,8 +58,10 @@ const H4 = styled.h4`
 	font-family: 'Poppins', 'sans-serif';
 	color: ${Color.text.neutralHard};
 	font-size: 24px;
+	line-height: 32px;
 	${media.lessThan("medium")`
 		font-size: 20px;
+		line-height: 28px;
     `}
 `
 const H5 = styled.h5`
@@ -60,8 +70,10 @@ const H5 = styled.h5`
 	font-family: 'Poppins', 'sans-serif';
 	color: ${Color.text.neutralHard};
 	font-size: 20px;
+	line-height: 28px;
 	${media.lessThan("medium")`
 		font-size: 18px;
+		line-height: 26px;
     `}
 `
 const H6 = styled.h6`
@@ -70,8 +82,10 @@ const H6 = styled.h6`
 	font-family: 'Poppins', 'sans-serif';
 	color: ${Color.text.neutralHard};
 	font-size: 18px;
+	line-height: 26px;
 	${media.lessThan("medium")`
 		font-size: 16px;
+		line-height: 24px;
     `}
 `
 

@@ -37,7 +37,7 @@ const Cell2 = styled.div<{selected: boolean, color?: string}>`
     background-color: ${props => props.selected ? (props.color ? props.color : Color.background.primaryLow) : 'transparent'};
     transition: background-color 0.15s ease-in;
     &:hover{
-        background-color: ${props => props.selected ? Color.background.primaryLow : Color.status.neutral.hover};
+        background-color: ${props => props.selected ? (props.color ? props.color : Color.background.primaryLow) : Color.status.neutral.hover};
     }
     ${(props) => media.lessThan("medium")`
         &:hover{
