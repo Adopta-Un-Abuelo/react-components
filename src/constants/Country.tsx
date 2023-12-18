@@ -248,7 +248,7 @@ const Country = [
 		id: 'suecia',
 		esCountry: 'Suecia',
 		enCountry: 'Sweden',
-		prefix: '+43',
+		prefix: '+46',
 		countryCode: 'SE'
 	},
 	{
