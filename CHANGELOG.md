@@ -1,3 +1,15 @@
+# v0.2.46 (Mon Dec 18 2023)
+
+#### ⚠️ Pushed to `main`
+
+- fix: Suecia phone prefix (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.45 (Mon Nov 20 2023)
 
 #### ⚠️ Pushed to `main`
