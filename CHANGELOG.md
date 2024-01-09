@@ -1,3 +1,16 @@
+# v0.2.47 (Tue Jan 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/r-616' (guillermo.angeles@adoptaunabuelo.com)
+- feat: phone input with no spaces (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.46 (Mon Dec 18 2023)
 
 #### ⚠️ Pushed to `main`
