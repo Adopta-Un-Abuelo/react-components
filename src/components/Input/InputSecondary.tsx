@@ -75,10 +75,11 @@ const InputSecondary = (props: InputSecondaryProps) =>{
         setInputValue(e.target.value);
         props.onChange && props.onChange(e);
         if(props.type === 'tel'){
-            const phone = country.prefix + e.target.value;
+            const value = e.target.value.replaceAll(/\s/g,'');
+            const phone = country.prefix + value;
             props.onPhoneChange && props.onPhoneChange({
                 country: country.prefix, 
-                value: e.target.value,
+                value: value,
                 isValid: (phone.length > 8 && phone.length < 18) ? phoneUtil.isValidNumberForRegion(phoneUtil.parse(phone, country.countryCode), country.countryCode) : false
             });
         }
@@ -86,10 +87,11 @@ const InputSecondary = (props: InputSecondaryProps) =>{
 
     const onCountryChange = (country:any) =>{
         setCountry(country);
-        const phone = country.prefix + (inputValue ? inputValue : "");
+        const value = (inputValue && typeof inputValue === 'string') ? inputValue.replaceAll(/\s/g,'') : "";
+        const phone = country.prefix + value;
         props.onPhoneChange && props.onPhoneChange({
             country: country.prefix, 
-            value: inputValue,
+            value: value,
             isValid: (phone.length >=6 && phone.length < 18) ? phoneUtil.isValidNumberForRegion(phoneUtil.parse(phone, country.countryCode), country.countryCode) : false
         });
     }
