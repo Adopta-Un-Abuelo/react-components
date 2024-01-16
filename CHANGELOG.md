@@ -1,3 +1,16 @@
+# v0.2.48 (Tue Jan 16 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/input' (guillermo.angeles@adoptaunabuelo.com)
+- feat: input location suggestion view style & search options (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.47 (Tue Jan 09 2024)
 
 #### ⚠️ Pushed to `main`
