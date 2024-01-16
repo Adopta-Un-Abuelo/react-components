@@ -85,8 +85,8 @@ const InputLocation = (props: InputLocationPrimaryProps | InputLocationSecondary
             value={searchText}
             onChange={onLocationChange}
             onSelect={handleSelect}
-            searchOptions={{
-                types: ['address']
+            searchOptions={props.searchOptions ? props.searchOptions : {
+                types: ['address'],
             }}
         >
             {({ getInputProps, suggestions, getSuggestionItemProps }) => (
@@ -127,6 +127,7 @@ const InputLocation = (props: InputLocationPrimaryProps | InputLocationSecondary
                                         {...getSuggestionItemProps(suggestion)}
                                         role={"cell"+index}
                                         selected={pointerPosition === index}
+                                        style={props.suggestionViewStyle}
                                     >
                                         <Text type='p2' style={{textOverflow: 'ellipsis'}}>{suggestion.description}</Text>
                                     </SuggestionView>
@@ -142,6 +143,10 @@ const InputLocation = (props: InputLocationPrimaryProps | InputLocationSecondary
 export default InputLocation;
 export interface InputLocationPrimaryProps extends InputPrimaryProps {
     design?: 'primary',
+    searchOptions?: {
+        types: string []
+    },
+    suggestionViewStyle: React.CSSProperties,
     onLocationChange?: (result: {
         address: string,
         geocoder: google.maps.GeocoderResult,
@@ -150,6 +155,10 @@ export interface InputLocationPrimaryProps extends InputPrimaryProps {
 }
 export interface InputLocationSecondaryProps extends InputSecondaryProps {
     design?: 'secondary',
+    searchOptions?: {
+        types: string []
+    },
+    suggestionViewStyle: React.CSSProperties,
     onLocationChange?: (result: {
         address: string,
         geocoder: google.maps.GeocoderResult,
