@@ -146,7 +146,7 @@ export interface InputLocationPrimaryProps extends InputPrimaryProps {
     searchOptions?: {
         types: string []
     },
-    suggestionViewStyle: React.CSSProperties,
+    suggestionViewStyle?: React.CSSProperties,
     onLocationChange?: (result: {
         address: string,
         geocoder: google.maps.GeocoderResult,
@@ -158,7 +158,7 @@ export interface InputLocationSecondaryProps extends InputSecondaryProps {
     searchOptions?: {
         types: string []
     },
-    suggestionViewStyle: React.CSSProperties,
+    suggestionViewStyle?: React.CSSProperties,
     onLocationChange?: (result: {
         address: string,
         geocoder: google.maps.GeocoderResult,
