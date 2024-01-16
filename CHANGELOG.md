@@ -1,3 +1,15 @@
+# v0.2.49 (Tue Jan 16 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: props error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.48 (Tue Jan 16 2024)
 
 #### ⚠️ Pushed to `main`
