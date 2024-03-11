@@ -1,3 +1,19 @@
+# v0.2.50 (Mon Mar 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/r-799' (guillermo.angeles@adoptaunabuelo.com)
+- feat: styled-components update (guillermo.angeles@adoptaunabuelo.com)
+- feat: idem (guillermo.angeles@adoptaunabuelo.com)
+- fix: github flow error (guillermo.angeles@adoptaunabuelo.com)
+- feat: package update (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.49 (Tue Jan 16 2024)
 
 #### ⚠️ Pushed to `main`
