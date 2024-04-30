@@ -1,3 +1,15 @@
+# v0.2.51 (Tue Apr 30 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: new labels (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.2.50 (Mon Mar 11 2024)
 
 #### ⚠️ Pushed to `main`
