@@ -141,7 +141,13 @@ const Label = (props: Props) =>{
                     backgroundColor: Color.background.redLow,
                     text: 'Cancelado'
                 }
-            case 'canceled':
+            case 'failed':
+                return{
+                    color: Color.text.red,
+                    backgroundColor: Color.background.redLow,
+                    text: 'Fallido'
+                }
+            case 'cancel':
                 return{
                     color: Color.text.red,
                     backgroundColor: Color.background.redLow,
@@ -164,6 +170,12 @@ const Label = (props: Props) =>{
                     color: '#448B6D',
                     backgroundColor: '#E4F8EE',
                     text: 'Activa'
+                }
+            case 'paid':
+                return{
+                    color: '#448B6D',
+                    backgroundColor: '#E4F8EE',
+                    text: 'Pagado'
                 }
             case 'Resuelto':
                 return{
