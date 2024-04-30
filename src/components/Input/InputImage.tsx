@@ -49,7 +49,7 @@ const Cell = styled.div`
     cursor: pointer;
     gap: 12px;
     padding: 12px 24px;
-    :hover {
+    &:hover {
         background-color: ${Color.surface.background};
     }
 `
@@ -64,7 +64,7 @@ const CaptureButton = styled.div`
     background-color: white;
     cursor: pointer;
     margin-top: 8px;
-    :hover{
+    &:hover{
         background-color: ${Color.surface.primaryLow};
     }
 `
