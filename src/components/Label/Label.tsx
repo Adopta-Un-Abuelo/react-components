@@ -123,6 +123,12 @@ const Label = (props: Props) =>{
                     backgroundColor: '#FFF6E5',
                     text: 'En proceso'
                 }
+            case 'pending-remittance':
+                return{
+                    color: '#0000008F',
+                    backgroundColor: '#F2F2F2',
+                    text: 'Pendiente remesa'
+                }
             case 'pending':
                 return{
                     color: '#0000008F',
