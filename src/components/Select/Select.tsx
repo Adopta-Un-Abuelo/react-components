@@ -1,9 +1,9 @@
-import { useState, useEffect, ComponentPropsWithoutRef, CSSProperties } from 'react';
+import { useState, useEffect, ComponentPropsWithoutRef, CSSProperties, Fragment } from 'react';
 import styled from 'styled-components';
 
 import Text from '../Text/Text';
 import Color from '../../constants/Color';
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown, ChevronUp, Check } from 'lucide-react'
 
 const Container = styled.div`
     position: relative;
@@ -46,9 +46,8 @@ const Option = styled.div`
 `
 
 const Select = (props: Props) =>{
-
     const [ showMenu, setShowMenu ] = useState(false);
-    const [ selectedItem, setSelectedItem ] = useState(props.options && props.options[0]);
+    const [ selectedValues, setSelectedValues ] = useState<Array<any>>([]);
 
     useEffect(() =>{
         window.addEventListener('click', (e) => closeMenu(e));
@@ -57,7 +56,7 @@ const Select = (props: Props) =>{
 
     useEffect(() =>{
         if(props.selectedItem){
-            setSelectedItem(props.selectedItem)
+            setSelectedValues([props.selectedItem]);
         }
     }, [props.selectedItem]);
 
@@ -81,7 +80,22 @@ const Select = (props: Props) =>{
         if (!e) var e: any = window.event;
         e.cancelBubble = true;
         if (e.stopPropagation) e.stopPropagation();
-        setSelectedItem(option);
+        // setSelectedItem(option);
+        if (props.multi) {
+            setSelectedValues(prevValues => {
+                if (prevValues.includes(option)) {
+                    // Si el valor ya está seleccionado, lo quitamos
+                    return prevValues.filter(v => v !== option);
+                } else {
+                    // Si el valor no está seleccionado, lo añadimos
+                    const temp = [...prevValues, option]
+                    temp.sort((a, b) => a.label.localeCompare(b.label))
+                    return temp
+                }
+            });
+        } else {
+            setSelectedValues([option]);
+        }
         setShowMenu(false);
         props.onChange && props.onChange(option);
     }
@@ -95,15 +109,21 @@ const Select = (props: Props) =>{
                 style={props.style}
                 onClick={onSelectClick}
             >
-                {selectedItem?.icon}
-                {!props.hideTitle &&
-                    <Text
-                        type='p'
-                        style={{flex: 1, fontSize: 14, color: props.style ? props.style.color : Color.text.full}}
-                    >
-                        {selectedItem?.label}
-                    </Text>
-                }
+                <div style={{flex: 1, display: 'flex'}}>
+                    {selectedValues.map((item, index) => (
+                        <Fragment key={index}>
+                            {item.icon}
+                            {!props.hideTitle && (
+                                <Text
+                                    type='p'
+                                    style={{ paddingRight: 10, paddingLeft: 10, fontSize: 14, color: props.style ? props.style.color : Color.text.full}}
+                                >
+                                    {item.label}
+                                </Text>
+                            )}
+                        </Fragment>
+                    )).sort()}
+                </div>
                 {showMenu ?
                     <ChevronUp height={20} width={20}/>
                 : 
@@ -122,6 +142,7 @@ const Select = (props: Props) =>{
                                 key={props.id+'-cell-'+index}
                                 onClick={(e: any) => onOptionClick(item, e)}
                             >
+                                {props.multi && selectedValues.includes(item) && <Check width={20} height={20}/>}
                                 {item.icon}
                                 <Text type='p'>{item.label}</Text>
                             </Option>
@@ -139,6 +160,7 @@ export interface Props extends ComponentPropsWithoutRef<"div">{
     hideTitle?: boolean,
     options: Array<OptionProps>
     selectedItem?: OptionProps
+    multi?: boolean,
     onChange?: (option: any) => void
 }
 interface OptionProps {
