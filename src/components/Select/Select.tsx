@@ -47,7 +47,7 @@ const Option = styled.div`
 
 const Select = (props: Props) =>{
     const [ showMenu, setShowMenu ] = useState(false);
-    const [ selectedValues, setSelectedValues ] = useState<Array<any>>([]);
+    const [ selectedValues, setSelectedValues ] = useState<Array<any>>([props.options && props.options[0]]);
 
     useEffect(() =>{
         window.addEventListener('click', (e) => closeMenu(e));
@@ -80,7 +80,6 @@ const Select = (props: Props) =>{
         if (!e) var e: any = window.event;
         e.cancelBubble = true;
         if (e.stopPropagation) e.stopPropagation();
-        // setSelectedItem(option);
         if (props.multi) {
             setSelectedValues(prevValues => {
                 if (prevValues.includes(option)) {
@@ -97,7 +96,9 @@ const Select = (props: Props) =>{
             setSelectedValues([option]);
         }
         setShowMenu(false);
-        props.onChange && props.onChange(option);
+        if (props.onChange) {
+            props.multi ? props.onChange(selectedValues) : props.onChange(selectedValues[0]);
+        }
     }
 
     return(
