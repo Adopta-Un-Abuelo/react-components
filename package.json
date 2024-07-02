@@ -1,6 +1,6 @@
 {
   "name": "@adoptaunabuelo/react-components",
-  "version": "0.2.54",
+  "version": "0.3.0",
   "homepage": "https://github.com/Adopta-Un-Abuelo/react-components",
   "author": "Guillermo Angeles <guilleangeles94@gmail.com>",
   "private": false,
@@ -16,76 +16,71 @@
   ],
   "types": "dist/index.d.ts",
   "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.17.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "release": "auto shipit --base-branch=main",
+    "prepare": "npm run build",
+    "chromatic": "npx chromatic --project-token=chpt_0dcfdd1e76a01ba",
+    "storybook": "BROWSER='google chrome' storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
   "dependencies": {
-    "@lottiefiles/react-lottie-player": "^3.5.3",
+    "@lottiefiles/react-lottie-player": "^3.5.4",
     "@stripe/react-stripe-js": "^2.5.1",
     "@stripe/stripe-js": "^3.0.7",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "compressorjs": "^1.2.1",
-    "country-flag-icons": "^1.5.9",
+    "country-flag-icons": "^1.5.12",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "fuse.js": "^7.0.0",
-    "google-libphonenumber": "^3.2.34",
-    "lucide-react": "^0.354.0",
+    "google-libphonenumber": "^3.2.35",
+    "lucide-react": "^0.399.0",
     "moment": "^2.30.1",
+    "next": "14.2.4",
+    "react": "^18.17.0",
     "react-dates": "^21.8.0",
+    "react-dom": "^18",
     "react-draft-wysiwyg": "^1.15.0",
     "react-image-crop": "^11.0.5",
     "react-modal": "^3.16.1",
     "react-places-autocomplete": "^7.3.0",
     "react-webcam": "^7.2.0",
-    "styled-components": "^6.1.8",
+    "styled-components": "^6.1.11",
     "styled-media-query": "^2.1.2"
   },
-  "scripts": {
-    "build": "rollup -c",
-    "release": "auto shipit --base-branch=main",
-    "storybook": "storybook dev -p 6006",
-    "prepare": "npm run build",
-    "build-storybook": "storybook build",
-    "test-storybook": "test-storybook",
-    "init-msw": "msw init public/",
-    "chromatic": "npx chromatic --project-token=chpt_0dcfdd1e76a01ba"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0"
-  },
   "devDependencies": {
-    "@babel/preset-env": "^7.24.0",
-    "@babel/preset-react": "^7.23.3",
-    "@babel/preset-typescript": "^7.23.3",
+    "@chromatic-com/storybook": "^1.6.0",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-replace": "^4.0.0",
     "@rollup/plugin-typescript": "^8.3.4",
-    "@storybook/addon-essentials": "^7.6.17",
-    "@storybook/addon-interactions": "^7.6.17",
-    "@storybook/addon-links": "^7.6.17",
-    "@storybook/blocks": "^7.6.17",
-    "@storybook/jest": "^0.2.3",
-    "@storybook/react": "^7.6.17",
-    "@storybook/react-webpack5": "^7.6.17",
-    "@storybook/test-runner": "^0.16.0",
-    "@storybook/testing-library": "^0.2.2",
+    "@storybook/addon-essentials": "^8.1.11",
+    "@storybook/addon-interactions": "^8.1.11",
+    "@storybook/addon-links": "^8.1.11",
+    "@storybook/addon-onboarding": "^8.1.11",
+    "@storybook/blocks": "^8.1.11",
+    "@storybook/nextjs": "^8.1.11",
+    "@storybook/react": "^8.1.11",
+    "@storybook/test": "^8.1.11",
     "@svgr/rollup": "^6.3.1",
     "@types/draftjs-to-html": "^0.8.4",
     "@types/google-libphonenumber": "^7.4.30",
-    "@types/react": "^18.2.64",
+    "@types/node": "^20",
+    "@types/react": "^18",
     "@types/react-dates": "^21.8.6",
-    "@types/react-dom": "^18.2.21",
+    "@types/react-dom": "^18",
     "@types/react-draft-wysiwyg": "^1.13.8",
     "@types/react-modal": "^3.16.3",
     "@types/react-places-autocomplete": "^7.2.14",
-    "@types/styled-components": "^5.1.34",
-    "auto": "^11.1.1",
-    "chromatic": "^11.0.7",
+    "ajv": "^8.16.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
     "eslint-plugin-storybook": "^0.8.0",
-    "msw": "^2.2.3",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "rollup": "^2.77.2",
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-import-css": "^3.5.0",
@@ -94,42 +89,7 @@
     "rollup-plugin-styles": "^4.0.0",
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-terser": "^7.0.2",
-    "storybook": "^7.6.17",
-    "typescript": "^5.4.2"
-  },
-  "resolutions": {
-    "jackspeak": "2.1.1"
-  },
-  "engines": {
-    "node": "18"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:storybook/recommended"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "storybook": "^8.1.11",
+    "typescript": "^5"
   }
 }

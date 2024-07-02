@@ -69,7 +69,7 @@ You will need to export your new component in the index.ts file.
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
 ```
 
-Also, create a .stories.tsx file to add it to the Storybook. You can create the unit test for the component directly in this file using `@storybook/testing-library`
+Also, create a .stories.tsx file to add it to the Storybook. You can create the unit test for the component directly in this file using `@storybook/test`
 
 
 ### Constants
