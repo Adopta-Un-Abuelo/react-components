@@ -2,6 +2,20 @@
 
 #### ⚠️ Pushed to `main`
 
+- fix: auto package error (guillermo.angeles@adoptaunabuelo.com)
+- fix: react version error (guillermo.angeles@adoptaunabuelo.com)
+- chore: update to Storybook 8.1 (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.2.55 (Tue Jul 02 2024)
+
+#### ⚠️ Pushed to `main`
+
 - fix: react version error (guillermo.angeles@adoptaunabuelo.com)
 - chore: update to Storybook 8.1 (guillermo.angeles@adoptaunabuelo.com)
 
