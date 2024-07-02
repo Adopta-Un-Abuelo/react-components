@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import styled from 'styled-components';
 
 import Color from '../../constants/Color'; 
@@ -7,34 +7,27 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
 `
-const Step = styled.div<{isSelected: boolean}>`
+const Step = styled.div.attrs<{$isSelected: boolean}>(props => ({}))`
     display: flex;
     height: 8px;
     width: 8px;
     border-radius: 5px;
     margin-right: 16px;
-    background-color: ${props => props.isSelected ? Color.background.primary : Color.text.low};
+    background-color: ${props => props.$isSelected ? Color.background.primary : Color.text.low};
 `
 
-const BreadCrumb = ({steps=1, ...props}: Props) =>{
-
-    const [ selectedStep, setSelectedStep ] = useState<number>(props.selectedStep ? props.selectedStep : 0);
+const BreadCrumb = ({steps=1, selectedStep=0, ...restProps}: Props) =>{
     const stepsArray = Array.from(Array(steps).keys());
-
-    useEffect(() =>{
-        if(props.selectedStep)
-            setSelectedStep(props.selectedStep);
-    }, [props.selectedStep]);
 
     return(
         <Container
             role="bread-crumb"
-            {...props}
+            {...restProps}
         >
             {stepsArray.map((item, index) =>(
                 <Step
                     key={'crumb'+index}
-                    isSelected={selectedStep === index}
+                    $isSelected={selectedStep === index}
                 />
             ))}
         </Container>

@@ -3,44 +3,43 @@ import styled from 'styled-components';
 import { Player } from '@lottiefiles/react-lottie-player';
 
 import AnimationCheck from '../../assets/animations/button-check.json';
-import AnimationLoadingBlack from '../../assets/animations/button-loading-black.json';
 import AnimationLoading from '../../assets/animations/button-loading.json';
 
 import Text from '../Text/Text';
 import Color from '../../constants/Color';
 
-const ButtonSecondary = styled.button<{size?: 'small' | 'normal', loading?: boolean, disabled?: boolean, success?: boolean, textColor?: string}>`
+const ButtonSecondary = styled.button.attrs<{$size?: 'small' | 'normal', $loading?: boolean, $success?: boolean}>(props => ({}))`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	height: ${props => props.size === 'small' ? '36px' : '56px'};
-	padding: ${props => props.loading ? '0px' : (props.size === 'small' ? '0px 12px' : '0px 24px')};
+	height: ${props => props.$size === 'small' ? '36px' : '56px'};
+	padding: ${props => props.$loading ? '0px' : (props.$size === 'small' ? '0px 12px' : '0px 24px')};
 	border-radius: 1000px;
-	border: ${props => props.success ? 'none' : '1px solid '+ (props.textColor ? props.textColor : Color.background.primary)};
+	border: ${props => props.$success ? 'none' : '1px solid '+ (props.color ? props.color : Color.background.primary)};
 	opacity: ${props => props.disabled ? 0.48 : 1};
-	background-color: ${props => props.success ? Color.status.color.success : 'transparent'};
+	background-color: ${props => props.$success ? Color.status.color.success : 'transparent'};
 	transition: transform .05s ease-out, width 0.2s ease-out, background-color 0.2s ease-out; 
-	min-width: ${props => props.size === 'small' ? '80px' : '100px'};
+	min-width: ${props => props.$size === 'small' ? '80px' : '100px'};
     gap: 8px;
-	cursor: ${props => (props.disabled || props.loading) ? 'default' : 'pointer'};
+	cursor: ${props => (props.disabled || props.$loading) ? 'default' : 'pointer'};
 	&:hover{
-		background-color: ${props => (props.disabled || props.loading) ? 'transparent' : Color.background.primary+'30'};
+		background-color: ${props => (props.disabled || props.$loading) ? 'transparent' : Color.background.primary+'30'};
 	}
 	&:active {
-		transform: ${props => (props.disabled || props.loading) ? 'none' : 'scale(0.95)'};
+		transform: ${props => (props.disabled || props.$loading) ? 'none' : 'scale(0.95)'};
 	}
 `
-const Label = styled(Text)<{size?: 'small' | 'normal', loading?: boolean}>`
-	font-size: ${props => props.size === 'small' ? '14px' : '15px'};
+const Label = styled(Text)<{$size?: 'small' | 'normal'}>`
+	font-size: ${props => props.$size === 'small' ? '14px' : '15px'};
 	width: 100%;
 	color: white;
 `
 
-const Button = (props: Props) => {
+const Button = ({loading, success, size, animationDelay, onSuccess, icon, iconPosition, animationTime, ...restProps}: Props) => {
 
 	const [ showLabel, setShowLabel ] = useState(true);
-	const [ prevLabel, setPrevLabel ] = useState(props.children);
+	const [ prevLabel, setPrevLabel ] = useState(restProps.children);
     const [ loadingAnimation, setLoadingAnimation ] = useState(undefined);
 
     useEffect(() =>{
@@ -48,20 +47,20 @@ const Button = (props: Props) => {
     },[]);
 
 	useEffect(() =>{
-		if(prevLabel !== props.children){
+		if(prevLabel !== restProps.children){
 			setShowLabel(false);
-			delay(props.animationDelay ? props.animationDelay : 600).then(() =>{
+			delay(animationDelay ? animationDelay : 600).then(() =>{
 				setShowLabel(true);
-				setPrevLabel(props.children);
+				setPrevLabel(restProps.children);
 			});
 		}
-	},[props.children]);
+	},[restProps.children]);
 
     const createAnimation = () =>{
         const json = JSON.stringify(AnimationLoading);
-        if(props.textColor){
+        if(restProps.style?.color){
             //Get rgb colors
-            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(props.textColor);
+            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(restProps.style.color);
             if(result){
                 const rgb = {
                     r: parseInt(result[1], 16),
@@ -89,50 +88,49 @@ const Button = (props: Props) => {
   	return (
         <ButtonSecondary
             role="button"
-            {...props}
-            onClick={(e: any) => (props.onClick && !props.loading && !props.disabled) && props.onClick(e)}
+            {...restProps}
+            onClick={(e: any) => (restProps.onClick && !loading && !restProps.disabled) && restProps.onClick(e)}
         >
-            {props.success ?
+            {success ?
                 <Player 
-                    style={{height: props.size === 'small' ? 25 : 30, width: props.size === 'small' ? 25 : 30}}
+                    style={{height: size === 'small' ? 25 : 30, width: size === 'small' ? 25 : 30}}
                     autoplay={true}
                     loop={false}
                     keepLastFrame={true}
                     src={AnimationCheck}
                     onEvent={(event) =>{
                         if(event === 'complete'){
-                            props.onSuccess && props.onSuccess(true);
+                            onSuccess && onSuccess(true);
                         }
                     }}
                 />
-            : (props.loading && loadingAnimation) ?
+            : (loading && loadingAnimation) ?
                 <Player 
-                    style={{width: props.size === 'small' ? 80 : 100}}
+                    style={{width: size === 'small' ? 80 : 100}}
                     autoplay={true}
                     loop={true}
                     src={loadingAnimation}
                 />
             :
                 <>
-                {(props.icon && props.iconPosition !== 'right') && props.icon}
+                {(icon && iconPosition !== 'right') && icon}
                 <Label
                     role='label'
                     type='p'
                     weight='medium'
-                    loading={props.loading}
-                    size={props.size}
+                    $size={size}
                     style={{
-                        fontWeight: props.style?.fontWeight ? props.style?.fontWeight : 500, 
-                        fontSize: props.style?.fontSize ? props.style?.fontSize : props.size === 'small' ? 14 : 15,
-                        color: props.textColor ? props.textColor : Color.text.primary,
+                        fontWeight: restProps.style?.fontWeight ? restProps.style?.fontWeight : 500, 
+                        fontSize: restProps.style?.fontSize ? restProps.style?.fontSize : size === 'small' ? 14 : 15,
+                        color: restProps.style?.color ? restProps.style.color : Color.text.primary,
                         opacity: showLabel ? 1 : 0,
                         transform: showLabel ? 'translateY(0px)' : 'translateY(10px)',
-                        transition: 'opacity '+(props.animationTime ? props.animationTime : 0.3)+'s ease-out, transform '+(props.animationTime ? props.animationTime : 0.3)+'s ease-out'
+                        transition: 'opacity '+(animationTime ? animationTime : 0.3)+'s ease-out, transform '+(animationTime ? animationTime : 0.3)+'s ease-out'
                     }}
                 >
                     {prevLabel}
                 </Label>
-                {(props.icon && props.iconPosition === 'right') && props.icon}
+                {(icon && iconPosition === 'right') && icon}
                 </>
             }
         </ButtonSecondary>
@@ -145,7 +143,6 @@ export interface Props extends ComponentPropsWithoutRef<"button">{
 	iconPosition?: 'left' | 'right'
 	loading?: boolean,
 	success?: boolean,
-	textColor?: string,
 	animationDelay?: number,
 	animationTime?: number,
 	onSuccess?: (success: boolean) => void
