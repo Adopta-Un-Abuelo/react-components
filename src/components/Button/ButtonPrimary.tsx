@@ -8,7 +8,7 @@ import AnimationLoading from '../../assets/animations/button-loading.json';
 import Text from '../Text/Text';
 import Color from '../../constants/Color';
 
-const ButtonPrimary = styled.button.attrs<{$size?: 'small' | 'normal', $loading?: boolean, disabled?: boolean, $success?: boolean}>(props => ({}))`
+const ButtonPrimary = styled.button.attrs<{$size?: 'small' | 'normal', $loading?: boolean, $success?: boolean}>(props => ({}))`
 	display: flex;
 	flex-direction: row;
 	align-items: center;

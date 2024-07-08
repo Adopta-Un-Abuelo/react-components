@@ -15,7 +15,7 @@ const Container = styled.button`
     padding: 0px;
     opacity: ${props => props.disabled ? 0.5 : 1.0};
 `
-const Box = styled.div<{selected: boolean, error?: boolean, height?: number, width?: number}>`
+const Box = styled.div<{selected: boolean, $error?: boolean, height?: number, width?: number}>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,12 +24,12 @@ const Box = styled.div<{selected: boolean, error?: boolean, height?: number, wid
     width: ${props => props.width ? props.width+'px' : '22px'};
     min-height: ${props => props.height ? props.height+'px' : '22px'};
     min-width: ${props => props.width ? props.width+'px' : '22px'};
-    background-color: ${props => props.selected ? (props.error ? Color.status.color.error : Color.background.primary) : (props.error ? Color.status.color.errorDefault : Color.background.primaryLow)};
-    border: ${props => props.selected ? '1px solid '+(props.error ? Color.status.color.error : Color.background.primary) : '1px solid '+(props.error ? Color.line.redSoft : Color.line.primarySoft)};
+    background-color: ${props => props.selected ? (props.$error ? Color.status.color.error : Color.background.primary) : (props.$error ? Color.status.color.errorDefault : Color.background.primaryLow)};
+    border: ${props => props.selected ? '1px solid '+(props.$error ? Color.status.color.error : Color.background.primary) : '1px solid '+(props.$error ? Color.line.redSoft : Color.line.primarySoft)};
     border-radius: 4px;
     transition: background-color 0.2s ease-in-out, border 0.2s ease-in-out, transform .05s ease-out;
     &:hover{
-        background-color: ${props => props.selected ? (props.error ? Color.status.color.error : Color.background.primary) : (props.error ? Color.status.color.errorDefault : Color.line.primarySoft)};
+        background-color: ${props => props.selected ? (props.$error ? Color.status.color.error : Color.background.primary) : (props.$error ? Color.status.color.errorDefault : Color.line.primarySoft)};
     }
     &:active{
         transform: scale(0.90);
@@ -40,7 +40,7 @@ const TextView = styled.div`
     text-align: left;
 `
 
-const Checkbox = (props: Props) =>{
+const Checkbox = ({sublabel, error, ...props}: Props) =>{
 
     const [ selected, setSelected ] = useState(props.selected);
 
@@ -61,7 +61,7 @@ const Checkbox = (props: Props) =>{
         >
             <Box
                 selected={selected}
-                error={props.error}
+                $error={error}
                 height={props.height} 
                 width={props.width}
             >
@@ -89,12 +89,12 @@ const Checkbox = (props: Props) =>{
                         {props.label}
                     </Text>
                 }
-                {props.sublabel &&
+                {sublabel &&
                     <Text
                         type='p'
                         style={{fontSize: 12}}
                     >
-                        {props.sublabel}
+                        {sublabel}
                     </Text>
                 }
             </TextView>
