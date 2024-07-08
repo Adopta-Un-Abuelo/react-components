@@ -45,8 +45,9 @@ const meta: Meta<typeof CellSelector> = {
 };
 
 export default meta;
+type Story = StoryObj<typeof CellSelector>;
 
-export const Single = {
+export const Single: Story = {
   args: {
     type: "single",
   },
@@ -64,7 +65,7 @@ export const Single = {
   },
 };
 
-export const Multiple = {
+export const Multiple: Story = {
   args: {
     type: "multiple",
   },

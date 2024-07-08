@@ -1,12 +1,13 @@
+import type { Meta, StoryObj } from '@storybook/react';
 import Label from "./Dropdown";
-import { within } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { within, expect } from "@storybook/test";
 import { action } from "@storybook/addon-actions";
 
 import { Goal, Flag, FlagOff, Flame } from "lucide-react";
 import Color from "../../constants/Color";
 
-export default {
+
+const meta: Meta<typeof Label> = {
   title: "Components/Dropdown",
   component: Label,
   tags: ["autodocs"],
@@ -34,9 +35,13 @@ export default {
     onChange: action("onChange"),
     onSearchChange: action("onSearchChange"),
   },
-};
+}
 
-export const Single = {
+export default meta;
+
+type Story = StoryObj<typeof Label>;
+
+export const Single: Story = {
   args: {
     type: "single",
   },
@@ -47,7 +52,7 @@ export const Single = {
   },
 };
 
-export const SingleWithIcons = {
+export const SingleWithIcons: Story = {
   args: {
     type: "single",
     options: [
@@ -80,7 +85,7 @@ export const SingleWithIcons = {
   },
 };
 
-export const Multiple = {
+export const Multiple: Story = {
   args: {
     type: "multiple",
   },
@@ -91,7 +96,7 @@ export const Multiple = {
   },
 };
 
-export const MultipleWithIcons = {
+export const MultipleWithIcons: Story = {
   args: {
     type: "multiple",
     options: [
