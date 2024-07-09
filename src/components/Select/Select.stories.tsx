@@ -1,11 +1,11 @@
 import Select from "./Select";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within, expect } from "@storybook/test";
 import { action } from "@storybook/addon-actions";
-import { expect } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { Dog, Cat, Cake, Calendar } from "lucide-react";
 
-export default {
+const meta: Meta<typeof Select> = {
   title: "Components/Select",
   component: Select,
   tags: ["autodocs"],
@@ -27,9 +27,12 @@ export default {
     ],
     onChange: action("onChange"),
   },
-};
+}
 
-export const Default = {
+export default meta;
+type Story = StoryObj<typeof Select>;
+
+export const Default: Story = {
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);
     const select = await canvas.getByRole("select");
@@ -52,7 +55,7 @@ export const Default = {
   },
 };
 
-export const DefaultWithIcons = {
+export const DefaultWithIcons: Story = {
   args: {
     options: [
       {

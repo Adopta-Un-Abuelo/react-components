@@ -1,9 +1,10 @@
 import Pagination from "./Pagination";
-import { within, userEvent } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { within, userEvent, expect } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
 import { action } from "@storybook/addon-actions";
 
-export default {
+
+const meta: Meta<typeof Pagination> = {
   title: "Components/Pagination",
   component: Pagination,
   tags: ["autodocs"],
@@ -12,9 +13,12 @@ export default {
     rowsPerPage: 20,
     onChange: action("onChange"),
   },
-};
+}
 
-export const Default = {
+export default meta;
+type Story = StoryObj<typeof Pagination>;
+
+export const Default: Story = {
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);
     const pagination = await canvas.getByRole("pagination");

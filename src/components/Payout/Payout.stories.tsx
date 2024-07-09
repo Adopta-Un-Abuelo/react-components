@@ -1,13 +1,17 @@
 import Payout, { PayoutRef } from "./Payout";
+import type { Meta, StoryObj } from '@storybook/react';
 import { useRef } from "react";
 
-export default {
+const meta: Meta<typeof Payout> = {
   title: "Components/Payout",
   component: Payout,
   tags: ["autodocs"],
-};
+}
 
-export const CardPrimary = {
+export default meta;
+type Story = StoryObj<typeof Payout>;
+
+export const CardPrimary: Story = {
   args: {
     paymentOption: "card",
     design: "primary",
@@ -21,14 +25,14 @@ export const CardPrimary = {
 	}*/
 };
 
-export const CardSecondary = {
+export const CardSecondary: Story = {
   args: {
     paymentOption: "card",
     design: "secondary",
   },
 };
 
-export const IBANPrimary = (args: any) => {
+export const IBANPrimary: Story = (args: any) => {
   const payout = useRef<PayoutRef>(null);
   return (
     <div>
@@ -50,7 +54,7 @@ IBANPrimary.args = {
   design: "primary",
 };
 
-export const IBANSecondary = {
+export const IBANSecondary: Story = {
   args: {
     paymentOption: "sepa_debit",
     design: "secondary",

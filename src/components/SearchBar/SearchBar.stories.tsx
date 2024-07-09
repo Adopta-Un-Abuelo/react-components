@@ -1,13 +1,13 @@
 import SearchBar from "./SearchBar";
-import { userEvent, within } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { userEvent, within, expect } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
 
-export default {
+const meta: Meta<typeof SearchBar> = {
   title: "Components/SearchBar",
   component: SearchBar,
   tags: ["autodocs"],
   argTypes: {
-    design: {
+    $design: {
       table: {
         defaultValue: { summary: "primary" },
       },
@@ -20,9 +20,12 @@ export default {
       control: "select",
     },
   },
-};
+}
 
-export const Default = {
+export default meta;
+type Story = StoryObj<typeof SearchBar>;
+
+export const Default: Story = {
   play: async ({ canvasElement }: any) => {
     const canvas = within(canvasElement);
     const searchBar = await canvas.getByRole("search-bar");

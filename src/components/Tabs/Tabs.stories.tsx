@@ -1,9 +1,9 @@
 import Tabs from "./Tabs";
-import { userEvent, within } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { userEvent, within, expect } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
 import { action } from "@storybook/addon-actions";
 
-export default {
+const meta: Meta<typeof Tabs> = {
   title: "Components/Tabs",
   component: Tabs,
   tags: ["autodocs"],
@@ -24,9 +24,12 @@ export default {
     ],
     onChange: action("onChange"),
   },
-};
+}
 
-export const Primary = {
+export default meta;
+type Story = StoryObj<typeof Tabs>;
+
+export const Primary: Story = {
   args: {
     design: "primary",
   },
@@ -44,7 +47,7 @@ export const Primary = {
   },
 };
 
-export const Secondary = {
+export const Secondary: Story = {
   args: {
     design: "secondary",
   },

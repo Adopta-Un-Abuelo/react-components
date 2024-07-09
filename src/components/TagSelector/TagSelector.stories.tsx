@@ -1,9 +1,10 @@
 import TagSelector from "./TagSelector";
-import { within, userEvent } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { within, userEvent, expect } from "@storybook/test";
+
+import type { Meta, StoryObj } from '@storybook/react';
 import { action } from "@storybook/addon-actions";
 
-export default {
+const meta: Meta<typeof TagSelector> = {
   title: "Components/TagSelector",
   component: TagSelector,
   tags: ["autodocs"],
@@ -28,9 +29,12 @@ export default {
     ],
     onChange: action("onChange"),
   },
-};
+}
 
-export const SingleSelection = {
+export default meta;
+type Story = StoryObj<typeof TagSelector>;
+
+export const SingleSelection: Story = {
   args: {
     type: "single",
   },
@@ -47,7 +51,7 @@ export const SingleSelection = {
   },
 };
 
-export const MultipleSelection = {
+export const MultipleSelection: Story = {
   args: {
     type: "multiple",
   },
