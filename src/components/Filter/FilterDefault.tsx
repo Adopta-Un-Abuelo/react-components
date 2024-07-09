@@ -160,6 +160,7 @@ const Filter = (props: FilterDefaultProps) =>{
             id={props.id}
             role="filter"
             style={props.style}
+            
         >
             <ButtonFilter
                 role="filter-button"
@@ -182,7 +183,7 @@ const Filter = (props: FilterDefaultProps) =>{
                             defaultValue={searchText}
                             style={{borderBottom: '1px solid '+Color.line.soft}}
                             placeholder={'Buscar'}
-                            design={'secondary'}
+                            $design= "secondary"
                             onChange={onSearchChange}
                         />
                     }
@@ -200,7 +201,7 @@ const Filter = (props: FilterDefaultProps) =>{
                     <BottomBar>
                         {props.type === 'multiple' &&
                             <Button
-                                design={'text'}
+                                design="text"
                                 size={'small'}
                                 style={{marginRight: 4}}
                                 onClick={onSelectAll}
@@ -209,7 +210,7 @@ const Filter = (props: FilterDefaultProps) =>{
                             </Button>
                         }
                         <Button
-                            design={'text'}
+                            design="text"
                             size={'small'}
                             style={{marginRight: 4}}
                             onClick={onRemove}
@@ -217,7 +218,7 @@ const Filter = (props: FilterDefaultProps) =>{
                             Borrar
                         </Button>
                         <Button
-                            design={'primary'}
+                            design="primary"
                             size={'small'}
                             onClick={() => onSave(selectedOptions)}
                         >
@@ -235,14 +236,16 @@ export interface FilterDefaultProps{
     label: string,
     disabled?: boolean,
     type: 'single' | 'multiple',
-    position?: 'bottom-right' | 'bottom-left'
+    position?: 'bottom-right' | 'bottom-left',
+    $design: string,
     options: Array<{
         id: string,
         label: string,
-        sublabel?: string
+        sublabel?: string,
+        error?:boolean,
     }>
     selectedOptions?: Array<{
-        id: string
+        id: string,
     }>
     hideSearchBar?: boolean,
     style?: CSSProperties,

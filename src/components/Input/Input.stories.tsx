@@ -1,11 +1,11 @@
+import type { Meta, StoryObj } from '@storybook/react';
 import Input from "./Input";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within , expect } from "@storybook/test";
 import { action } from "@storybook/addon-actions";
-import { expect } from "@storybook/test";
 
 import { Flag, Search, Clock } from "lucide-react";
 
-export default {
+const meta: Meta<typeof Input> = {
   title: "Components/Input",
   component: Input,
   tags: ["autodocs"],
@@ -16,7 +16,7 @@ export default {
     onOptionClick: action("onOptionClick"),
   },
   argTypes: {
-    design: {
+    $design: {
       table: {
         defaultValue: { summary: "primary" },
       },
@@ -25,7 +25,7 @@ export default {
     },
     hideCalendar: {
       table: {
-        defaultValue: { summary: false },
+        defaultValue: { summary: "false" },
       },
       control: "boolean",
     },
@@ -36,11 +36,14 @@ export default {
       control: "select",
     },
   },
-};
+}
 
-export const Primary = {
+export default meta;
+type Story = StoryObj<typeof Input>;
+
+export const Primary: Story = {
   args: {
-    design: "primary",
+    $design: "primary",
   },
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);
@@ -54,9 +57,9 @@ export const Primary = {
   },
 };
 
-export const PrimaryWithIcon = {
+export const PrimaryWithIcon: Story = {
   args: {
-    design: "primary",
+    $design: "primary",
     icon: <Flag role="icon" width={20} height={20} />,
   },
   play: async ({ canvasElement, step }: any) => {
@@ -73,9 +76,9 @@ export const PrimaryWithIcon = {
   },
 };
 
-export const PrimaryWithError = {
+export const PrimaryWithError: Story = {
   args: {
-    design: "primary",
+    $design: "primary",
     error: "Error message",
   },
   play: async ({ canvasElement, step }: any) => {
@@ -92,9 +95,9 @@ export const PrimaryWithError = {
   },
 };
 
-export const Secondary = {
+export const Secondary: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
   },
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);
@@ -110,9 +113,9 @@ export const Secondary = {
   },
 };
 
-export const SecondaryWithIcon = {
+export const SecondaryWithIcon: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     icon: <Flag role="icon" width={20} height={20} />,
   },
   play: async ({ canvasElement, step }: any) => {
@@ -131,9 +134,9 @@ export const SecondaryWithIcon = {
   },
 };
 
-export const SecondaryWithError = {
+export const SecondaryWithError: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     error: "Error message",
   },
   play: async ({ canvasElement, step }: any) => {
@@ -152,9 +155,9 @@ export const SecondaryWithError = {
   },
 };
 
-export const InputTime = {
+export const InputTime: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "time",
     defaultValue: "10:00",
   },
@@ -172,9 +175,9 @@ export const InputTime = {
   },
 };
 
-export const InputNumber = {
+export const InputNumber: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "number",
     defaultValue: 20,
   },
@@ -192,9 +195,9 @@ export const InputNumber = {
   },
 };
 
-export const InputTelephone = {
+export const InputTelephone: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "tel",
     defaultValue: undefined,
   },
@@ -220,9 +223,9 @@ export const InputTelephone = {
   },
 };
 
-export const InputEmail = {
+export const InputEmail: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "email",
     defaultValue: undefined,
   },
@@ -240,9 +243,9 @@ export const InputEmail = {
   },
 };
 
-export const InputDate = {
+export const InputDate: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "date",
     defaultValue: undefined,
   },
@@ -260,9 +263,9 @@ export const InputDate = {
   },
 };
 
-export const InputDateWithCalendar = {
+export const InputDateWithCalendar: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "date",
     showCalendar: true,
     defaultValue: undefined,
@@ -281,9 +284,9 @@ export const InputDateWithCalendar = {
   },
 };
 
-export const InputPassword = {
+export const InputPassword: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "password",
     defaultValue: undefined,
   },
@@ -301,9 +304,9 @@ export const InputPassword = {
   },
 };
 
-export const InputRange = {
+export const InputRange: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "range",
     min: 0,
     max: 100,
@@ -320,9 +323,9 @@ export const InputRange = {
     });
   },
 };
-export const InputRangeWithoutRangeView = {
+export const InputRangeWithoutRangeView: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "range",
     min: 0,
     max: 100,
@@ -339,9 +342,9 @@ export const InputRangeWithoutRangeView = {
   },
 };
 
-export const InputLocation = {
+export const InputLocation: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "location",
     icon: <Search role="icon" />,
     defaultValue: undefined,
@@ -368,16 +371,16 @@ export const InputLocation = {
   },
 };
 
-export const InputDateRange = {
+export const InputDateRange: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "range-date",
   },
 };
 
-export const InputImage = {
+export const InputImage: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "image",
     options: ["camera", "library"],
   },
@@ -390,16 +393,16 @@ export const InputImage = {
   },
 };
 
-export const InputChat = {
+export const InputChat: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "chat",
   },
 };
 
-export const InputChatWithOptions = {
+export const InputChatWithOptions: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "chat",
     options: [
       {
@@ -411,9 +414,9 @@ export const InputChatWithOptions = {
   },
 };
 
-export const InputCode = {
+export const InputCode: Story = {
   args: {
-    design: "secondary",
+    $design: "secondary",
     type: "code",
   },
   play: async ({ canvasElement, step }: any) => {

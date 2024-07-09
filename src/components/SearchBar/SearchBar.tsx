@@ -9,10 +9,10 @@ const InputView = styled.div`
     padding: 0px;
     height: auto;
 `
-const InputStyled = styled.input<{design?: 'primary' | 'secondary'}>`
+const InputStyled = styled.input<{ $design?: 'primary' | 'secondary'}>`
     height: 38px;
     border-radius: 100px;
-    border: ${props => props.design === 'secondary' ? 'none' : '1px solid '+Color.line.soft};
+    border: ${props => props.$design === 'secondary' ? 'none' : '1px solid '+Color.line.soft};
     font-family: 'Poppins';
     font-size: 14px;
     padding: 0px;
@@ -22,16 +22,16 @@ const InputStyled = styled.input<{design?: 'primary' | 'secondary'}>`
         cursor: pointer;
     }
     &:focus{
-        border: ${props => props.design === 'secondary' ? 'none' : '2px solid '+Color.text.full};
+        border: ${props => props.$design === 'secondary' ? 'none' : '2px solid '+Color.text.full};
         background: white;
         cursor:text;
     }
 `
-const IconStyle = styled.div<{design?: 'primary' | 'secondary'}>`
+const IconStyle = styled.div<{$design?: 'primary' | 'secondary'}>`
     position:absolute;
     display:flex; 
     align-items:center; 
-    margin-left: ${props => props.design === 'secondary' ? '0px;' : '16px;'};
+    margin-left: ${props => props.$design === 'secondary' ? '0px;' : '16px;'};
 `;
 
 const SearchBar = (props: Props) =>{
@@ -45,10 +45,10 @@ const SearchBar = (props: Props) =>{
             role="search-bar"
             style={style}
         > 
-            <IconStyle design={props.design} style={{height:24, width:24}}><Search stroke={Color.text.high}/></IconStyle>
+            <IconStyle $design={props.$design} style={{height:24, width:24}}><Search stroke={Color.text.high}/></IconStyle>
             <InputStyled
                 role='input'
-                style={{height: "48px", paddingLeft: props.design === 'secondary' ? '36px' : "46px"}}
+                style={{height: "48px", paddingLeft: props.$design === 'secondary' ? '36px' : "46px"}}
                 {...restProps}
             />
         </InputView> 
@@ -59,10 +59,10 @@ const SearchBar = (props: Props) =>{
             role="search-bar"
             style={style}
         > 
-            <IconStyle design={props.design} style={{height:22, width:22}}><Search stroke={Color.text.high}/></IconStyle>
+            <IconStyle $design={props.$design} style={{height:22, width:22}}><Search stroke={Color.text.high}/></IconStyle>
             <InputStyled
                 role='input'
-                style={{fontSize:16, paddingLeft: props.design === 'secondary' ? '36px' : "46px"}}
+                style={{fontSize:16, paddingLeft: props.$design === 'secondary' ? '36px' : "46px"}}
                 {...restProps}
             />
         </InputView>
@@ -71,5 +71,5 @@ const SearchBar = (props: Props) =>{
 export default SearchBar;
 export interface Props extends ComponentPropsWithoutRef<"input">{
     type?: "big"|"small"
-    design?: 'primary' | 'secondary'
+    $design?: 'primary' | 'secondary'
 }

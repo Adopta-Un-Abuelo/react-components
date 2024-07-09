@@ -7,7 +7,7 @@ import Text from '../Text/Text';
 const Container = styled.div`
     width: fit-content;
 `
-const InputContainer = styled.div<{focus: boolean, error: boolean, loading?: boolean}>`
+const InputContainer = styled.div<{focus: boolean, $error: boolean, loading?: boolean}>`
     position: relative;
     display: flex;
     align-items: center;
@@ -16,7 +16,7 @@ const InputContainer = styled.div<{focus: boolean, error: boolean, loading?: boo
     height: 56px;
     min-height: 56px;
     outline: none;
-    box-shadow: 0 0 0 ${props => props.focus ? '2px '+Color.border.neutralMedium : (props.error ? '1px '+Color.text.red : '1px '+Color.border.neutralSoft)};
+    box-shadow: 0 0 0 ${props => props.focus ? '2px '+Color.border.neutralMedium : (props.$error ? '1px '+Color.text.red : '1px '+Color.border.neutralSoft)};
     background-color: white;
     opacity: ${props => props.loading ? 0.5 : 1};
     cursor: ${props => props.loading ? 'default' : 'text'};
@@ -75,7 +75,7 @@ const InputCode = (props: InputCodeProps) =>{
             style={props.containerStyle}
         >
             <InputContainer
-                error={props.error ? true : false}
+                $error={props.$error ? true : false}
                 style={props.style}
                 focus={focus}
                 loading={props.loading}
@@ -92,12 +92,12 @@ const InputCode = (props: InputCodeProps) =>{
                     onChange={onTextChange}
                 />
             </InputContainer>
-            {props.error && 
+            {props.$error && 
                 <ErrorDiv
                     role="error"
                 >
                     <Text type='p' style={{color: Color.text.red, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
-                        {props.error}
+                        {props.$error}
                     </Text>
                 </ErrorDiv>
             }
@@ -108,7 +108,7 @@ export default InputCode;
 export interface InputCodeProps{
     style?: CSSProperties,
     containerStyle?: CSSProperties,
-    error?: string,
+    $error?: string,
     loading?: boolean,
     onChange?: (code: string) => void
 }

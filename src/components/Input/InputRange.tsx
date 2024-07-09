@@ -11,12 +11,12 @@ const Container = styled.div`
     width: 100%;
     padding-top: 25px;
 `
-const InputStyled = styled.input<{lineColor?: string, thumbColor?: string, backValue: number, backgroundColor?: string}>`
+const InputStyled = styled.input<{lineColor?: string, thumbColor?: string, $backValue: number, backgroundColor?: string}>`
     width: 100%;
     -webkit-appearance: none;
     appearance: none;
     height: 8px;
-    background: ${props => "linear-gradient(to right, "+(props.lineColor ? props.lineColor : Color.text.primary)+", "+(props.lineColor ? props.lineColor : Color.text.primary)+" " + props.backValue +"px, "+(props.backgroundColor ? props.backgroundColor : Color.surface.primaryLow)+" " + props.backValue + "px, "+(props.backgroundColor ? props.backgroundColor : Color.surface.primaryLow)+" 100%)"};
+    background: ${props => "linear-gradient(to right, "+(props.lineColor ? props.lineColor : Color.text.primary)+", "+(props.lineColor ? props.lineColor : Color.text.primary)+" " + props.$backValue +"px, "+(props.backgroundColor ? props.backgroundColor : Color.surface.primaryLow)+" " + props.$backValue + "px, "+(props.backgroundColor ? props.backgroundColor : Color.surface.primaryLow)+" 100%)"};
     outline: none;
     border-radius: 10px;
     margin: 18px 0px;
@@ -143,7 +143,7 @@ const InputRange = (props: InputRangeProps) =>{
                 {...restProps}
                 id="rangeHeight"
                 type='range'
-                backValue={(props.min && props.max) ? ((value-props.min) / (props.max-props.min))*width : (value/100)*width}
+                $backValue={(props.min && props.max) ? ((value-props.min) / (props.max-props.min))*width : (value/100)*width}
                 onChange={onChange}
             />
             {(props.min && props.max) ?

@@ -10,7 +10,7 @@ import InputStyled,  { InputStyledProps } from './InputStyled';
 
 const Container = styled.div`
 `
-const InputContainer = styled.div<{focus: boolean, error: boolean}>`
+const InputContainer = styled.div<{$focus?: boolean, $error?: boolean}>`
     position: relative;
     display: flex;
     flex: 1;
@@ -20,9 +20,9 @@ const InputContainer = styled.div<{focus: boolean, error: boolean}>`
     height: 40px;
     min-height: 40px;
     outline: none;
-    box-shadow: 0 0 0 ${props => props.focus ? '1px '+Color.line.primarySoft : 'none'};
+    box-shadow: 0 0 0 ${props => props.$focus ? '1px '+Color.line.primarySoft : 'none'};
     padding: 0px 16px;
-    background-color: ${props => props.focus ? 'white' : (props.error ? Color.status.color.errorDefault : Color.background.soft)};
+    background-color: ${props => props.$focus ? 'white' : (props.$error ? Color.status.color.errorDefault : Color.background.soft)};
 `
 const ErrorDiv = styled.div`
     margin: 0px 12px;
@@ -101,9 +101,9 @@ const InputPrimary = (props: InputPrimaryProps) =>{
             style={props.containerStyle}
         >
             <InputContainer 
-                error={props.error ? true : false}
+                $error={props.$error ? true : false}
                 style={props.style}
-                focus={focus}
+                $focus={focus}
             >
                 {props.icon ? 
                     <IconView>
@@ -131,12 +131,12 @@ const InputPrimary = (props: InputPrimaryProps) =>{
                     />
                 </Column>
             </InputContainer>
-            {props.error && 
+            {props.$error && 
                 <ErrorDiv
                     role="error"
                 >
                     <Text type='p' style={{color: Color.status.color.error, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
-                        {props.error}
+                        {props.$error}
                     </Text>
                 </ErrorDiv>
             }
@@ -147,7 +147,9 @@ export default InputPrimary;
 export interface InputPrimaryProps extends InputStyledProps{
     containerStyle?: CSSProperties,
     icon?: ReactElement,
-    error?: string|undefined,
+    $error?: string|undefined,
+    focus?: boolean,
+    $design?: string,
     country?: string,
     onPhoneChange?:(item:{
         country: string,

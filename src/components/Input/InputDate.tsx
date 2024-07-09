@@ -32,7 +32,7 @@ const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) =>{
     }
 
 
-    return(props.design === 'primary' ?
+    return(props.$design === 'primary' ?
         <InputPrimary
             value={text}
             containerStyle={{flex: 1, ...props.containerStyle}}
@@ -54,10 +54,10 @@ const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) =>{
 }
 export default InputDate;
 export interface InputDatePrimaryProps extends InputPrimaryProps {
-    design?: 'primary',
+    $design?: 'primary',
     showCalendar?: boolean
 }
 export interface InputDateSecondaryProps extends InputSecondaryProps {
-    design?: 'secondary',
+    $design?: 'secondary',
     showCalendar?: boolean
 }
