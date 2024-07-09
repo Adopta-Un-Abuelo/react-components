@@ -2,11 +2,11 @@ import { useState } from "react";
 import Modal from "./Modal";
 import Text from "../Text/Text";
 import Input from "../Input/Input";
+import type { Meta, StoryObj } from '@storybook/react';
 import { action } from "@storybook/addon-actions";
-import { userEvent, within } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { userEvent, within, expect } from "@storybook/test";
 
-export default {
+const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
   component: Modal,
   tags: ["autodocs"],
@@ -25,18 +25,14 @@ export default {
   },
   argTypes: {
     isVisible: {
-      type: {
-        required: true,
-      },
+      control: 'boolean',
       description: "boolean",
       table: {
-        defaultValue: { summary: false },
+        defaultValue: { summary: "false" },
       },
     },
     onClose: {
-      type: {
-        required: true,
-      },
+      action: "onClose",
       description: "() => void",
     },
     title: {
@@ -63,14 +59,14 @@ export default {
       description: "boolean",
       control: "boolean",
       table: {
-        defaultValue: { summary: false },
+        defaultValue: { summary: "false" },
       },
     },
     hideClose: {
       description: "boolean",
       control: "boolean",
       table: {
-        defaultValue: { summary: false },
+        defaultValue: { summary: "false" },
       },
     },
     buttonProps: {
@@ -79,98 +75,110 @@ export default {
   },
 };
 
-export const Default = (args: any) => {
-  const [isVisible, setIsVisible] = useState(false);
-  return (
-    <div>
-      <button role="button" onClick={() => setIsVisible(true)}>
-        Show modal
-      </button>
-      <Modal
-        {...args}
-        isVisible={isVisible}
-        onClose={() => {
-          setIsVisible(false);
-          action("onClose");
-        }}
-      >
-        <Text type="p">Modal children</Text>
-      </Modal>
-    </div>
-  );
+export default meta;
+type Story = StoryObj<typeof Modal>;
+
+export const Default: Story = {
+  args: {},
+  render: (args) => {
+    const [isVisible, setIsVisible] = useState(false);
+    return (
+      <div>
+        <button role="button" onClick={() => setIsVisible(true)}>
+          Show modal
+        </button>
+        <Modal
+          {...args}
+          isVisible={isVisible}
+          onClose={() => {
+            setIsVisible(false);
+            action("onClose")();
+          }}
+        >
+          <Text type="p">Modal children</Text>
+        </Modal>
+      </div>
+    );
+  },
 };
 
-export const FullScreen = (args: any) => {
-  const [isVisible, setIsVisible] = useState(false);
-  return (
-    <div>
-      <button role="button" onClick={() => setIsVisible(true)}>
-        Show modal
-      </button>
-      <Modal
-        {...args}
-        isVisible={isVisible}
-        onClose={() => {
-          setIsVisible(false);
-          action("onClose");
-        }}
-      >
-        <Text type="p">Modal children</Text>
-      </Modal>
-    </div>
-  );
-};
-FullScreen.args = {
-  type: "full-screen",
-};
-
-export const Form = (args: any) => {
-  const [isVisible, setIsVisible] = useState(false);
-  return (
-    <div>
-      <button role="button" onClick={() => setIsVisible(true)}>
-        Show modal
-      </button>
-      <Modal
-        {...args}
-        isVisible={isVisible}
-        options={[
-          {
-            id: "input1",
-            title: "Input 1",
-          },
-        ]}
-        onClose={() => {
-          setIsVisible(false);
-          action("onClose");
-        }}
-      />
-    </div>
-  );
-};
-Form.args = {
-  type: "form",
+export const FullScreen: Story = {
+  args: {
+    type: "full-screen",
+  },
+  render: (args) => {
+    const [isVisible, setIsVisible] = useState(false);
+    return (
+      <div>
+        <button role="button" onClick={() => setIsVisible(true)}>
+          Show modal
+        </button>
+        <Modal
+          {...args}
+          isVisible={isVisible}
+          onClose={() => {
+            setIsVisible(false);
+            action("onClose")();
+          }}
+        >
+          <Text type="p">Modal children</Text>
+        </Modal>
+      </div>
+    );
+  },
 };
 
-export const Web = (args: any) => {
-  const [isVisible, setIsVisible] = useState(false);
-  return (
-    <div>
-      <button role="button" onClick={() => setIsVisible(true)}>
-        Show modal
-      </button>
-      <Modal
-        {...args}
-        isVisible={isVisible}
-        url={"https://adoptaunabuelo.org"}
-        onClose={() => {
-          setIsVisible(false);
-          action("onClose");
-        }}
-      />
-    </div>
-  );
+export const Form: Story = {
+  args: {
+    type: "form",
+    options: [
+      {
+        id: "input1",
+        title: "Input 1",
+      },
+    ],
+  },
+  render: (args) => {
+    const [isVisible, setIsVisible] = useState(false);
+    return (
+      <div>
+        <button role="button" onClick={() => setIsVisible(true)}>
+          Show modal
+        </button>
+        <Modal
+          {...args}
+          isVisible={isVisible}
+          onClose={() => {
+            setIsVisible(false);
+            action("onClose")();
+          }}
+        />
+      </div>
+    );
+  },
 };
-Web.args = {
-  type: "web",
+
+export const Web: Story = {
+  args: {
+    type: "web",
+    url: "https://adoptaunabuelo.org",
+  },
+  render: (args) => {
+    const [isVisible, setIsVisible] = useState(false);
+    return (
+      <div>
+        <button role="button" onClick={() => setIsVisible(true)}>
+          Show modal
+        </button>
+        <Modal
+          {...args}
+          isVisible={isVisible}
+          onClose={() => {
+            setIsVisible(false);
+            action("onClose")();
+          }}
+        />
+      </div>
+    );
+  },
 };

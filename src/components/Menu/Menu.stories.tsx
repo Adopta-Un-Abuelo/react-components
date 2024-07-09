@@ -1,11 +1,10 @@
 import Menu from "./Menu";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within, expect } from "@storybook/test";
 import { action } from "@storybook/addon-actions";
-import { expect } from "@storybook/test";
-
+import type { Meta, StoryObj } from '@storybook/react';
 import { Package, Palette, Option } from "lucide-react";
 
-export default {
+const meta: Meta<typeof Menu> ={
   title: "Components/Menu",
   component: Menu,
   tags: ["autodocs"],
@@ -16,9 +15,13 @@ export default {
     onChange: action("onChange"),
     onClick: action("onClick"),
   },
-};
 
-export const Default = {
+}
+
+export default meta;
+type Story = StoryObj<typeof Menu>;
+
+export const Default: Story = {
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);
     const select = await canvas.getByRole("menu");
@@ -31,7 +34,7 @@ export const Default = {
   },
 };
 
-export const MenuList = {
+export const MenuList: Story = {
   args: {
     children: undefined,
     options: [
