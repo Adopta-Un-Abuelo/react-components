@@ -98,7 +98,7 @@ const InputPrimary = (props: InputPrimaryProps) =>{
 
     return(
         <Container
-            style={props.containerStyle}
+            style={props.$containerStyle}
         >
             <InputContainer 
                 $error={props.$error ? true : false}
@@ -145,7 +145,7 @@ const InputPrimary = (props: InputPrimaryProps) =>{
 }
 export default InputPrimary;
 export interface InputPrimaryProps extends InputStyledProps{
-    containerStyle?: CSSProperties,
+    $containerStyle?: CSSProperties,
     $icon?: ReactElement,
     $error?: string|undefined,
     focus?: boolean,

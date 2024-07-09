@@ -268,7 +268,7 @@ export const InputDateWithCalendar: Story = {
   args: {
     $design: "secondary",
     type: "date",
-    showCalendar: true,
+    $showCalendar: true,
     defaultValue: undefined,
   },
   play: async ({ canvasElement, step }: any) => {
@@ -311,7 +311,7 @@ export const InputRange: Story = {
     type: "range",
     min: 0,
     max: 100,
-    unit: "€",
+    $unit: "€",
     defaultValue: 40,
   },
   play: async ({ canvasElement, step }: any) => {
@@ -330,9 +330,9 @@ export const InputRangeWithoutRangeView: Story = {
     type: "range",
     min: 0,
     max: 100,
-    unit: "€",
+    $unit: "€",
     defaultValue: 40,
-    hideRange: true,
+    $hideRange: true,
   },
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);

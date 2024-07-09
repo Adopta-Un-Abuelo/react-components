@@ -67,10 +67,10 @@ export interface InputProps extends InputStyledProps {
     type: 'text' | 'tel' | 'email' | 'date' | 'password' | 'time' | 'number' | 'range' | 'range-date' | 'image' | 'chat' | 'code' | 'location',
     containerStyle?: CSSProperties,
     $icon?: ReactElement,
-    unit?: string,
+    $unit?: string,
     $error?: string | undefined,
     country?: string,
-    hideRange?: boolean,
+    $hideRange?: boolean,
     $design?: 'primary' | 'secondary',
     options?: any,
     onPhoneChange?: (item: any) => void,
@@ -93,8 +93,8 @@ export interface RangeProps extends ImportedInputRangeProps {
     thumbColor?: string,
     min?: number,
     max?: number,
-    unit?: string,
-    hideRange?: boolean
+    $unit?: string,
+    $hideRange?: boolean
 }
 
 export interface DateRangeProps extends InputDateRangeProps {

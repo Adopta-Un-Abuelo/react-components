@@ -108,7 +108,7 @@ const InputSecondary = (props: InputSecondaryProps) =>{
 
     return(
         <Container
-            style={props.containerStyle}
+            style={props.$containerStyle}
         >
             <InputContainer
                 $error={props.$error ? true : false}
@@ -167,7 +167,7 @@ const InputSecondary = (props: InputSecondaryProps) =>{
 }
 export default InputSecondary;
 export interface InputSecondaryProps extends InputStyledProps{
-    containerStyle?: CSSProperties,
+    $containerStyle?: CSSProperties,
     $icon?: ReactElement,
     $error?: string|undefined,
     $focus?: boolean,

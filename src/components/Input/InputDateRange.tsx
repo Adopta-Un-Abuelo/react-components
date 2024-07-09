@@ -65,6 +65,7 @@ export interface InputDateRangeProps{
     style?: CSSProperties
     startDate: moment.Moment | null
     endDate: moment.Moment | null,
+    focus?: boolean,
     onChange: (data: {startDate: moment.Moment | null, endDate: moment.Moment | null}) => void
     isOutsideRange?: (date: moment.Moment) => boolean
 }
