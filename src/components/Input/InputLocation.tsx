@@ -100,7 +100,7 @@ const InputLocation = (props: InputLocationPrimaryProps | InputLocationSecondary
                             value={searchText}
                             onKeyDown={(e: any) => onKeyDown(e, suggestions)}
                             containerStyle={{flex: 1, ...props.containerStyle}}
-                            icon={props.icon}
+                            $icon={props.$icon}
                             $error={props.error}
                         />
                     :
@@ -112,7 +112,7 @@ const InputLocation = (props: InputLocationPrimaryProps | InputLocationSecondary
                             value={searchText}
                             onKeyDown={(e: any) => onKeyDown(e, suggestions)}
                             containerStyle={{flex: 1, ...props.containerStyle}}
-                            icon={props.icon}
+                            $icon={props.$icon}
                             $error={props.error}
                         />
                     }

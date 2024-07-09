@@ -10,7 +10,7 @@ import InputStyled,  { InputStyledProps } from './InputStyled';
 
 const Container = styled.div`
 `
-const InputContainer = styled.div<{focus: boolean, error: boolean}>`
+const InputContainer = styled.div<{$focus: boolean, $error: boolean}>`
     position: relative;
     display: flex;
     flex: 1;
@@ -20,7 +20,7 @@ const InputContainer = styled.div<{focus: boolean, error: boolean}>`
     height: 56px;
     min-height: 56px;
     outline: none;
-    box-shadow: 0 0 0 ${props => props.focus ? '2px '+Color.border.neutralMedium : (props.error ? '1px '+Color.text.red : '1px '+Color.border.neutralSoft)};
+    box-shadow: 0 0 0 ${props => props.$focus ? '2px '+Color.border.neutralMedium : (props.$error ? '1px '+Color.text.red : '1px '+Color.border.neutralSoft)};
     padding: 0px 16px;
     background-color: white;
     cursor: text;
@@ -42,12 +42,12 @@ const Column = styled.div`
 const IconView = styled.div`
     margin-right: 8px;
 `
-const Placeholder = styled(Text)<{focus: boolean, phone: boolean, error: boolean}>`
+const Placeholder = styled(Text)<{$focus: boolean, $phone: boolean, $error: boolean}>`
     position: absolute;
-    top: ${props => props.focus ? '8px' : '16px'};
-    left: ${props => props.phone ? (props.focus ? '74px' : '112px') : 'unset'};
-    color: ${props => props.error ? Color.text.red : Color.text.neutralMedium};
-    font-size: ${props => props.focus ? '12px' : '15px'} !important;
+    top: ${props => props.$focus ? '8px' : '16px'};
+    left: ${props => props.$phone ? (props.$focus ? '74px' : '112px') : 'unset'};
+    color: ${props => props.$error ? Color.text.red : Color.text.neutralMedium};
+    font-size: ${props => props.$focus ? '12px' : '15px'} !important;
     transition: top 0.1s ease-out, font-size 0.1s ease-out;
 `
 const InputSecondary = (props: InputSecondaryProps) =>{
@@ -111,14 +111,14 @@ const InputSecondary = (props: InputSecondaryProps) =>{
             style={props.containerStyle}
         >
             <InputContainer
-                error={props.$error ? true : false}
+                $error={props.$error ? true : false}
                 style={props.style}
-                focus={focus}
+                $focus={focus}
                 onClick={() => input.current?.focus()}
             >
-                {props.icon ? 
+                {props.$icon ? 
                     <IconView>
-                        {props.icon}
+                        {props.$icon}
                     </IconView>
                 : props.type === 'tel' ?
                     <IconView>
@@ -127,7 +127,7 @@ const InputSecondary = (props: InputSecondaryProps) =>{
                             onChange={item => onCountryChange(item)} 
                             id="country" 
                             options={Country}
-                            focus={(focus || inputValue) ? true : false}
+                            $focus={(focus || inputValue) ? true : false}
                         />
                     </IconView>
                 : null}
@@ -135,9 +135,9 @@ const InputSecondary = (props: InputSecondaryProps) =>{
                     <Placeholder 
                         role="placeholder"
                         type='p'
-                        phone={props.type === 'tel'}
-                        focus={(focus || inputValue || props.defaultValue) ? true : false}
-                        error={props.$error ? true : false}
+                        $phone={props.type === 'tel'}
+                        $focus={(focus || inputValue || props.defaultValue) ? true : false}
+                        $error={props.$error ? true : false}
                     >
                         {props.placeholder}
                     </Placeholder>
@@ -168,8 +168,10 @@ const InputSecondary = (props: InputSecondaryProps) =>{
 export default InputSecondary;
 export interface InputSecondaryProps extends InputStyledProps{
     containerStyle?: CSSProperties,
-    icon?: ReactElement,
+    $icon?: ReactElement,
     $error?: string|undefined,
+    $focus?: boolean,
+    $phone?: boolean,
     $design?: string,
     country?: string,
     onPhoneChange?:(item:{

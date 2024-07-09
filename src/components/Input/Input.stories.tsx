@@ -60,7 +60,7 @@ export const Primary: Story = {
 export const PrimaryWithIcon: Story = {
   args: {
     $design: "primary",
-    icon: <Flag role="icon" width={20} height={20} />,
+    $icon: <Flag role="icon" width={20} height={20} />,
   },
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);
@@ -79,7 +79,7 @@ export const PrimaryWithIcon: Story = {
 export const PrimaryWithError: Story = {
   args: {
     $design: "primary",
-    error: "Error message",
+    $error: "Error message",
   },
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);
@@ -116,7 +116,8 @@ export const Secondary: Story = {
 export const SecondaryWithIcon: Story = {
   args: {
     $design: "secondary",
-    icon: <Flag role="icon" width={20} height={20} />,
+    
+    $icon: <Flag role="icon" width={20} height={20} />,
   },
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);
@@ -137,7 +138,7 @@ export const SecondaryWithIcon: Story = {
 export const SecondaryWithError: Story = {
   args: {
     $design: "secondary",
-    error: "Error message",
+    $error: "Error message",
   },
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);
@@ -346,7 +347,7 @@ export const InputLocation: Story = {
   args: {
     $design: "secondary",
     type: "location",
-    icon: <Search role="icon" />,
+    $icon: <Search role="icon" />,
     defaultValue: undefined,
   },
   play: async ({ canvasElement, step }: any) => {

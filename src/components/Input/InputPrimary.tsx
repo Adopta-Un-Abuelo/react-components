@@ -105,9 +105,9 @@ const InputPrimary = (props: InputPrimaryProps) =>{
                 style={props.style}
                 $focus={focus}
             >
-                {props.icon ? 
+                {props.$icon ? 
                     <IconView>
-                        {props.icon}
+                        {props.$icon}
                     </IconView>
                 : props.type === 'tel' ?
                     <IconView>
@@ -117,7 +117,7 @@ const InputPrimary = (props: InputPrimaryProps) =>{
                             onChange={item => onCountryChange(item)}
                             id="country"
                             options={Country}
-                            focus={false}
+                            $focus={false}
                         />
                     </IconView>
                 : null}
@@ -146,7 +146,7 @@ const InputPrimary = (props: InputPrimaryProps) =>{
 export default InputPrimary;
 export interface InputPrimaryProps extends InputStyledProps{
     containerStyle?: CSSProperties,
-    icon?: ReactElement,
+    $icon?: ReactElement,
     $error?: string|undefined,
     focus?: boolean,
     $design?: string,

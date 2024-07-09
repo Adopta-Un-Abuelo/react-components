@@ -66,7 +66,7 @@ export default Input;
 export interface InputProps extends InputStyledProps {
     type: 'text' | 'tel' | 'email' | 'date' | 'password' | 'time' | 'number' | 'range' | 'range-date' | 'image' | 'chat' | 'code' | 'location',
     containerStyle?: CSSProperties,
-    icon?: ReactElement,
+    $icon?: ReactElement,
     unit?: string,
     $error?: string | undefined,
     country?: string,
