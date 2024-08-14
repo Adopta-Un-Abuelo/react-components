@@ -1,3 +1,15 @@
+# v0.3.2 (Wed Aug 14 2024)
+
+#### ⚠️ Pushed to `main`
+
+- hotChange: add Style on TagSelector ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.2.55 (Tue Jul 02 2024)
 
 #### ⚠️ Pushed to `main`
