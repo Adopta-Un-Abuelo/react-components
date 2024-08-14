@@ -72,5 +72,7 @@ export interface Props{
 }
 export interface OptionProps{
     id: string,
-    title: string
+    title: string,
+    style?: React.CSSProperties // Add a style property to OptionProps
+
 }
