@@ -1,3 +1,16 @@
+# v0.3.3 (Wed Aug 21 2024)
+
+#### 🐛 Bug Fix
+
+- chore: changes on components [#6](https://github.com/Adopta-Un-Abuelo/react-components/pull/6) ([@sergiosanchez112](https://github.com/sergiosanchez112) [@guillermo-angeles](https://github.com/guillermo-angeles))
+
+#### Authors: 2
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+- Guillermo Angeles ([@guillermo-angeles](https://github.com/guillermo-angeles))
+
+---
+
 # v0.3.2 (Wed Aug 14 2024)
 
 #### ⚠️ Pushed to `main`
