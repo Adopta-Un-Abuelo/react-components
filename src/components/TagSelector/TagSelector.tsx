@@ -54,6 +54,7 @@ const TagSelector = (props: Props) =>{
                         role={item.id}
                         key={item.id}
                         title={item.title}
+                        subtitle={item.subtitle}
                         selected={isSelected}
                         onClick={() => onClick(item)}
                     />
@@ -73,6 +74,6 @@ export interface Props{
 export interface OptionProps{
     id: string,
     title: string,
+    subtitle?: string,
     style?: React.CSSProperties // Add a style property to OptionProps
-
 }
