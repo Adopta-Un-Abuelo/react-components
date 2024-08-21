@@ -16,17 +16,51 @@ export default {
       {
         id: "option2",
         title: "Option 2",
+        subtitle: "Subtitle 2",
       },
       {
         id: "option3",
         title: "Option 3",
+        subtitle: "Subtitle 3",
       },
       {
         id: "option4",
         title: "Option 4",
       },
+      {
+        id: "option9",
+        title: "lu",
+      },
+      {
+        id: "option5",
+        title: "ma",
+      },
+      {
+        id: "option6",
+        title: "mi",
+      },
+      {
+        id: "option7",
+        title: "ju",
+      },
+      {
+        id: "option8",
+        title: "vi",
+      },
+      
     ],
     onChange: action("onChange"),
+  },
+  parameters: {
+    backgrounds: {
+      default: 'custom',
+      values: [
+        { 
+          name: 'custom', 
+          value: 'var(--surface-background, #f9f6f3)' // Change to FFF to background-color white  
+        },
+      ],
+    },
   },
 };
 

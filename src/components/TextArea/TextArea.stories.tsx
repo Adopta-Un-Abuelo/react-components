@@ -9,6 +9,7 @@ export default {
   tags: ["autodocs"],
   args: {
     placeholder: "Placeholder",
+    maxLength: 100,
     onChange: action("onChange"),
   },
 };
