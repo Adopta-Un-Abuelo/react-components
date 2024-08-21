@@ -13,14 +13,14 @@ const Container = styled.div<{selected: boolean, hasSubtitle: boolean}>`
     height: ${props => props.hasSubtitle ? 'auto' : '36px'};
     padding: ${props => props.hasSubtitle ? '16px 8px' : '7px 14px'};
     border-radius: ${props => props.hasSubtitle ? '12px' : '1000px'};    
-    border: ${props => props.selected ? '2px solid '+Color.line.primary : '2px solid '+Color.text.white};
-    background: var(--surface-invert, #FFF);   
+    box-shadow: ${props => props.selected ? '0 0 0 2px '+Color.line.primary : '0 0 0 2px '+Color.text.white};
+    background: var(--surface-invert, #FFF); 
     margin: 4px;
     cursor: pointer;
     gap: ${props => props.hasSubtitle ? '0' : '12px'};
     flex: ${props => props.hasSubtitle ? '1 0 0' : '0 1 auto'};
     min-width: 25px;
-    max-width: 140px;
+    
 
     ${media.lessThan("small")`
         height: ${(props: { hasSubtitle: any; }) => props.hasSubtitle ? 'auto' : '36px'};
