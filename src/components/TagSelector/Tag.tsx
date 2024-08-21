@@ -13,7 +13,7 @@ const Container = styled.div<{selected: boolean, hasSubtitle: boolean}>`
     height: ${props => props.hasSubtitle ? 'auto' : '36px'};
     padding: ${props => props.hasSubtitle ? '16px 8px' : '7px 14px'};
     border-radius: ${props => props.hasSubtitle ? '12px' : '1000px'};    
-    border: ${props => props.selected ? '2px solid '+Color.line.primary : '1px solid '+Color.text.white};
+    border: ${props => props.selected ? '2px solid '+Color.line.primary : '2px solid '+Color.text.white};
     background: var(--surface-invert, #FFF);   
     margin: 4px;
     cursor: pointer;

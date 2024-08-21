@@ -28,7 +28,7 @@ const Cell = styled.div<{ selected: boolean; disabled?: boolean }>`
   min-width: 100px;
   box-shadow: 0 0 0
     ${(props) =>
-      props.selected ? "2px " + Color.line.primary : "1px " + Color.line.white};
+      props.selected ? "2px " + Color.line.primary : "2px " + Color.line.white};
   background-color: ${(props) =>
     props.disabled
       ? Color.line.soft
