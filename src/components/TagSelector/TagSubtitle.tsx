@@ -78,7 +78,7 @@ export interface Props {
     role?: string
     style?: CSSProperties,
     title: string,
-    subtitle: string,
+    subtitle?: string,
     selected: boolean,
     onClick?: () => void
 }

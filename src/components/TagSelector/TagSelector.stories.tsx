@@ -12,92 +12,58 @@ export default {
       {
         id: "option1",
         title: "Option 1",
-        subtitle: "Default Subtitle", 
-      },
-      {
-        id: "option2",
-        title: "Option 2",
-        subtitle: "Subtitle 2",
-      },
-      {
-        id: "option3",
-        title: "Option 3",
-        subtitle: "Subtitle 3",
       },
       {
         id: "option4",
         title: "Option 4",
-        subtitle: "Default Subtitle",
       },
       {
         id: "option13",
         title: "lu",
-        subtitle: "Default Subtitle",
       },
       {
         id: "option5",
         title: "ma",
-        subtitle: "Default Subtitle",
       },
       {
         id: "option6",
         title: "mi",
-        subtitle: "Default Subtitle",
       },
       {
         id: "option7",
         title: "ju",
-        subtitle: "Default Subtitle",
       },
       {
         id: "option8",
         title: "vi",
-        subtitle: "Default Subtitle",
       },
       {
         id: "option9",
         title: "sá",
-        subtitle: "Default Subtitle",
       },
       {
         id: "option10",
         title: "do",
-        subtitle: "Default Subtitle",
-      },
-      {
-        id: "option11",
-        title: "Mañana",
-        subtitle: "10:00 - 12:00 h",
-      },
-      {
-        id: "option12",
-        title: "Tardes",
-        subtitle: "10:00 - 12:00 h",
       },
       {
         id: 'knitt',
         title: '🧵 costura',
-        subtitle: "Default Subtitle",
       },
       {
         id: 'tech',
         title: '📱 tecnología',
-        subtitle: "Default Subtitle",
       },
       {
         id: 'theatre',
         title: '🎭 teatro',
-        subtitle: "Default Subtitle",
       },
       {
         id: 'movies',
         title: '🎬 cine',
-        subtitle: "Default Subtitle",
       },
       {
         id: 'travel',
         title: '🧳 viajar',
-        subtitle: "Default Subtitle",
       },
       
     ],
@@ -154,7 +120,29 @@ export const MultipleSelection = {
 
 export const MultipleWithSubtitleSelection = {
   args: {
-    type: "multipleSubtitle",
+    type: "multiple",
+    options: [
+      {
+        id: "option2",
+        title: "Option 2",
+        subtitle: "Subtitle 2",
+      },
+      {
+        id: "option3",
+        title: "Option 3",
+        subtitle: "Subtitle 3",
+      },
+      {
+        id: "option11",
+        title: "Mañana",
+        subtitle: "10:00 - 12:00 h",
+      },
+      {
+        id: "option12",
+        title: "Tardes",
+        subtitle: "10:00 - 12:00 h",
+      }
+    ],
   },
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);
