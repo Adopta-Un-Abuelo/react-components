@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Tag from './Tag';
+import TagSubtitle from './TagSubtitle'; // Asegúrate de importar tu nuevo componente TagSubtitle
 
 const Container = styled.div`
     display: flex;
@@ -30,7 +31,7 @@ const TagSelector = (props: Props) =>{
                 props.onChange && props.onChange([item]);
             }
         }
-        else{
+        else if(props.type === 'multiple' || props.type === 'multipleSubtitle'){
             const tempArray: any = [...selection];
             const index = tempArray.findIndex((e: any) => e.id === item.id);
             if(index > -1)  //Remove the object
@@ -49,12 +50,20 @@ const TagSelector = (props: Props) =>{
         >
             {props.options.map((item, index) =>{
                 const isSelected = selection.some(temp => temp.id === item.id);
-                return(
-                    <Tag
+                return props.type === 'multipleSubtitle' ? (
+                    <TagSubtitle
                         role={item.id}
                         key={item.id}
                         title={item.title}
                         subtitle={item.subtitle}
+                        selected={isSelected}
+                        onClick={() => onClick(item)}
+                    />
+                ) : (
+                    <Tag
+                        role={item.id}
+                        key={item.id}
+                        title={item.title}
                         selected={isSelected}
                         onClick={() => onClick(item)}
                     />
@@ -65,7 +74,7 @@ const TagSelector = (props: Props) =>{
 }
 export default TagSelector;
 export interface Props{
-    type?: 'multiple' | 'single',
+    type?: 'multiple' | 'single' | 'multipleSubtitle', // Agrega 'multiple with subtitle' a los tipos permitidos
     style?: any,
     options: Array<OptionProps>,
     optionsSelected?: Array<OptionProps>,
@@ -74,6 +83,6 @@ export interface Props{
 export interface OptionProps{
     id: string,
     title: string,
-    subtitle?: string,
+    subtitle: string,
     style?: React.CSSProperties // Add a style property to OptionProps
 }
