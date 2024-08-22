@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Tag from './Tag';
-import TagSubtitle from './TagSubtitle'; // Asegúrate de importar tu nuevo componente TagSubtitle
+import TagSubtitle from './TagSubtitle';
 
 const Container = styled.div`
     display: flex;
@@ -31,7 +31,7 @@ const TagSelector = (props: Props) =>{
                 props.onChange && props.onChange([item]);
             }
         }
-        else if(props.type === 'multiple' || props.type === 'multipleSubtitle'){
+        else if(props.type === 'multiple'){
             const tempArray: any = [...selection];
             const index = tempArray.findIndex((e: any) => e.id === item.id);
             if(index > -1)  //Remove the object
@@ -45,36 +45,36 @@ const TagSelector = (props: Props) =>{
 
     return(
         <Container
-            role='container'
-            style={props.style}
-        >
-            {props.options.map((item, index) =>{
-                const isSelected = selection.some(temp => temp.id === item.id);
-                return props.type === 'multipleSubtitle' ? (
-                    <TagSubtitle
-                        role={item.id}
-                        key={item.id}
-                        title={item.title}
-                        subtitle={item.subtitle}
-                        selected={isSelected}
-                        onClick={() => onClick(item)}
-                    />
-                ) : (
-                    <Tag
-                        role={item.id}
-                        key={item.id}
-                        title={item.title}
-                        selected={isSelected}
-                        onClick={() => onClick(item)}
-                    />
-                )
-            })}
-        </Container>
+        role='container'
+        style={props.style}
+    >
+        {props.options.map((item, index) =>{
+            const isSelected = selection.some(temp => temp.id === item.id);
+            return item.subtitle ? (
+                <TagSubtitle
+                    role={item.id}
+                    key={item.id}
+                    title={item.title}
+                    subtitle={item.subtitle}
+                    selected={isSelected}
+                    onClick={() => onClick(item)}
+                />
+            ) : (
+                <Tag
+                    role={item.id}
+                    key={item.id}
+                    title={item.title}
+                    selected={isSelected}
+                    onClick={() => onClick(item)}
+                />
+            )
+        })}
+    </Container>
     )
 }
 export default TagSelector;
 export interface Props{
-    type?: 'multiple' | 'single' | 'multipleSubtitle', // Agrega 'multiple with subtitle' a los tipos permitidos
+    type?: 'multiple' | 'single',
     style?: any,
     options: Array<OptionProps>,
     optionsSelected?: Array<OptionProps>,
