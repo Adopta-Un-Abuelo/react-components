@@ -1,3 +1,15 @@
+# v0.3.4 (Thu Aug 22 2024)
+
+#### 🐛 Bug Fix
+
+- Fix: trying to merge without error [#8](https://github.com/Adopta-Un-Abuelo/react-components/pull/8) ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.3 (Wed Aug 21 2024)
 
 #### 🐛 Bug Fix
