@@ -48,21 +48,21 @@ export default {
         title: "vi",
       },
       {
-        id: "option8",
+        id: "option9",
         title: "sá",
       },
       {
-        id: "option8",
+        id: "option10",
         title: "do",
       },
       {
-        id: "option8",
+        id: "option11",
         title: "Mañana",
         subtitle: "10: 00 - 12: 00 h",
 
       },
       {
-        id: "option8",
+        id: "option12",
         title: "Tardes",
         subtitle: "10: 00 - 12: 00 h",
 
@@ -74,14 +74,6 @@ export default {
       {
         id: 'tech',
         title: '📱 tecnología',
-      },
-      {
-        id: 'theatre',
-        title: '🎭 teatro',
-      },
-      {
-        id: 'theatre',
-        title: '🎭 teatro',
       },
       {
         id: 'theatre',
