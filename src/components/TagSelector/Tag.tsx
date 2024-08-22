@@ -5,63 +5,63 @@ import media from 'styled-media-query';
 import Text from '../Text/Text';
 import Color from '../../constants/Color';
 
-const Container = styled.div<{selected: boolean, hasSubtitle: boolean}>`
+const Container = styled.div<{ selected: boolean, hasSubtitle: boolean }>`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: ${props => props.hasSubtitle ? 'auto' : '36px'};
-    padding: ${props => props.hasSubtitle ? '16px 8px' : '7px 14px'};
+    padding: ${props => props.hasSubtitle ? '16px 8px' : '0 14px'};
     border-radius: ${props => props.hasSubtitle ? '12px' : '1000px'};    
     box-shadow: ${props => props.selected ? '0 0 0 2px '+Color.line.primary : '0 0 0 2px '+Color.text.white};
     background: var(--surface-invert, #FFF); 
-    margin: 4px;
+    margin: 3.9px;
+    margin-bottom: 8px;
     cursor: pointer;
-    gap: ${props => props.hasSubtitle ? '0' : '12px'};
+    max-width: 120px;
     flex: ${props => props.hasSubtitle ? '1 0 0' : '0 1 auto'};
-    min-width: 25px;
-    
+    gap: ${props => props.hasSubtitle ? '10px' : '10px'};
+
+    /* Altura fija para contenedores sin subtítulo */
+    height: ${props => props.hasSubtitle ? '74px' : '36px'};
+    line-height: 24px; /* Para centrar verticalmente el texto en contenedores sin subtítulo */
 
     ${media.lessThan("small")`
-        height: ${(props: { hasSubtitle: any; }) => props.hasSubtitle ? 'auto' : '36px'};
         width: auto;
         max-width: none;    
     `}
 `
 
-const TextStyled = styled(Text)<{selected: boolean}>`
+const TextStyled = styled(Text)<{ selected: boolean }>`
     color: var(--text-clear-neutral-hard, rgba(0, 29, 61, 0.92));
     font-feature-settings: 'liga' off, 'clig' off;
     font-style: normal;
     font-weight: 500;
-    line-height: 22px;
-    font-size: 14px;
+    font-size: 14px !important;
     text-align: center;
 `
 
-const SubtitleStyled = styled(Text)<{selected: boolean}>`
+const SubtitleStyled = styled(Text)<{ selected: boolean }>`
     color: var(--text-clear-neutral-medium, rgba(0, 29, 61, 0.56));
     text-align: center;
     font-family: Poppins;
-    font-size: 13px;
+    font-size: 13px !important;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; 
+    line-height: 20px;
 `
 
-const Tags = (props: Props) =>{
+const Tags = (props: Props) => {
 
-    const onClick = () =>{
+    const onClick = () => {
         props.onClick && props.onClick();
     }
 
-    return(
+    return (
         <Container
             role={props.role}
             style={props.style}
             selected={props.selected}
             hasSubtitle={!!props.subtitle}
-
             onClick={onClick}
         >
             <TextStyled type='p' selected={props.selected}>
@@ -76,7 +76,8 @@ const Tags = (props: Props) =>{
     )
 }
 export default Tags;
-export interface Props{
+
+export interface Props {
     role?: string
     style?: CSSProperties,
     title: string,

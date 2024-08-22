@@ -6,13 +6,15 @@ import Color from "../../constants/Color";
 const Container = styled.div`
   display: flex;
   flex: 1;
+  
   flex-wrap: wrap;
   justify-content: space-around;
 `;
 const CellContainer = styled.div<{ disabled?: boolean }>`
   display: flex;
   flex-direction: column;
-  width: 150px;
+  width: 100px;
+  padding: 0px;
   align-items: center;
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
 `;
@@ -21,11 +23,12 @@ const Cell = styled.div<{ selected: boolean; disabled?: boolean }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 16px 8px;
+  padding: 20px 8px;
   border-radius: 12px;
   height: 72px;
   gap: 8px;
-  min-width: 100px;
+    margin: 4px;
+  min-width: 95px;
   box-shadow: 0 0 0
     ${(props) =>
       props.selected ? "2px " + Color.line.primary : "2px " + Color.line.white};

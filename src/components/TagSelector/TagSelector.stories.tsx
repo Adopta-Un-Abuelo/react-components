@@ -47,6 +47,54 @@ export default {
         id: "option8",
         title: "vi",
       },
+      {
+        id: "option8",
+        title: "sá",
+      },
+      {
+        id: "option8",
+        title: "do",
+      },
+      {
+        id: "option8",
+        title: "Mañana",
+        subtitle: "10: 00 - 12: 00 h",
+
+      },
+      {
+        id: "option8",
+        title: "Tardes",
+        subtitle: "10: 00 - 12: 00 h",
+
+      },
+      {
+        id: 'knitt',
+        title: '🧵 costura',
+      },
+      {
+        id: 'tech',
+        title: '📱 tecnología',
+      },
+      {
+        id: 'theatre',
+        title: '🎭 teatro',
+      },
+      {
+        id: 'theatre',
+        title: '🎭 teatro',
+      },
+      {
+        id: 'theatre',
+        title: '🎭 teatro',
+      },
+      {
+        id: 'movies',
+        title: '🎬 cine',
+      },
+      {
+        id: 'travel',
+        title: '🧳 viajar',
+      },
       
     ],
     onChange: action("onChange"),
@@ -57,7 +105,7 @@ export default {
       values: [
         { 
           name: 'custom', 
-          value: 'var(--surface-background, #f9f6f3)' // Change to FFF to background-color white  
+          value: 'var(--surface-background, #f9f6f3)' // Change to FFF to background-color  
         },
       ],
     },

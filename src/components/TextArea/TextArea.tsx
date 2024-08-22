@@ -40,7 +40,7 @@ const TextAreaView = styled.textarea<{design?: 'design-1' | 'design-2'}>`
         }
     }
     &::placeholder {
-        color: var(--text-clear-neutral-medium, rgba(0, 29, 61, 0.56));
+        color: #00315C57;
         font-feature-settings: 'liga' off, 'clig' off;
         font-family: Poppins;
         font-size: 15px;
