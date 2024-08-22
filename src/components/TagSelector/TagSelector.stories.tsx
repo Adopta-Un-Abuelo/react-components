@@ -14,6 +14,11 @@ export default {
         title: "Option 1", 
       },
       {
+        id: "option2",
+        title: "Option 2",
+      
+      },
+      {
         id: "option3",
         title: "Option 3",
       
@@ -131,6 +136,11 @@ export const MultipleWithSubtitleSelection = {
         id: "option2",
         title: "Option 2",
         subtitle: "Subtitle 2",
+      },
+      {
+        id: "option3",
+        title: "Option 3",
+        subtitle: "Subtitle 3",
       },
       {
         id: "option11",
