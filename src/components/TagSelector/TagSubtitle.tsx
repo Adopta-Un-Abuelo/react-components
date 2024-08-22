@@ -10,20 +10,20 @@ const Container = styled.div<{ selected: boolean }>`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 14px;
-    border-radius: 1000px;    
+    padding: 16px 8px;
+    border-radius: 12px;    
     box-shadow: ${props => props.selected ? '0 0 0 2px '+Color.line.primary : '0 0 0 2px '+Color.text.white};
     background: var(--surface-invert, #FFF); 
     margin: 3.9px;
     margin-bottom: 8px;
     cursor: pointer;
     max-width: 120px;
-    flex: 0 1 auto;
+    flex: 1 0 0;
     gap: 10px;
 
-    /* Altura fija para contenedores sin subtítulo */
-    height: 36px;
-    line-height: 24px; /* Para centrar verticalmente el texto en contenedores sin subtítulo */
+    /* Altura fija para contenedores con subtítulo */
+    height: 74px;
+    line-height: 24px; /* Para centrar verticalmente el texto en contenedores con subtítulo */
 
     ${media.lessThan("small")`
         width: auto;
@@ -40,7 +40,17 @@ const TextStyled = styled(Text)<{ selected: boolean }>`
     text-align: center;
 `
 
-const Tags = (props: Props) => {
+const SubtitleStyled = styled(Text)<{ selected: boolean }>`
+    color: var(--text-clear-neutral-medium, rgba(0, 29, 61, 0.56));
+    text-align: center;
+    font-family: Poppins;
+    font-size: 13px !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+`
+
+const TagsSubtitle = (props: Props) => {
 
     const onClick = () => {
         props.onClick && props.onClick();
@@ -56,15 +66,19 @@ const Tags = (props: Props) => {
             <TextStyled type='p' selected={props.selected}>
                 {props.title}
             </TextStyled>
+            <SubtitleStyled type='p' selected={props.selected}>
+                {props.subtitle}
+            </SubtitleStyled>
         </Container>
     )
 }
-export default Tags;
+export default TagsSubtitle;
 
 export interface Props {
     role?: string
     style?: CSSProperties,
     title: string,
+    subtitle: string,
     selected: boolean,
     onClick?: () => void
 }

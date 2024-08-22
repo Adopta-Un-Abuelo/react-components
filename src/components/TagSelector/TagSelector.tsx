@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Tag from './Tag';
+import TagSubtitle from './TagSubtitle';
 
 const Container = styled.div`
     display: flex;
@@ -30,7 +31,7 @@ const TagSelector = (props: Props) =>{
                 props.onChange && props.onChange([item]);
             }
         }
-        else{
+        else if(props.type === 'multiple'){
             const tempArray: any = [...selection];
             const index = tempArray.findIndex((e: any) => e.id === item.id);
             if(index > -1)  //Remove the object
@@ -44,23 +45,31 @@ const TagSelector = (props: Props) =>{
 
     return(
         <Container
-            role='container'
-            style={props.style}
-        >
-            {props.options.map((item, index) =>{
-                const isSelected = selection.some(temp => temp.id === item.id);
-                return(
-                    <Tag
-                        role={item.id}
-                        key={item.id}
-                        title={item.title}
-                        subtitle={item.subtitle}
-                        selected={isSelected}
-                        onClick={() => onClick(item)}
-                    />
-                )
-            })}
-        </Container>
+        role='container'
+        style={props.style}
+    >
+        {props.options.map((item, index) =>{
+            const isSelected = selection.some(temp => temp.id === item.id);
+            return item.subtitle ? (
+                <TagSubtitle
+                    role={item.id}
+                    key={item.id}
+                    title={item.title}
+                    subtitle={item.subtitle}
+                    selected={isSelected}
+                    onClick={() => onClick(item)}
+                />
+            ) : (
+                <Tag
+                    role={item.id}
+                    key={item.id}
+                    title={item.title}
+                    selected={isSelected}
+                    onClick={() => onClick(item)}
+                />
+            )
+        })}
+    </Container>
     )
 }
 export default TagSelector;
@@ -74,6 +83,6 @@ export interface Props{
 export interface OptionProps{
     id: string,
     title: string,
-    subtitle?: string,
+    subtitle: string,
     style?: React.CSSProperties // Add a style property to OptionProps
 }
