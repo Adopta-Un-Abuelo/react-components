@@ -21,9 +21,8 @@ const Container = styled.div<{ selected: boolean }>`
     flex: 1 0 0;
     gap: 10px;
 
-    /* Altura fija para contenedores con subtítulo */
     height: 74px;
-    line-height: 24px; /* Para centrar verticalmente el texto en contenedores con subtítulo */
+    line-height: 24px;
 
     ${media.lessThan("small")`
         width: auto;
