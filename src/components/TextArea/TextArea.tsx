@@ -39,6 +39,15 @@ const TextAreaView = styled.textarea<{design?: 'design-1' | 'design-2'}>`
             cursor:text;
         }
     }
+    &::placeholder {
+        color: #00315C57;
+        font-feature-settings: 'liga' off, 'clig' off;
+        font-family: Poppins;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+    }
     &:hover{
         cursor: pointer;
     }
@@ -90,12 +99,16 @@ const TextArea = (props: Props) =>{
             }
         }
         
+        if(props.maxLength && result.target.value.length > props.maxLength) {
+            // Si la longitud del texto ingresado es mayor que maxLength, no hagas nada
+            return;
+        }
+    
         if(data) setEditorState(data)
         if(props.maxLength)
-            setRestLength(props.maxLength-result.target.value.length);
+            setRestLength(result.target.value.length);
         props.onChange && props.onChange(result)
     }
-
     return(props.type==="edit" ? 
         <Container
             role='text-area'
@@ -124,7 +137,13 @@ const TextArea = (props: Props) =>{
         >
             <TextAreaView 
                 defaultValue={props.defaultValue} 
-                name={props.name} 
+                name={props.name}
+                maxLength={props.maxLength}
+                onKeyDown={(e) => {
+                    if (props.maxLength && e.currentTarget.value.length >= props.maxLength && e.key !== 'Backspace' && e.key !== 'Delete') {
+                        e.preventDefault();
+                    }
+                }}
                 onChange={onTextAreChange} 
                 data-testid="text_area"
                 style={props.style} 
@@ -133,8 +152,20 @@ const TextArea = (props: Props) =>{
             />
             {props.maxLength &&
                 <Text
-                    type='c1'
-                    style={{marginLeft: 16, marginTop: 4}}
+                type="h3"
+                weight="semibold"
+                style={{
+                    color: "var(--text-clear-neutral-medium, rgba(0, 29, 61, 0.56)",
+                    fontFeatureSettings: "'liga' off, 'clig' off",
+                    fontFamily: "Poppins",
+                    fontSize: "13px",
+                    fontStyle: "normal",
+                    fontWeight: 400,
+                    textAlign: "right",
+                    lineHeight: "20px",
+                    marginLeft: "16px",
+                    marginTop: "8px"
+                }}
                 >
                     {restLength}/{props.maxLength} caracteres
                 </Text>

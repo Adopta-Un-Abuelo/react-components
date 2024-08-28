@@ -9,25 +9,29 @@ const InputView = styled.div`
     padding: 0px;
     height: auto;
 `
-const InputStyled = styled.input<{ $design?: 'primary' | 'secondary'}>`
+
+const InputStyled = styled.input<{design?: 'primary' | 'secondary'}>`
     height: 38px;
     border-radius: 100px;
-    border: ${props => props.$design === 'secondary' ? 'none' : '1px solid '+Color.line.soft};
+    border: none;
+    box-shadow: ${props => props.design === 'secondary' ? 'none' : `0 0 0 1px ${Color.line.soft}`};
     font-family: 'Poppins';
     font-size: 14px;
     padding: 0px;
     width: -webkit-fill-available;
     outline: none;
+    background: ${props => props.design === 'primary' ? 'var(--surface-clear-neutral-soft, rgba(0, 29, 61, 0.04))' : 'white'};
     &:hover{
         cursor: pointer;
     }
     &:focus{
-        border: ${props => props.$design === 'secondary' ? 'none' : '2px solid '+Color.text.full};
+        box-shadow: ${props => props.design === 'secondary' ? 'none' : `0 0 0 1px ${Color.text.full}`};
         background: white;
-        cursor:text;
+        cursor: text;
     }
 `
-const IconStyle = styled.div<{$design?: 'primary' | 'secondary'}>`
+
+const IconStyle = styled.div<{design?: 'primary' | 'secondary'}>`
     position:absolute;
     display:flex; 
     align-items:center; 
@@ -68,7 +72,9 @@ const SearchBar = (props: Props) =>{
         </InputView>
     )
 }
+
 export default SearchBar;
+
 export interface Props extends ComponentPropsWithoutRef<"input">{
     type?: "big"|"small"
     $design?: 'primary' | 'secondary'

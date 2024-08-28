@@ -1,3 +1,52 @@
+# v0.3.5 (Wed Aug 28 2024)
+
+#### 🐛 Bug Fix
+
+- chore: Filter, Checkbox, Modal & SearchBar changes [#9](https://github.com/Adopta-Un-Abuelo/react-components/pull/9) ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
+# v0.3.4 (Thu Aug 22 2024)
+
+#### 🐛 Bug Fix
+
+- Fix: trying to merge without error [#8](https://github.com/Adopta-Un-Abuelo/react-components/pull/8) ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
+# v0.3.3 (Wed Aug 21 2024)
+
+#### 🐛 Bug Fix
+
+- chore: changes on components [#6](https://github.com/Adopta-Un-Abuelo/react-components/pull/6) ([@sergiosanchez112](https://github.com/sergiosanchez112) [@guillermo-angeles](https://github.com/guillermo-angeles))
+
+#### Authors: 2
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+- Guillermo Angeles ([@guillermo-angeles](https://github.com/guillermo-angeles))
+
+---
+
+# v0.3.2 (Wed Aug 14 2024)
+
+#### ⚠️ Pushed to `main`
+
+- hotChange: add Style on TagSelector ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.2.55 (Tue Jul 02 2024)
 
 #### ⚠️ Pushed to `main`
