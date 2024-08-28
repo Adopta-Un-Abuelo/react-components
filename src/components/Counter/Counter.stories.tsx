@@ -1,16 +1,21 @@
+import type { Meta, StoryObj } from '@storybook/react';
 import Counter from "./Counter";
 import { Color } from "../../constants";
 
-export default {
+const meta: Meta<typeof Counter> = {
   title: "Components/Counter",
   component: Counter,
   tags: ["autodocs"],
   args: {
     amount: 217,
   },
-};
+}
 
-export const Default = {
+export default meta;
+
+type Story = StoryObj<typeof Counter>;
+
+export const Default: Story = {
   args: {
     amount: 217,
     backgroundColor: Color.background.primary,

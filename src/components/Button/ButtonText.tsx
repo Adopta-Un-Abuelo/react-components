@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 import Color from '../../constants/Color';
 
-const ButtonText = styled.button<{size?: 'small' | 'normal', textColor?: string, disabled?: boolean}>`
+const ButtonText = styled.button.attrs<{$size?: 'small' | 'normal'}>(props => ({}))`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	height: ${props => props.size === 'small' ? '36px' : '56px'};
-	padding: ${props => props.size === 'small' ? '0px 12px' : '0px 24px'};
+	height: ${props => props.$size === 'small' ? '36px' : '56px'};
+	padding: ${props => props.$size === 'small' ? '0px 12px' : '0px 24px'};
 	border-radius: 10000px;
 	border: none;
 	background-color: transparent;
@@ -16,8 +16,8 @@ const ButtonText = styled.button<{size?: 'small' | 'normal', textColor?: string,
 	cursor: ${props => props.disabled ? 'default' : 'pointer'};
     gap: 8px;
     font-family: 'Poppins', 'sans-serif';
-	font-size: ${props => props.size === 'small' ? '14px' : '16px'};
-    color: ${props => props.textColor ? props.textColor : Color.text.full};
+	font-size: ${props => props.$size === 'small' ? '14px' : '16px'};
+    color: ${props => props.style?.color ? props.style.color : Color.text.full};
     opacity: ${props => props.disabled ? 0.5 : 1};
 	&:hover{
 		background-color: ${props => props.disabled ? 'transparent' : Color.status.neutral.hover};
@@ -27,18 +27,18 @@ const ButtonText = styled.button<{size?: 'small' | 'normal', textColor?: string,
 	}
 `
 
-const Button = (props: Props) => {
+const Button = ({size, icon, iconPosition, loading, ...restProps}: Props) => {
 
   	return (
         <ButtonText
             role="button"
-            {...props}
-            disabled={props.disabled || props.loading}
-            onClick={(e: any) => (props.onClick && !props.loading && !props.disabled) && props.onClick(e)}
+            {...restProps}
+            disabled={restProps.disabled || loading}
+            onClick={(e: any) => (restProps.onClick && !loading && !restProps.disabled) && restProps.onClick(e)}
         >
-            {(props.icon && props.iconPosition !== 'right') && props.icon}
-            {props.children}
-            {(props.icon && props.iconPosition === 'right') && props.icon}
+            {(icon && iconPosition !== 'right') && icon}
+            {restProps.children}
+            {(icon && iconPosition === 'right') && icon}
         </ButtonText>
   	);
 };
@@ -48,5 +48,4 @@ export interface Props extends ComponentPropsWithoutRef<"button">{
 	icon?: React.ReactElement,
 	iconPosition?: 'left' | 'right'
 	loading?: boolean,
-	textColor?: string
 }

@@ -1,14 +1,17 @@
 import ProgressBar from "./ProgressBar";
-import { within } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { within, expect } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
 
-export default {
+const meta: Meta<typeof ProgressBar> = {
   title: "Components/ProgressBar",
   component: ProgressBar,
   tags: ["autodocs"],
-};
+}
 
-export const Default = {
+export default meta;
+type Story = StoryObj<typeof ProgressBar>;
+
+export const Default: Story = {
   args: {
     progress: 40,
     minValue: 0,
@@ -21,7 +24,7 @@ export const Default = {
   },
 };
 
-export const Multiple = {
+export const Multiple: Story = {
   args: {
     progress: [
       {

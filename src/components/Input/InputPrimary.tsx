@@ -10,7 +10,7 @@ import InputStyled,  { InputStyledProps } from './InputStyled';
 
 const Container = styled.div`
 `
-const InputContainer = styled.div<{focus: boolean, error: boolean}>`
+const InputContainer = styled.div<{$focus?: boolean, $error?: boolean}>`
     position: relative;
     display: flex;
     flex: 1;
@@ -20,9 +20,9 @@ const InputContainer = styled.div<{focus: boolean, error: boolean}>`
     height: 40px;
     min-height: 40px;
     outline: none;
-    box-shadow: 0 0 0 ${props => props.focus ? '1px '+Color.line.primarySoft : 'none'};
+    box-shadow: 0 0 0 ${props => props.$focus ? '1px '+Color.line.primarySoft : 'none'};
     padding: 0px 16px;
-    background-color: ${props => props.focus ? 'white' : (props.error ? Color.status.color.errorDefault : Color.background.soft)};
+    background-color: ${props => props.$focus ? 'white' : (props.$error ? Color.status.color.errorDefault : Color.background.soft)};
 `
 const ErrorDiv = styled.div`
     margin: 0px 12px;
@@ -43,8 +43,10 @@ const IconView = styled.div`
 `
 const InputPrimary = (props: InputPrimaryProps) =>{
 
+    const { design, icon, error, containerStyle, ...restProps} = props;
+    
     const phoneUtil = GLPN.PhoneNumberUtil.getInstance();
-   
+
     const [ inputValue, setInputValue ] = useState<string | number | readonly string[] | undefined>(undefined);
     const [ country , setCountry ] = useState<CountryProps>(Country[0]);
     const [ focus, setFocus ] = useState(false);
@@ -101,13 +103,13 @@ const InputPrimary = (props: InputPrimaryProps) =>{
             style={props.containerStyle}
         >
             <InputContainer 
-                error={props.error ? true : false}
+                $error={props.error ? true : false}
                 style={props.style}
-                focus={focus}
+                $focus={focus}
             >
-                {props.icon ? 
+                {icon ? 
                     <IconView>
-                        {props.icon}
+                        {icon}
                     </IconView>
                 : props.type === 'tel' ?
                     <IconView>
@@ -117,13 +119,13 @@ const InputPrimary = (props: InputPrimaryProps) =>{
                             onChange={item => onCountryChange(item)}
                             id="country"
                             options={Country}
-                            focus={false}
+                            $focus={false}
                         />
                     </IconView>
                 : null}
                 <Column>
                     <InputStyled 
-                        {...props}
+                        {...restProps}
                         value={inputValue}
                         onChange={onInputChange}
                         onFocus={onInputFocus}
@@ -131,12 +133,12 @@ const InputPrimary = (props: InputPrimaryProps) =>{
                     />
                 </Column>
             </InputContainer>
-            {props.error && 
+            {error && 
                 <ErrorDiv
                     role="error"
                 >
                     <Text type='p' style={{color: Color.status.color.error, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
-                        {props.error}
+                        {error}
                     </Text>
                 </ErrorDiv>
             }
@@ -148,6 +150,8 @@ export interface InputPrimaryProps extends InputStyledProps{
     containerStyle?: CSSProperties,
     icon?: ReactElement,
     error?: string|undefined,
+    focus?: boolean,
+    design?: string,
     country?: string,
     onPhoneChange?:(item:{
         country: string,

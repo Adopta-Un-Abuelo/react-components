@@ -54,6 +54,6 @@ export interface Props{
 }
 interface OptionProps {
     id: string,
-    children: ReactElement,
+    children: string,
     selected?: boolean
 }

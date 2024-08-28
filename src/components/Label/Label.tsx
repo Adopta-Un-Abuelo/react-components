@@ -49,6 +49,7 @@ const ChipSelector = styled.div<{disabled?: boolean}>`
 `;
 const Label = (props: Props) =>{
 
+    const { text, ...restProps } = props;
     const [ selectedColor, setSelectedColor ] = useState<{color: string, backgroundColor: string, text: string} | undefined>(undefined);
 
     useEffect(() =>{
@@ -196,7 +197,7 @@ const Label = (props: Props) =>{
         props.size === 'big' ?
             <ChipsContainerBig 
                 role="chip" 
-                {...props}
+                {...restProps}
             >
                 <Text type='p2' weight='medium' style={{color:props.disabled ? Color.text.high : Color.text.primary}}>
                     {props.text.slice(0,1).toLocaleUpperCase()+props.text.slice(1,props.text.length).toLocaleLowerCase()}
@@ -205,7 +206,7 @@ const Label = (props: Props) =>{
         : props.size === 'selector' ?
             <ChipSelector 
                 role="chip" 
-                {...props}
+                {...restProps}
             >
                 <Text type='p2' weight='medium'>
                     {props.text}
@@ -224,7 +225,7 @@ const Label = (props: Props) =>{
         <LabelStyled 
             role="label" 
             id="Label" 
-            {...props} 
+            {...restProps} 
             style={{background: props.backgroundColor ? props.backgroundColor: (selectedColor ? selectedColor.backgroundColor : Color.background.soft), ...props.style}}
         >
             <Text 

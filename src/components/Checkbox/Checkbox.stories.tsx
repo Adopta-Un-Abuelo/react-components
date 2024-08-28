@@ -1,9 +1,9 @@
 import CheckboxList from "./CheckboxList";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within, expect } from "@storybook/test";
 import { action } from "@storybook/addon-actions";
-import { expect } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
 
-export default {
+const meta: Meta<typeof CheckboxList> = {
   title: "Components/Checkbox",
   component: CheckboxList,
   tags: ["autodocs"],
@@ -25,7 +25,7 @@ export default {
       {
         id: "option4",
         label: "Option 4",
-        error: "Error 4",
+        error: true,
       },
     ],
     onChange: action("onChange"),
@@ -39,9 +39,12 @@ export default {
       options: ["single", "multiple"],
     },
   },
-};
 
-export const SingleSelection = {
+}
+export default meta;
+type Story = StoryObj<typeof CheckboxList>;
+
+export const SingleSelection: Story = {
   args: {
     type: "single",
   },
@@ -67,7 +70,7 @@ export const SingleSelection = {
   },
 };
 
-export const MultipleSelection = {
+export const MultipleSelection: Story = {
   args: {
     type: "multiple",
   },

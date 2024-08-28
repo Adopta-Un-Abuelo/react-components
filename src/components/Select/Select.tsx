@@ -8,7 +8,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react'
 const Container = styled.div`
     position: relative;
 `
-const SelectStyled = styled.div<{showMenu: boolean}>`
+const SelectStyled = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -91,7 +91,6 @@ const Select = (props: Props) =>{
             <SelectStyled
                 role="select"
                 id={props.id}
-                showMenu={showMenu}
                 style={props.style}
                 onClick={onSelectClick}
             >

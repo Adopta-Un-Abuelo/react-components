@@ -11,7 +11,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react'
 const Container = styled.div`
     
 `
-const SelectStyled = styled.div<{showMenu: boolean}>`
+const SelectStyled = styled.div<{$showMenu: boolean}>`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -50,11 +50,11 @@ const Icon = styled.div`
     width: 24px;
     margin-right: 8px;
 `
-const Title = styled(Text)<{focus: boolean, color?: string}>`
+const Title = styled(Text)<{$focus: boolean, color?: string}>`
     flex: 1;
     color: ${props => props.color ? props.color : Color.text.full};
     margin-left: 6px;
-    margin-top: ${props => props.focus ? '15px' : '0px'};
+    margin-top: ${props => props.$focus ? '15px' : '0px'};
     transition: margin-top 0.1s ease-out;
 `
 
@@ -141,7 +141,8 @@ const Select = (props: Props) =>{
             <SelectStyled
                 role="select"
                 style={props.style}
-                showMenu={showMenu}
+                $showMenu={showMenu}
+                
                 onClick={onSelectClick}
             >   
                 {selectedItem &&
@@ -156,7 +157,7 @@ const Select = (props: Props) =>{
                     }
                     <Title
                         type='p'
-                        focus={props.focus}
+                        $focus={props.$focus}
                         color={props.style?.color}
                     >
                         {selectedItem.prefix}
@@ -175,7 +176,7 @@ const Select = (props: Props) =>{
                         placeholder='Buscar'
                         type='small'
                         style={{padding: '8px 16px', position: 'sticky', backgroundColor: 'white', top: 0, borderBottom: '1px solid '+Color.line.soft, height: 30}}
-                        design='secondary'
+                        $design='secondary'
                         onChange={onSearchChage}
                     />
                     {options && options.map((item, index)=>{
@@ -207,9 +208,10 @@ export default Select;
 export interface Props extends ComponentPropsWithoutRef<"div">{
     id: string,
     optionStyle?: any
+    $showMenu?: boolean,
     options: Array<CountryProps>
     selectedItem?: CountryProps
-    focus: boolean,
+    $focus: boolean,
     onChange?: (a: any) => void
 }
 export interface CountryProps {

@@ -6,11 +6,12 @@ import InputSecondary, { InputSecondaryProps } from './InputSecondary';
 
 const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) =>{
 
+    const { showCalendar, ...restProps } = props;
     const [ text, setText ] = useState<string | undefined>(undefined);
 
     const onChange = (e: any) =>{
         const value = e.target.value;
-        if(props.showCalendar){
+        if(showCalendar){
             const date:any  = moment(value, 'YYYY-MM-DD').toDate();
             props.onChange && props.onChange(date);
         }
@@ -36,8 +37,8 @@ const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) =>{
         <InputPrimary
             value={text}
             containerStyle={{flex: 1, ...props.containerStyle}}
-            {...props}
-            type={props.showCalendar ? 'date' : 'text'}
+            {...restProps}
+            type={showCalendar ? 'date' : 'text'}
             maxLength={10}
             onChange={onChange}
         />
@@ -45,8 +46,8 @@ const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) =>{
         <InputSecondary
             value={text}
             containerStyle={{flex: 1, ...props.containerStyle}}
-            {...props}
-            type={props.showCalendar ? 'date' : 'text'}
+            {...restProps}
+            type={showCalendar ? 'date' : 'text'}
             maxLength={10}
             onChange={onChange}
         />

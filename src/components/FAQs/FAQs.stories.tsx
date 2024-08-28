@@ -1,9 +1,10 @@
+import type { Meta, StoryObj } from '@storybook/react';
 import FAQs from "./FAQs";
 import { userEvent, within } from "@storybook/test";
 import { action } from "@storybook/addon-actions";
 import { expect } from "@storybook/test";
 
-export default {
+const meta: Meta<typeof FAQs> ={
   title: "Components/FAQs",
   component: FAQs,
   tags: ["autodocs"],
@@ -32,9 +33,13 @@ export default {
     ],
     onClick: action("onChange"),
   },
-};
+}
 
-export const Default = {
+export default meta;
+
+type Story = StoryObj<typeof FAQs>;
+
+export const Default: Story = {
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);
     const container = canvas.getByRole("container");

@@ -1,11 +1,11 @@
+import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from "react";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, within, expect } from "@storybook/test";
 import { action } from "@storybook/addon-actions";
-import { expect } from "@storybook/test";
 
 import Feedback from "./Feedback";
 
-export default {
+const meta: Meta<typeof Feedback> = {
   title: "Components/Feedback",
   component: Feedback,
   tags: ["autodocs"],
@@ -17,41 +17,35 @@ export default {
   },
   argTypes: {
     isVisible: {
-      type: {
-        required: true,
-      },
-      description: "boolean",
+      control: 'boolean',
+      description: "Visibility of the feedback component",
       table: {
-        defaultValue: { summary: false },
+        defaultValue: { summary: "false" },
       },
     },
     type: {
-      type: {
-        required: true,
-      },
-      description: "string",
+      control: "select",
+      description: "Type of feedback",
+      options: ["success", "error"],
       table: {
         defaultValue: { summary: "success" },
       },
-      control: "select",
-      options: ["success", "error"],
     },
     text: {
-      type: {
-        required: true,
-      },
-      description: "string",
+      control: 'text',
+      description: "Text to display in the feedback component",
     },
     onClose: {
-      type: {
-        required: true,
-      },
-      description: "() => void",
+      action: "onClose",
+      description: "Callback when the feedback component is closed",
     },
   },
 };
 
-export const Success = (args: any) => {
+export default meta;
+type Story = StoryObj<typeof Feedback>;
+
+export const Success: Story = (args: any) => {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <div>
@@ -63,7 +57,7 @@ export const Success = (args: any) => {
         isVisible={isVisible}
         onClose={() => {
           setIsVisible(false);
-          action("onClose");
+          action("onClose")();
         }}
       />
     </div>
@@ -79,7 +73,7 @@ Success.play = async ({ canvasElement, step }: any) => {
   });
 };
 
-export const Error = (args: any) => {
+export const Error: Story = (args: any) => {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <div>
@@ -91,7 +85,7 @@ export const Error = (args: any) => {
         isVisible={isVisible}
         onClose={() => {
           setIsVisible(false);
-          action("onClose");
+          action("onClose")();
         }}
       />
     </div>
