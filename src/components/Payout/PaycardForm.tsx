@@ -7,11 +7,11 @@ import Color from '../../constants/ColorV2';
 import Input from '../Input/Input';
 import Text from '../Text/Text';
 
-const InputContainer = styled.div<{error?: boolean, focus: boolean, design?: string}>`
-    box-shadow: 0 0 0 ${props => props.focus ? (props.design === 'secondary' ? '2px '+Color.border.neutralMedium : '1px '+Color.border.primarySoft) : (props.design === 'secondary' ? '1px '+Color.border.neutralSoft : 'none')};
-    background-color: ${props => props.focus ? 'white' : (props.design === 'secondary' ? 'white' : (props.error ? Color.text.red : Color.surface.background))};
-    border-radius: ${props => props.design === 'secondary' ? '12px' : '6px'};
-    padding: ${props => props.design === 'secondary' ? '19px 16px' : '10px 16px'};
+const InputContainer = styled.div<{$error?: boolean, $focus: boolean, $design?: string}>`
+    box-shadow: 0 0 0 ${props => props.$focus ? (props.$design === 'secondary' ? '2px '+Color.border.neutralMedium : '1px '+Color.border.primarySoft) : (props.$design === 'secondary' ? '1px '+Color.border.neutralSoft : 'none')};
+    background-color: ${props => props.$focus ? 'white' : (props.$design === 'secondary' ? 'white' : (props.$error ? Color.text.red : Color.surface.background))};
+    border-radius: ${props => props.$design === 'secondary' ? '12px' : '6px'};
+    padding: ${props => props.$design === 'secondary' ? '19px 16px' : '10px 16px'};
 `
 const ErrorDiv = styled.div`
     margin: 0px 12px;
@@ -166,9 +166,9 @@ const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) =>{
                 />
             }
             <InputContainer
-                error={inputPaymentError ? true : false}
-                focus={inputFocus}
-                design={props.design}
+                $error={inputPaymentError ? true : false}
+                $focus={inputFocus}
+                $design={props.design}
             >
                 {props.option === 'card' ?
                     <CardElement

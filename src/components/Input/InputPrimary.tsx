@@ -43,7 +43,7 @@ const IconView = styled.div`
 `
 const InputPrimary = (props: InputPrimaryProps) =>{
 
-    const { design, icon, error, ...restProps} = props;
+    const { design, icon, error, containerStyle, ...restProps} = props;
     
     const phoneUtil = GLPN.PhoneNumberUtil.getInstance();
 
