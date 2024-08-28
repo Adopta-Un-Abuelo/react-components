@@ -1,3 +1,15 @@
+# v0.3.5 (Wed Aug 28 2024)
+
+#### 🐛 Bug Fix
+
+- chore: Filter, Checkbox, Modal & SearchBar changes [#9](https://github.com/Adopta-Un-Abuelo/react-components/pull/9) ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.4 (Thu Aug 22 2024)
 
 #### 🐛 Bug Fix
