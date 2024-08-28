@@ -9,7 +9,7 @@ import Text from '../Text/Text';
 const Container = styled.div`
     position: relative;
 `
-const FilterView = styled.div<{position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left', show: boolean, padding: boolean}>`
+const FilterView = styled.div<{position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left', $show: boolean, $padding: boolean}>`
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -17,7 +17,7 @@ const FilterView = styled.div<{position?: 'bottom-right' | 'bottom-left' | 'top-
     bottom: ${props => (props.position === 'top-left' || props.position === 'top-right') ? '44px' : 'unset'};
     right: ${props => (props.position === 'bottom-left' || props.position === 'top-left') ? '8px' : 'unset'};
     left: ${props => (props.position === 'bottom-right' || props.position === 'top-right') ? '8px' : 'unset'};
-    padding: ${props => props.padding ? '16px' :' 0px'};
+    padding: ${props => props.$padding ? '16px' :' 0px'};
     border-radius: 12px;
     width: max-content;
     background-color: white;
@@ -25,8 +25,8 @@ const FilterView = styled.div<{position?: 'bottom-right' | 'bottom-left' | 'top-
     z-index: 1000;
     border: 1px solid ${Color.line.soft};
     overflow: hidden;
-    opacity: ${props => props.show ? 1 : 0};
-    transform: ${props => props.show ? 'scale(1)' : 'scale(0)'};
+    opacity: ${props => props.$show ? 1 : 0};
+    transform: ${props => props.$show ? 'scale(1)' : 'scale(0)'};
     transform-origin: ${props => (props.position === 'bottom-right' || props.position === 'top-right' ? 'left' : 'right')} ${props => (props.position === 'top-right' || props.position === 'top-left' ? 'bottom' : 'top')};
     transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
     font-family: 'Poppins';
@@ -110,10 +110,10 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
                 />
             }
             <FilterView
-                padding={props.options ? false : true}
+                $padding={props.options ? false : true}
                 position={props.position}
                 style={props.menuStyle}
-                show={showView}
+                $show={showView}
             >
                 {props.children}
                 {props.options && props.options.map((option, index) =>(

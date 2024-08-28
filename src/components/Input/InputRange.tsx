@@ -105,7 +105,7 @@ const InputRange = (props: InputRangeProps) =>{
     const elem = createRef<any>();
     const [ value, setValue ] = useState<number>((props.value && typeof props.value === 'number') ? props.value : ((props.defaultValue && typeof props.defaultValue === 'number') ? props.defaultValue : 0));
     const [ width, setWidth ] = useState(0);
-    const { style, ...restProps} = props;
+    const { style, hideRange, ...restProps} = props;
 
     useEffect(() => {
         if(props.value && typeof props.value === 'number')
@@ -127,7 +127,7 @@ const InputRange = (props: InputRangeProps) =>{
             ref={elem}
             style={style}
         >
-            {!props.$hideRange &&
+            {!hideRange &&
                 <RangeValue 
                     role='range'
                     id="bubbleHeight" 
@@ -149,10 +149,10 @@ const InputRange = (props: InputRangeProps) =>{
             {(props.min && props.max) ?
                 <BottomRow>
                     <Text type='p2' style={{color: Color.text.neutralMedium}}>
-                        {props.min} {props.$unit}
+                        {props.min} {props.unit}
                     </Text>
                     <Text type='p2' style={{color: Color.text.neutralMedium}}>
-                        {props.max} {props.$unit}
+                        {props.max} {props.unit}
                     </Text>
                 </BottomRow>
             : null}
@@ -166,6 +166,6 @@ export interface InputRangeProps extends ComponentPropsWithoutRef<"input">{
     thumbColor?: string,
     min?: number,
     max?: number,
-    $unit?: string,
-    $hideRange?: boolean
+    unit?: string,
+    hideRange?: boolean
 }

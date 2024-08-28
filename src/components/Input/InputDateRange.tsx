@@ -8,14 +8,14 @@ import '../../assets/css/react_dates_overrides.css';
 import { DateRangePicker, FocusedInputShape } from 'react-dates';
 import Color from '../../constants/ColorV2';
 
-const InputContainer = styled.div<{focus: boolean}>`
+const InputContainer = styled.div<{$focus: boolean}>`
     display: flex;
     align-items: center;
     border-radius: 12px;
     padding: 0px;
     height: 56px;
     outline: none;
-    box-shadow: 0 0 0 ${props => props.focus ? '2px '+Color.border.neutralMedium : '1px '+Color.border.neutralSoft};
+    box-shadow: 0 0 0 ${props => props.$focus ? '2px '+Color.border.neutralMedium : '1px '+Color.border.neutralSoft};
     padding: 0px 6px;
 `
 
@@ -36,7 +36,7 @@ const InputDateRange = (props: InputDateRangeProps) =>{
     return(
         <InputContainer
             style={props.style}
-            focus={focusedInput ? true : false}
+            $focus={focusedInput ? true : false}
         >
             <DateRangePicker
                 startDateId="startDate"

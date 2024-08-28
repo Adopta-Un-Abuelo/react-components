@@ -59,6 +59,8 @@ const InputSecondary = (props: InputSecondaryProps) =>{
     const [ country , setCountry ] = useState<any>(Country[0]);
     const [ focus, setFocus ] = useState(false);
 
+    const { containerStyle, ...restProps } = props;
+
     useEffect(() =>{
         setInputValue(props.value);
     },[props.value]);
@@ -108,7 +110,7 @@ const InputSecondary = (props: InputSecondaryProps) =>{
 
     return(
         <Container
-            style={props.containerStyle}
+            style={containerStyle}
         >
             <InputContainer
                 $error={props.error ? true : false}
@@ -143,7 +145,7 @@ const InputSecondary = (props: InputSecondaryProps) =>{
                     </Placeholder>
                     <InputStyled 
                         ref={input}
-                        {...props}
+                        {...restProps}
                         value={props.value ? props.value : inputValue}
                         placeholder=''
                         style={{marginTop: 14, opacity: (props.type === 'date' || props.type === 'time') ? ((focus || inputValue || props.defaultValue) ? 1 : 0) : 1, ...props.style}}
