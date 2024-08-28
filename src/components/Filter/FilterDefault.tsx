@@ -469,7 +469,7 @@ const Filter = (props: FilterDefaultProps) => {
               <HeaderContainer>
                 <SearchBar
                   defaultValue={searchText}
-                  style={{ width: "100%", marginTop: "4px" }}
+                  style={{ flex: 1, marginTop: "4px" }}
                   placeholder={"Buscar"}
                   design={"primary"}
                   onChange={onSearchChange}
