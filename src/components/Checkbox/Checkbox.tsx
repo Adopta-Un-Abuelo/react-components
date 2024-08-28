@@ -1,13 +1,14 @@
 import React, { useState, useEffect, ComponentPropsWithoutRef } from "react";
 import styled from "styled-components";
 import { Player } from "@lottiefiles/react-lottie-player";
-
+import Avatar from "../Avatar/Avatar";
 import AnimationCheck from "../../assets/animations/button-check.json";
 import Text from "../Text/Text";
 import { Color } from "../../constants";
 
 const Container = styled.button`
   display: flex;
+  align-items: center;
   flex-direction: row;
   justify-content: space-between;
   background: none;
@@ -51,10 +52,7 @@ const Box = styled.div<{
     background-color 0.2s ease-in-out,
     border 0.2s ease-in-out,
     transform 0.05s ease-out;
-  margin-right: ${(props) =>
-    props.position === "left"
-      ? "10px"
-      : "0px"}; 
+  margin-right: ${(props) => (props.position === "left" ? "10px" : "0px")};
   &:hover {
     background-color: ${(props) =>
       props.selected
@@ -87,6 +85,8 @@ const Box = styled.div<{
 `;
 
 const TextView = styled.div`
+  display: flex;
+  align-items: center;
   flex-grow: 1;
   line-height: 24px;
   text-align: left;
@@ -130,13 +130,26 @@ const Checkbox = (props: Props) => {
         </Box>
       )}
       <TextView>
-        {props.children && props.children}
-        {props.label && <Text type="p">{props.label}</Text>}
-        {props.sublabel && (
-          <Text type="p" style={{ fontSize: 12 }}>
-            {props.sublabel}
-          </Text>
+        {props.avatarEnabled && (
+          <Avatar
+            name={props.label || ""}
+            style={{
+              height: 32,
+              width: 32,
+              marginRight: 8,
+              fontSize: 15,
+            }}
+          />
         )}
+        <div>
+          {props.children && props.children}
+          {props.label && <Text type="p">{props.label}</Text>}
+          {props.sublabel && (
+            <Text type="p" style={{ fontSize: 12 }}>
+              {props.sublabel}
+            </Text>
+          )}
+        </div>
       </TextView>
       {props.position === "right" && (
         <Box
@@ -179,4 +192,6 @@ export interface Props extends ComponentPropsWithoutRef<"button"> {
   height?: number;
   width?: number;
   position?: "left" | "right";
+  avatarEnabled?: boolean;
 }
+

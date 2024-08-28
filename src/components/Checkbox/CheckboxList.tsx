@@ -7,13 +7,13 @@ const Container = styled.div``;
 const CheckboxList = (props: Props) => {
   const [selection, setSelection] = useState<Array<{ id: string }>>([]);
   const [update, setUpdate] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768); 
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     if (props.selectedOptions) setSelection(props.selectedOptions);
 
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 768); 
+      setIsSmallScreen(window.innerWidth < 768);
     };
 
     window.addEventListener("resize", handleResize);
@@ -35,30 +35,34 @@ const CheckboxList = (props: Props) => {
 
   return (
     <Container role="checkboxlist" style={props.style}>
-      {props.options.map((item, index) => {
-        const active = selection.some((e) => e.id === item.id);
-        return (
-          <Checkbox
-            role={"checkbox-" + index}
-            key={item.id}
-            style={{
-              marginBottom: 16,
-              padding: isSmallScreen ? "4px 1px" : "0px",
-              ...props.elementStyle,
-            }}
-            label={item.label}
-            sublabel={item.sublabel}
-            error={item.error}
-            selected={active}
-            height={props.height}
-            width={props.width}
-            position={props.position}
-            onClick={() => onClick(item)}
-          >
-            {item.Element}
-          </Checkbox>
-        );
-      })}
+      <div style={{ paddingBottom: "2px" }}>
+        {props.options.map((item, index) => {
+          const active = selection.some((e) => e.id === item.id);
+          return (
+            <Checkbox
+              role={"checkbox-" + index}
+              key={item.id}
+              style={{
+                marginRight: "16px",
+                marginBottom: "16px",
+                padding: isSmallScreen ? "4px 1px" : "0px",
+                ...props.elementStyle,
+              }}
+              label={item.label}
+              sublabel={item.sublabel}
+              error={item.error}
+              selected={active}
+              height={props.height}
+              width={props.width}
+              position={props.position}
+              avatarEnabled={props.avatarEnabled}
+              onClick={() => onClick(item)}
+            >
+              {item.Element}
+            </Checkbox>
+          );
+        })}
+      </div>
     </Container>
   );
 };
@@ -83,4 +87,5 @@ export interface Props {
   type: "single" | "multiple";
   onChange?: (result: Array<{ id: string }>) => void;
   position?: "left" | "right";
+  avatarEnabled?: boolean;
 }
