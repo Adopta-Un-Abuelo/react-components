@@ -17,7 +17,7 @@ import Menu from "../Menu/Menu";
 const Container = styled.div<{
 	loading?: boolean;
 	$focus?: boolean;
-	options?: Array<optionType>;
+	$options?: Array<optionType>;
 }>`
 	display: flex;
 	align-items: center;
@@ -29,7 +29,7 @@ const Container = styled.div<{
 			props.$focus
 				? "2px " + Color.border.neutralMedium
 				: "1px " + Color.border.neutralSoft};
-	padding: 0px 20px 0px ${(props) => (props.options ? "10px" : "20px")};
+	padding: 0px 20px 0px ${(props) => (props.$options ? "10px" : "20px")};
 	background-color: ${(props) =>
 		props.loading ? Color.surface.neutralSoft : "white"};
 `;
@@ -50,7 +50,7 @@ const InputChat = (props: InputChatProps) => {
 	const [text, setText] = useState("");
 	const [focus, setFocus] = useState(false);
 
-	const { style, value, defaultValue, onOptionClick, ...rest } = props;
+	const { style, value, defaultValue, onOptionClick, options, ...rest } = props;
 
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setText(e.target.value);
@@ -90,13 +90,13 @@ const InputChat = (props: InputChatProps) => {
 			style={style}
 			loading={props.loading}
 			$focus={focus}
-			options={props.options}
+			$options={options}
 		>
 			{props.options && (
 				<Menu
 					id={"add-menu"}
 					position={"top-right"}
-					options={props.options}
+					options={options}
 					icon={<Plus color={Color.text.primary} />}
 					onClick={onMenuClick}
 				/>

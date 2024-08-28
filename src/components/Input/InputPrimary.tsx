@@ -43,8 +43,10 @@ const IconView = styled.div`
 `
 const InputPrimary = (props: InputPrimaryProps) =>{
 
+    const { design, icon, error, ...restProps} = props;
+    
     const phoneUtil = GLPN.PhoneNumberUtil.getInstance();
-   
+
     const [ inputValue, setInputValue ] = useState<string | number | readonly string[] | undefined>(undefined);
     const [ country , setCountry ] = useState<CountryProps>(Country[0]);
     const [ focus, setFocus ] = useState(false);
@@ -105,9 +107,9 @@ const InputPrimary = (props: InputPrimaryProps) =>{
                 style={props.style}
                 $focus={focus}
             >
-                {props.icon ? 
+                {icon ? 
                     <IconView>
-                        {props.icon}
+                        {icon}
                     </IconView>
                 : props.type === 'tel' ?
                     <IconView>
@@ -123,7 +125,7 @@ const InputPrimary = (props: InputPrimaryProps) =>{
                 : null}
                 <Column>
                     <InputStyled 
-                        {...props}
+                        {...restProps}
                         value={inputValue}
                         onChange={onInputChange}
                         onFocus={onInputFocus}
@@ -131,12 +133,12 @@ const InputPrimary = (props: InputPrimaryProps) =>{
                     />
                 </Column>
             </InputContainer>
-            {props.error && 
+            {error && 
                 <ErrorDiv
                     role="error"
                 >
                     <Text type='p' style={{color: Color.status.color.error, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
-                        {props.error}
+                        {error}
                     </Text>
                 </ErrorDiv>
             }

@@ -9,14 +9,14 @@ import Text from '../Text/Text';
 const Container = styled.div`
     position: relative;
 `
-const FilterView = styled.div<{position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left', $show: boolean, $padding: boolean}>`
+const FilterView = styled.div<{$position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left', $show: boolean, $padding: boolean}>`
     position: absolute;
     display: flex;
     flex-direction: column;
-    top: ${props => (props.position === 'bottom-left' || props.position === 'bottom-right') ? '44px' : 'unset'};
-    bottom: ${props => (props.position === 'top-left' || props.position === 'top-right') ? '44px' : 'unset'};
-    right: ${props => (props.position === 'bottom-left' || props.position === 'top-left') ? '8px' : 'unset'};
-    left: ${props => (props.position === 'bottom-right' || props.position === 'top-right') ? '8px' : 'unset'};
+    top: ${props => (props.$position === 'bottom-left' || props.$position === 'bottom-right') ? '44px' : 'unset'};
+    bottom: ${props => (props.$position === 'top-left' || props.$position === 'top-right') ? '44px' : 'unset'};
+    right: ${props => (props.$position === 'bottom-left' || props.$position === 'top-left') ? '8px' : 'unset'};
+    left: ${props => (props.$position === 'bottom-right' || props.$position === 'top-right') ? '8px' : 'unset'};
     padding: ${props => props.$padding ? '16px' :' 0px'};
     border-radius: 12px;
     width: max-content;
@@ -27,7 +27,7 @@ const FilterView = styled.div<{position?: 'bottom-right' | 'bottom-left' | 'top-
     overflow: hidden;
     opacity: ${props => props.$show ? 1 : 0};
     transform: ${props => props.$show ? 'scale(1)' : 'scale(0)'};
-    transform-origin: ${props => (props.position === 'bottom-right' || props.position === 'top-right' ? 'left' : 'right')} ${props => (props.position === 'top-right' || props.position === 'top-left' ? 'bottom' : 'top')};
+    transform-origin: ${props => (props.$position === 'bottom-right' || props.$position === 'top-right' ? 'left' : 'right')} ${props => (props.$position === 'top-right' || props.$position === 'top-left' ? 'bottom' : 'top')};
     transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
     font-family: 'Poppins';
     color: ${Color.text.full};
@@ -111,7 +111,7 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
             }
             <FilterView
                 $padding={props.options ? false : true}
-                position={props.position}
+                $position={props.position}
                 style={props.menuStyle}
                 $show={showView}
             >

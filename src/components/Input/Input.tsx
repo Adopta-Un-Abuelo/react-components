@@ -94,7 +94,7 @@ export interface RangeProps extends ImportedInputRangeProps {
     thumbColor?: string,
     min?: number,
     max?: number,
-    $unit?: string,
+    unit?: string,
     hideRange?: boolean
 }
 

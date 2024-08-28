@@ -305,7 +305,6 @@ export const InputPassword: Story = {
 
 export const InputRange: Story = {
 	args: {
-		design: "secondary",
 		type: "range",
 		min: 0,
 		max: 100,
@@ -324,7 +323,6 @@ export const InputRange: Story = {
 };
 export const InputRangeWithoutRangeView: Story = {
 	args: {
-		design: "secondary",
 		type: "range",
 		min: 0,
 		max: 100,
@@ -394,14 +392,12 @@ export const InputImage: Story = {
 
 export const InputChat: Story = {
 	args: {
-		design: "secondary",
 		type: "chat",
 	},
 };
 
 export const InputChatWithOptions: Story = {
 	args: {
-		design: "secondary",
 		type: "chat",
 		options: [
 			{

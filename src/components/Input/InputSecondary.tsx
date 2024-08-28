@@ -59,7 +59,7 @@ const InputSecondary = (props: InputSecondaryProps) =>{
     const [ country , setCountry ] = useState<any>(Country[0]);
     const [ focus, setFocus ] = useState(false);
 
-    const { containerStyle, ...restProps } = props;
+    const { containerStyle, icon, error, design, ...restProps } = props;
 
     useEffect(() =>{
         setInputValue(props.value);
@@ -113,14 +113,14 @@ const InputSecondary = (props: InputSecondaryProps) =>{
             style={containerStyle}
         >
             <InputContainer
-                $error={props.error ? true : false}
+                $error={error ? true : false}
                 style={props.style}
                 $focus={focus}
                 onClick={() => input.current?.focus()}
             >
-                {props.icon ? 
+                {icon ? 
                     <IconView>
-                        {props.icon}
+                        {icon}
                     </IconView>
                 : props.type === 'tel' ?
                     <IconView>
@@ -139,7 +139,7 @@ const InputSecondary = (props: InputSecondaryProps) =>{
                         type='p'
                         $phone={props.type === 'tel'}
                         $focus={(focus || inputValue || props.defaultValue) ? true : false}
-                        $error={props.error ? true : false}
+                        $error={error ? true : false}
                     >
                         {props.placeholder}
                     </Placeholder>
@@ -155,12 +155,12 @@ const InputSecondary = (props: InputSecondaryProps) =>{
                     />
                 </Column>
             </InputContainer>
-            {props.error && 
+            {error && 
                 <ErrorDiv
                     role="error"
                 >
                     <Text type='p' style={{color: Color.text.red, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
-                        {props.error}
+                        {error}
                     </Text>
                 </ErrorDiv>
             }

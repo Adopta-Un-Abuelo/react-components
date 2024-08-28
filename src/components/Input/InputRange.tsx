@@ -105,7 +105,7 @@ const InputRange = (props: InputRangeProps) =>{
     const elem = createRef<any>();
     const [ value, setValue ] = useState<number>((props.value && typeof props.value === 'number') ? props.value : ((props.defaultValue && typeof props.defaultValue === 'number') ? props.defaultValue : 0));
     const [ width, setWidth ] = useState(0);
-    const { style, hideRange, ...restProps} = props;
+    const { style, hideRange, unit, ...restProps} = props;
 
     useEffect(() => {
         if(props.value && typeof props.value === 'number')
@@ -149,10 +149,10 @@ const InputRange = (props: InputRangeProps) =>{
             {(props.min && props.max) ?
                 <BottomRow>
                     <Text type='p2' style={{color: Color.text.neutralMedium}}>
-                        {props.min} {props.unit}
+                        {props.min} {unit}
                     </Text>
                     <Text type='p2' style={{color: Color.text.neutralMedium}}>
-                        {props.max} {props.unit}
+                        {props.max} {unit}
                     </Text>
                 </BottomRow>
             : null}
