@@ -10,7 +10,7 @@ const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) =>{
 
     const onChange = (e: any) =>{
         const value = e.target.value;
-        if(props.$showCalendar){
+        if(props.showCalendar){
             const date:any  = moment(value, 'YYYY-MM-DD').toDate();
             props.onChange && props.onChange(date);
         }
@@ -32,21 +32,21 @@ const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) =>{
     }
 
 
-    return(props.$design === 'primary' ?
+    return(props.design === 'primary' ?
         <InputPrimary
             value={text}
-            $containerStyle={{flex: 1, ...props.$containerStyle}}
+            containerStyle={{flex: 1, ...props.containerStyle}}
             {...props}
-            type={props.$showCalendar ? 'date' : 'text'}
+            type={props.showCalendar ? 'date' : 'text'}
             maxLength={10}
             onChange={onChange}
         />
     :
         <InputSecondary
             value={text}
-            $containerStyle={{flex: 1, ...props.$containerStyle}}
+            containerStyle={{flex: 1, ...props.containerStyle}}
             {...props}
-            type={props.$showCalendar ? 'date' : 'text'}
+            type={props.showCalendar ? 'date' : 'text'}
             maxLength={10}
             onChange={onChange}
         />
@@ -54,10 +54,10 @@ const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) =>{
 }
 export default InputDate;
 export interface InputDatePrimaryProps extends InputPrimaryProps {
-    $design?: 'primary',
-    $showCalendar?: boolean
+    design?: 'primary',
+    showCalendar?: boolean
 }
 export interface InputDateSecondaryProps extends InputSecondaryProps {
-    $design?: 'secondary',
-    $showCalendar?: boolean
+    design?: 'secondary',
+    showCalendar?: boolean
 }

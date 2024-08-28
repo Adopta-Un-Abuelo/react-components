@@ -9,7 +9,7 @@ import Color from '../../constants/ColorV2';
 import Button from '../Button/ButtonImage';
 import Menu from '../Menu/Menu';
 
-const Container = styled.div<{loading?: boolean, focus?: boolean, options?: Array<any>}>`
+const Container = styled.div<{loading?: boolean, focus?: boolean, options?: Array<optionType>}>`
     display: flex;
     align-items: center;
     height: 48px;
@@ -37,9 +37,9 @@ const InputChat = (props: InputChatProps) =>{
     const [ text, setText ] = useState("");
     const [ focus, setFocus ] = useState(false);
 
-    const { style, ...rest} = props;
+    const { style, onOptionClick, ...rest} = props;
 
-    const onChange = (e: any) =>{
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
         setText(e.target.value);
         props.onChange && props.onChange(e);
     }
@@ -51,25 +51,25 @@ const InputChat = (props: InputChatProps) =>{
         }
     }
 
-    const onKeyDown = (e: any) =>{
+    const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) =>{
         if (e.key === 'Enter') {
             onSend();
         }
         props.onKeyDown && props.onKeyDown(e);
     }
 
-    const onInputFocus = (e: any) =>{
+    const onInputFocus = (e: React.FocusEvent<HTMLInputElement>) =>{
         setFocus(true);
         props.onFocus && props.onFocus(e);
     }
 
-    const onInputBlur = (e: any) =>{
+    const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) =>{
         setFocus(false);
         props.onBlur && props.onBlur(e);
     }
 
-    const onOptionClick = (op: any) =>{
-        props.onOptionClick && props.onOptionClick(op.id);
+    const onMenuClick = (op: optionType) =>{
+        onOptionClick && onOptionClick(op.id);
     }
 
     return(
@@ -85,7 +85,7 @@ const InputChat = (props: InputChatProps) =>{
                     position={'top-right'}
                     options={props.options}
                     icon={<Plus color={Color.text.primary}/>}
-                    onClick={onOptionClick}
+                    onClick={onMenuClick}
                 />
             }
             <Input
@@ -118,11 +118,12 @@ const InputChat = (props: InputChatProps) =>{
 export default InputChat;
 export interface InputChatProps extends ComponentPropsWithoutRef<"input">{
     loading?: boolean,
-    options?: Array<{
-        id: string,
-        label: string,
-        icon?: ReactElement
-    }>,
+    options?: Array<optionType>,
     onOptionClick?: (id: string) => void
     onSend?: (text: string) => void
+}
+type optionType = {
+    id: string,
+    label: string,
+    icon?: ReactElement
 }

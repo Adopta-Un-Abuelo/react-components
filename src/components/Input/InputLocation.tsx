@@ -91,7 +91,7 @@ const InputLocation = (props: InputLocationPrimaryProps | InputLocationSecondary
         >
             {({ getInputProps, suggestions, getSuggestionItemProps }) => (
                 <SearchView>
-                    {props.$design === 'primary' ?
+                    {props.design === 'primary' ?
                         <InputPrimary
                             {...getInputProps({
                                 className: 'location-search-input',
@@ -99,9 +99,9 @@ const InputLocation = (props: InputLocationPrimaryProps | InputLocationSecondary
                             })}
                             value={searchText}
                             onKeyDown={(e: any) => onKeyDown(e, suggestions)}
-                            $containerStyle={{flex: 1, ...props.$containerStyle}}
-                            $icon={props.$icon}
-                            $error={props.error}
+                            containerStyle={{flex: 1, ...props.containerStyle}}
+                            icon={props.icon}
+                            error={props.error}
                         />
                     :
                         <InputSecondary
@@ -111,15 +111,15 @@ const InputLocation = (props: InputLocationPrimaryProps | InputLocationSecondary
                             })}
                             value={searchText}
                             onKeyDown={(e: any) => onKeyDown(e, suggestions)}
-                            $containerStyle={{flex: 1, ...props.$containerStyle}}
-                            $icon={props.$icon}
-                            $error={props.error}
+                            containerStyle={{flex: 1, ...props.containerStyle}}
+                            icon={props.icon}
+                            error={props.error}
                         />
                     }
                     {suggestions.length > 0 &&
                         <DropdownMenu
                             role="menu"
-                            style={{top: props.$design === 'primary' ? 48 : 64}}
+                            style={{top: props.design === 'primary' ? 48 : 64}}
                         >
                             {suggestions.map((suggestion, index) => {
                                 return (
@@ -155,7 +155,7 @@ export interface InputLocationPrimaryProps extends InputPrimaryProps {
     }) => void
 }
 export interface InputLocationSecondaryProps extends InputSecondaryProps {
-    $design?: 'secondary',
+    design?: 'secondary',
     error?: string,
     searchOptions?: {
         types: string []

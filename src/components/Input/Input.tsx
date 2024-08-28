@@ -14,6 +14,7 @@ import { InputStyledProps } from './InputStyled';
 const Input = (
   props: InputProps | LocationPrimaryProps | LocationSecondaryProps | RangeProps | DateRangeProps | ImageProps | ChatProps | CodeProps | DatePrimaryProps | DateSecondaryProps
 ) => {
+
     const castRangeProps = (props: RangeProps): ImportedInputRangeProps => {
         return {
             ...props,
@@ -50,7 +51,7 @@ const Input = (
             <InputDate
                 {...props as DatePrimaryProps | DateSecondaryProps}
             />
-        : props.$design === 'secondary' ?
+        : props.design === 'secondary' ?
             <InputSecondary
                 {...props as InputSecondaryProps}
             />
@@ -66,23 +67,23 @@ export default Input;
 export interface InputProps extends InputStyledProps {
     type: 'text' | 'tel' | 'email' | 'date' | 'password' | 'time' | 'number' | 'range' | 'range-date' | 'image' | 'chat' | 'code' | 'location',
     containerStyle?: CSSProperties,
-    $icon?: ReactElement,
-    $unit?: string,
-    $error?: string | undefined,
+    icon?: ReactElement,
+    unit?: string,
+    error?: string | undefined,
     country?: string,
-    $hideRange?: boolean,
-    $design?: 'primary' | 'secondary',
+    hideRange?: boolean,
+    design?: 'primary' | 'secondary',
     options?: any,
     onPhoneChange?: (item: any) => void,
 }
 
 export interface LocationPrimaryProps extends Omit<ImportedInputLocationPrimaryProps, 'type'> {
-    $design: 'primary',
+    design: 'primary',
     type: 'location',
 }
 
 export interface LocationSecondaryProps extends Omit<ImportedInputLocationSecondaryProps, 'type'> {
-    $design: 'secondary',
+    design: 'secondary',
     type: 'location',
 }
 
@@ -94,7 +95,7 @@ export interface RangeProps extends ImportedInputRangeProps {
     min?: number,
     max?: number,
     $unit?: string,
-    $hideRange?: boolean
+    hideRange?: boolean
 }
 
 export interface DateRangeProps extends InputDateRangeProps {
@@ -114,11 +115,11 @@ export interface CodeProps extends InputCodeProps {
 }
 
 export interface DatePrimaryProps extends InputDatePrimaryProps {
-    $design: 'primary',
+    design: 'primary',
     type: 'date'
 }
 
 export interface DateSecondaryProps extends InputDateSecondaryProps {
-    $design: 'secondary',
+    design: 'secondary',
     type: 'date'
 }

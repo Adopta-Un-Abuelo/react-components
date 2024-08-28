@@ -98,16 +98,16 @@ const InputPrimary = (props: InputPrimaryProps) =>{
 
     return(
         <Container
-            style={props.$containerStyle}
+            style={props.containerStyle}
         >
             <InputContainer 
-                $error={props.$error ? true : false}
+                $error={props.error ? true : false}
                 style={props.style}
                 $focus={focus}
             >
-                {props.$icon ? 
+                {props.icon ? 
                     <IconView>
-                        {props.$icon}
+                        {props.icon}
                     </IconView>
                 : props.type === 'tel' ?
                     <IconView>
@@ -131,12 +131,12 @@ const InputPrimary = (props: InputPrimaryProps) =>{
                     />
                 </Column>
             </InputContainer>
-            {props.$error && 
+            {props.error && 
                 <ErrorDiv
                     role="error"
                 >
                     <Text type='p' style={{color: Color.status.color.error, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
-                        {props.$error}
+                        {props.error}
                     </Text>
                 </ErrorDiv>
             }
@@ -145,11 +145,11 @@ const InputPrimary = (props: InputPrimaryProps) =>{
 }
 export default InputPrimary;
 export interface InputPrimaryProps extends InputStyledProps{
-    $containerStyle?: CSSProperties,
-    $icon?: ReactElement,
-    $error?: string|undefined,
+    containerStyle?: CSSProperties,
+    icon?: ReactElement,
+    error?: string|undefined,
     focus?: boolean,
-    $design?: string,
+    design?: string,
     country?: string,
     onPhoneChange?:(item:{
         country: string,

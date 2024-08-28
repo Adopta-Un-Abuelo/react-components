@@ -108,17 +108,17 @@ const InputSecondary = (props: InputSecondaryProps) =>{
 
     return(
         <Container
-            style={props.$containerStyle}
+            style={props.containerStyle}
         >
             <InputContainer
-                $error={props.$error ? true : false}
+                $error={props.error ? true : false}
                 style={props.style}
                 $focus={focus}
                 onClick={() => input.current?.focus()}
             >
-                {props.$icon ? 
+                {props.icon ? 
                     <IconView>
-                        {props.$icon}
+                        {props.icon}
                     </IconView>
                 : props.type === 'tel' ?
                     <IconView>
@@ -137,7 +137,7 @@ const InputSecondary = (props: InputSecondaryProps) =>{
                         type='p'
                         $phone={props.type === 'tel'}
                         $focus={(focus || inputValue || props.defaultValue) ? true : false}
-                        $error={props.$error ? true : false}
+                        $error={props.error ? true : false}
                     >
                         {props.placeholder}
                     </Placeholder>
@@ -153,12 +153,12 @@ const InputSecondary = (props: InputSecondaryProps) =>{
                     />
                 </Column>
             </InputContainer>
-            {props.$error && 
+            {props.error && 
                 <ErrorDiv
                     role="error"
                 >
                     <Text type='p' style={{color: Color.text.red, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
-                        {props.$error}
+                        {props.error}
                     </Text>
                 </ErrorDiv>
             }
@@ -167,12 +167,12 @@ const InputSecondary = (props: InputSecondaryProps) =>{
 }
 export default InputSecondary;
 export interface InputSecondaryProps extends InputStyledProps{
-    $containerStyle?: CSSProperties,
-    $icon?: ReactElement,
-    $error?: string|undefined,
-    $focus?: boolean,
-    $phone?: boolean,
-    $design?: string,
+    containerStyle?: CSSProperties,
+    icon?: ReactElement,
+    error?: string|undefined,
+    focus?: boolean,
+    phone?: boolean,
+    design?: string,
     country?: string,
     onPhoneChange?:(item:{
         country: string,
