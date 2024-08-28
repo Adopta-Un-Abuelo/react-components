@@ -10,7 +10,6 @@ const Container = styled.button`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
   background: none;
   border: none;
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
@@ -55,7 +54,7 @@ const Box = styled.div<{
   margin-right: ${(props) =>
     props.position === "left"
       ? "10px"
-      : "0px"}; /* Agrega un margen a la derecha cuando la posición es 'left' */
+      : "0px"}; 
   &:hover {
     background-color: ${(props) =>
       props.selected
@@ -69,10 +68,27 @@ const Box = styled.div<{
   &:active {
     transform: scale(0.9);
   }
+
+  @media (max-width: 600px) {
+    background-color: ${(props) =>
+      props.selected
+        ? props.error
+          ? Color.status.color.error
+          : Color.background.primary
+        : props.error
+          ? Color.status.color.errorDefault
+          : "#FFFFFF"};
+    border: ${(props) =>
+      props.selected
+        ? "1px solid " +
+          (props.error ? Color.status.color.error : Color.background.primary)
+        : "1px solid rgba(0, 29, 61, 0.24)"};
+  }
 `;
 
 const TextView = styled.div`
   flex-grow: 1;
+  line-height: 24px;
   text-align: left;
 `;
 

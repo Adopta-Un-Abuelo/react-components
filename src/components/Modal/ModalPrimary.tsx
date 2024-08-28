@@ -24,7 +24,7 @@ const TitleView = styled.div`
   background-color: white;
   z-index: 100;
   ${media.lessThan("small")`
-        padding: 16px;
+        padding: 0px;
     `}
 `;
 const ChildrenView = styled.div`
@@ -103,8 +103,8 @@ const ModalComponent = forwardRef(
               props.type === "full-screen" ? "100%" : "calc(100% - 24px)",
             maxHeight:
               props.type === "full-screen"
-                ? "calc(100% - 24px)"
-                : "calc(100% - 24px)",
+                ? "calc(100% - 36px)"
+                : "calc(100% - 36px)",
             height: props.type === "full-screen" ? "auto" : "auto",
             background: "#FFFFFF",
             boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",

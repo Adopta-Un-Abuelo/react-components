@@ -7,9 +7,19 @@ const Container = styled.div``;
 const CheckboxList = (props: Props) => {
   const [selection, setSelection] = useState<Array<{ id: string }>>([]);
   const [update, setUpdate] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768); 
 
   useEffect(() => {
     if (props.selectedOptions) setSelection(props.selectedOptions);
+
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768); 
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [props.selectedOptions]);
 
   const onClick = (item: any) => {
@@ -31,14 +41,18 @@ const CheckboxList = (props: Props) => {
           <Checkbox
             role={"checkbox-" + index}
             key={item.id}
-            style={{ marginBottom: 16, ...props.elementStyle }}
+            style={{
+              marginBottom: 16,
+              padding: isSmallScreen ? "4px 1px" : "0px",
+              ...props.elementStyle,
+            }}
             label={item.label}
             sublabel={item.sublabel}
             error={item.error}
             selected={active}
             height={props.height}
             width={props.width}
-            position={props.position} 
+            position={props.position}
             onClick={() => onClick(item)}
           >
             {item.Element}
