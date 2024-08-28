@@ -121,8 +121,6 @@ const CellSelector = (props: Props) =>{
 export default CellSelector;
 export interface Props{
     style?: CSSProperties,
-    id:string,
-    placeholder: string,
     cellStyle?: CSSProperties,
     options: Array<OptionProps>,
     selectedOptions?: Array<OptionProps>,
