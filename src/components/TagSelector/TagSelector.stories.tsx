@@ -1,8 +1,7 @@
 import TagSelector from "./TagSelector";
-import { within, userEvent, expect } from "@storybook/test";
+import { within, userEvent, expect, fn } from "@storybook/test";
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from "@storybook/addon-actions";
 
 const meta: Meta<typeof TagSelector> = {
   title: "Components/TagSelector",
@@ -78,7 +77,7 @@ const meta: Meta<typeof TagSelector> = {
       },
       
     ],
-    onChange: action("onChange"),
+    onChange: fn(),
   },
   parameters: {
     backgrounds: {
