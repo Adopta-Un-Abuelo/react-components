@@ -5,7 +5,7 @@ import { Check, X } from 'lucide-react';
 import Text from '../Text/Text';
 import { Color } from '../../constants';
 
-const Container = styled.div<{type: 'success' | 'error'}>`
+const Container = styled.div<{$text?: string,type: 'success' | 'error'}>`
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -28,7 +28,7 @@ const View = styled.div`
     margin: 16px;
 `
 
-const FeedBack = ({type='success', isVisible=false, ...props}: Props) =>{
+const FeedBack = ({type='success',text, isVisible=false, ...props}: Props) =>{
 
     const [ show, setShow ] = useState(false);
 
@@ -42,7 +42,8 @@ const FeedBack = ({type='success', isVisible=false, ...props}: Props) =>{
 
     return(show ?
         <Container
-            type={type} 
+            type={type}
+            $text={text}
             {...props}
             role="feedback"
         >
@@ -63,7 +64,7 @@ const FeedBack = ({type='success', isVisible=false, ...props}: Props) =>{
                     />
                 }
                 <Text type='p' style={{display: 'flex', flex: 1, color: 'white'}}>
-                    {props.text}
+                    {text}
                 </Text>
             </View>
         </Container>

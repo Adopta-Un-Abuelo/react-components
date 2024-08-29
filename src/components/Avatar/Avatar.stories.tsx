@@ -1,32 +1,22 @@
 import Avatar from "./Avatar";
+import type { Meta, StoryObj } from '@storybook/react';
 import { within, expect } from "@storybook/test";
 
-export default {
+const meta: Meta<typeof Avatar> = {
 	title: "Components/Avatar",
 	component: Avatar,
 	tags: ["autodocs"],
 	args: {
 		editable: false,
 		clickable: false,
-	},
-	argsTypes: {
-		editable: {
-			table: {
-				defaultValue: { summary: false },
-			},
-		},
-		clickable: {
-			table: {
-				defaultValue: { summary: false },
-			},
-		},
-	},
+	}
 };
+export default meta;
+type Story = StoryObj<typeof Avatar>;
 
-export const Default = {
+export const Default: Story = {
 	args: {
-		name: "Test",
-		style: {},
+		name: "Test"
 	},
 	play: async ({ canvasElement }: any) => {
 		const canvas = within(canvasElement);
@@ -35,7 +25,7 @@ export const Default = {
 	},
 };
 
-export const WithIcon = {
+export const WithIcon: Story = {
 	args: {
 		icon: "https://storybook.js.org/images/placeholders/350x150.png",
 	},
@@ -46,7 +36,7 @@ export const WithIcon = {
 	},
 };
 
-export const Clickable = {
+export const Clickable: Story = {
 	args: {
 		icon: "https://storybook.js.org/images/placeholders/350x150.png",
 		clickable: true,
@@ -58,7 +48,7 @@ export const Clickable = {
 	},
 };
 
-export const Editable = {
+export const Editable: Story = {
 	args: {
 		name: "Test",
 		editable: true,

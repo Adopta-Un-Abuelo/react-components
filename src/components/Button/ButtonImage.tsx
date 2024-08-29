@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Color from '../../../src/constants/Color';
 
-const Container = styled.button<{disabled?: boolean, textColor?: string, children?: any}>`
+const Container = styled.button`
     display: inline-flex;
     padding: 0px;
     cursor: ${props => !props.disabled && 'pointer'};
@@ -16,19 +16,19 @@ const Container = styled.button<{disabled?: boolean, textColor?: string, childre
     transition: transform .05s ease-out, width 0.2s ease-out, background-color 0.4s ease-out, opacity 0.2s ease-out; 
     font-family: 'Poppins', 'sans-serif';
 	font-size: 14px;
-    color: ${props => props.textColor ? props.textColor : Color.text.full};
+    color: ${props => props.style?.color ? props.style.color : Color.text.full};
     &:active {
 		transform: scale(0.95);
 	}
 `
-const IconContainer = styled.div<{disabled?: boolean, textColor?: string, children?: any}>`
+const IconContainer = styled.div.attrs<{$disabled?: boolean}>(props => ({}))`
     display: inline-flex;
     padding: 12px;
     border-radius: 1000px;
     align-items: center;
     justify-content: center;
     &:hover{
-        background-color: ${props => !props.disabled && Color.status.neutral.hover}
+        background-color: ${props => !props.$disabled && Color.status.neutral.hover}
     }
     &:active {
 		transform: scale(0.95);
@@ -42,27 +42,29 @@ const Icon = styled.img`
     width: 24px;
 `
 
-const ButtonImage = (props: Props) =>{
+const ButtonImage = ({src, icon, loading, ...restProps}: Props) =>{
 
     return(
         <Container
             role="button"
-            {...props}
-            disabled={props.disabled || props.loading}
-            onClick={(e: any) => (props.onClick && !props.loading && !props.disabled) && props.onClick(e)}
+            {...restProps}
+            disabled={restProps.disabled || loading}
+            onClick={(e: any) => (restProps.onClick && !loading && !restProps.disabled) && restProps.onClick(e)}
         >
-            <IconContainer>
-                {props.icon ?
-                    props.icon
+            <IconContainer
+                $disabled={restProps.disabled}
+            >
+                {icon ?
+                    icon
                 :
                     <Icon
-                        src={props.src}
+                        src={src}
                     />
                 }
             </IconContainer>
-            {props.children &&
+            {restProps.children &&
                 <ChildrenView>
-                    {props.children}
+                    {restProps.children}
                 </ChildrenView>
             }
         </Container>
@@ -72,6 +74,5 @@ export default ButtonImage;
 export interface Props extends ComponentPropsWithoutRef<"button">{
     src?: string,
     icon?: React.ReactElement,
-    disabled?: boolean,
     loading?: boolean
 }

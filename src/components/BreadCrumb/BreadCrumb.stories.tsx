@@ -1,32 +1,23 @@
 import BreadCrumb from "./BreadCrumb";
-import { within } from "@storybook/test";
-import { expect } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
+import { within, expect } from "@storybook/test";
 
-export default {
-  title: "Components/BreadCrumb",
-  component: BreadCrumb,
-  tags: ["autodocs"],
-  argTypes: {
-    steps: {
-      type: {
-        required: true,
-      },
-      table: {
-        defaultValue: { summary: 1 },
-      },
-      control: "number",
-    },
-  },
+const meta: Meta<typeof BreadCrumb> = {
+	title: "Components/BreadCrumb",
+	component: BreadCrumb,
+	tags: ["autodocs"]
 };
+export default meta;
+type Story = StoryObj<typeof BreadCrumb>;
 
-export const Default = {
-  args: {
-    selectedStep: 3,
-    steps: 8,
-  },
-  play: async ({ canvasElement }: any) => {
-    const canvas = within(canvasElement);
-    const component = await canvas.getByRole("bread-crumb");
-    await expect(component).toBeInTheDocument();
-  },
+export const Default: Story = {
+	args: {
+		selectedStep: 3,
+		steps: 8,
+	},
+	play: async ({ canvasElement }: any) => {
+		const canvas = within(canvasElement);
+		const component = await canvas.getByRole("bread-crumb");
+		await expect(component).toBeInTheDocument();
+	},
 };

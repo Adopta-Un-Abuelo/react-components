@@ -6,28 +6,30 @@ import ButtonText from './ButtonText';
 import ButtonImage from './ButtonImage';
 import CallToAction from './CallToAction';
 
-const Button = (props: ButtonProps) => {
+const Button = ({design, onSuccess, ...restProps}: ButtonProps) => {
 
   	return (
-		props.design === 'secondary' ?
+		design === 'secondary' ?
 			<ButtonSecondary
-				{...props}	
+				onSuccess={onSuccess}
+				{...restProps}	
 			/>
-		: props.design === 'text' ?
+		: design === 'text' ?
 			<ButtonText
-				{...props}
+				{...restProps}
 			/>
-		: props.design === 'image' ?
+		: design === 'image' ?
 			<ButtonImage
-				{...props}
+				{...restProps}
 			/>
-		: props.design === 'call-to-action' ?
+		: design === 'call-to-action' ?
 			<CallToAction
-                {...props}
+                {...restProps}
             />
 		:
 			<ButtonPrimary
-				{...props}
+				onSuccess={onSuccess}
+				{...restProps}
 			/>
   	);
 };
@@ -40,7 +42,6 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button">{
 	loading?: boolean,
 	disabled?: boolean,
 	success?: boolean,
-	textColor?: string,
 	animationDelay?: number,
 	animationTime?: number,
 	onSuccess?: (success: boolean) => void

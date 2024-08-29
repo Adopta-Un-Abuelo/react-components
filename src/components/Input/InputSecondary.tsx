@@ -10,7 +10,7 @@ import InputStyled,  { InputStyledProps } from './InputStyled';
 
 const Container = styled.div`
 `
-const InputContainer = styled.div<{focus: boolean, error: boolean}>`
+const InputContainer = styled.div<{$focus: boolean, $error: boolean}>`
     position: relative;
     display: flex;
     flex: 1;
@@ -20,7 +20,7 @@ const InputContainer = styled.div<{focus: boolean, error: boolean}>`
     height: 56px;
     min-height: 56px;
     outline: none;
-    box-shadow: 0 0 0 ${props => props.focus ? '2px '+Color.border.neutralMedium : (props.error ? '1px '+Color.text.red : '1px '+Color.border.neutralSoft)};
+    box-shadow: 0 0 0 ${props => props.$focus ? '2px '+Color.border.neutralMedium : (props.$error ? '1px '+Color.text.red : '1px '+Color.border.neutralSoft)};
     padding: 0px 16px;
     background-color: white;
     cursor: text;
@@ -42,12 +42,12 @@ const Column = styled.div`
 const IconView = styled.div`
     margin-right: 8px;
 `
-const Placeholder = styled(Text)<{focus: boolean, phone: boolean, error: boolean}>`
+const Placeholder = styled(Text)<{$focus: boolean, $phone: boolean, $error: boolean}>`
     position: absolute;
-    top: ${props => props.focus ? '8px' : '16px'};
-    left: ${props => props.phone ? (props.focus ? '74px' : '112px') : 'unset'};
-    color: ${props => props.error ? Color.text.red : Color.text.neutralMedium};
-    font-size: ${props => props.focus ? '12px' : '15px'} !important;
+    top: ${props => props.$focus ? '8px' : '16px'};
+    left: ${props => props.$phone ? (props.$focus ? '74px' : '112px') : 'unset'};
+    color: ${props => props.$error ? Color.text.red : Color.text.neutralMedium};
+    font-size: ${props => props.$focus ? '12px' : '15px'} !important;
     transition: top 0.1s ease-out, font-size 0.1s ease-out;
 `
 const InputSecondary = (props: InputSecondaryProps) =>{
@@ -58,6 +58,8 @@ const InputSecondary = (props: InputSecondaryProps) =>{
     const [ inputValue, setInputValue ] = useState<string | number | readonly string[] | undefined>(undefined);
     const [ country , setCountry ] = useState<any>(Country[0]);
     const [ focus, setFocus ] = useState(false);
+
+    const { containerStyle, icon, error, design, ...restProps } = props;
 
     useEffect(() =>{
         setInputValue(props.value);
@@ -108,17 +110,17 @@ const InputSecondary = (props: InputSecondaryProps) =>{
 
     return(
         <Container
-            style={props.containerStyle}
+            style={containerStyle}
         >
             <InputContainer
-                error={props.error ? true : false}
+                $error={error ? true : false}
                 style={props.style}
-                focus={focus}
+                $focus={focus}
                 onClick={() => input.current?.focus()}
             >
-                {props.icon ? 
+                {icon ? 
                     <IconView>
-                        {props.icon}
+                        {icon}
                     </IconView>
                 : props.type === 'tel' ?
                     <IconView>
@@ -127,7 +129,7 @@ const InputSecondary = (props: InputSecondaryProps) =>{
                             onChange={item => onCountryChange(item)} 
                             id="country" 
                             options={Country}
-                            focus={(focus || inputValue) ? true : false}
+                            $focus={(focus || inputValue) ? true : false}
                         />
                     </IconView>
                 : null}
@@ -135,15 +137,15 @@ const InputSecondary = (props: InputSecondaryProps) =>{
                     <Placeholder 
                         role="placeholder"
                         type='p'
-                        phone={props.type === 'tel'}
-                        focus={(focus || inputValue || props.defaultValue) ? true : false}
-                        error={props.error ? true : false}
+                        $phone={props.type === 'tel'}
+                        $focus={(focus || inputValue || props.defaultValue) ? true : false}
+                        $error={error ? true : false}
                     >
                         {props.placeholder}
                     </Placeholder>
                     <InputStyled 
                         ref={input}
-                        {...props}
+                        {...restProps}
                         value={props.value ? props.value : inputValue}
                         placeholder=''
                         style={{marginTop: 14, opacity: (props.type === 'date' || props.type === 'time') ? ((focus || inputValue || props.defaultValue) ? 1 : 0) : 1, ...props.style}}
@@ -153,12 +155,12 @@ const InputSecondary = (props: InputSecondaryProps) =>{
                     />
                 </Column>
             </InputContainer>
-            {props.error && 
+            {error && 
                 <ErrorDiv
                     role="error"
                 >
                     <Text type='p' style={{color: Color.text.red, marginTop: 8, fontSize: 14, lineHeight: '18px'}}>
-                        {props.error}
+                        {error}
                     </Text>
                 </ErrorDiv>
             }
@@ -170,6 +172,9 @@ export interface InputSecondaryProps extends InputStyledProps{
     containerStyle?: CSSProperties,
     icon?: ReactElement,
     error?: string|undefined,
+    focus?: boolean,
+    phone?: boolean,
+    design?: string,
     country?: string,
     onPhoneChange?:(item:{
         country: string,

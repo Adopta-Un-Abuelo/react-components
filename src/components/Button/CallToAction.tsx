@@ -3,37 +3,35 @@ import styled from 'styled-components';
 
 import Color from '../../constants/Color';
 
-const CallToActionStyled = styled.button<{loading?: boolean, disabled?: boolean, textColor?: string, size?: string}>`
+const CallToActionStyled = styled.button.attrs<{$loading?: boolean, $size?: string}>(props => ({}))`
     display: flex;
     gap: 8px;
     align-items: center;
 	background: none;
     border: none;
-	cursor: ${props => (props.disabled || props.loading) ? 'default' : 'pointer'};
-	opacity: ${props => (props.disabled || props.loading) ? 0.5 : 1};
-	color: ${props => props.textColor ? props.textColor : Color.text.primary};
+	cursor: ${props => (props.disabled || props.$loading) ? 'default' : 'pointer'};
+	opacity: ${props => (props.disabled || props.$loading) ? 0.5 : 1};
+	color: ${props => props.style?.color ? props.style.color : Color.text.primary};
     font-family: 'Poppins', 'sans-serif';
-	font-size: ${props => props.size === 'small' ? '14px' : '16px'};
+	font-size: ${props => props.$size === 'small' ? '14px' : '16px'};
 	&:hover{
-		text-decoration: ${props => (props.disabled || props.loading) ? 'none' : 'underline'};;
+		text-decoration: ${props => (props.disabled || props.$loading) ? 'none' : 'underline'};;
 	}
 `
 
-const CallToAction = (props: Props) => {
-
-    const {children, icon, iconPosition, ...restProps} = props;
+const CallToAction = ({icon, iconPosition, loading, size, ...restProps}: Props) => {
     
   	return (
         <CallToActionStyled 
             role="button"
-            loading={props.loading}
-            textColor={props.textColor}
-            disabled={props.disabled}
+            $loading={loading}
+            $size={size}
+            disabled={restProps.disabled}
             {...restProps}
-            onClick={(e: any) => (props.onClick && !props.loading && !props.disabled) && props.onClick(e)}
+            onClick={(e: any) => (restProps.onClick && !loading && !restProps.disabled) && restProps.onClick(e)}
         >
             {iconPosition !== 'right' ? icon : undefined}
-            {children}
+            {restProps.children}
             {iconPosition === 'right' ? icon : undefined}
         </CallToActionStyled>
   	);
@@ -43,7 +41,5 @@ export interface Props extends ComponentPropsWithoutRef<"button">{
 	size?: 'small' | 'normal',
 	icon?: React.ReactElement,
 	iconPosition?: 'left' | 'right'
-	loading?: boolean,
-    disabled?: boolean,
-	textColor?: string
+	loading?: boolean
 }

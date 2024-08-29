@@ -59,6 +59,7 @@ const IconSwitch = (props: Props) =>{
 export default IconSwitch;
 export interface Props{
     style?: CSSProperties,
+    type?: string,
     options: Array<{
         id: string,
         icon: ReactElement

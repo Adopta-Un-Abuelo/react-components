@@ -1,12 +1,12 @@
+import type { Meta, StoryObj } from '@storybook/react';
 import CellSelector from "./CellSelector";
-import { userEvent, within } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { userEvent, within, expect } from "@storybook/test";
 import { action } from "@storybook/addon-actions";
 
 import { Goal, Flag, FlagOff, Flame } from "lucide-react";
 import Color from "../../constants/Color";
 
-export default {
+const meta: Meta<typeof CellSelector> = {
   title: "Components/CellSelector",
   component: CellSelector,
   tags: ["autodocs"],
@@ -41,9 +41,13 @@ export default {
     onChange: action("onChange"),
     onClick: action("onClick"),
   },
+	
 };
 
-export const Single = {
+export default meta;
+type Story = StoryObj<typeof CellSelector>;
+
+export const Single: Story = {
   args: {
     type: "single",
   },
@@ -61,7 +65,7 @@ export const Single = {
   },
 };
 
-export const Multiple = {
+export const Multiple: Story = {
   args: {
     type: "multiple",
   },

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Color from '../../constants/Color';
 import Modal from '../Modal/Modal';
 
-const AvatarContainer = styled.div<{editable?: boolean, clickable?: boolean}>`
+const AvatarContainer = styled.div.attrs<{$editable?: boolean, $clickable?: boolean}>(props => ({}))`
     width: 50px;
     height: 50px;
     display: flex;
@@ -13,7 +13,7 @@ const AvatarContainer = styled.div<{editable?: boolean, clickable?: boolean}>`
     text-align: center;
     border-radius: 50%;
     background-color: ${Color.background.primaryLow};
-    cursor: ${props => (props.editable || props.clickable) ? 'pointer' : 'default'};
+    cursor: ${props => (props.$editable || props.$clickable) ? 'pointer' : 'default'};
 `
 const Text = styled.p`
     font-family: Poppins;
@@ -84,8 +84,8 @@ const Avatar = (props: Props) =>{
         <AvatarContainer 
             role="avatar" 
             style={props.style} 
-            editable={props.editable}
-            clickable={props.clickable}
+            $editable={props.editable}
+            $clickable={props.clickable}
             onClick={onButtonClick}
         >
             <input 

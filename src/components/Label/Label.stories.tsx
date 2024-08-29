@@ -1,17 +1,20 @@
 import Label from "./Label";
-import { within } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { expect, within } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react';
 
-export default {
+
+const meta: Meta<typeof Label> = {
   title: "Components/Label",
   component: Label,
   tags: ["autodocs"],
   args: {
     text: "done",
   },
-};
+}
+export default meta;
+type Story = StoryObj<typeof Label>;
 
-export const Default = {
+export const Default: Story = {
   args: {
     type: "label",
   },
@@ -22,7 +25,7 @@ export const Default = {
   },
 };
 
-export const Chip = {
+export const Chip: Story = {
   args: {
     type: "chip",
   },

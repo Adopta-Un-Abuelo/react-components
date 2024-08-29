@@ -20,11 +20,11 @@ const Container = styled.button`
 `;
 
 const Box = styled.div<{
-  selected: boolean;
-  error?: boolean;
-  height?: number;
-  width?: number;
-  position: "left" | "right";
+	selected: boolean;
+	$error?: boolean;
+	height?: number;
+	width?: number;
+	$position: "left" | "right";
 }>`
   display: flex;
   align-items: center;
@@ -35,31 +35,31 @@ const Box = styled.div<{
   min-width: ${(props) => (props.width ? props.width + "px" : "22px")};
   background-color: ${(props) =>
     props.selected
-      ? props.error
+      ? props.$error
         ? Color.status.color.error
         : Color.background.primary
-      : props.error
+      : props.$error
         ? Color.status.color.errorDefault
         : Color.background.primaryLow};
   border: ${(props) =>
     props.selected
       ? "1px solid " +
-        (props.error ? Color.status.color.error : Color.background.primary)
+        (props.$error ? Color.status.color.error : Color.background.primary)
       : "1px solid " +
-        (props.error ? Color.line.redSoft : Color.line.primarySoft)};
+        (props.$error ? Color.line.redSoft : Color.line.primarySoft)};
   border-radius: 4px;
   transition:
     background-color 0.2s ease-in-out,
     border 0.2s ease-in-out,
     transform 0.05s ease-out;
-  margin-right: ${(props) => (props.position === "left" ? "10px" : "0px")};
+  margin-right: ${(props) => (props.$position === "left" ? "10px" : "0px")};
   &:hover {
     background-color: ${(props) =>
       props.selected
-        ? props.error
+        ? props.$error
           ? Color.status.color.error
           : Color.background.primary
-        : props.error
+        : props.$error
           ? Color.status.color.errorDefault
           : Color.line.primarySoft};
   }
@@ -67,21 +67,23 @@ const Box = styled.div<{
     transform: scale(0.9);
   }
 
-  @media (max-width: 600px) {
-    background-color: ${(props) =>
-      props.selected
-        ? props.error
-          ? Color.status.color.error
-          : Color.background.primary
-        : props.error
-          ? Color.status.color.errorDefault
-          : "#FFFFFF"};
-    border: ${(props) =>
-      props.selected
-        ? "1px solid " +
-          (props.error ? Color.status.color.error : Color.background.primary)
-        : "1px solid rgba(0, 29, 61, 0.24)"};
-  }
+	@media (max-width: 600px) {
+		background-color: ${(props) =>
+			props.selected
+				? props.$error
+					? Color.status.color.error
+					: Color.background.primary
+				: props.$error
+					? Color.status.color.errorDefault
+					: "#FFFFFF"};
+		border: ${(props) =>
+			props.selected
+				? "1px solid " +
+					(props.$error
+						? Color.status.color.error
+						: Color.background.primary)
+				: "1px solid rgba(0, 29, 61, 0.24)"};
+	}
 `;
 
 const TextView = styled.div`
@@ -92,27 +94,29 @@ const TextView = styled.div`
   text-align: left;
 `;
 
-const Checkbox = (props: Props) => {
-  const [selected, setSelected] = useState(props.selected);
+const Checkbox = ({ position = "left", error, sublabel, ...props }: Props) => {
+	const [selected, setSelected] = useState(props.selected);
 
-  useEffect(() => {
-    setSelected(props.selected);
-  }, [props.selected]);
+	useEffect(() => {
+		setSelected(props.selected);
+	}, [props.selected]);
 
-  const onClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    setSelected(!selected);
-    props.onClick && props.onClick(event);
-  };
+	const onClick = (
+		event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+	) => {
+		setSelected(!selected);
+		props.onClick && props.onClick(event);
+	};
 
   return (
     <Container data-testid="checkbox" onClick={onClick} {...props}>
-      {props.position === "left" && (
+      {position === "left" && (
         <Box
           selected={selected}
-          error={props.error}
+          $error={error}
           height={props.height}
           width={props.width}
-          position={props.position}
+          $position={position}
         >
           {selected && (
             <Player
@@ -144,20 +148,20 @@ const Checkbox = (props: Props) => {
         <div>
           {props.children && props.children}
           {props.label && <Text type="p">{props.label}</Text>}
-          {props.sublabel && (
+          {sublabel && (
             <Text type="p" style={{ fontSize: 12 }}>
-              {props.sublabel}
+              {sublabel}
             </Text>
           )}
         </div>
       </TextView>
-      {props.position === "right" && (
+      {position === "right" && (
         <Box
           selected={selected}
-          error={props.error}
+          $error={error}
           height={props.height}
           width={props.width}
-          position={props.position}
+          $position={position}
         >
           {selected && (
             <Player
@@ -190,7 +194,6 @@ export interface Props extends ComponentPropsWithoutRef<"button"> {
   sublabel?: string;
   error?: boolean;
   height?: number;
-  
   width?: number;
   position?: "left" | "right";
   avatarEnabled?: boolean;

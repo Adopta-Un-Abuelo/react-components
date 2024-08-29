@@ -1,11 +1,12 @@
 import Switch from "./Switch";
-import { within, userEvent } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { within, userEvent, expect } from "@storybook/test";
+
 import { action } from "@storybook/addon-actions";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { Flag, FlagOff } from "lucide-react";
 
-export default {
+const meta: Meta<typeof Switch> = {
   title: "Components/Switch",
   component: Switch,
   tags: ["autodocs"],
@@ -22,9 +23,12 @@ export default {
     ],
     onChange: action("onChange"),
   },
-};
+}
 
-export const Default = {
+export default meta;
+type Story = StoryObj<typeof Switch>;
+
+export const Default: Story = {
   args: {
     type: "single",
   },

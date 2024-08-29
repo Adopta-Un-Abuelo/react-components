@@ -1,9 +1,9 @@
+import type { Meta, StoryObj } from '@storybook/react';
 import Countdown from "./Countdown";
 import Color from "../../constants/Color";
-import { within } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { expect,within } from "@storybook/test";
 
-export default {
+const meta: Meta<typeof Countdown> = {
   title: "Components/Countdown",
   component: Countdown,
   tags: ["autodocs"],
@@ -12,9 +12,12 @@ export default {
     color: Color.background.primaryLow,
     textColor: Color.background.primary,
   },
-};
+}
 
-export const Default = {
+export default meta;
+type Story = StoryObj<typeof Countdown>;
+
+export const Default: Story = {
   play: async ({ canvasElement, step }: any) => {
     const canvas = within(canvasElement);
     const container = await canvas.getByRole("container");

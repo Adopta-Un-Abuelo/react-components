@@ -1,3 +1,45 @@
+# v0.3.6 (Wed Aug 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/storybook-8' (guillermo.angeles@adoptaunabuelo.com)
+- fix: components update to work with storybook 8 (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'main' into feature/storybook-8 (guillermo.angeles@adoptaunabuelo.com)
+- fix: all warnings and errors solved (guillermo.angeles@adoptaunabuelo.com)
+- fix: more warnings solved (guillermo.angeles@adoptaunabuelo.com)
+- fix: input styled components warnings (guillermo.angeles@adoptaunabuelo.com)
+- fix: CellSelector props errors (guillermo.angeles@adoptaunabuelo.com)
+- fix: input props errors (guillermo.angeles@adoptaunabuelo.com)
+- fix: react version error (guillermo.angeles@adoptaunabuelo.com)
+- chore: storybook update (guillermo.angeles@adoptaunabuelo.com)
+- chore: Pagination to TextArea - Finish ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- chore: Label, Menu & Modal ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- chore: Input ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Chore: Input in Progress v2 ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- chore: Filter & Input in Progress ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- chore: CountDown, Counter, Dropdown, FAQs & Feedback ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- chore: CellSelector & Checkbox update ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- chore: avatar, breadcrumb & button update (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 2
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.5 (Wed Aug 28 2024)
+
+#### 🐛 Bug Fix
+
+- chore: Filter, Checkbox, Modal & SearchBar changes [#9](https://github.com/Adopta-Un-Abuelo/react-components/pull/9) ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.4 (Thu Aug 22 2024)
 
 #### 🐛 Bug Fix

@@ -1,9 +1,10 @@
 import TextArea from "./TextArea";
-import { within } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { within, expect } from "@storybook/test";
+
+import type { Meta, StoryObj } from '@storybook/react';
 import { action } from "@storybook/addon-actions";
 
-export default {
+const meta: Meta<typeof TextArea> = {
   title: "Components/TextArea",
   component: TextArea,
   tags: ["autodocs"],
@@ -12,9 +13,12 @@ export default {
     maxLength: 100,
     onChange: action("onChange"),
   },
-};
+}
 
-export const Default = {
+export default meta;
+type Story = StoryObj<typeof TextArea>;
+
+export const Default: Story = {
   args: {
     type: "default",
   },
@@ -25,7 +29,7 @@ export const Default = {
   },
 };
 
-export const Editor = {
+export const Editor: Story = {
   args: {
     type: "edit",
     style: {

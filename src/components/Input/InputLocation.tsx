@@ -142,7 +142,8 @@ const InputLocation = (props: InputLocationPrimaryProps | InputLocationSecondary
 }
 export default InputLocation;
 export interface InputLocationPrimaryProps extends InputPrimaryProps {
-    design?: 'primary',
+    $design?: 'primary',
+    error?: string,
     searchOptions?: {
         types: string []
     },
@@ -155,6 +156,7 @@ export interface InputLocationPrimaryProps extends InputPrimaryProps {
 }
 export interface InputLocationSecondaryProps extends InputSecondaryProps {
     design?: 'secondary',
+    error?: string,
     searchOptions?: {
         types: string []
     },

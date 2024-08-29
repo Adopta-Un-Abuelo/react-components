@@ -7,31 +7,31 @@ const Container = styled.div``;
 const CheckboxList = (props: Props) => {
   const [selection, setSelection] = useState<Array<{ id: string }>>([]);
   const [update, setUpdate] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768); 
 
-  useEffect(() => {
-    if (props.selectedOptions) setSelection(props.selectedOptions);
+	useEffect(() => {
+		if (props.selectedOptions) setSelection(props.selectedOptions);
 
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 768);
+      setIsSmallScreen(window.innerWidth < 768); 
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [props.selectedOptions]);
+		window.addEventListener("resize", handleResize);
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, [props.selectedOptions]);
 
-  const onClick = (item: any) => {
-    const result = selection.findIndex((obj) => item.id === obj.id);
-    let tempArray = selection;
-    if (props.type === "single") tempArray = [item];
-    else if (result === -1) tempArray.push(item);
-    else tempArray.splice(result, 1);
-    setSelection(tempArray);
-    setUpdate(!update);
-    props.onChange && props.onChange(tempArray);
-  };
+	const onClick = (item: any) => {
+		const result = selection.findIndex((obj) => item.id === obj.id);
+		let tempArray = selection;
+		if (props.type === "single") tempArray = [item];
+		else if (result === -1) tempArray.push(item);
+		else tempArray.splice(result, 1);
+		setSelection(tempArray);
+		setUpdate(!update);
+		props.onChange && props.onChange(tempArray);
+	};
 
   return (
     <Container role="checkboxlist" style={props.style}>
