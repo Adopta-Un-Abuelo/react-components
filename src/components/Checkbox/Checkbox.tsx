@@ -190,6 +190,7 @@ export interface Props extends ComponentPropsWithoutRef<"button"> {
   sublabel?: string;
   error?: boolean;
   height?: number;
+  
   width?: number;
   position?: "left" | "right";
   avatarEnabled?: boolean;
