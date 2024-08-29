@@ -7,7 +7,7 @@ import Text from '../Text/Text';
 const Container = styled.div`
     width: fit-content;
 `
-const InputContainer = styled.div<{$focus: boolean, $error: boolean, loading?: boolean}>`
+const InputContainer = styled.div<{$focus: boolean, $error: boolean, $loading?: boolean}>`
     position: relative;
     display: flex;
     align-items: center;
@@ -18,8 +18,8 @@ const InputContainer = styled.div<{$focus: boolean, $error: boolean, loading?: b
     outline: none;
     box-shadow: 0 0 0 ${props => props.$focus ? '2px '+Color.border.neutralMedium : (props.$error ? '1px '+Color.text.red : '1px '+Color.border.neutralSoft)};
     background-color: white;
-    opacity: ${props => props.loading ? 0.5 : 1};
-    cursor: ${props => props.loading ? 'default' : 'text'};
+    opacity: ${props => props.$loading ? 0.5 : 1};
+    cursor: ${props => props.$loading ? 'default' : 'text'};
 `
 const ErrorDiv = styled.div`
     margin: 0px 12px;
@@ -78,7 +78,7 @@ const InputCode = (props: InputCodeProps) =>{
                 $error={props.error ? true : false}
                 style={props.style}
                 $focus={focus}
-                loading={props.loading}
+                $loading={props.loading}
                 onClick={() => input.current?.focus()}
             >
                 <Input

@@ -11,11 +11,11 @@ const Container = styled.div`
     border-radius: 8px;
     overflow: hidden;
 `
-const Progress = styled.div<{$progress: number, color?: string, animationTime?: number, animationDelay?: number}>`
+const Progress = styled.div<{$progress: number, color?: string, $animationTime?: number, $animationDelay?: number}>`
     background: ${props => props.color ? props.color : Color.background.primary};
     width: ${props => props.$progress+'%'};
     height: 6px;
-    transition: ${props => 'width '+(props.animationTime ? props.animationTime : 0)+'s ease-out '+(props.animationDelay ? props.animationDelay : 0)+'s'};
+    transition: ${props => 'width '+(props.$animationTime ? props.$animationTime : 0)+'s ease-out '+(props.$animationDelay ? props.$animationDelay : 0)+'s'};
 `
 
 const ProgressBar = (props: Props) =>{
@@ -35,8 +35,8 @@ const ProgressBar = (props: Props) =>{
                     style={{height: props.style && props.style.height ? props.style.height : 6}}
                     $progress={progressValue/(maxValue-minValue)*100} 
                     color={props.color}
-                    animationTime={props.animationTime}
-                    animationDelay={props.animationDelay}
+                    $animationTime={props.animationTime}
+                    $animationDelay={props.animationDelay}
                 />
             : progressValue.map((item, index) =>(
                 <Progress
@@ -45,8 +45,8 @@ const ProgressBar = (props: Props) =>{
                     style={{height: props.style && props.style.height ? props.style.height : 6}}
                     $progress={item.value/(maxValue-minValue)*100} 
                     color={item.color}
-                    animationTime={props.animationTime}
-                    animationDelay={props.animationDelay}
+                    $animationTime={props.animationTime}
+                    $animationDelay={props.animationDelay}
                 />
             ))}
         </Container>
