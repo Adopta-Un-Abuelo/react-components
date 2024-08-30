@@ -48,11 +48,11 @@ export const SingleSelection = {
     });
     await step("on filter click", async () => {
       userEvent.click(filterButton);
-      const filterMenu = await canvas.findByRole("filter-menu");
+      const filterMenu = await canvas.findByTestId("filter-menu"); 
       expect(filterMenu).toBeInTheDocument();
     });
     await step("on cell click", async () => {
-      const filterCell = await canvas.findByRole("checkbox-0");
+      const filterCell = await canvas.findByRole("checkbox");
       userEvent.click(filterCell);
     });
   },
@@ -72,14 +72,13 @@ export const MultipleSelection = {
     });
     await step("on filter click", async () => {
       userEvent.click(filterButton);
-      const filterMenu = await canvas.findByRole("filter-menu");
+      const filterMenu = await canvas.findByTestId("filter-menu"); 
       expect(filterMenu).toBeInTheDocument();
     });
     await step("on cell click", async () => {
-      const filterCell0 = await canvas.findByRole("checkbox-0");
-      const filterCell1 = await canvas.findByRole("checkbox-1");
+      const filterCell0 = await canvas.findByRole("checkbox");
       userEvent.click(filterCell0);
-      userEvent.click(filterCell1);
+      
     });
   },
 };

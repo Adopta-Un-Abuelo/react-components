@@ -38,12 +38,12 @@ const InputStyled = styled.input<{ design?: "primary" | "secondary" }>`
 	}
 `;
 
-const IconStyle = styled.div<{ $design?: "primary" | "secondary" }>`
+const IconStyle = styled.div<{ design?: "primary" | "secondary" }>`
 	position: absolute;
 	display: flex;
 	align-items: center;
 	margin-left: ${(props) =>
-		props.$design === "secondary" ? "0px;" : "16px;"};
+		props.design === "secondary" ? "0px;" : "16px;"};
 `;
 
 const SearchBar = (props: Props) => {
@@ -52,18 +52,14 @@ const SearchBar = (props: Props) => {
 	return props.type === "big" ? (
 		//BIG
 		<InputView id={id} role="search-bar" style={style}>
-			<IconStyle
-				$design={props.$design}
-				style={{ height: 24, width: 24 }}
-			>
+			<IconStyle design={props.design} style={{ height: 24, width: 24 }}>
 				<Search stroke={Color.text.high} />
 			</IconStyle>
 			<InputStyled
 				role="input"
 				style={{
 					height: "48px",
-					paddingLeft:
-						props.$design === "secondary" ? "36px" : "46px",
+					paddingLeft: props.design === "secondary" ? "36px" : "46px",
 				}}
 				{...restProps}
 			/>
@@ -71,18 +67,14 @@ const SearchBar = (props: Props) => {
 	) : (
 		// SMALL
 		<InputView id={id} role="search-bar" style={style}>
-			<IconStyle
-				$design={props.$design}
-				style={{ height: 22, width: 22 }}
-			>
+			<IconStyle design={props.design} style={{ height: 22, width: 22 }}>
 				<Search stroke={Color.text.high} />
 			</IconStyle>
 			<InputStyled
 				role="input"
 				style={{
 					fontSize: 16,
-					paddingLeft:
-						props.$design === "secondary" ? "36px" : "46px",
+					paddingLeft: props.design === "secondary" ? "36px" : "46px",
 				}}
 				{...restProps}
 			/>
@@ -94,5 +86,5 @@ export default SearchBar;
 
 export interface Props extends ComponentPropsWithoutRef<"input"> {
 	type?: "big" | "small";
-	$design?: "primary" | "secondary";
+	design?: "primary" | "secondary";
 }
