@@ -534,7 +534,7 @@ const Filter = (props: FilterDefaultProps) => {
 									defaultValue={searchText}
 									style={{ flex: 1, marginTop: "4px" }}
 									placeholder={"Buscar"}
-									$design={"primary"}
+									design={"primary"}
 									onChange={onSearchChange}
 								/>
 								<Text
@@ -599,7 +599,7 @@ const Filter = (props: FilterDefaultProps) => {
 								marginBottom: 8,
 							}}
 							placeholder={"Buscar"}
-							$design={"secondary"}
+							design={"secondary"}
 							onChange={onSearchChange}
 						/>
 					)}
