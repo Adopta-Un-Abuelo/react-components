@@ -38,7 +38,7 @@ const Container = styled.div`
 	width: fit-content;
 `;
 
-const ButtonFilter = styled.button<{ selected: boolean }>`
+const ButtonFilter = styled.button<{ $selected: boolean }>`
 	position: relative;
 	display: flex;
 	flex-direction: row;
@@ -49,13 +49,13 @@ const ButtonFilter = styled.button<{ selected: boolean }>`
 	border: ${(props) =>
 		props.disabled
 			? "0px solid"
-			: props.selected
+			: props.$selected
 				? "0px solid"
 				: "1px solid " + Color.line.soft};
 	background-color: ${(props) =>
 		props.disabled
 			? Color.status.neutral.hover
-			: props.selected
+			: props.$selected
 				? Color.background.deepBlue
 				: "transparent"};
 	cursor: ${(props) => (props.disabled ? "default" : "pointer")};
@@ -63,19 +63,19 @@ const ButtonFilter = styled.button<{ selected: boolean }>`
 		background-color: ${(props) =>
 			props.disabled
 				? Color.status.neutral.hover
-				: props.selected
+				: props.$selected
 					? Color.background.deepBlue
 					: Color.background.low};
 	}
 `;
 
-const FilterView = styled.div<{ position?: "bottom-right" | "bottom-left" }>`
+const FilterView = styled.div<{ $position?: "bottom-right" | "bottom-left" }>`
 	position: absolute;
 	display: flex;
 	flex-direction: column;
 	top: 36px;
-	right: ${(props) => (props.position === "bottom-right" ? undefined : 0)};
-	left: ${(props) => (props.position === "bottom-left" ? undefined : 0)};
+	right: ${(props) => (props.$position === "bottom-right" ? undefined : 0)};
+	left: ${(props) => (props.$position === "bottom-left" ? undefined : 0)};
 	padding: 8px 16px;
 	border-radius: 6px;
 	height: auto;
@@ -84,8 +84,8 @@ const FilterView = styled.div<{ position?: "bottom-right" | "bottom-left" }>`
 	display: flex;
 	flex-direction: column;
 	top: 36px;
-	right: ${(props) => (props.position === "bottom-right" ? undefined : 0)};
-	left: ${(props) => (props.position === "bottom-left" ? undefined : 0)};
+	right: ${(props) => (props.$position === "bottom-right" ? undefined : 0)};
+	left: ${(props) => (props.$position === "bottom-left" ? undefined : 0)};
 	padding: 8px 16px;
 	border-radius: 6px;
 	height: auto;
@@ -99,8 +99,8 @@ const FilterView = styled.div<{ position?: "bottom-right" | "bottom-left" }>`
 	z-index: 10;
 	overflow: hidden;
 
-	@media (max-width: 450px) {
-		display: block;
+	@media (max-width: 768px) {
+		display: none;
 	}
 `;
 
@@ -114,7 +114,6 @@ const ContentView = styled.div`
 
 const BottomContainer = styled.div`
 	position: sticky;
-
 	bottom: 0;
 	z-index: 5;
 `;
@@ -124,8 +123,12 @@ const BottomBar = styled.div`
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	margin-top: 8px;
-	margin-bottom: 8px;
+	padding-top: 8px;
+	background-color: white;
+
+	@media (max-width: 768px) {
+		padding: 16px 0px;
+	}
 `;
 
 const StyledDivider = styled.hr`
@@ -156,15 +159,14 @@ const ModalWrapper = styled.div`
 `;
 
 const ButtonFilterSmallScreen = styled(ButtonFilter)`
-	/* Mostrar en pantallas pequeñas y medianas (hasta 768px de ancho) */
-	@media (min-width: 450px) {
+	@media (min-width: 769px) {
 		display: none;
 	}
 
 	border: ${(props) =>
 		props.disabled
 			? "0px solid"
-			: props.selected
+			: props.$selected
 				? "2px solid var(--border-primary, #008FF5)"
 				: "1px solid " + Color.line.soft};
 
@@ -172,42 +174,52 @@ const ButtonFilterSmallScreen = styled(ButtonFilter)`
 `;
 
 const ButtonFilterLargeScreen = styled(ButtonFilter)`
-	@media (max-width: 450px) {
+	@media (max-width: 768px) {
 		display: none;
 	}
 `;
 
-const StyledButtonSmallScreen = styled(Button)`
+const StyledButton = styled(Button)`
+	@media (max-width: 768px) {
+		display: flex;
+		padding: 15px 20px;
+		justify-content: center;
+		align-items: center;
+		gap: 6px;
+		width: 126px;
+		height: 52px;
+	}
+`;
+
+const StyledButtonSmallScreen = styled(StyledButton)`
 	display: none;
 
-	@media (max-width: 450px) {
+	@media (max-width: 768px) {
 		display: inline-block;
 	}
 `;
 
-const StyledButtonLargeScreen = styled(Button)`
+const StyledButtonLargeScreen = styled(StyledButton)`
 	display: inline-block;
 
-	@media (max-width: 450px) {
+	@media (max-width: 768px) {
 		display: none;
 	}
 `;
 
-const ResponsiveDeleteButton = styled(Button)`
-	@media (max-width: 450px) {
+const ResponsiveButton = styled(Button)`
+	@media (max-width: 768px) {
 		display: none;
 	}
 `;
 
-const ResponsiveRestoreButton = styled(Button)`
-	@media (min-width: 450px) {
+const ResponsiveText = styled(Text)`
+	@media (min-width: 769px) {
 		display: none;
 	}
 `;
 
 const Filter = (props: FilterDefaultProps) => {
-	const buttonSize = useResponsiveButtonSize();
-
 	const [showModal, setShowModal] = useState(false);
 	const [showFilterView, setShowFilterView] = useState(false);
 	const [selectedOptions, _setSelectedOptions] = useState<
@@ -346,45 +358,70 @@ const Filter = (props: FilterDefaultProps) => {
 		<>
 			<BottomContainer>
 				<StyledDivider />
-
 				<BottomBar>
 					{props.type === "multiple" && (
 						<Button
 							design={"text"}
-							size={buttonSize as "normal" | "small" | undefined}
+							size={"small"}
+							style={{ marginRight: 4 }}
 							onClick={onSelectAll}
 						>
-							Marcar todo
+							Seleccionar todo
 						</Button>
 					)}
 
-					<ResponsiveRestoreButton
+					<ResponsiveButton
 						design={"text"}
-						size={buttonSize as "normal" | "small" | undefined}
-						onClick={onRemove}
-					>
-						Restaurar
-					</ResponsiveRestoreButton>
-
-					<ResponsiveDeleteButton
-						design={"text"}
-						size={"normal"}
+						size={"small"}
+						style={{ marginRight: 4 }}
 						onClick={onRemove}
 					>
 						Borrar
-					</ResponsiveDeleteButton>
+					</ResponsiveButton>
+					<ResponsiveText
+						type="b1"
+						weight="medium"
+						style={{
+							color: "var(--text-clear-neutral-hard, rgba(0, 29, 61, 0.92)",
+							fontFeatureSettings: "'liga' off, 'clig' off",
+							fontFamily: "Poppins",
+							fontSize: "15px",
+							fontStyle: "normal",
+							fontWeight: 500,
+							cursor: "pointer",
+							textDecoration: "underline",
+						}}
+						onClick={onRemove}
+					>
+						Restaurar
+					</ResponsiveText>
 
 					<StyledButtonSmallScreen
 						design={"primary"}
-						size={buttonSize as "normal" | "small" | undefined}
+						size={"small"}
 						onClick={onSave}
 					>
-						Aplicar
+						<Text
+							type="b1"
+							weight="medium"
+							style={{
+								color: "var(--text-invert, #FFF)",
+								fontFeatureSettings: "'liga' off, 'clig' off",
+								fontFamily: "Poppins",
+								fontSize: "15px",
+								fontStyle: "normal",
+								fontWeight: 600,
+								cursor: "pointer",
+								lineHeight: "22px",
+							}}
+						>
+							Aplicar
+						</Text>
 					</StyledButtonSmallScreen>
 
 					<StyledButtonLargeScreen
 						design={"primary"}
-						size={"normal"}
+						size={"small"}
 						onClick={onSave}
 					>
 						Aplicar
@@ -398,7 +435,7 @@ const Filter = (props: FilterDefaultProps) => {
 		<Container id={props.id} role="filter" style={props.style}>
 			<ButtonFilterSmallScreen
 				role="filter-button"
-				selected={selectedOptions.length > 0}
+				$selected={selectedOptions.length > 0}
 				disabled={props.disabled}
 				onClick={onFilterClickSmallScreen}
 			>
@@ -413,6 +450,7 @@ const Filter = (props: FilterDefaultProps) => {
 						fontStyle: "normal",
 						fontWeight: 500,
 						lineHeight: "20px",
+
 						marginRight: "6px",
 					}}
 				>
@@ -442,7 +480,7 @@ const Filter = (props: FilterDefaultProps) => {
 
 			<ButtonFilterLargeScreen
 				role="filter-button"
-				selected={selectedOptions.length > 0}
+				$selected={selectedOptions.length > 0}
 				disabled={props.disabled}
 				onClick={onFilterClickLargeScreen}
 			>
@@ -474,11 +512,7 @@ const Filter = (props: FilterDefaultProps) => {
 			</ButtonFilterLargeScreen>
 
 			{showModal && (
-				<ModalWrapper
-					ref={modalRef}
-					data-testid="filter-menu"
-					role="checkbox"
-				>
+				<ModalWrapper ref={modalRef}>
 					<Modal
 						type="full-screen"
 						isVisible={showModal}
@@ -500,7 +534,7 @@ const Filter = (props: FilterDefaultProps) => {
 									defaultValue={searchText}
 									style={{ flex: 1, marginTop: "4px" }}
 									placeholder={"Buscar"}
-									design={"primary"}
+									$design={"primary"}
 									onChange={onSearchChange}
 								/>
 								<Text
@@ -554,9 +588,8 @@ const Filter = (props: FilterDefaultProps) => {
 			{showFilterView && (
 				<FilterView
 					ref={filterViewRef}
-					data-testid="filter-menu"
-					role="checkbox"
-					position={props.position}
+					role="filter-menu"
+					$position={props.position}
 				>
 					{!props.hideSearchBar && (
 						<SearchBar
@@ -566,7 +599,7 @@ const Filter = (props: FilterDefaultProps) => {
 								marginBottom: 8,
 							}}
 							placeholder={"Buscar"}
-							design={"secondary"}
+							$design={"secondary"}
 							onChange={onSearchChange}
 						/>
 					)}

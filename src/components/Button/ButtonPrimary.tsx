@@ -8,11 +8,11 @@ import AnimationLoading from "../../assets/animations/button-loading.json";
 import Text from "../Text/Text";
 import Color from "../../constants/Color";
 
-const ButtonPrimary = styled.button.attrs<{
+const ButtonPrimary = styled.button<{
 	$size?: "small" | "normal";
 	$loading?: boolean;
 	$success?: boolean;
-}>((props) => ({}))`
+}>`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -49,10 +49,10 @@ const ButtonPrimary = styled.button.attrs<{
 			props.disabled || props.$loading ? "none" : "scale(0.95)"};
 	}
 `;
-const Label = styled(Text).attrs<{
+const Label = styled(Text)<{
 	$size?: "small" | "normal";
 	$icon: boolean;
-}>((props) => ({}))`
+}>`
 	font-size: ${(props) => (props.$size === "small" ? "14px" : "15px")};
 	width: 100%;
 	margin-left: ${(props) => (props.$icon ? 6 : 0)};
@@ -135,6 +135,7 @@ const Button = ({
 						$icon={icon ? true : false}
 						style={{
 							width: "unset",
+							margin: "0px 6px",
 							fontWeight: restProps.style?.fontWeight
 								? restProps.style?.fontWeight
 								: 500,

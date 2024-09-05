@@ -20,21 +20,21 @@ const Container = styled.button`
 `;
 
 const Box = styled.div<{
-	selected: boolean;
+	$selected: boolean;
 	$error?: boolean;
-	height?: number;
-	width?: number;
+	$height?: number;
+	$width?: number;
 	$position: "left" | "right";
 }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: ${(props) => (props.height ? props.height + "px" : "22px")};
-	width: ${(props) => (props.width ? props.width + "px" : "22px")};
-	min-height: ${(props) => (props.height ? props.height + "px" : "22px")};
-	min-width: ${(props) => (props.width ? props.width + "px" : "22px")};
+	height: ${(props) => (props.$height ? props.$height + "px" : "22px")};
+	width: ${(props) => (props.$width ? props.$width + "px" : "22px")};
+	min-height: ${(props) => (props.$height ? props.$height + "px" : "22px")};
+	min-width: ${(props) => (props.$width ? props.$width + "px" : "22px")};
 	background-color: ${(props) =>
-		props.selected
+		props.$selected
 			? props.$error
 				? Color.status.color.error
 				: Color.background.primary
@@ -42,7 +42,7 @@ const Box = styled.div<{
 				? Color.status.color.errorDefault
 				: Color.background.primaryLow};
 	border: ${(props) =>
-		props.selected
+		props.$selected
 			? "1px solid " +
 				(props.$error
 					? Color.status.color.error
@@ -57,7 +57,7 @@ const Box = styled.div<{
 	margin-right: ${(props) => (props.$position === "left" ? "10px" : "0px")};
 	&:hover {
 		background-color: ${(props) =>
-			props.selected
+			props.$selected
 				? props.$error
 					? Color.status.color.error
 					: Color.background.primary
@@ -71,7 +71,7 @@ const Box = styled.div<{
 
 	@media (max-width: 600px) {
 		background-color: ${(props) =>
-			props.selected
+			props.$selected
 				? props.$error
 					? Color.status.color.error
 					: Color.background.primary
@@ -79,7 +79,7 @@ const Box = styled.div<{
 					? Color.status.color.errorDefault
 					: "#FFFFFF"};
 		border: ${(props) =>
-			props.selected
+			props.$selected
 				? "1px solid " +
 					(props.$error
 						? Color.status.color.error
@@ -90,10 +90,10 @@ const Box = styled.div<{
 
 const TextView = styled.div`
 	display: flex;
+	align-items: center;
 	flex-grow: 1;
 	line-height: 24px;
 	text-align: left;
-	flex-direction: column;
 `;
 
 const Checkbox = ({
@@ -118,61 +118,71 @@ const Checkbox = ({
 	};
 
 	return (
-		<Container onClick={onClick} {...props}>
+		<Container data-testid="checkbox" onClick={onClick} {...props}>
 			{position === "left" && (
 				<Box
-					selected={isSelected}
+					$selected={selected}
 					$error={error}
-					height={props.height}
-					width={props.width}
+					$height={props.height}
+					$width={props.width}
 					$position={position}
 				>
-					{isSelected && (
+					{selected && (
 						<Player
 							style={{ height: 18, width: 18 }}
 							autoplay={true}
 							loop={false}
 							keepLastFrame={true}
 							src={AnimationCheck}
+							onEvent={(event) => {
+								if (event === "complete") {
+								}
+							}}
 						/>
 					)}
 				</Box>
 			)}
-			{avatarEnabled && (
-				<Avatar
-					name={props.label || ""}
-					style={{
-						height: 32,
-						width: 32,
-						marginRight: 8,
-						fontSize: 15,
-					}}
-				/>
-			)}
 			<TextView>
-				{props.children && props.children}
-				{props.label && <Text type="p">{props.label}</Text>}
-				{sublabel && (
-					<Text type="p" style={{ fontSize: 12 }}>
-						{sublabel}
-					</Text>
+				{props.avatarEnabled && (
+					<Avatar
+						name={props.label || ""}
+						style={{
+							height: 32,
+							width: 32,
+							marginRight: 8,
+							fontSize: 15,
+						}}
+					/>
 				)}
+				<div>
+					{props.children && props.children}
+					{props.label && <Text type="p">{props.label}</Text>}
+					{sublabel && (
+						<Text type="p" style={{ fontSize: 12 }}>
+							{sublabel}
+						</Text>
+					)}
+				</div>
 			</TextView>
 			{position === "right" && (
 				<Box
-					selected={isSelected}
+					$selected={selected}
 					$error={error}
-					height={props.height}
-					width={props.width}
+					$height={props.height}
+					$width={props.width}
 					$position={position}
 				>
-					{isSelected && (
+					{selected && (
 						<Player
 							style={{ height: 18, width: 18 }}
 							autoplay={true}
 							loop={false}
 							keepLastFrame={true}
 							src={AnimationCheck}
+							onEvent={(event) => {
+								if (event === "complete") {
+								}
+							}}
 						/>
 					)}
 				</Box>
@@ -181,10 +191,14 @@ const Checkbox = ({
 	);
 };
 
+Checkbox.defaultProps = {
+	position: "left",
+};
+
 export default Checkbox;
 
-interface Props extends ComponentPropsWithoutRef<"button"> {
-	selected?: boolean;
+export interface Props extends ComponentPropsWithoutRef<"button"> {
+	selected: boolean;
 	label?: string;
 	sublabel?: string;
 	error?: boolean;

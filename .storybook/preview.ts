@@ -9,7 +9,6 @@ const preview: Preview = {
       },
     },
   },
-
   tags: ["autodocs"]
 };
 

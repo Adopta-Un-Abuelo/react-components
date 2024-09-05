@@ -3,9 +3,7 @@ import styled from "styled-components";
 
 import Color from "../../constants/Color";
 
-const ButtonText = styled.button.attrs<{ $size?: "small" | "normal" }>(
-	(props) => ({}),
-)`
+const ButtonText = styled.button<{ $size?: "small" | "normal" }>`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -36,7 +34,6 @@ const Button = ({ size, icon, iconPosition, loading, ...restProps }: Props) => {
 		<ButtonText
 			role="button"
 			{...restProps}
-			$size={size}
 			disabled={restProps.disabled || loading}
 			onClick={(e: any) =>
 				restProps.onClick &&
