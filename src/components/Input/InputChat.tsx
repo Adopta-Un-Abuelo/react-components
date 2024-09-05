@@ -15,7 +15,7 @@ import Button from "../Button/ButtonImage";
 import Menu from "../Menu/Menu";
 
 const Container = styled.div<{
-	loading?: boolean;
+	$loading?: boolean;
 	$focus?: boolean;
 	$options?: Array<optionType>;
 }>`
@@ -31,9 +31,9 @@ const Container = styled.div<{
 				: "1px " + Color.border.neutralSoft};
 	padding: 0px 20px 0px ${(props) => (props.$options ? "10px" : "20px")};
 	background-color: ${(props) =>
-		props.loading ? Color.surface.neutralSoft : "white"};
+		props.$loading ? Color.surface.neutralSoft : "white"};
 `;
-const Input = styled.input<{ loading?: boolean }>`
+const Input = styled.input<{ $loading?: boolean }>`
 	display: flex;
 	flex: 1;
 	font-family: "Poppins";
@@ -50,7 +50,8 @@ const InputChat = (props: InputChatProps) => {
 	const [text, setText] = useState("");
 	const [focus, setFocus] = useState(false);
 
-	const { style, value, defaultValue, onOptionClick, options, ...rest } = props;
+	const { style, value, defaultValue, onOptionClick, options, ...rest } =
+		props;
 
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setText(e.target.value);
@@ -88,7 +89,7 @@ const InputChat = (props: InputChatProps) => {
 	return (
 		<Container
 			style={style}
-			loading={props.loading}
+			$loading={props.loading}
 			$focus={focus}
 			$options={options}
 		>
@@ -106,6 +107,7 @@ const InputChat = (props: InputChatProps) => {
 				value={text}
 				ref={input}
 				disabled={props.loading}
+				$loading={props.loading}
 				onChange={onChange}
 				onKeyDown={onKeyDown}
 				onFocus={onInputFocus}

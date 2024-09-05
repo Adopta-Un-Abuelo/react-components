@@ -9,13 +9,36 @@ import Button from "../Button/Button";
 import SearchBar from "../SearchBar/SearchBar";
 
 import { ChevronDown } from "lucide-react";
+import { X } from "lucide-react";
+
+const useResponsiveButtonSize = () => {
+	const [buttonSize, setButtonSize] = useState("normal");
+
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth <= 400) {
+				setButtonSize("small");
+			} else {
+				setButtonSize("normal");
+			}
+		};
+
+		window.addEventListener("resize", handleResize);
+
+		handleResize();
+
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
+	return buttonSize;
+};
 
 const Container = styled.div`
 	position: relative;
 	width: fit-content;
 `;
 
-const ButtonFilter = styled.button<{ selected: boolean }>`
+const ButtonFilter = styled.button<{ $selected: boolean }>`
 	position: relative;
 	display: flex;
 	flex-direction: row;
@@ -26,13 +49,13 @@ const ButtonFilter = styled.button<{ selected: boolean }>`
 	border: ${(props) =>
 		props.disabled
 			? "0px solid"
-			: props.selected
+			: props.$selected
 				? "0px solid"
 				: "1px solid " + Color.line.soft};
 	background-color: ${(props) =>
 		props.disabled
 			? Color.status.neutral.hover
-			: props.selected
+			: props.$selected
 				? Color.background.deepBlue
 				: "transparent"};
 	cursor: ${(props) => (props.disabled ? "default" : "pointer")};
@@ -40,19 +63,29 @@ const ButtonFilter = styled.button<{ selected: boolean }>`
 		background-color: ${(props) =>
 			props.disabled
 				? Color.status.neutral.hover
-				: props.selected
+				: props.$selected
 					? Color.background.deepBlue
 					: Color.background.low};
 	}
 `;
 
-const FilterView = styled.div<{ position?: "bottom-right" | "bottom-left" }>`
+const FilterView = styled.div<{ $position?: "bottom-right" | "bottom-left" }>`
 	position: absolute;
 	display: flex;
 	flex-direction: column;
 	top: 36px;
-	right: ${(props) => (props.position === "bottom-right" ? undefined : 0)};
-	left: ${(props) => (props.position === "bottom-left" ? undefined : 0)};
+	right: ${(props) => (props.$position === "bottom-right" ? undefined : 0)};
+	left: ${(props) => (props.$position === "bottom-left" ? undefined : 0)};
+	padding: 8px 16px;
+	border-radius: 6px;
+	height: auto;
+	max-height: 400px;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	top: 36px;
+	right: ${(props) => (props.$position === "bottom-right" ? undefined : 0)};
+	left: ${(props) => (props.$position === "bottom-left" ? undefined : 0)};
 	padding: 8px 16px;
 	border-radius: 6px;
 	height: auto;
@@ -74,12 +107,14 @@ const FilterView = styled.div<{ position?: "bottom-right" | "bottom-left" }>`
 const ContentView = styled.div`
 	display: flex;
 	flex: 1;
+	padding-right: 2px;
+
 	overflow-y: auto;
 `;
 
 const BottomContainer = styled.div`
 	position: sticky;
-	bottom: 1;
+	bottom: 0;
 	z-index: 5;
 `;
 
@@ -127,6 +162,15 @@ const ButtonFilterSmallScreen = styled(ButtonFilter)`
 	@media (min-width: 769px) {
 		display: none;
 	}
+
+	border: ${(props) =>
+		props.disabled
+			? "0px solid"
+			: props.$selected
+				? "2px solid var(--border-primary, #008FF5)"
+				: "1px solid " + Color.line.soft};
+
+	background-color: white;
 `;
 
 const ButtonFilterLargeScreen = styled(ButtonFilter)`
@@ -391,40 +435,52 @@ const Filter = (props: FilterDefaultProps) => {
 		<Container id={props.id} role="filter" style={props.style}>
 			<ButtonFilterSmallScreen
 				role="filter-button"
-				selected={selectedOptions.length > 0}
+				$selected={selectedOptions.length > 0}
 				disabled={props.disabled}
 				onClick={onFilterClickSmallScreen}
 			>
 				<Text
-					type="p"
+					type="b2"
+					weight="medium"
 					style={{
-						color: props.disabled
-							? Color.text.low
-							: selectedOptions.length > 0
-								? "white"
-								: Color.text.high,
-						fontSize: 14,
-						marginRight: 4,
+						color: "var(--text-clear-neutral-hard, rgba(0, 29, 61, 0.92)",
+						fontFeatureSettings: "'liga' off, 'clig' off",
+						fontFamily: "Poppins",
+						fontSize: "14px",
+						fontStyle: "normal",
+						fontWeight: 500,
+						lineHeight: "20px",
+
+						marginRight: "6px",
 					}}
 				>
 					{getFilterLabel()}
 				</Text>
-				<ChevronDown
-					height={18}
-					width={18}
-					color={
-						props.disabled
-							? Color.text.low
-							: selectedOptions.length > 0
-								? "white"
-								: Color.text.high
-					}
-				/>
+
+				{selectedOptions.length > 0 ? (
+					<X
+						height={18}
+						width={18}
+						color={props.disabled ? Color.text.low : "black"}
+						onClick={(e) => {
+							e.stopPropagation();
+							setSelectedOptions([]);
+						}}
+					/>
+				) : (
+					<ChevronDown
+						height={18}
+						width={18}
+						color={
+							props.disabled ? Color.text.low : Color.text.high
+						}
+					/>
+				)}
 			</ButtonFilterSmallScreen>
 
 			<ButtonFilterLargeScreen
 				role="filter-button"
-				selected={selectedOptions.length > 0}
+				$selected={selectedOptions.length > 0}
 				disabled={props.disabled}
 				onClick={onFilterClickLargeScreen}
 			>
@@ -465,7 +521,14 @@ const Filter = (props: FilterDefaultProps) => {
 						}}
 						hideClose={true}
 					>
-						<div ref={modalRef}>
+						<div
+							ref={modalRef}
+							style={{
+								display: "flex",
+								flexDirection: "column",
+								height: "100vh",
+							}}
+						>
 							<HeaderContainer>
 								<SearchBar
 									defaultValue={searchText}
@@ -498,8 +561,7 @@ const Filter = (props: FilterDefaultProps) => {
 									Cancelar
 								</Text>
 							</HeaderContainer>
-
-							<ContentView>
+							<ContentView style={{ flex: 1, overflowY: "auto" }}>
 								<Checkbox
 									style={{ width: "100%" }}
 									options={options}
@@ -511,11 +573,11 @@ const Filter = (props: FilterDefaultProps) => {
 									}
 									height={22}
 									position="right"
+									avatarEnabled={true}
 									width={22}
 									onChange={onOptionChange}
 								/>
 							</ContentView>
-
 							{temporarySelectedOptions.length > 0 &&
 								renderBottomBar()}
 						</div>
@@ -527,7 +589,7 @@ const Filter = (props: FilterDefaultProps) => {
 				<FilterView
 					ref={filterViewRef}
 					role="filter-menu"
-					position={props.position}
+					$position={props.position}
 				>
 					{!props.hideSearchBar && (
 						<SearchBar

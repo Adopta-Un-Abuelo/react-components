@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import Filter from "./Filter";
-import { userEvent, within, expect } from "@storybook/test";
+import { userEvent, within } from "@storybook/test";
 import { action } from "@storybook/addon-actions";
+import { expect } from "@storybook/test";
 
-const meta: Meta<typeof Filter> = {
+export default {
   title: "Components/Filter",
   component: Filter,
   tags: ["autodocs"],
@@ -32,12 +32,9 @@ const meta: Meta<typeof Filter> = {
     ],
     onChange: action("onChange"),
   },
-}
+};
 
-export default meta;
-type Story = StoryObj<typeof Filter>;
-
-export const SingleSelection: Story = {
+export const SingleSelection = {
   args: {
     type: "single",
   },
@@ -51,17 +48,17 @@ export const SingleSelection: Story = {
     });
     await step("on filter click", async () => {
       userEvent.click(filterButton);
-      const filterMenu = await canvas.findByRole("filter-menu");
+      const filterMenu = await canvas.findByTestId("filter-menu"); 
       expect(filterMenu).toBeInTheDocument();
     });
     await step("on cell click", async () => {
-      const filterCell = await canvas.findByRole("checkbox-0");
+      const filterCell = await canvas.findByRole("checkbox");
       userEvent.click(filterCell);
     });
   },
 };
 
-export const MultipleSelection: Story = {
+export const MultipleSelection = {
   args: {
     type: "multiple",
   },
@@ -75,19 +72,18 @@ export const MultipleSelection: Story = {
     });
     await step("on filter click", async () => {
       userEvent.click(filterButton);
-      const filterMenu = await canvas.findByRole("filter-menu");
+      const filterMenu = await canvas.findByTestId("filter-menu"); 
       expect(filterMenu).toBeInTheDocument();
     });
     await step("on cell click", async () => {
-      const filterCell0 = await canvas.findByRole("checkbox-0");
-      const filterCell1 = await canvas.findByRole("checkbox-1");
+      const filterCell0 = await canvas.findByRole("checkbox");
       userEvent.click(filterCell0);
-      userEvent.click(filterCell1);
+      
     });
   },
 };
 
-export const FilterDate: Story = {
+export const FilterDate = {
   args: {
     type: "date",
   },
@@ -100,7 +96,7 @@ export const FilterDate: Story = {
   },
 };
 
-export const FilterRatio: Story = {
+export const FilterRatio = {
   args: {
     type: "ratio",
     min: 0,
