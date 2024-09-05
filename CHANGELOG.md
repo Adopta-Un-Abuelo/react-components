@@ -1,3 +1,19 @@
+# v0.3.7 (Thu Sep 05 2024)
+
+#### 🐛 Bug Fix
+
+- Merge branch 'feature/r-1038v2' [#10](https://github.com/Adopta-Un-Abuelo/react-components/pull/10) (guillermo.angeles@adoptaunabuelo.com)
+
+#### ⚠️ Pushed to `main`
+
+- fix: ui test errors (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.6 (Wed Aug 28 2024)
 
 #### ⚠️ Pushed to `main`
