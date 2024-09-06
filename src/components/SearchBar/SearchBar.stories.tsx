@@ -7,7 +7,7 @@ const meta: Meta<typeof SearchBar> = {
   component: SearchBar,
   tags: ["autodocs"],
   argTypes: {
-    $design: {
+    design: {
       table: {
         defaultValue: { summary: "primary" },
       },

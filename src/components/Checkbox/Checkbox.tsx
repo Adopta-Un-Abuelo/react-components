@@ -143,7 +143,7 @@ const Checkbox = ({
 				</Box>
 			)}
 			<TextView>
-				{props.avatarEnabled && (
+				{avatarEnabled && (
 					<Avatar
 						name={props.label || ""}
 						style={{
@@ -189,10 +189,6 @@ const Checkbox = ({
 			)}
 		</Container>
 	);
-};
-
-Checkbox.defaultProps = {
-	position: "left",
 };
 
 export default Checkbox;

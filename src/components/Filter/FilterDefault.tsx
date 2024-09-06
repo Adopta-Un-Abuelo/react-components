@@ -7,31 +7,11 @@ import Text from "../Text/Text";
 import Checkbox from "../Checkbox/CheckboxList";
 import Button from "../Button/Button";
 import SearchBar from "../SearchBar/SearchBar";
+import media from "styled-media-query";
 
 import { ChevronDown } from "lucide-react";
 import { X } from "lucide-react";
-
-const useResponsiveButtonSize = () => {
-	const [buttonSize, setButtonSize] = useState("normal");
-
-	useEffect(() => {
-		const handleResize = () => {
-			if (window.innerWidth <= 400) {
-				setButtonSize("small");
-			} else {
-				setButtonSize("normal");
-			}
-		};
-
-		window.addEventListener("resize", handleResize);
-
-		handleResize();
-
-		return () => window.removeEventListener("resize", handleResize);
-	}, []);
-
-	return buttonSize;
-};
+import { ColorV2 } from "../../constants";
 
 const Container = styled.div`
 	position: relative;
@@ -48,28 +28,20 @@ const ButtonFilter = styled.button<{ $selected: boolean }>`
 	border-radius: 20px;
 	border: ${(props) =>
 		props.disabled
-			? "0px solid"
+			? "0px solid " + ColorV2.border.neutralSoft
 			: props.$selected
-				? "0px solid"
-				: "1px solid " + Color.line.soft};
-	background-color: ${(props) =>
-		props.disabled
-			? Color.status.neutral.hover
-			: props.$selected
-				? Color.background.deepBlue
-				: "transparent"};
+				? "2px solid " + ColorV2.border.primary
+				: "1px solid " + ColorV2.border.neutralSoft};
+	background-color: transparent;
 	cursor: ${(props) => (props.disabled ? "default" : "pointer")};
 	&:hover {
-		background-color: ${(props) =>
-			props.disabled
-				? Color.status.neutral.hover
-				: props.$selected
-					? Color.background.deepBlue
-					: Color.background.low};
+		background-color: ${ColorV2.surface.neutralSoft};
 	}
 `;
 
-const FilterView = styled.div<{ $position?: "bottom-right" | "bottom-left" }>`
+const FilterView = styled.div<{
+	$position?: "bottom-right" | "bottom-left";
+}>`
 	position: absolute;
 	display: flex;
 	flex-direction: column;
@@ -90,18 +62,15 @@ const FilterView = styled.div<{ $position?: "bottom-right" | "bottom-left" }>`
 	border-radius: 6px;
 	height: auto;
 	max-height: 400px;
-
 	width: 320px;
-
 	background-color: white;
-	border: 1px solid rgba(0, 0, 0, 0.1);
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	z-index: 10;
 	overflow: hidden;
 
-	@media (max-width: 768px) {
+	${media.lessThan("small")`
 		display: none;
-	}
+	`}
 `;
 
 const ContentView = styled.div`
@@ -125,10 +94,11 @@ const BottomBar = styled.div`
 	justify-content: space-between;
 	padding-top: 8px;
 	background-color: white;
+	gap: 8px;
 
-	@media (max-width: 768px) {
+	${media.lessThan("small")`
 		padding: 16px 0px;
-	}
+	`}
 `;
 
 const StyledDivider = styled.hr`
@@ -144,89 +114,23 @@ const HeaderContainer = styled.div`
 	position: sticky;
 	top: 0;
 	display: flex;
+	flex: 1;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 8px;
 	padding: 16px 0px;
-	background-color: white;
 	z-index: 5;
-`;
-
-const ModalWrapper = styled.div`
-	@media (min-width: 769px) {
-		display: none;
-	}
-`;
-
-const ButtonFilterSmallScreen = styled(ButtonFilter)`
-	@media (min-width: 769px) {
-		display: none;
-	}
-
-	border: ${(props) =>
-		props.disabled
-			? "0px solid"
-			: props.$selected
-				? "2px solid var(--border-primary, #008FF5)"
-				: "1px solid " + Color.line.soft};
-
-	background-color: white;
-`;
-
-const ButtonFilterLargeScreen = styled(ButtonFilter)`
-	@media (max-width: 768px) {
-		display: none;
-	}
-`;
-
-const StyledButton = styled(Button)`
-	@media (max-width: 768px) {
-		display: flex;
-		padding: 15px 20px;
-		justify-content: center;
-		align-items: center;
-		gap: 6px;
-		width: 126px;
-		height: 52px;
-	}
-`;
-
-const StyledButtonSmallScreen = styled(StyledButton)`
-	display: none;
-
-	@media (max-width: 768px) {
-		display: inline-block;
-	}
-`;
-
-const StyledButtonLargeScreen = styled(StyledButton)`
-	display: inline-block;
-
-	@media (max-width: 768px) {
-		display: none;
-	}
-`;
-
-const ResponsiveButton = styled(Button)`
-	@media (max-width: 768px) {
-		display: none;
-	}
-`;
-
-const ResponsiveText = styled(Text)`
-	@media (min-width: 769px) {
-		display: none;
-	}
+	gap: 8px;
 `;
 
 const Filter = (props: FilterDefaultProps) => {
-	const [showModal, setShowModal] = useState(false);
+	const isMobile = window.innerWidth <= 450;
 	const [showFilterView, setShowFilterView] = useState(false);
-	const [selectedOptions, _setSelectedOptions] = useState<
-		Array<{ id: string; label: string }>
+	const [selectedOptions, setSelectedOptions] = useState<
+		Array<{ id: string; [key: string]: any }>
 	>([]);
-	const [temporarySelectedOptions, setTemporarySelectedOptions] = useState<
-		Array<{ id: string; label: string }>
+	const [checkboxSelection, setCheckboxSelection] = useState<
+		Array<{ id: string; [key: string]: any }>
 	>([]);
 	const [options, setOptions] = useState(props.options);
 	const [fuse, setFuse] = useState<any>(undefined);
@@ -235,15 +139,8 @@ const Filter = (props: FilterDefaultProps) => {
 	const filterViewRef = useRef<HTMLDivElement>(null);
 	const modalRef = useRef<HTMLDivElement>(null);
 
-	const selectedOptionsRef = useRef(selectedOptions);
-	const setSelectedOptions = (data: Array<{ id: string; label: string }>) => {
-		selectedOptionsRef.current = data;
-		_setSelectedOptions(data);
-	};
-
 	useEffect(() => {
 		const handleResize = () => {
-			setShowModal(false);
 			setShowFilterView(false);
 		};
 
@@ -261,7 +158,9 @@ const Filter = (props: FilterDefaultProps) => {
 	}, [props.options]);
 
 	useEffect(() => {
-		setSelectedOptions(props.selectedOptions ? props.selectedOptions : []);
+		setCheckboxSelection(
+			props.selectedOptions ? props.selectedOptions : [],
+		);
 	}, [props.selectedOptions]);
 
 	useEffect(() => {
@@ -269,17 +168,17 @@ const Filter = (props: FilterDefaultProps) => {
 			if (
 				showFilterView &&
 				filterViewRef.current &&
+				!modalRef.current &&
 				!filterViewRef.current.contains(event.target as Node)
 			) {
 				setShowFilterView(false);
 			}
-
-			if (
-				showModal &&
+			else if (
+				showFilterView &&
 				modalRef.current &&
 				!modalRef.current.contains(event.target as Node)
 			) {
-				setShowModal(false);
+				setShowFilterView(false);
 			}
 		};
 
@@ -287,49 +186,32 @@ const Filter = (props: FilterDefaultProps) => {
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
-	}, [showFilterView, showModal]);
+	}, [showFilterView]);
 
-	const onOptionChange = (selection: Array<{ id: string }>) => {
-		const formattedSelection = selection.map((item) => ({
-			id: item.id,
-			label: findLabelById(item.id),
-		}));
-
-		setTemporarySelectedOptions(formattedSelection);
-	};
-
-	const findLabelById = (id: string): string => {
-		const option = options.find((option) => option.id === id);
-		return option ? option.label : "";
+	const onOptionChange = (
+		options: Array<{ id: string; [key: string]: any }>,
+	) => {
+		setCheckboxSelection(options);
 	};
 
 	const onSave = () => {
-		setSelectedOptions(temporarySelectedOptions);
-		setShowModal(false);
+		setSelectedOptions(checkboxSelection);
 		setShowFilterView(false);
-		props.onChange && props.onChange(temporarySelectedOptions);
+		props.onChange && props.onChange(checkboxSelection);
 	};
 
 	const onRemove = () => {
-		setTemporarySelectedOptions([]);
+		setCheckboxSelection([]);
 		setSelectedOptions([]);
 		props.onChange && props.onChange([]);
 	};
 
 	const onSelectAll = () => {
-		setTemporarySelectedOptions(options);
-		setSelectedOptions(options);
+		setCheckboxSelection(options);
 	};
 
-	const onFilterClickSmallScreen = () => {
-		setTemporarySelectedOptions(selectedOptions);
-		setShowModal(true);
-		setShowFilterView(false);
-	};
-
-	const onFilterClickLargeScreen = () => {
+	const onFilterClick = () => {
 		setShowFilterView(true);
-		setShowModal(false);
 	};
 
 	const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -345,7 +227,7 @@ const Filter = (props: FilterDefaultProps) => {
 	};
 
 	const getFilterLabel = () => {
-		if (props.type === "single" && selectedOptions.length === 1) {
+		if (props.type === "single" && selectedOptions.length > 0) {
 			return selectedOptions[0].label;
 		}
 		if (props.type === "multiple" && selectedOptions.length > 0) {
@@ -359,73 +241,30 @@ const Filter = (props: FilterDefaultProps) => {
 			<BottomContainer>
 				<StyledDivider />
 				<BottomBar>
-					{props.type === "multiple" && (
+					{props.type === "multiple" && !isMobile && (
 						<Button
-							design={"text"}
-							size={"small"}
-							style={{ marginRight: 4 }}
+							design={"call-to-action"}
+							size={isMobile ? "normal" : "small"}
 							onClick={onSelectAll}
 						>
 							Seleccionar todo
 						</Button>
 					)}
 
-					<ResponsiveButton
-						design={"text"}
-						size={"small"}
-						style={{ marginRight: 4 }}
+					<Button
+						design={"call-to-action"}
+						size={isMobile ? "normal" : "small"}
 						onClick={onRemove}
 					>
 						Borrar
-					</ResponsiveButton>
-					<ResponsiveText
-						type="b1"
-						weight="medium"
-						style={{
-							color: "var(--text-clear-neutral-hard, rgba(0, 29, 61, 0.92)",
-							fontFeatureSettings: "'liga' off, 'clig' off",
-							fontFamily: "Poppins",
-							fontSize: "15px",
-							fontStyle: "normal",
-							fontWeight: 500,
-							cursor: "pointer",
-							textDecoration: "underline",
-						}}
-						onClick={onRemove}
-					>
-						Restaurar
-					</ResponsiveText>
-
-					<StyledButtonSmallScreen
+					</Button>
+					<Button
 						design={"primary"}
-						size={"small"}
-						onClick={onSave}
-					>
-						<Text
-							type="b1"
-							weight="medium"
-							style={{
-								color: "var(--text-invert, #FFF)",
-								fontFeatureSettings: "'liga' off, 'clig' off",
-								fontFamily: "Poppins",
-								fontSize: "15px",
-								fontStyle: "normal",
-								fontWeight: 600,
-								cursor: "pointer",
-								lineHeight: "22px",
-							}}
-						>
-							Aplicar
-						</Text>
-					</StyledButtonSmallScreen>
-
-					<StyledButtonLargeScreen
-						design={"primary"}
-						size={"small"}
+						size={isMobile ? "normal" : "small"}
 						onClick={onSave}
 					>
 						Aplicar
-					</StyledButtonLargeScreen>
+					</Button>
 				</BottomBar>
 			</BottomContainer>
 		</>
@@ -433,25 +272,20 @@ const Filter = (props: FilterDefaultProps) => {
 
 	return (
 		<Container id={props.id} role="filter" style={props.style}>
-			<ButtonFilterSmallScreen
+			<ButtonFilter
 				role="filter-button"
 				$selected={selectedOptions.length > 0}
 				disabled={props.disabled}
-				onClick={onFilterClickSmallScreen}
+				onClick={onFilterClick}
 			>
 				<Text
 					type="b2"
 					weight="medium"
 					style={{
-						color: "var(--text-clear-neutral-hard, rgba(0, 29, 61, 0.92)",
-						fontFeatureSettings: "'liga' off, 'clig' off",
-						fontFamily: "Poppins",
-						fontSize: "14px",
+						fontSize: 14,
 						fontStyle: "normal",
 						fontWeight: 500,
-						lineHeight: "20px",
-
-						marginRight: "6px",
+						marginRight: 6,
 					}}
 				>
 					{getFilterLabel()}
@@ -464,7 +298,7 @@ const Filter = (props: FilterDefaultProps) => {
 						color={props.disabled ? Color.text.low : "black"}
 						onClick={(e) => {
 							e.stopPropagation();
-							setSelectedOptions([]);
+							onRemove();
 						}}
 					/>
 				) : (
@@ -476,115 +310,52 @@ const Filter = (props: FilterDefaultProps) => {
 						}
 					/>
 				)}
-			</ButtonFilterSmallScreen>
-
-			<ButtonFilterLargeScreen
-				role="filter-button"
-				$selected={selectedOptions.length > 0}
-				disabled={props.disabled}
-				onClick={onFilterClickLargeScreen}
+			</ButtonFilter>
+			<Modal
+				type="full-screen"
+				isVisible={showFilterView && isMobile}
+				onClose={() => {
+					setShowFilterView(false);
+				}}
+				hideClose={true}
 			>
-				<Text
-					type="p"
-					style={{
-						color: props.disabled
-							? Color.text.low
-							: selectedOptions.length > 0
-								? "white"
-								: Color.text.high,
-						fontSize: 14,
-						marginRight: 4,
-					}}
-				>
-					{getFilterLabel()}
-				</Text>
-				<ChevronDown
-					height={18}
-					width={18}
-					color={
-						props.disabled
-							? Color.text.low
-							: selectedOptions.length > 0
-								? "white"
-								: Color.text.high
-					}
-				/>
-			</ButtonFilterLargeScreen>
-
-			{showModal && (
-				<ModalWrapper ref={modalRef}>
-					<Modal
-						type="full-screen"
-						isVisible={showModal}
-						onClose={() => {
-							setShowModal(false);
-						}}
-						hideClose={true}
-					>
-						<div
-							ref={modalRef}
-							style={{
-								display: "flex",
-								flexDirection: "column",
-								height: "100vh",
+				<div ref={modalRef}>
+					<HeaderContainer>
+						<SearchBar
+							defaultValue={searchText}
+							style={{ flex: 1 }}
+							placeholder={"Buscar"}
+							design={"primary"}
+							onChange={onSearchChange}
+						/>
+						<Button
+							design="call-to-action"
+							size="small"
+							style={{ color: ColorV2.text.neutralHard }}
+							onClick={() => {
+								setShowFilterView(false);
+								setCheckboxSelection(selectedOptions);
 							}}
 						>
-							<HeaderContainer>
-								<SearchBar
-									defaultValue={searchText}
-									style={{ flex: 1, marginTop: "4px" }}
-									placeholder={"Buscar"}
-									design={"primary"}
-									onChange={onSearchChange}
-								/>
-								<Text
-									type="h3"
-									weight="semibold"
-									style={{
-										color: "var(--text-clear-neutral-hard, rgba(0, 29, 61, 0.92)",
-										fontFeatureSettings:
-											"'liga' off, 'clig' off",
-										fontFamily: "Poppins",
-										fontSize: "15px",
-										fontStyle: "normal",
-										fontWeight: 500,
-										lineHeight: "22px",
-										marginLeft: "8px",
-									}}
-									onClick={() => {
-										setShowModal(false);
-										setTemporarySelectedOptions(
-											selectedOptions,
-										);
-									}}
-								>
-									Cancelar
-								</Text>
-							</HeaderContainer>
-							<ContentView style={{ flex: 1, overflowY: "auto" }}>
-								<Checkbox
-									style={{ width: "100%" }}
-									options={options}
-									selectedOptions={temporarySelectedOptions}
-									type={
-										props.type === "multiple"
-											? "multiple"
-											: "single"
-									}
-									height={22}
-									position="right"
-									avatarEnabled={true}
-									width={22}
-									onChange={onOptionChange}
-								/>
-							</ContentView>
-							{temporarySelectedOptions.length > 0 &&
-								renderBottomBar()}
-						</div>
-					</Modal>
-				</ModalWrapper>
-			)}
-
+							Cancelar
+						</Button>
+					</HeaderContainer>
+					<ContentView style={{ flex: 1, overflowY: "auto" }}>
+						<Checkbox
+							style={{ width: "100%" }}
+							options={options}
+							selectedOptions={checkboxSelection}
+							type={props.type}
+							height={22}
+							position="right"
+							avatarEnabled={true}
+							width={22}
+							onChange={onOptionChange}
+						/>
+					</ContentView>
+					{renderBottomBar()}
+				</div>
+			</Modal>
 			{showFilterView && (
 				<FilterView
 					ref={filterViewRef}
@@ -607,7 +378,7 @@ const Filter = (props: FilterDefaultProps) => {
 						<Checkbox
 							style={{ paddingTop: 16 }}
 							options={options}
-							selectedOptions={selectedOptions}
+							selectedOptions={checkboxSelection}
 							type={
 								props.type === "multiple"
 									? "multiple"
@@ -640,9 +411,9 @@ export interface FilterDefaultProps {
 	}>;
 	selectedOptions?: Array<{
 		id: string;
-		label: string;
+		[key: string]: any;
 	}>;
 	hideSearchBar?: boolean;
 	style?: CSSProperties;
-	onChange?: (r: Array<{ id: string; label: string }>) => void;
+	onChange?: (r: Array<{ id: string; [key: string]: any }>) => void;
 }
