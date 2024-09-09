@@ -1,3 +1,15 @@
+# v0.3.10 (Mon Sep 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: filter label error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.9 (Mon Sep 09 2024)
 
 #### ⚠️ Pushed to `main`
