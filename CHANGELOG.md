@@ -1,3 +1,18 @@
+# v0.3.8 (Mon Sep 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/r-1038v2' (guillermo.angeles@adoptaunabuelo.com)
+- fix: filters errors solved (guillermo.angeles@adoptaunabuelo.com)
+- fix: filters errors (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'main' into feature/r-1038v2 (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.7 (Thu Sep 05 2024)
 
 #### 🐛 Bug Fix
