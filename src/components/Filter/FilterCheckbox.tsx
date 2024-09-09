@@ -52,9 +52,17 @@ const FilterCheckbox = ({
 	};
 
 	const changeLabel = (selection: any[]) => {
-		console.log(selection);
 		if (type === "single" && selection.length > 0) {
-			setLabel(selection[0].label);
+			const item = selection[0];
+			if(item.label)
+				setLabel(item.label);
+			else {
+				const item2 = options.find(i => i.id === item.id);
+				if(item2)
+					setLabel(item2.label);
+				else
+					setLabel("1 seleccionado")
+			}
 		} else if (type === "multiple" && selection.length > 0) {
 			setLabel(`${selection.length} seleccionados`);
 		}

@@ -40,7 +40,6 @@ export const SingleSelection = {
 		selectedOptions: [
 			{
 				id: "option1",
-				label: "Option 1",
 			},
 		],
 	},
@@ -61,11 +60,9 @@ export const MultipleSelection = {
 		selectedOptions: [
 			{
 				id: "option1",
-				label: "Option 1",
 			},
 			{
 				id: "option2",
-				label: "Option 2",
 			},
 		],
 	},
