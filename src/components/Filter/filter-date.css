@@ -7,3 +7,7 @@
 .DayPickerKeyboardShortcuts_show__bottomRight{
     display: none;
 }
+
+.CalendarMonth{
+    padding: 0px !important;
+}

@@ -85,7 +85,7 @@ export interface Props {
 	height?: number;
 	width?: number;
 	type: "single" | "multiple";
-	onChange?: (result: Array<{ id: string }>) => void;
+	onChange?: (result: Array<{ id: string; [key: string]: any }>) => void;
 	position?: "left" | "right";
 	avatarEnabled?: boolean;
 }

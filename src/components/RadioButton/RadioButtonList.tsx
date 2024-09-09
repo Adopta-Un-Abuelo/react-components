@@ -1,4 +1,4 @@
-import { CSSProperties, ReactElement, useState } from "react";
+import { CSSProperties, useState } from "react";
 import styled from "styled-components";
 import RadioButton from "./RadioButton";
 
@@ -49,6 +49,6 @@ export interface Props {
 }
 interface OptionProps {
 	id: string;
-	children: string;
+	children: React.ReactNode;
 	selected?: boolean;
 }
