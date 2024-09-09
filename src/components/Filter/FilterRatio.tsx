@@ -20,8 +20,7 @@ const Filter = ({
 		if (selectedOptions) {
 			setSelection(selectedOptions);
 			setLabel(`${selectedOptions.toString()} ${unit ? unit : ""}`);
-		}
-		else{
+		} else {
 			setSelection(0);
 			setLabel(undefined);
 		}
@@ -75,6 +74,7 @@ export interface FilterRatioProps {
 	position?: "bottom-right" | "bottom-left";
 	hideSearchBar?: boolean;
 	style?: CSSProperties;
+	type: "ratio";
 	min: number;
 	max: number;
 	selectedOptions?: number;
