@@ -1,6 +1,7 @@
 import Filter from "./Filter";
 import { userEvent, within, fn } from "@storybook/test";
 import { expect } from "@storybook/test";
+import moment from "moment";
 
 export default {
 	title: "Components/Filter",
@@ -8,7 +9,7 @@ export default {
 	tags: ["autodocs"],
 	args: {
 		id: "filter",
-		label: "Test filter",
+		placeholder: "Test filter",
 		options: [
 			{
 				id: "option1",
@@ -36,6 +37,12 @@ export default {
 export const SingleSelection = {
 	args: {
 		type: "single",
+		selectedOptions: [
+			{
+				id: "option1",
+				label: "Option 1",
+			},
+		],
 	},
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
@@ -44,15 +51,6 @@ export const SingleSelection = {
 		await step("render", async () => {
 			expect(filter).toBeInTheDocument();
 			expect(filterButton).toBeInTheDocument();
-		});
-		await step("on filter click", async () => {
-			userEvent.click(filterButton);
-			const filterMenu = await canvas.findByRole("filter-menu");
-			expect(filterMenu).toBeInTheDocument();
-		});
-		await step("on cell click", async () => {
-			const filterCell = await canvas.findByRole("checkbox-1");
-			userEvent.click(filterCell);
 		});
 	},
 };
@@ -60,6 +58,16 @@ export const SingleSelection = {
 export const MultipleSelection = {
 	args: {
 		type: "multiple",
+		selectedOptions: [
+			{
+				id: "option1",
+				label: "Option 1",
+			},
+			{
+				id: "option2",
+				label: "Option 2",
+			},
+		],
 	},
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
@@ -69,21 +77,16 @@ export const MultipleSelection = {
 			expect(filter).toBeInTheDocument();
 			expect(filterButton).toBeInTheDocument();
 		});
-		await step("on filter click", async () => {
-			userEvent.click(filterButton);
-			const filterMenu = await canvas.findByRole("filter-menu");
-			expect(filterMenu).toBeInTheDocument();
-		});
-		await step("on cell click", async () => {
-			const filterCell0 = await canvas.findByRole("checkbox-1");
-			userEvent.click(filterCell0);
-		});
 	},
 };
 
 export const FilterDate = {
 	args: {
 		type: "date",
+		selectedOptions: {
+			startDate: moment(),
+			endDate: moment().add(5, "days")
+		}
 	},
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
@@ -101,6 +104,7 @@ export const FilterRatio = {
 		max: 100,
 		selectedOptions: 40,
 		restart: false,
+		unit: "€",
 	},
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);

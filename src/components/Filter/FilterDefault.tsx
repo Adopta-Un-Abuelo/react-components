@@ -1,17 +1,15 @@
-import { useEffect, useState, ChangeEvent, CSSProperties, useRef } from "react";
+import { useEffect, useState, CSSProperties, useRef, ChangeEvent } from "react";
 import styled from "styled-components";
-import Fuse from "fuse.js";
-import Modal from "../Modal/Modal";
-import Color from "../../constants/Color";
-import Text from "../Text/Text";
-import Checkbox from "../Checkbox/CheckboxList";
-import Button from "../Button/Button";
-import SearchBar from "../SearchBar/SearchBar";
 import media from "styled-media-query";
 
 import { ChevronDown } from "lucide-react";
 import { X } from "lucide-react";
 import { ColorV2 } from "../../constants";
+import Modal from "../Modal/Modal";
+import Color from "../../constants/Color";
+import Text from "../Text/Text";
+import Button from "../Button/Button";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Container = styled.div`
 	position: relative;
@@ -73,14 +71,6 @@ const FilterView = styled.div<{
 	`}
 `;
 
-const ContentView = styled.div`
-	display: flex;
-	flex: 1;
-	padding-right: 2px;
-
-	overflow-y: auto;
-`;
-
 const BottomContainer = styled.div`
 	position: sticky;
 	bottom: 0;
@@ -109,13 +99,21 @@ const StyledDivider = styled.hr`
 	margin-right: -16px;
 	border-top: 0px solid var(--border-clear-neutral-soft, rgba(0, 29, 61, 0.1));
 `;
+const ContentView = styled.div`
+	display: flex;
+	flex: 1;
+	padding-right: 2px;
 
-const HeaderContainer = styled.div`
+	overflow-y: auto;
+`;
+
+const HeaderContainer = styled.div<{ $hideSearchBar: boolean }>`
 	position: sticky;
 	top: 0;
 	display: flex;
 	flex: 1;
-	justify-content: space-between;
+	justify-content: ${(props) =>
+		props.$hideSearchBar ? "end" : "space-between"};
 	align-items: center;
 	margin-bottom: 8px;
 	padding: 16px 0px;
@@ -126,14 +124,6 @@ const HeaderContainer = styled.div`
 const Filter = (props: FilterDefaultProps) => {
 	const isMobile = window.innerWidth <= 450;
 	const [showFilterView, setShowFilterView] = useState(false);
-	const [selectedOptions, setSelectedOptions] = useState<
-		Array<{ id: string; [key: string]: any }>
-	>([]);
-	const [checkboxSelection, setCheckboxSelection] = useState<
-		Array<{ id: string; [key: string]: any }>
-	>([]);
-	const [options, setOptions] = useState(props.options);
-	const [fuse, setFuse] = useState<any>(undefined);
 	const [searchText, setSearchText] = useState<string | undefined>(undefined);
 
 	const filterViewRef = useRef<HTMLDivElement>(null);
@@ -143,25 +133,9 @@ const Filter = (props: FilterDefaultProps) => {
 		const handleResize = () => {
 			setShowFilterView(false);
 		};
-
 		window.addEventListener("resize", handleResize);
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
-
-	useEffect(() => {
-		setFuse(
-			new Fuse(props.options, {
-				keys: ["label", "id"],
-			}),
-		);
-		setOptions(props.options);
-	}, [props.options]);
-
-	useEffect(() => {
-		setCheckboxSelection(
-			props.selectedOptions ? props.selectedOptions : [],
-		);
-	}, [props.selectedOptions]);
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -172,8 +146,7 @@ const Filter = (props: FilterDefaultProps) => {
 				!filterViewRef.current.contains(event.target as Node)
 			) {
 				setShowFilterView(false);
-			}
-			else if (
+			} else if (
 				showFilterView &&
 				modalRef.current &&
 				!modalRef.current.contains(event.target as Node)
@@ -188,27 +161,9 @@ const Filter = (props: FilterDefaultProps) => {
 		};
 	}, [showFilterView]);
 
-	const onOptionChange = (
-		options: Array<{ id: string; [key: string]: any }>,
-	) => {
-		setCheckboxSelection(options);
-	};
-
-	const onSave = () => {
-		setSelectedOptions(checkboxSelection);
-		setShowFilterView(false);
-		props.onChange && props.onChange(checkboxSelection);
-	};
-
-	const onRemove = () => {
-		setCheckboxSelection([]);
-		setSelectedOptions([]);
-		props.onChange && props.onChange([]);
-	};
-
-	const onSelectAll = () => {
-		setCheckboxSelection(options);
-	};
+	useEffect(() => {
+		if (!showFilterView) props.onClose && props.onClose();
+	}, [showFilterView]);
 
 	const onFilterClick = () => {
 		setShowFilterView(true);
@@ -217,23 +172,7 @@ const Filter = (props: FilterDefaultProps) => {
 	const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const searchText = e.target.value;
 		setSearchText(searchText);
-		if (searchText) {
-			const result = fuse.search(searchText);
-			const temp = result.map((obj: any) => obj.item);
-			setOptions(temp);
-		} else {
-			setOptions(props.options);
-		}
-	};
-
-	const getFilterLabel = () => {
-		if (props.type === "single" && selectedOptions.length > 0) {
-			return selectedOptions[0].label;
-		}
-		if (props.type === "multiple" && selectedOptions.length > 0) {
-			return `${selectedOptions.length} seleccionados`;
-		}
-		return props.label;
+		props.onSearchChange && props.onSearchChange(searchText);
 	};
 
 	const renderBottomBar = () => (
@@ -241,27 +180,24 @@ const Filter = (props: FilterDefaultProps) => {
 			<BottomContainer>
 				<StyledDivider />
 				<BottomBar>
-					{props.type === "multiple" && !isMobile && (
-						<Button
-							design={"call-to-action"}
-							size={isMobile ? "normal" : "small"}
-							onClick={onSelectAll}
-						>
-							Seleccionar todo
-						</Button>
-					)}
-
+					{props.childrenBottomBar}
 					<Button
 						design={"call-to-action"}
 						size={isMobile ? "normal" : "small"}
-						onClick={onRemove}
+						onClick={() => {
+							setShowFilterView(false);
+							props.onRemove && props.onRemove();
+						}}
 					>
 						Borrar
 					</Button>
 					<Button
 						design={"primary"}
 						size={isMobile ? "normal" : "small"}
-						onClick={onSave}
+						onClick={() => {
+							setShowFilterView(false);
+							props.onSave && props.onSave();
+						}}
 					>
 						Aplicar
 					</Button>
@@ -274,7 +210,7 @@ const Filter = (props: FilterDefaultProps) => {
 		<Container id={props.id} role="filter" style={props.style}>
 			<ButtonFilter
 				role="filter-button"
-				$selected={selectedOptions.length > 0}
+				$selected={props.label ? true : false}
 				disabled={props.disabled}
 				onClick={onFilterClick}
 			>
@@ -288,17 +224,17 @@ const Filter = (props: FilterDefaultProps) => {
 						marginRight: 6,
 					}}
 				>
-					{getFilterLabel()}
+					{props.label ? props.label : props.placeholder}
 				</Text>
 
-				{selectedOptions.length > 0 ? (
+				{props.label ? (
 					<X
 						height={18}
 						width={18}
 						color={props.disabled ? Color.text.low : "black"}
 						onClick={(e) => {
 							e.stopPropagation();
-							onRemove();
+							props.onRemove && props.onRemove();
 						}}
 					/>
 				) : (
@@ -320,53 +256,45 @@ const Filter = (props: FilterDefaultProps) => {
 				hideClose={true}
 			>
 				<div ref={modalRef}>
-					<HeaderContainer>
-						<SearchBar
-							defaultValue={searchText}
-							style={{ flex: 1 }}
-							placeholder={"Buscar"}
-							design={"primary"}
-							onChange={onSearchChange}
-						/>
+					<HeaderContainer
+						$hideSearchBar={
+							props.hideSearchBar ? props.hideSearchBar : false
+						}
+					>
+						{!props.hideSearchBar && (
+							<SearchBar
+								defaultValue={searchText}
+								style={{ flex: 1 }}
+								placeholder={"Buscar"}
+								design={"primary"}
+								onChange={onSearchChange}
+							/>
+						)}
 						<Button
 							design="call-to-action"
 							size="small"
 							style={{ color: ColorV2.text.neutralHard }}
 							onClick={() => {
 								setShowFilterView(false);
-								setCheckboxSelection(selectedOptions);
 							}}
 						>
 							Cancelar
 						</Button>
 					</HeaderContainer>
 					<ContentView style={{ flex: 1, overflowY: "auto" }}>
-						<Checkbox
-							style={{ width: "100%" }}
-							options={options}
-							selectedOptions={checkboxSelection}
-							type={props.type}
-							height={22}
-							position="right"
-							avatarEnabled={true}
-							width={22}
-							onChange={onOptionChange}
-						/>
+						{props.children}
 					</ContentView>
 					{renderBottomBar()}
 				</div>
 			</Modal>
-			{showFilterView && (
-				<FilterView
-					ref={filterViewRef}
-					role="filter-menu"
-					$position={props.position}
-				>
+			{!isMobile && showFilterView && (
+				<FilterView ref={filterViewRef} $position={props.position}>
 					{!props.hideSearchBar && (
 						<SearchBar
 							defaultValue={searchText}
 							style={{
-								borderBottom: "1px solid " + Color.line.soft,
+								borderBottom:
+									"1px solid " + ColorV2.border.neutralSoft,
 								marginBottom: 8,
 							}}
 							placeholder={"Buscar"}
@@ -374,21 +302,7 @@ const Filter = (props: FilterDefaultProps) => {
 							onChange={onSearchChange}
 						/>
 					)}
-					<ContentView>
-						<Checkbox
-							style={{ paddingTop: 16 }}
-							options={options}
-							selectedOptions={checkboxSelection}
-							type={
-								props.type === "multiple"
-									? "multiple"
-									: "single"
-							}
-							height={18}
-							width={18}
-							onChange={onOptionChange}
-						/>
-					</ContentView>
+					<ContentView>{props.children}</ContentView>
 					{renderBottomBar()}
 				</FilterView>
 			)}
@@ -400,20 +314,16 @@ export default Filter;
 
 export interface FilterDefaultProps {
 	id: string;
-	label: string;
+	placeholder: string;
+	label?: string;
 	disabled?: boolean;
-	type: "single" | "multiple";
 	position?: "bottom-right" | "bottom-left";
-	options: Array<{
-		id: string;
-		label: string;
-		sublabel?: string;
-	}>;
-	selectedOptions?: Array<{
-		id: string;
-		[key: string]: any;
-	}>;
 	hideSearchBar?: boolean;
 	style?: CSSProperties;
-	onChange?: (r: Array<{ id: string; [key: string]: any }>) => void;
+	children: React.ReactNode;
+	childrenBottomBar?: React.ReactNode;
+	onClose?: () => void;
+	onSearchChange?: (searchText: string) => void;
+	onRemove?: () => void;
+	onSave?: () => void;
 }
