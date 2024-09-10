@@ -94,6 +94,8 @@ const ModalComponent = forwardRef(
 			<Modal
 				role="modal"
 				isOpen={isVisible}
+        onRequestClose={onClose} 
+				shouldCloseOnOverlayClick={true} 
 				ariaHideApp={false}
 				style={{
 					content: {
