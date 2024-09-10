@@ -22,8 +22,10 @@ const ButtonFilter = styled.button<{ $selected: boolean }>`
 	flex-direction: row;
 	align-items: center;
 	height: 32px;
+	max-width: 180px;
 	padding: 0px 12px;
 	border-radius: 20px;
+	gap: 6px;
 	border: ${(props) =>
 		props.disabled
 			? "0px solid " + ColorV2.border.neutralSoft
@@ -116,9 +118,17 @@ const HeaderContainer = styled.div<{ $hideSearchBar: boolean }>`
 		props.$hideSearchBar ? "end" : "space-between"};
 	align-items: center;
 	margin-bottom: 8px;
-	padding: 16px 0px;
+	padding: 16px 0px 8px;
 	z-index: 5;
 	gap: 8px;
+	background-color: white;
+`;
+const CloseView = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 18px;
+	width: 18px;
 `;
 
 const Filter = (props: FilterDefaultProps) => {
@@ -218,33 +228,41 @@ const Filter = (props: FilterDefaultProps) => {
 					type="b2"
 					weight="medium"
 					style={{
-						fontSize: 14,
-						fontStyle: "normal",
 						fontWeight: 500,
-						marginRight: 6,
+						whiteSpace: "nowrap",
+						overflow: "hidden",
+						overflowWrap: "break-word",
+						textOverflow: "ellipsis",
 					}}
 				>
 					{props.label ? props.label : props.placeholder}
 				</Text>
 
 				{props.label ? (
-					<X
-						height={18}
-						width={18}
-						color={props.disabled ? Color.text.low : "black"}
+					<CloseView
 						onClick={(e) => {
 							e.stopPropagation();
 							props.onRemove && props.onRemove();
 						}}
-					/>
+					>
+						<X
+							height={18}
+							width={18}
+							color={props.disabled ? Color.text.low : "black"}
+						/>
+					</CloseView>
 				) : (
-					<ChevronDown
-						height={18}
-						width={18}
-						color={
-							props.disabled ? Color.text.low : Color.text.high
-						}
-					/>
+					<CloseView>
+						<ChevronDown
+							height={18}
+							width={18}
+							color={
+								props.disabled
+									? Color.text.low
+									: Color.text.high
+							}
+						/>
+					</CloseView>
 				)}
 			</ButtonFilter>
 			<Modal

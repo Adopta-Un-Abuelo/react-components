@@ -103,7 +103,7 @@ const ModalComponent = forwardRef(
 							props.type === "full-screen"
 								? "100%"
 								: "calc(100% - 0px)",
-						maxHeight: "80%",
+						maxHeight: "90%",
 						background: "#FFFFFF",
 						boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
 						borderRadius:

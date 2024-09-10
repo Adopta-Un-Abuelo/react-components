@@ -1,16 +1,23 @@
-import FilterCheckbox, { FilterCheckboxProps } from "./FilterCheckbox";
-import FilterDate, { FilterDateProps } from "./FilterDate";
-import FilterRatio, { FilterRatioProps } from "./FilterRatio";
+import { forwardRef, Ref } from "react";
+import FilterCheckbox, {
+	FilterCheckboxProps,
+	FilterCheckboxRef,
+} from "./FilterCheckbox";
+import FilterDate, { FilterDateProps, FilterDateRef } from "./FilterDate";
+import FilterRatio, { FilterRatioProps, FilterRatioRef } from "./FilterRatio";
 
-const Filter = (
-	props: FilterCheckboxProps | FilterDateProps | FilterRatioProps,
-) => {
-	return props.type === "date" ? (
-		<FilterDate {...props} />
-	) : props.type === "ratio" ? (
-		<FilterRatio {...props} />
-	) : (
-		<FilterCheckbox {...props} />
-	);
-};
+const Filter = forwardRef(
+	(
+		props: FilterCheckboxProps | FilterDateProps | FilterRatioProps,
+		ref: Ref<FilterCheckboxRef | FilterRatioRef | FilterDateRef>,
+	) => {
+		return props.type === "date" ? (
+			<FilterDate ref={ref} {...props} />
+		) : props.type === "ratio" ? (
+			<FilterRatio ref={ref} {...props} />
+		) : (
+			<FilterCheckbox ref={ref} {...props} />
+		);
+	},
+);
 export default Filter;

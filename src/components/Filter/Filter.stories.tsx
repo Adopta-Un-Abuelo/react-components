@@ -1,7 +1,9 @@
 import Filter from "./Filter";
-import { userEvent, within, fn } from "@storybook/test";
+import { within, fn } from "@storybook/test";
 import { expect } from "@storybook/test";
 import moment from "moment";
+import Button from "../Button/Button";
+import { useRef } from "react";
 
 export default {
 	title: "Components/Filter",
@@ -28,6 +30,22 @@ export default {
 				id: "option4",
 				label: "Option 4",
 				error: true,
+			},
+			{
+				id: "option5",
+				label: "Option 5",
+			},
+			{
+				id: "option6",
+				label: "Option 6",
+			},
+			{
+				id: "option7",
+				label: "Option 7",
+			},
+			{
+				id: "option8",
+				label: "Option 8 super mega larga para ver qué pasa",
 			},
 		],
 		onChange: fn(),
@@ -82,8 +100,8 @@ export const FilterDate = {
 		type: "date",
 		selectedOptions: {
 			startDate: moment(),
-			endDate: moment().add(5, "days")
-		}
+			endDate: moment().add(5, "days"),
+		},
 	},
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
@@ -110,4 +128,61 @@ export const FilterRatio = {
 			expect(filter).toBeInTheDocument();
 		});
 	},
+};
+
+export const RefExample = (args: any) => {
+	const filterSingle = useRef<any>(null);
+	const filterMultiple = useRef<any>(null);
+	const filterDate = useRef<any>(null);
+	const filterRatio = useRef<any>(null);
+	return (
+		<div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+			<Filter
+				ref={filterSingle}
+				{...args}
+				type={"single"}
+				selectedOptions={[
+					{
+						id: "option1",
+					},
+				]}
+			/>
+			<Filter
+				ref={filterMultiple}
+				{...args}
+				type={"multiple"}
+				selectedOptions={[
+					{
+						id: "option1",
+					},
+				]}
+			/>
+			<Filter
+				ref={filterDate}
+				{...args}
+				type={"date"}
+				selectedOptions={{
+					startDate: moment(),
+					endDate: moment().add(5, "days"),
+				}}
+			/>
+			<Filter
+				ref={filterRatio}
+				{...args}
+				type={"ratio"}
+				selectedOptions={10}
+			/>
+			<Button
+				design={"call-to-action"}
+				onClick={() => {
+					filterSingle.current?.clean();
+					filterMultiple.current?.clean();
+					filterRatio.current?.clean();
+					filterDate.current?.clean();
+				}}
+			>
+				Borrar todo
+			</Button>
+		</div>
+	);
 };

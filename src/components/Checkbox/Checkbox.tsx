@@ -17,6 +17,7 @@ const Container = styled.button`
 	padding: 0px;
 	opacity: ${(props) => (props.disabled ? 0.5 : 1.0)};
 	width: 100%;
+	gap: 12px;
 `;
 
 const Box = styled.div<{
@@ -24,7 +25,6 @@ const Box = styled.div<{
 	$error?: boolean;
 	$height?: number;
 	$width?: number;
-	$position: "left" | "right";
 }>`
 	display: flex;
 	align-items: center;
@@ -54,7 +54,6 @@ const Box = styled.div<{
 		background-color 0.2s ease-in-out,
 		border 0.2s ease-in-out,
 		transform 0.05s ease-out;
-	margin-right: ${(props) => (props.$position === "left" ? "10px" : "0px")};
 	&:hover {
 		background-color: ${(props) =>
 			props.$selected
@@ -125,7 +124,6 @@ const Checkbox = ({
 					$error={error}
 					$height={props.height}
 					$width={props.width}
-					$position={position}
 				>
 					{selected && (
 						<Player
@@ -170,7 +168,6 @@ const Checkbox = ({
 					$error={error}
 					$height={props.height}
 					$width={props.width}
-					$position={position}
 				>
 					{selected && (
 						<Player
