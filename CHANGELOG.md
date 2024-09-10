@@ -1,3 +1,15 @@
+# v0.3.11 (Tue Sep 10 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: filter clean method (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.10 (Mon Sep 09 2024)
 
 #### ⚠️ Pushed to `main`
