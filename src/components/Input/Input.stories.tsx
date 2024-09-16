@@ -19,7 +19,7 @@ const meta: Meta<typeof Input> = {
 				defaultValue: { summary: "primary" },
 			},
 			control: "select",
-			options: ["primary", "secondary"],
+			options: ["primary", "secondary", "third"],
 		},
 		hideCalendar: {
 			table: {
@@ -136,6 +136,67 @@ export const SecondaryWithIcon: Story = {
 export const SecondaryWithError: Story = {
 	args: {
 		design: "secondary",
+		error: "Error message",
+	},
+	play: async ({ canvasElement, step }: any) => {
+		const canvas = within(canvasElement);
+		const input = canvas.getByRole("input");
+		const placeholder = canvas.getByRole("placeholder");
+		const error = canvas.getByRole("error");
+		await step("render", async () => {
+			expect(input).toBeInTheDocument();
+			expect(placeholder).toBeInTheDocument();
+			expect(error).toBeInTheDocument();
+		});
+		await step("typing", async () => {
+			userEvent.type(input, " example", { delay: 100 });
+		});
+	},
+};
+
+export const Third: Story = {
+	args: {
+		design: "third",
+	},
+	play: async ({ canvasElement, step }: any) => {
+		const canvas = within(canvasElement);
+		const input = canvas.getByRole("input");
+		const placeholder = canvas.getByRole("placeholder");
+		await step("render", async () => {
+			expect(input).toBeInTheDocument();
+			expect(placeholder).toBeInTheDocument();
+		});
+		await step("typing", async () => {
+			userEvent.type(input, " example", { delay: 100 });
+		});
+	},
+};
+
+export const ThirdWithIcon: Story = {
+	args: {
+		design: "third",
+
+		icon: <Flag role="icon" width={20} height={20} />,
+	},
+	play: async ({ canvasElement, step }: any) => {
+		const canvas = within(canvasElement);
+		const input = canvas.getByRole("input");
+		const placeholder = canvas.getByRole("placeholder");
+		const icon = canvas.getByRole("icon");
+		await step("render", async () => {
+			expect(input).toBeInTheDocument();
+			expect(placeholder).toBeInTheDocument();
+			expect(icon).toBeInTheDocument();
+		});
+		await step("typing", async () => {
+			userEvent.type(input, " example", { delay: 100 });
+		});
+	},
+};
+
+export const ThirdWithError: Story = {
+	args: {
+		design: "third",
 		error: "Error message",
 	},
 	play: async ({ canvasElement, step }: any) => {

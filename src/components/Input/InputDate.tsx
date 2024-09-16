@@ -3,8 +3,14 @@ import moment from "moment";
 
 import InputPrimary, { InputPrimaryProps } from "./InputPrimary";
 import InputSecondary, { InputSecondaryProps } from "./InputSecondary";
+import InputThird from "./InputThird";
 
-const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) => {
+const InputDate = (
+	props:
+		| InputDatePrimaryProps
+		| InputDateSecondaryProps
+		| InputDateThirdProps,
+) => {
 	const { showCalendar, ...restProps } = props;
 	const [text, setText] = useState<string | undefined>(undefined);
 
@@ -36,7 +42,16 @@ const InputDate = (props: InputDatePrimaryProps | InputDateSecondaryProps) => {
 			maxLength={10}
 			onChange={onChange}
 		/>
-	) : (
+	) : props.design === "third" ? (
+		<InputThird
+			value={text}
+			containerStyle={{ flex: 1, ...props.containerStyle }}
+			{...restProps}
+			type={showCalendar ? "date" : "text"}
+			maxLength={10}
+			onChange={onChange}
+		/>
+	) :(
 		<InputSecondary
 			value={text}
 			containerStyle={{ flex: 1, ...props.containerStyle }}
@@ -54,5 +69,10 @@ export interface InputDatePrimaryProps extends InputPrimaryProps {
 }
 export interface InputDateSecondaryProps extends InputSecondaryProps {
 	design?: "secondary";
+	showCalendar?: boolean;
+}
+
+export interface InputDateThirdProps extends InputSecondaryProps {
+	design?: "third";
 	showCalendar?: boolean;
 }

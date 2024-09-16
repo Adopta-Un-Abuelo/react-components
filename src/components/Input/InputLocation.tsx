@@ -8,6 +8,7 @@ import PlacesAutocomplete, {
 
 import InputPrimary, { InputPrimaryProps } from "./InputPrimary";
 import InputSecondary, { InputSecondaryProps } from "./InputSecondary";
+import InputThird, { InputThirdProps } from "./InputThird";
 import Color from "../../constants/ColorV2";
 import Text from "../Text/Text";
 
@@ -41,7 +42,10 @@ const SuggestionView = styled.div<{ $selected: boolean }>`
 `;
 
 const InputLocation = (
-	props: InputLocationPrimaryProps | InputLocationSecondaryProps,
+	props:
+		| InputLocationPrimaryProps
+		| InputLocationSecondaryProps
+		| InputLocationThirdProps,
 ) => {
 	const [searchText, setSearchText] = useState<string | undefined>(undefined);
 	const [pointerPosition, setPointerPosition] = useState<number | undefined>(
@@ -115,6 +119,20 @@ const InputLocation = (
 							icon={props.icon}
 							error={props.error}
 						/>
+					) : props.design === "third" ? (
+						<InputThird
+							{...getInputProps({
+								className: "location-search-input",
+								placeholder: props.placeholder,
+							})}
+							value={searchText}
+							onKeyDown={(e: any) => onKeyDown(e, suggestions)}
+							containerStyle={{
+								flex: 1,
+								...props.containerStyle,
+							}}
+							error={props.error}
+						/>
 					) : (
 						<InputSecondary
 							{...getInputProps({
@@ -135,7 +153,7 @@ const InputLocation = (
 						<DropdownMenu
 							role="menu"
 							style={{
-								top: props.design === "primary" ? 48 : 64,
+								top: props.design === "primary" ? 48 : props.design === "secondary" ? 64 : 42,
 							}}
 						>
 							{suggestions.map((suggestion, index) => {
@@ -164,7 +182,7 @@ const InputLocation = (
 };
 export default InputLocation;
 export interface InputLocationPrimaryProps extends InputPrimaryProps {
-	$design?: "primary";
+	design?: "primary";
 	error?: string;
 	searchOptions?: {
 		types: string[];
@@ -178,6 +196,20 @@ export interface InputLocationPrimaryProps extends InputPrimaryProps {
 }
 export interface InputLocationSecondaryProps extends InputSecondaryProps {
 	design?: "secondary";
+	error?: string;
+	searchOptions?: {
+		types: string[];
+	};
+	suggestionViewStyle?: React.CSSProperties;
+	onLocationChange?: (result: {
+		address: string;
+		geocoder: google.maps.GeocoderResult;
+		location: google.maps.LatLngLiteral;
+	}) => void;
+}
+
+export interface InputLocationThirdProps extends InputThirdProps {
+	design?: "third";
 	error?: string;
 	searchOptions?: {
 		types: string[];

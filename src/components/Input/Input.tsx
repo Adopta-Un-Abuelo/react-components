@@ -8,6 +8,7 @@ import InputRange, {
 import InputLocation, {
 	InputLocationPrimaryProps as ImportedInputLocationPrimaryProps,
 	InputLocationSecondaryProps as ImportedInputLocationSecondaryProps,
+	InputLocationThirdProps as ImportedInputLocationThirdProps,
 } from "./InputLocation";
 import InputDateRange, { InputDateRangeProps } from "./InputDateRange";
 import InputImage, { InputImageProps } from "./InputImage";
@@ -16,8 +17,10 @@ import InputCode, { InputCodeProps } from "./InputCode";
 import InputDate, {
 	InputDatePrimaryProps,
 	InputDateSecondaryProps,
+	InputDateThirdProps
 } from "./InputDate";
 import { InputStyledProps } from "./InputStyled";
+import InputThird, { InputThirdProps } from "./InputThird";
 
 const Input = (
 	props:
@@ -52,7 +55,8 @@ const Input = (
 		<InputLocation
 			{...(props as
 				| ImportedInputLocationPrimaryProps
-				| ImportedInputLocationSecondaryProps)}
+				| ImportedInputLocationSecondaryProps
+				| ImportedInputLocationThirdProps)}
 		/>
 	) : props.type === "range-date" ? (
 		<InputDateRange {...(props as DateRangeProps)} />
@@ -66,6 +70,8 @@ const Input = (
 		<InputDate {...(props as DatePrimaryProps | DateSecondaryProps)} />
 	) : props.design === "secondary" ? (
 		<InputSecondary {...(props as InputSecondaryProps)} />
+	) : props.design === "third" ? (
+		<InputThird {...(props as InputThirdProps)} />
 	) : (
 		<InputPrimary {...(props as InputPrimaryProps)} />
 	);
@@ -94,7 +100,7 @@ export interface InputProps extends InputStyledProps {
 	error?: string | undefined;
 	country?: string;
 	hideRange?: boolean;
-	design?: "primary" | "secondary";
+	design?: "primary" | "secondary" | "third";
 	options?: any;
 	onPhoneChange?: (item: any) => void;
 }
@@ -108,6 +114,12 @@ export interface LocationPrimaryProps
 export interface LocationSecondaryProps
 	extends Omit<ImportedInputLocationSecondaryProps, "type"> {
 	design: "secondary";
+	type: "location";
+}
+
+export interface LocationThirdProps
+	extends Omit<ImportedInputLocationThirdProps, "type"> {
+	design: "third";
 	type: "location";
 }
 
@@ -145,5 +157,10 @@ export interface DatePrimaryProps extends InputDatePrimaryProps {
 
 export interface DateSecondaryProps extends InputDateSecondaryProps {
 	design: "secondary";
+	type: "date";
+}
+
+export interface DateThirdProps extends InputDateThirdProps {
+	design: "third";
 	type: "date";
 }
