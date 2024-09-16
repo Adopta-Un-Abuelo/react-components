@@ -1,3 +1,15 @@
+# v0.3.12 (Mon Sep 16 2024)
+
+#### 🐛 Bug Fix
+
+- change: Close modal clicking outside [#11](https://github.com/Adopta-Un-Abuelo/react-components/pull/11) ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.11 (Tue Sep 10 2024)
 
 #### ⚠️ Pushed to `main`
