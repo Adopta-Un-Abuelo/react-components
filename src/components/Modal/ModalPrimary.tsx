@@ -94,6 +94,8 @@ const ModalComponent = forwardRef(
 			<Modal
 				role="modal"
 				isOpen={isVisible}
+				onRequestClose={onClose}
+				shouldCloseOnOverlayClick={props.shouldCloseOnOverlayClick ?? false}
 				ariaHideApp={false}
 				style={{
 					content: {
@@ -224,6 +226,7 @@ export interface ModalPrimaryProps extends ComponentPropsWithoutRef<"div"> {
 	Bottom?: JSX.Element;
 	buttonProps?: ButtonProps;
 	onClose: () => void;
+	shouldCloseOnOverlayClick?: boolean;
 }
 export interface ModalRef {
 	close: () => void;
