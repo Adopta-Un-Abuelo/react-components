@@ -18,7 +18,7 @@ const InputContainer = styled.div<{ $focus?: boolean; $error?: boolean }>`
 	height: 34px;
 	min-height: 34px;
 	outline: none;
-	box-shadow: 0 1px 0 0 ${props => props.$focus ? Color.line.full : Color.line.soft};
+	border-bottom: 1px solid ${props => props.$focus ? Color.line.full : Color.line.soft};
 `;
 const ErrorDiv = styled.div`
 	font-style: normal;
