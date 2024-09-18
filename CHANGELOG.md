@@ -1,3 +1,21 @@
+# v0.3.14 (Wed Sep 18 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/text-area' (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/stamp' (guillermo.angeles@adoptaunabuelo.com)
+- fix: input test errors (guillermo.angeles@adoptaunabuelo.com)
+- feat: text area mobile version (guillermo.angeles@adoptaunabuelo.com)
+- feat: text area with quill library (guillermo.angeles@adoptaunabuelo.com)
+- chore: divide text area in two clean components (guillermo.angeles@adoptaunabuelo.com)
+- feat: stamp component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.13 (Mon Sep 16 2024)
 
 #### ⚠️ Pushed to `main`
