@@ -1,108 +1,201 @@
-/*V1*/
-.editor{
-	background-color: #E0E0E0;
-	min-height: 200px;
-	border-radius: 0px 0px 4px 4px;
-	font-family: "Poppins";
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 22px;
-	letter-spacing: 0em;
-	padding-left: 12px;
-}
-.toolbar{
-	border-radius: 4px 4px 0px 0px;
-	background-color: #E0E0E0;
-	margin: -1px;
-}
-.bold{
-	font-family: Poppins;
-	font-size: 14px;
-	font-style: normal;
+.quill h1 {
+	font-size: 24px !important;
+	color: rgba(0, 29, 61, 0.92);
 	font-weight: 600;
-	line-height: 22px;
-	letter-spacing: 0em;
-	color: #4F4F4F;
-	align-items: center;
-	height: 30px;
-	width: 30px;
-	justify-content: center;
-	text-align: center;
-	display: flex;
-	margin-right: 4px;
-	border: 1px solid #E0E0E0;
-	border-radius: 4px;
 }
 
-/*V2*/
-.editorV2{
-	background-color: white;
-	border: 1px solid #E0E0E0;
-	border-top: 0px;
-	min-height: 200px;
-	border-radius: 0px 0px 12px 12px;
-	font-family: "Poppins";
-	font-size: 14px;
+.quill h2 {
+	font-size: 18px !important;
+	color: rgba(0, 29, 61, 0.92);
+	font-weight: 600;
+}
+
+.quill p {
+	font-size: 15px !important;
+	color: rgba(0, 29, 61, 0.92);
+}
+
+.ql-container {
+	background: white;
+}
+
+.ql-toolbar {
+	display: block;
+	background: rgba(0, 29, 61, 0.04);
+	height: 48px;
+	position: relative;
+}
+
+.ql-editor {
+	padding: 40px 48px;
+}
+
+.ql-editor.ql-blank::before {
+	right: 48px;
+	left: 48px;
+	font-size: 15px;
 	font-style: normal;
-	font-weight: 400;
-	line-height: 22px;
-	letter-spacing: 0em;
-	padding: 0px 12px;
 }
 
-.toolbarV2{
-	padding: 8px 12px;
-	border-radius: 12px 12px 0px 0px;
-	background-color: #F2F2F2;
-	margin-bottom: -1px;
-	border: 1px solid #E0E0E0;
-	border-bottom: 0px;
+/*--------------------------------custom header--------------------------------*/
+
+.ql-formats span[data-value="1"]::before {
+	content: "Título" !important;
+	font-size: 24px;
+	font-weight: 600;
 }
-.toolbarV2 .rdw-block-dropdown{
-	border-radius: 8px;
+
+.ql-formats span[data-value="2"]::before {
+	content: "Subtítulo" !important;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+/*------------------------------------theme------------------------------------*/
+.ql-toolbar.ql-snow {
+	border: none;
+}
+
+.ql-container.ql-snow {
+	border: none;
+}
+
+/*Toolbar buttons*/
+.ql-snow {
 	font-family: "Poppins";
-	font-size: 14px;
+}
+
+.ql-snow.ql-toolbar button {
+	padding: 6px;
+	height: unset;
+	width: unset;
+	border-radius: 40px;
+}
+.ql-snow.ql-toolbar button .ql-stroke {
+	stroke: rgba(0, 29, 61, 0.92);
+}
+
+.ql-snow.ql-toolbar button:hover {
+	background-color: rgba(0, 29, 61, 0.04);
+	stroke: rgba(0, 29, 61, 0.92);
+}
+
+.ql-snow.ql-toolbar button .ql-stroke:hover {
+	stroke: rgba(0, 29, 61, 0.92);
+}
+
+.ql-snow.ql-toolbar button.ql-active {
+	background-color: rgba(0, 29, 61, 0.14);
+}
+
+.ql-snow.ql-toolbar button.ql-active .ql-stroke {
+	stroke: rgba(0, 29, 61, 0.92);
+}
+
+.ql-snow.ql-toolbar button svg {
+	height: 20px;
+	width: 20px;
+}
+
+/*Toolbar span*/
+.ql-snow .ql-picker {
+	padding: 6px;
+	border-radius: 40px;
+	height: unset;
+	width: 120px !important;
+	font-family: "Poppins";
+}
+
+.ql-snow .ql-picker .ql-header {
+	font-size: 15px !important;
+	font-weight: 400;
+}
+
+.ql-snow .ql-picker:hover {
+	background-color: rgba(0, 29, 61, 0.04);
+}
+
+.ql-snow .ql-picker.ql-expanded .ql-picker-label {
+	border: none;
+}
+
+.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
+	border: 1px solid rgba(0, 29, 61, 0.1);
+	border-radius: 12px;
 	padding: 0px;
-}
-.toolbarV2 .rdw-block-dropdown:hover{
-	box-shadow: none;
-}
-.toolbarV2 .rdw-block-dropdown a{
-	padding: 0px 12px;
-}
-.toolbarV2 .rdw-block-dropdown ul{
-	border-radius: 8px;
-	margin-top: 4px;
-	border-bottom: 1px solid #E0E0E0;
-	box-shadow: 6px 6px 10px 1px rgba(0, 0, 0, 0.1);
-}
-.toolbarV2 .rdw-block-dropdown ul:hover{
-	box-shadow: none;
-}
-.toolbarV2 .rdw-block-dropdown li{
-	border-bottom: 1px solid #E0E0E0;
-	padding: 6px 12px;
+	text-align: center;
+	top: 0px;
+	z-index: 2;
+	overflow: hidden;
+	width: 125px;
 }
 
-.boldV2{
-	font-family: Poppins;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 600;
-	line-height: 22px;
-	letter-spacing: 0em;
-	color: #000000C7;
-	align-items: center;
-	height: 32px;
-	width: 32px;
-	justify-content: center;
-	text-align: center;
-	display: flex;
-	margin-right: 4px;
-	border-radius: 4px;
-	cursor: pointer;
+.ql-snow.ql-toolbar .ql-picker-item:hover {
+	background-color: rgba(0, 29, 61, 0.04);
+	color: rgba(0, 29, 61, 0.92);
 }
-.boldV2:hover{
-	background-color: white;
+.ql-snow.ql-toolbar .ql-picker-label:hover {
+	color: rgba(0, 29, 61, 0.92);
+}
+.ql-snow.ql-toolbar .ql-picker-label.ql-active::before {
+	color: rgba(0, 29, 61, 0.92);
+}
+
+/*-----------------------------------------------------------RESPONSIVE-----------------------------------------------------------*/
+@media only screen and (max-width: 450px) {
+	.quill h1 {
+		font-size: 22px !important;
+	}
+	
+	.quill h2 {
+		font-size: 16px !important;
+	}
+	
+	.quill p {
+		font-size: 14px !important;
+	}
+
+	.ql-editor {
+		padding: 32px 24px;
+	}
+
+	.ql-editor.ql-blank::before {
+		right: 24px;
+		left: 24px;
+	}
+
+	.ql-toolbar {
+		height: 48px;
+		position: fixed;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+	}
+	.ql-toolbar-tips-button {
+		display: none;
+	}
+
+	.ql-snow .ql-picker {
+		width: 115px !important;
+	}
+
+	.ql-toolbar.ql-snow .ql-formats {
+		margin-right: 0px;
+	}
+
+	.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
+		bottom: 4px;
+		top: unset;
+	}
+
+	.ql-formats span[data-value="1"]::before {
+		font-size: 22px;
+	}
+	
+	.ql-formats span[data-value="2"]::before {
+		font-size: 16px;
+	}
 }

@@ -30,14 +30,14 @@ export const ButtonEditor = (props: Props) => {
 	};
 	return (
 		<div
-			className={props.design === "design-1" ? "bold" : "boldV2"}
+			className={props.design === "primary" ? "bold" : "boldV2"}
 			style={{
 				...props.style,
 				backgroundColor: selected
-					? props.design === "design-1"
+					? props.design === "primary"
 						? "#EBECFF"
 						: "white"
-					: props.design === "design-1"
+					: props.design === "primary"
 						? "white"
 						: "transparent",
 			}}
@@ -52,7 +52,7 @@ export default ButtonEditor;
 export interface Props {
 	style?: any;
 	text: string;
-	design?: "design-1" | "design-2";
+	design?: "primary" | "secondary";
 	type: {
 		control: string;
 		value: any;

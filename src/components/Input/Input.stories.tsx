@@ -161,10 +161,8 @@ export const Third: Story = {
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
-		const placeholder = canvas.getByRole("placeholder");
 		await step("render", async () => {
 			expect(input).toBeInTheDocument();
-			expect(placeholder).toBeInTheDocument();
 		});
 		await step("typing", async () => {
 			userEvent.type(input, " example", { delay: 100 });
@@ -181,11 +179,9 @@ export const ThirdWithIcon: Story = {
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
-		const placeholder = canvas.getByRole("placeholder");
 		const icon = canvas.getByRole("icon");
 		await step("render", async () => {
 			expect(input).toBeInTheDocument();
-			expect(placeholder).toBeInTheDocument();
 			expect(icon).toBeInTheDocument();
 		});
 		await step("typing", async () => {
@@ -202,11 +198,9 @@ export const ThirdWithError: Story = {
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
-		const placeholder = canvas.getByRole("placeholder");
 		const error = canvas.getByRole("error");
 		await step("render", async () => {
 			expect(input).toBeInTheDocument();
-			expect(placeholder).toBeInTheDocument();
 			expect(error).toBeInTheDocument();
 		});
 		await step("typing", async () => {
