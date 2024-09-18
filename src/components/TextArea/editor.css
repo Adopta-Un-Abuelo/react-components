@@ -23,10 +23,10 @@
 	display: block;
 	background: rgba(0, 29, 61, 0.04);
 	height: 48px;
+	position: relative;
 }
 
 .ql-editor {
-	min-height: 18em;
 	padding: 40px 48px;
 }
 
@@ -37,7 +37,7 @@
 	font-style: normal;
 }
 
-/*--------------------------------CUSTOM HEADER--------------------------------*/
+/*--------------------------------custom header--------------------------------*/
 
 .ql-formats span[data-value="1"]::before {
 	content: "Título" !important;
@@ -51,7 +51,7 @@
 	font-weight: 600;
 }
 
-/*------------------------------------THEME------------------------------------*/
+/*------------------------------------theme------------------------------------*/
 .ql-toolbar.ql-snow {
 	border: none;
 }
@@ -139,4 +139,63 @@
 }
 .ql-snow.ql-toolbar .ql-picker-label.ql-active::before {
 	color: rgba(0, 29, 61, 0.92);
+}
+
+/*-----------------------------------------------------------RESPONSIVE-----------------------------------------------------------*/
+@media only screen and (max-width: 450px) {
+	.quill h1 {
+		font-size: 22px !important;
+	}
+	
+	.quill h2 {
+		font-size: 16px !important;
+	}
+	
+	.quill p {
+		font-size: 14px !important;
+	}
+
+	.ql-editor {
+		padding: 32px 24px;
+	}
+
+	.ql-editor.ql-blank::before {
+		right: 24px;
+		left: 24px;
+	}
+
+	.ql-toolbar {
+		height: 48px;
+		position: fixed;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+	}
+	.ql-toolbar-tips-button {
+		display: none;
+	}
+
+	.ql-snow .ql-picker {
+		width: 115px !important;
+	}
+
+	.ql-toolbar.ql-snow .ql-formats {
+		margin-right: 0px;
+	}
+
+	.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
+		bottom: 4px;
+		top: unset;
+	}
+
+	.ql-formats span[data-value="1"]::before {
+		font-size: 22px;
+	}
+	
+	.ql-formats span[data-value="2"]::before {
+		font-size: 16px;
+	}
 }

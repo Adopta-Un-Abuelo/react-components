@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, useEffect, useState } from "react";
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 import styled from "styled-components";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -34,45 +34,38 @@ const AbsoluteDiv = styled.div`
 	}
 `;
 
-const TextAreaEditor = ({tips=[], ...props}: TextAreaEditorProps) => {
+const TextAreaEditor = (props: TextAreaEditorProps) => {
 	const [value, setValue] = useState(props.value);
-	const [selectedTip, setSelectedTip] = useState<string | undefined>(undefined);
 
 	//Add tip button if needed
 	useEffect(() => {
 		const toolbar: any = document.querySelector(".ql-toolbar");
 		const button = document.querySelector(".ql-toolbar-tips-button");
-		if (tips.length > 0) {
+		if (props.onTipClick) {
 			if (toolbar && !button) {
 				// Create the tips button
 				const absoluteDiv = document.createElement("div");
 				absoluteDiv.className = "ql-toolbar-tips-button";
-
-				toolbar.style.position = "relative";
 				toolbar.appendChild(absoluteDiv);
 
 				const root = createRoot(absoluteDiv);
-				root.render(
-					<AbsoluteDiv onClick={onTipClick}>
-						<Lightbulb color={"#6C62F6"} height={20} width={20} />
-						Inpírate
-					</AbsoluteDiv>
-				);
+				root.render(renderTipButton());
 			}
 		} else if (button) {
 			toolbar.removeChild(button);
 		}
-	}, [tips]);
+	}, [props.onTipClick]);
+
+	const renderTipButton = () => (
+		<AbsoluteDiv onClick={props.onTipClick}>
+			<Lightbulb color={"#6C62F6"} height={20} width={20} />
+			Inpírate
+		</AbsoluteDiv>
+	);
 
 	const onTextAreChange = (value: string) => {
 		setValue(value);
 		props.onChange && props.onChange(value);
-	};
-
-	const onTipClick = () => {
-		const randomIndex = Math.floor(Math.random() * tips.length);
-		const tip = tips[randomIndex];
-		setSelectedTip(tip);
 	};
 
 	return (
@@ -108,6 +101,6 @@ export interface TextAreaEditorProps
 	type: "edit";
 	maxLength?: number;
 	design?: "primary" | "secondary";
-	tips?: string[];
 	onChange?: (value: any) => void;
+	onTipClick?: () => void;
 }
