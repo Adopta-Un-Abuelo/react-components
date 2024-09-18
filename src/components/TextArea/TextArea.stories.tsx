@@ -34,7 +34,12 @@ export const Editor: Story = {
 		type: "edit",
 		style: {
 			height: 300,
+			boxShadow: "0px 3px 6px 0px rgba(0, 0, 0, 0.06)",
 		},
+		tips: [
+			"Que tal si le cuentas una anécdota divertida para que te conozca un poco mejor y le saques una sonrisa.",
+			"Pregúntale por sus aficiones y si compartís alguna céntrate en ella.",
+		],
 	},
 	play: async ({ canvasElement }: any) => {
 		const canvas = within(canvasElement);

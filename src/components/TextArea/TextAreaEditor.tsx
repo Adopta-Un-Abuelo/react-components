@@ -1,104 +1,100 @@
-import React, { ComponentPropsWithoutRef, useEffect, useState } from "react";
+import { ComponentPropsWithoutRef, useEffect, useState } from "react";
+import { createRoot } from 'react-dom/client';
 import styled from "styled-components";
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import "./editor.css";
-import ButtonEditor from "../Button/ButtonEditor";
-import {
-	convertToRaw,
-	EditorState,
-	ContentState,
-	convertFromHTML,
-} from "draft-js";
-import draftToHtml from "draftjs-to-html";
+import { Lightbulb } from "lucide-react";
 
-const Container = styled.div``;
+const Container = styled.div`
+	position: relative;
+	border-radius: 12px;
+	overflow: hidden;
+`;
 
-const TextAreaEditor = (props: TextAreaEditorProps) => {
-	const [editorState, setEditorState] = useState<any>(undefined);
+const AbsoluteDiv = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	position: absolute;
+	top: 15px;
+	right: 16px;
+	color: white;
+	z-index: 10;
+	background: linear-gradient(72deg, #5963f6 0%, #cd59f6 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-family: "Poppins";
+	font-size: 14px;
+	cursor: pointer;
+	gap: 4px;
+	:hover {
+		text-decoration: underline;
+	}
+`;
 
+const TextAreaEditor = ({tips=[], ...props}: TextAreaEditorProps) => {
+	const [value, setValue] = useState(props.value);
+	const [selectedTip, setSelectedTip] = useState<string | undefined>(undefined);
+
+	//Add tip button if needed
 	useEffect(() => {
-		if (props.value && props.type === "edit") {
-			let convert = convertFromHTML(props.value);
-			setEditorState(
-				EditorState.createWithContent(
-					ContentState.createFromBlockArray(
-						convert.contentBlocks,
-						convert.entityMap
-					)
-				)
-			);
-		}
-	}, [props.value]);
+		const toolbar: any = document.querySelector(".ql-toolbar");
+		const button = document.querySelector(".ql-toolbar-tips-button");
+		if (tips.length > 0) {
+			if (toolbar && !button) {
+				// Create the tips button
+				const absoluteDiv = document.createElement("div");
+				absoluteDiv.className = "ql-toolbar-tips-button";
 
-	const onTextAreChange = (
-		value?: React.ChangeEvent<HTMLTextAreaElement>,
-		data?: any
-	) => {
-		let result: any = undefined;
-		if (value) result = value;
-		else {
-			const convert = draftToHtml(convertToRaw(data.getCurrentContent()));
-			result = {
-				target: {
-					name: props.name,
-					value: convert,
-				},
-			};
-		}
+				toolbar.style.position = "relative";
+				toolbar.appendChild(absoluteDiv);
 
-		if (props.maxLength && result.target.value.length > props.maxLength) {
-			// Si la longitud del texto ingresado es mayor que maxLength, no hagas nada
-			return;
+				const root = createRoot(absoluteDiv);
+				root.render(
+					<AbsoluteDiv onClick={onTipClick}>
+						<Lightbulb color={"#6C62F6"} height={20} width={20} />
+						Inpírate
+					</AbsoluteDiv>
+				);
+			}
+		} else if (button) {
+			toolbar.removeChild(button);
 		}
+	}, [tips]);
 
-		if (data) setEditorState(data);
-		props.onChange && props.onChange(result);
+	const onTextAreChange = (value: string) => {
+		setValue(value);
+		props.onChange && props.onChange(value);
 	};
+
+	const onTipClick = () => {
+		const randomIndex = Math.floor(Math.random() * tips.length);
+		const tip = tips[randomIndex];
+		setSelectedTip(tip);
+	};
+
 	return (
 		<Container role="text-area" style={props.style}>
-			<Editor
-				wrapperStyle={{ width: "100%", height: "calc(100% - 50px)" }}
-				editorState={editorState}
-				onEditorStateChange={(data: any) => {
-					onTextAreChange(undefined, data);
-				}}
+			<ReactQuill
+				theme="snow"
+				style={{ height: "100%" }}
+				value={value}
+				defaultValue={props.defaultValue}
 				placeholder={props.placeholder}
-				toolbar={{ options: ["blockType"] }}
-				toolbarCustomButtons={[
-					<ButtonEditor
-						design={props.design}
-						text="B"
-						type={{ control: "inline", value: "BOLD" }}
-					/>,
-					<ButtonEditor
-						design={props.design}
-						style={{ "font-style": "italic" }}
-						text="I"
-						type={{ control: "inline", value: "ITALIC" }}
-					/>,
-					<ButtonEditor
-						design={props.design}
-						style={{ "text-decoration": "underline" }}
-						text="U"
-						type={{ control: "inline", value: "UNDERLINE" }}
-					/>,
-					<ButtonEditor
-						design={props.design}
-						style={{ "text-decoration": "line-through" }}
-						text="S"
-						type={{ control: "inline", value: "STRIKETHROUGH" }}
-					/>,
-				]}
-				wrapperClassName={
-					props.design === "primary" ? "wrapper" : "wrapper"
-				}
-				editorClassName={
-					props.design === "primary" ? "editor" : "editorV2"
-				}
-				toolbarClassName={
-					props.design === "primary" ? "toolbar" : "toolbarV2"
-				}
+				modules={{
+					toolbar: [
+						[{ header: [1, 2, false] }],
+						["bold", "italic", "underline"],
+						[
+							{ align: "" },
+							{ align: "center" },
+							{ align: "right" },
+						],
+					],
+				}}
+				onChange={onTextAreChange}
 			/>
 		</Container>
 	);
@@ -109,7 +105,9 @@ export interface TextAreaEditorProps
 	value?: string;
 	defaultValue?: string;
 	placeholder?: string;
-	type?: "edit";
+	type: "edit";
 	maxLength?: number;
 	design?: "primary" | "secondary";
+	tips?: string[];
+	onChange?: (value: any) => void;
 }
