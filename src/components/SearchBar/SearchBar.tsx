@@ -20,6 +20,7 @@ const InputStyled = styled.input<{ $design?: "primary" | "secondary" }>`
 	font-size: 14px;
 	padding: 0px;
 	width: -webkit-fill-available;
+	width: -moz-available;
 	outline: none;
 	background: ${(props) =>
 		props.$design === "primary"

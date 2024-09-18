@@ -54,6 +54,7 @@ const Option = styled.div`
 	height: 36px;
 	min-height: 36px;
 	width: -webkit-fill-available;
+	width: -moz-available;
 	background: #ffffff;
 	border-radius: 6px;
 	cursor: pointer;

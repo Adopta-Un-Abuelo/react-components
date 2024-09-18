@@ -38,6 +38,7 @@ const CropContainer = styled.div`
 const ToolBar = styled.div`
 	display: flex;
 	width: -webkit-fill-available;
+	width: -moz-available;
 	padding: 0px 12px;
 	align-items: center;
 	justify-content: flex-end;
