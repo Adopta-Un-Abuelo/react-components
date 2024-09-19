@@ -24,3 +24,4 @@ export { default as Countdown } from "./Countdown/Countdown";
 export { default as TagSelector } from "./TagSelector/TagSelector";
 export { default as FAQs } from "./FAQs/FAQs";
 export { default as Counter } from "./Counter/Counter";
+export { default as Stamp } from "./Stamp/Stamp";
