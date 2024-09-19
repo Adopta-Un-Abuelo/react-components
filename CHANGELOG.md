@@ -1,3 +1,15 @@
+# v0.3.15 (Thu Sep 19 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: stamp export error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.14 (Wed Sep 18 2024)
 
 #### ⚠️ Pushed to `main`
