@@ -3,6 +3,7 @@ import { within, expect, fn } from "@storybook/test";
 
 import type { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { Building } from "lucide-react";
 
 const meta: Meta<typeof TextArea> = {
 	title: "Components/TextArea",
@@ -36,7 +37,7 @@ export const Editor: Story = {
 			height: 300,
 			boxShadow: "0px 3px 6px 0px rgba(0, 0, 0, 0.06)",
 		},
-		onTipClick: fn()
+		ToolbarButton: <Building/>
 	},
 	play: async ({ canvasElement }: any) => {
 		const canvas = within(canvasElement);

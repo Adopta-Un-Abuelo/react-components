@@ -10,7 +10,7 @@ const meta: Meta<typeof Stamp> = {
 	args: {
 		icon: "⚽️",
         title: "Deporte",
-        backgroundColor: "#ECF4FB"
+        backgroundColor: "#ECF4FB",
 	},
 };
 
