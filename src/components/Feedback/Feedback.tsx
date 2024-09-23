@@ -1,11 +1,14 @@
-import { ComponentPropsWithoutRef, useEffect, useState } from "react";
+import { ComponentPropsWithoutRef, ReactNode, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { Check, X } from "lucide-react";
 import Text from "../Text/Text";
 import { Color } from "../../constants";
 
-const Container = styled.div<{ $text?: string; $type: "success" | "error" }>`
+const Container = styled.div<{
+	$text?: string;
+	$type: "success" | "error" | "custom";
+}>`
 	position: absolute;
 	display: flex;
 	flex-direction: row;
@@ -19,10 +22,10 @@ const Container = styled.div<{ $text?: string; $type: "success" | "error" }>`
 	background: ${(props) =>
 		props.$type === "success"
 			? Color.status.color.success
-			: Color.status.color.error};
-	box-shadow:
-		2px 0px 20px rgba(0, 0, 0, 0.09),
-		0px 4px 8px rgba(0, 0, 0, 0.1);
+			: props.$type === "error"
+			? Color.status.color.error
+			: props.style?.background};
+	box-shadow: 2px 0px 20px rgba(0, 0, 0, 0.09), 0px 4px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 4px;
 	z-index: 100;
 `;
@@ -46,7 +49,7 @@ const FeedBack = ({
 		setTimeout(() => {
 			props.onClose && props.onClose();
 			setShow(false);
-		}, 3000);
+		}, props.closeAfter ? props.closeAfter : 3000);
 	}, [isVisible]);
 
 	return show ? (
@@ -59,13 +62,15 @@ const FeedBack = ({
 						height={24}
 						width={24}
 					/>
-				) : (
+				) : type === "error" ? (
 					<X
 						style={{ marginRight: 12 }}
 						color={"white"}
 						height={24}
 						width={24}
 					/>
+				) : (
+					props.icon
 				)}
 				<Text
 					type="p"
@@ -80,7 +85,9 @@ const FeedBack = ({
 export default FeedBack;
 export interface Props extends ComponentPropsWithoutRef<"div"> {
 	isVisible: boolean;
-	type: "success" | "error";
+	type: "success" | "error" | "custom";
+	icon?: ReactNode;
 	text: string;
+	closeAfter?: number;
 	onClose?: () => void;
 }
