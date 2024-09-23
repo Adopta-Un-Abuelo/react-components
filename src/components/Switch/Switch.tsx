@@ -1,67 +1,66 @@
-import React, { CSSProperties, ReactElement, useState } from "react";
 import styled from "styled-components";
+import { ColorV2 } from "../../constants";
+import { useEffect, useState } from "react";
+import { Check } from "lucide-react";
 
-import Color from "../../constants/ColorV2";
-
-const Container = styled.div`
+const Container = styled.div<{ $active: boolean }>`
+    position: relative;
 	display: flex;
-	flex-direction: row;
-	border: 1px solid ${Color.border.neutralSoft};
-	width: fit-content;
-	border-radius: 100px;
-	overflow: hidden;
-	padding: 2px;
-	background-color: ${Color.surface.invert};
-`;
-const Cell = styled.div<{ $selected: boolean }>`
-	display: flex;
-	padding: 8px;
-	cursor: pointer;
-	background-color: ${(props) =>
-		props.$selected ? Color.surface.neutralSoft : "transparent"};
-	border-radius: 100px;
-	align-items: center;
+	width: 48px;
+	height: 28px;
+	flex-direction: column;
 	justify-content: center;
+	gap: 10px;
+	border-radius: 100px;
+	background: ${(props) =>
+		props.$active ? ColorV2.surface.primary : ColorV2.surface.neutralLow};
+	cursor: pointer;
+    transition: background 0.3s;
+`;
+const Tag = styled.div<{ $active: boolean }>`
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	height: 24px;
+	width: 24px;
+	background-color: white;
+	border-radius: 100px;
+    top: 2px;
+    left: ${props => props.$active ? "22px" : "2px"};
+    transition: left 0.3s;
 `;
 
-const IconSwitch = (props: Props) => {
-	const [selectedOption, setSelectedOption] = useState(props.options[0]);
+const Switch = (props: SwitchProps) => {
+	const [active, setActive] = useState<boolean>(false);
+
+	useEffect(() => {
+		if (props.active) setActive(props.active);
+		else setActive(false);
+	}, [props.active]);
 
 	return (
-		<Container role="container" style={props.style}>
-			{props.options.map((item) => {
-				const selected = item.id === selectedOption.id;
-				return (
-					<Cell
-						role={item.id}
-						key={"switch" + item.id}
-						$selected={selected}
-						onClick={() => {
-							setSelectedOption(item);
-							props.onChange && props.onChange(item);
-						}}
-					>
-						{React.cloneElement(item.icon, {
-							color: selected
-								? Color.border.primary
-								: Color.border.neutralMedium,
-							height: 20,
-							width: 20,
-							...item.icon.props,
-						})}
-					</Cell>
-				);
-			})}
+		<Container
+            role="container"
+			$active={active}
+			onClick={() => {
+				props.onChange && props.onChange(!active);
+				setActive(!active);
+			}}
+		>
+			<Tag
+                role="tag"
+                $active={active}
+            >
+                {active &&
+                    <Check color={ColorV2.text.primary} strokeWidth={3} height={18} width={18}/>
+                }
+            </Tag>
 		</Container>
 	);
 };
-export default IconSwitch;
-export interface Props {
-	style?: CSSProperties;
-	type?: string;
-	options: Array<{
-		id: string;
-		icon: ReactElement;
-	}>;
-	onChange?: (option: { id: string; icon: any }) => void;
+export default Switch;
+export interface SwitchProps {
+	active?: boolean;
+	onChange?: (on: boolean) => void;
 }
