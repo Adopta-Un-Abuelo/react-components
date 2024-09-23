@@ -1,3 +1,16 @@
+# v0.3.18 (Mon Sep 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/switch' (guillermo.angeles@adoptaunabuelo.com)
+- feat: new switch component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.17 (Mon Sep 23 2024)
 
 #### ⚠️ Pushed to `main`
