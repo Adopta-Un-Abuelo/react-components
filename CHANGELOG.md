@@ -1,3 +1,15 @@
+# v0.3.17 (Mon Sep 23 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: feedback component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.16 (Fri Sep 20 2024)
 
 #### ⚠️ Pushed to `main`
