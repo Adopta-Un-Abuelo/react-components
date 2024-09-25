@@ -23,9 +23,6 @@ const TitleView = styled.div`
 	top: 0px;
 	background-color: white;
 	z-index: 100;
-	${media.lessThan("small")`
-        padding: 0px;
-    `}
 `;
 const ChildrenView = styled.div`
 	padding: 0px 24px;
@@ -64,8 +61,8 @@ const ModalComponent = forwardRef(
 		}));
 
 		useEffect(() => {
-			const mediaQuery = window.matchMedia("(min-width: 768px)"); 
-			setIsLargeScreen(mediaQuery.matches); 
+			const mediaQuery = window.matchMedia("(min-width: 768px)");
+			setIsLargeScreen(mediaQuery.matches);
 
 			const handleResize = (e: MediaQueryListEvent) => {
 				setIsLargeScreen(e.matches);
@@ -108,7 +105,9 @@ const ModalComponent = forwardRef(
 				role="modal"
 				isOpen={isVisible}
 				onRequestClose={onClose}
-				shouldCloseOnOverlayClick={props.shouldCloseOnOverlayClick ?? false}
+				shouldCloseOnOverlayClick={
+					props.shouldCloseOnOverlayClick ?? false
+				}
 				ariaHideApp={false}
 				style={{
 					content: {
@@ -118,24 +117,26 @@ const ModalComponent = forwardRef(
 								? "100%"
 								: props.type === "lateral"
 								? isLargeScreen
-									? "400px"  
-									: "100%"  
+									? "400px"
+									: "100%"
 								: 500,
 						maxWidth:
 							props.type === "full-screen"
 								? "100%"
 								: props.type === "lateral"
 								? isLargeScreen
-									? "400px"  
-									: "100%"  
-								: "calc(100% - 0px)",
+									? "400px"
+									: "100%"
+								: "90%",
 						height: props.type === "lateral" ? "100%" : undefined,
-						maxHeight: props.type === "web" ? "90%" : "100%",
+						maxHeight: props.type === "lateral" ? "100%" : "90%",
 						background: "#FFFFFF",
 						boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
 						borderRadius:
 							props.type === "full-screen"
 								? "12px 12px 0px 0px"
+								: props.type === "lateral"
+								? 0
 								: 12,
 						top:
 							props.type === "lateral"
