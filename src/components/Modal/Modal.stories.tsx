@@ -48,9 +48,9 @@ const meta: Meta<typeof Modal> = {
       control: "text",
     },
     type: {
-      description: "default | full-screen | web | form",
+      description: "default | full-screen | web | form | lateral",
       control: "select",
-      options: ["default", "full-screen", "web", "form"],
+      options: ["default", "full-screen", "web", "form ", "lateral"],
       table: {
         defaultValue: { summary: "default" },
       },
@@ -105,6 +105,32 @@ export const Default: Story = {
 export const FullScreen: Story = {
   args: {
     type: "full-screen",
+  },
+  render: (args) => {
+    const [isVisible, setIsVisible] = useState(false);
+    return (
+      <div>
+        <button role="button" onClick={() => setIsVisible(true)}>
+          Show modal
+        </button>
+        <Modal
+          {...args}
+          isVisible={isVisible}
+          onClose={() => {
+            setIsVisible(false);
+            action("onClose")();
+          }}
+        >
+          <Text type="p">Modal children</Text>
+        </Modal>
+      </div>
+    );
+  },
+};
+
+export const Lateral: Story = {
+  args: {
+    type: "lateral",
   },
   render: (args) => {
     const [isVisible, setIsVisible] = useState(false);

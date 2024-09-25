@@ -55,12 +55,25 @@ const ModalComponent = forwardRef(
 	(props: ModalPrimaryProps, ref: Ref<ModalRef>) => {
 		const [isVisible, setIsVisible] = useState(props.isVisible);
 		const [show, setShow] = useState(false);
+		const [isLargeScreen, setIsLargeScreen] = useState(false);
 
 		useImperativeHandle(ref, () => ({
 			close() {
 				onClose();
 			},
 		}));
+
+		useEffect(() => {
+			const mediaQuery = window.matchMedia("(min-width: 768px)"); 
+			setIsLargeScreen(mediaQuery.matches); 
+
+			const handleResize = (e: MediaQueryListEvent) => {
+				setIsLargeScreen(e.matches);
+			};
+
+			mediaQuery.addListener(handleResize);
+			return () => mediaQuery.removeListener(handleResize);
+		}, []);
 
 		useEffect(() => {
 			//Open
@@ -100,12 +113,24 @@ const ModalComponent = forwardRef(
 				style={{
 					content: {
 						position: "absolute",
-						width: props.type === "full-screen" ? "100%" : 500,
+						width:
+							props.type === "full-screen"
+								? "100%"
+								: props.type === "lateral"
+								? isLargeScreen
+									? "400px"  
+									: "100%"  
+								: 500,
 						maxWidth:
 							props.type === "full-screen"
 								? "100%"
+								: props.type === "lateral"
+								? isLargeScreen
+									? "400px"  
+									: "100%"  
 								: "calc(100% - 0px)",
-						maxHeight: "90%",
+						height: props.type === "lateral" ? "100%" : undefined,
+						maxHeight: props.type === "web" ? "90%" : "100%",
 						background: "#FFFFFF",
 						boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
 						borderRadius:
@@ -113,7 +138,9 @@ const ModalComponent = forwardRef(
 								? "12px 12px 0px 0px"
 								: 12,
 						top:
-							props.type !== "full-screen"
+							props.type === "lateral"
+								? "0"
+								: props.type !== "full-screen"
 								? show
 									? "50%"
 									: "150%"
@@ -124,15 +151,30 @@ const ModalComponent = forwardRef(
 									? "0px"
 									: "-100vh"
 								: "unset",
+						right:
+							props.type === "lateral"
+								? show
+									? "0"
+									: "-100vw"
+								: "unset",
 						transition:
-							"top 0.3s ease-out, bottom 0.3s ease-out, transform 0.3s ease-in-out",
-						left: "50%",
+							props.type === "lateral"
+								? "right 0.3s ease-out, transform 0.3s ease-in-out"
+								: "top 0.3s ease-out, bottom 0.3s ease-out, transform 0.3s ease-in-out",
+						left:
+							props.type === "lateral"
+								? "unset"
+								: props.type === "full-screen"
+								? "50%"
+								: "50%",
 						transform:
 							props.type === "full-screen"
 								? "translate(-50%, 0%)"
+								: props.type === "lateral"
+								? "translate(0, 0)"
 								: "translate(-50%, -50%) scale(" +
-									(show ? 1 : 0.2) +
-									")",
+								  (show ? 1 : 0.2) +
+								  ")",
 						overflow: "hidden",
 						overflowY: "auto",
 						border: "none",
@@ -210,12 +252,13 @@ const ModalComponent = forwardRef(
 				)}
 			</Modal>
 		);
-	},
+	}
 );
 export default ModalComponent;
+
 export interface ModalPrimaryProps extends ComponentPropsWithoutRef<"div"> {
 	isVisible: boolean;
-	type?: "default" | "full-screen" | "form" | "web";
+	type?: "default" | "full-screen" | "form" | "web" | "lateral";
 	title?: string;
 	subtitle?: string;
 	error?: string;
