@@ -1,3 +1,15 @@
+# v0.3.20 (Wed Sep 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: text area export (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.19 (Wed Sep 25 2024)
 
 #### 🐛 Bug Fix
