@@ -1,3 +1,15 @@
+# v0.3.19 (Wed Sep 25 2024)
+
+#### 🐛 Bug Fix
+
+- Merge branch 'feature/LateralModal' [#12](https://github.com/Adopta-Un-Abuelo/react-components/pull/12) (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.18 (Mon Sep 23 2024)
 
 #### ⚠️ Pushed to `main`
