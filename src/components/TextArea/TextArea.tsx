@@ -6,6 +6,8 @@ const TextArea = (props: TextAreaDefaultProps | TextAreaEditorProps) => {
 		return <TextAreaDefault {...props} />;
 	} else if (props.type === "edit") {
 		return <TextAreaEditor {...props} />;
+	} else {
+		return null;
 	}
 };
 export default TextArea;

@@ -30,8 +30,8 @@ const InputContainer = styled.div<{ $focus: boolean; $error: boolean }>`
 			props.$focus
 				? "2px " + Color.border.neutralMedium
 				: props.$error
-					? "1px " + Color.text.red
-					: "1px " + Color.border.neutralSoft};
+				? "1px " + Color.text.red
+				: "1px " + Color.border.neutralSoft};
 	padding: 0px 16px;
 	background-color: white;
 	cursor: text;
@@ -65,9 +65,7 @@ const Placeholder = styled(Text)<{
 	color: ${(props) =>
 		props.$error ? Color.text.red : Color.text.neutralMedium};
 	font-size: ${(props) => (props.$focus ? "12px" : "15px")} !important;
-	transition:
-		top 0.1s ease-out,
-		font-size 0.1s ease-out;
+	transition: top 0.1s ease-out, font-size 0.1s ease-out;
 `;
 const InputSecondary = (props: InputSecondaryProps) => {
 	const phoneUtil = GLPN.PhoneNumberUtil.getInstance();
@@ -88,11 +86,13 @@ const InputSecondary = (props: InputSecondaryProps) => {
 	useEffect(() => {
 		if (props.country) {
 			const result = Country.filter(
-				(item) => item.prefix === props.country,
+				(item) => item.prefix === props.country
 			);
 			if (result.length > 0) onCountryChange(result[0]);
 		}
 	}, [props.country]);
+
+	useEffect(() => {}, []);
 
 	const onInputChange = (e: any) => {
 		setInputValue(e.target.value);
@@ -108,8 +108,8 @@ const InputSecondary = (props: InputSecondaryProps) => {
 						phone.length > 8 && phone.length < 18
 							? phoneUtil.isValidNumberForRegion(
 									phoneUtil.parse(phone, country.countryCode),
-									country.countryCode,
-								)
+									country.countryCode
+							  )
 							: false,
 				});
 		}
@@ -117,10 +117,13 @@ const InputSecondary = (props: InputSecondaryProps) => {
 
 	const onCountryChange = (country: any) => {
 		setCountry(country);
-		const value =
+		const temp =
 			inputValue && typeof inputValue === "string"
-				? inputValue.replaceAll(/\s/g, "")
+				? inputValue
+				: props.defaultValue && typeof props.defaultValue === "string"
+				? props.defaultValue
 				: "";
+		const value = temp.replaceAll(/\s/g, "");
 		const phone = country.prefix + value;
 		props.onPhoneChange &&
 			props.onPhoneChange({
@@ -130,8 +133,8 @@ const InputSecondary = (props: InputSecondaryProps) => {
 					phone.length >= 6 && phone.length < 18
 						? phoneUtil.isValidNumberForRegion(
 								phoneUtil.parse(phone, country.countryCode),
-								country.countryCode,
-							)
+								country.countryCode
+						  )
 						: false,
 			});
 	};
