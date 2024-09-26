@@ -90,9 +90,7 @@ const InputSecondary = (props: InputSecondaryProps) => {
 			);
 			if (result.length > 0) onCountryChange(result[0]);
 		}
-	}, [props.country]);
-
-	useEffect(() => {}, []);
+	}, [props.country, props.defaultValue]);
 
 	const onInputChange = (e: any) => {
 		setInputValue(e.target.value);
