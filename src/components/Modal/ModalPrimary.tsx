@@ -184,7 +184,7 @@ const ModalComponent = forwardRef(
 					},
 					overlay: {
 						backgroundColor:
-							"rgba(0, 0, 0, " + (show ? 0.6 : 0) + ")",
+							"rgba(0, 0, 0, " + (show ? (props.overlayBackgroundOpacity ? props.overlayBackgroundOpacity : 0.6) : 0) + ")",
 						transition: " background-color 0.3s ease-out",
 						zIndex: 1000,
 					},
@@ -240,7 +240,7 @@ const ModalComponent = forwardRef(
 					</ErrorView>
 				)}
 				{props.buttonProps && (
-					<Buttons>
+					<Buttons style={props.footerStyle}>
 						{props.Bottom}
 						{props.buttonProps && (
 							<Button size="small" {...props.buttonProps}>
@@ -269,8 +269,10 @@ export interface ModalPrimaryProps extends ComponentPropsWithoutRef<"div"> {
 	Header?: JSX.Element;
 	Bottom?: JSX.Element;
 	buttonProps?: ButtonProps;
+	footerStyle?: CSSProperties;
 	onClose: () => void;
 	shouldCloseOnOverlayClick?: boolean;
+	overlayBackgroundOpacity?: number;
 }
 export interface ModalRef {
 	close: () => void;
