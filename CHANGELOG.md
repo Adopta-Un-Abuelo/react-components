@@ -1,3 +1,15 @@
+# v0.3.23 (Mon Sep 30 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: modal footer style (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.22 (Thu Sep 26 2024)
 
 #### ⚠️ Pushed to `main`
