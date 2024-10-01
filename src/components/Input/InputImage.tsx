@@ -32,7 +32,7 @@ const CropContainer = styled.div`
 	left: 0;
 	right: 0;
 	overflow: hidden;
-	z-index: 1;
+	z-index: 10000;
 	background-color: black;
 `;
 const ToolBar = styled.div`
