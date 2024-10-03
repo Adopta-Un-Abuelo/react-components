@@ -1,3 +1,15 @@
+# v0.3.24 (Thu Oct 03 2024)
+
+#### 🐛 Bug Fix
+
+- Merge branch 'feature/AdjustSelectPictureMobile' [#13](https://github.com/Adopta-Un-Abuelo/react-components/pull/13) (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.23 (Mon Sep 30 2024)
 
 #### ⚠️ Pushed to `main`
