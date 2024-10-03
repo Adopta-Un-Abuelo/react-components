@@ -49,7 +49,6 @@ const Box = styled.div<{
 					: Color.background.primary)
 			: "1px solid " +
 				(props.$error ? Color.line.redSoft : Color.line.primarySoft)};
-	border-radius: 4px;
 	transition:
 		background-color 0.2s ease-in-out,
 		border 0.2s ease-in-out,
@@ -101,6 +100,7 @@ const Checkbox = ({
 	sublabel,
 	selected = false,
 	avatarEnabled,
+	roundedBox = false, 
 	...props
 }: Props) => {
 	const [isSelected, setIsSelected] = useState(selected);
@@ -116,10 +116,15 @@ const Checkbox = ({
 		props.onClick && props.onClick(event);
 	};
 
+	const boxStyle = {
+		borderRadius: roundedBox ? "50%" : "4px",
+	};
+
 	return (
 		<Container data-testid="checkbox" onClick={onClick} {...props}>
 			{position === "left" && (
 				<Box
+					style={boxStyle}
 					$selected={selected}
 					$error={error}
 					$height={props.height}
@@ -164,6 +169,7 @@ const Checkbox = ({
 			</TextView>
 			{position === "right" && (
 				<Box
+					style={boxStyle}
 					$selected={selected}
 					$error={error}
 					$height={props.height}
@@ -199,4 +205,5 @@ export interface Props extends ComponentPropsWithoutRef<"button"> {
 	width?: number;
 	position?: "left" | "right";
 	avatarEnabled?: boolean;
+	roundedBox?: boolean;
 }
