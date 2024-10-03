@@ -80,8 +80,9 @@ const InputSecondary = (props: InputSecondaryProps) => {
 	const { containerStyle, icon, error, design, ...restProps } = props;
 
 	useEffect(() => {
-		setInputValue(props.value);
-	}, [props.value]);
+		if (props.defaultValue) setInputValue(props.defaultValue);
+		else if (props.value) setInputValue(props.value);
+	}, [props.value, props.defaultValue]);
 
 	useEffect(() => {
 		if (props.country) {
@@ -164,7 +165,7 @@ const InputSecondary = (props: InputSecondaryProps) => {
 							onChange={(item) => onCountryChange(item)}
 							id="country"
 							options={Country}
-							$focus={focus || inputValue ? true : false}
+							focus={focus || inputValue ? true : false}
 						/>
 					</IconView>
 				) : null}
@@ -173,11 +174,7 @@ const InputSecondary = (props: InputSecondaryProps) => {
 						role="placeholder"
 						type="p"
 						$phone={props.type === "tel"}
-						$focus={
-							focus || inputValue || props.defaultValue
-								? true
-								: false
-						}
+						$focus={focus || inputValue ? true : false}
 						$error={error ? true : false}
 					>
 						{props.placeholder}
