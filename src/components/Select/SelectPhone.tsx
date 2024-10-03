@@ -163,7 +163,7 @@ const Select = (props: Props) => {
 						)}
 						<Title
 							type="p"
-							$focus={props.$focus}
+							$focus={props.focus}
 							color={props.style?.color}
 						>
 							{selectedItem.prefix}
@@ -229,10 +229,10 @@ export default Select;
 export interface Props extends ComponentPropsWithoutRef<"div"> {
 	id: string;
 	optionStyle?: any;
-	$showMenu?: boolean;
+	showMenu?: boolean;
 	options: Array<CountryProps>;
 	selectedItem?: CountryProps;
-	$focus: boolean;
+	focus: boolean;
 	onChange?: (a: any) => void;
 }
 export interface CountryProps {
