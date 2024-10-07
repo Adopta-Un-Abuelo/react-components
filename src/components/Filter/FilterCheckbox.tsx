@@ -117,6 +117,7 @@ const FilterCheckbox = forwardRef(
 					options={optionsState}
 					selectedOptions={checkboxSelection}
 					type={type}
+					roundedBox={type !== "multiple"}
 					height={isMobile ? 22 : 18}
 					width={isMobile ? 22 : 18}
 					position={isMobile ? "right" : "left"}
