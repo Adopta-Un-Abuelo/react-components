@@ -1,3 +1,15 @@
+# v0.3.25 (Mon Oct 07 2024)
+
+#### 🐛 Bug Fix
+
+- FastChange: props.roundedBox [#14](https://github.com/Adopta-Un-Abuelo/react-components/pull/14) ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.24 (Thu Oct 03 2024)
 
 #### 🐛 Bug Fix
