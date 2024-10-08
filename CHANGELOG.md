@@ -1,3 +1,15 @@
+# v0.3.26 (Tue Oct 08 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: stamp and text area errors (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.25 (Mon Oct 07 2024)
 
 #### 🐛 Bug Fix
