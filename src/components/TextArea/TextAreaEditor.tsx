@@ -1,4 +1,10 @@
-import { ComponentPropsWithoutRef, ReactNode, useEffect, useState } from "react";
+import {
+	ComponentPropsWithoutRef,
+	ReactNode,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import { createRoot } from "react-dom/client";
 import styled from "styled-components";
 import ReactQuill from "react-quill";
@@ -23,12 +29,17 @@ const AbsoluteDiv = styled.div`
 `;
 
 const TextAreaEditor = (props: TextAreaEditorProps) => {
+	const quill = useRef<any>(null);
 	const [value, setValue] = useState(props.value);
 
+	useEffect(() => {
+		//Hide toolbar on mobile
+		const toolbar = document.querySelector(".ql-toolbar");
+		toolbar?.classList.add("hidden");
+	}, []);
+
 	const renderAbsoluteView = () => (
-		<AbsoluteDiv>
-			{props.ToolbarButton}
-		</AbsoluteDiv>
+		<AbsoluteDiv>{props.ToolbarButton}</AbsoluteDiv>
 	);
 
 	//Add tip button if needed
@@ -58,6 +69,7 @@ const TextAreaEditor = (props: TextAreaEditorProps) => {
 	return (
 		<Container role="text-area" style={props.style}>
 			<ReactQuill
+				ref={quill}
 				theme="snow"
 				style={{ height: "100%" }}
 				value={value}
@@ -75,6 +87,14 @@ const TextAreaEditor = (props: TextAreaEditorProps) => {
 					],
 				}}
 				onChange={onTextAreChange}
+				onFocus={() => {
+					const toolbar = document.querySelector(".ql-toolbar");
+					toolbar?.classList.remove("hidden");
+				}}
+				onBlur={() => {
+					const toolbar = document.querySelector(".ql-toolbar");
+					toolbar?.classList.add("hidden");
+				}}
 			/>
 		</Container>
 	);
