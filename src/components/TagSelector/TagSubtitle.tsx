@@ -5,17 +5,20 @@ import media from "styled-media-query";
 import Text from "../Text/Text";
 import Color from "../../constants/Color";
 
-const Container = styled.div<{ $selected: boolean }>`
+const Container = styled.div<{ $selected: boolean, $onlyVisual: boolean }>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	padding: 16px 8px;
-	border-radius: 12px;
-	box-shadow: ${(props) =>
-		props.$selected
-			? "0 0 0 2px " + Color.line.primary
-			: "0 0 0 2px " + Color.text.white};
+	border-radius: ${(props) =>
+		props.$onlyVisual ? "12px" : "12px"};
+		box-shadow: ${(props) =>
+			props.$onlyVisual
+				? "0 0 0 1px " + Color.line.soft
+				: props.$selected
+				? "0 0 0 2px " + Color.line.primary
+				: "0 0 0 2px " + Color.text.white};
 	background: var(--surface-invert, #fff);
 	margin: 3.9px;
 	margin-bottom: 8px;
@@ -57,7 +60,9 @@ const SubtitleStyled = styled(Text)`
 
 const TagsSubtitle = (props: Props) => {
 	const onClick = () => {
-		props.onClick && props.onClick();
+		if (!props.onlyVisual) {
+			props.onClick && props.onClick();
+		}
 	};
 
 	return (
@@ -65,6 +70,7 @@ const TagsSubtitle = (props: Props) => {
 			role={props.role}
 			style={props.style}
 			$selected={props.selected}
+			$onlyVisual={props.onlyVisual || false}
 			onClick={onClick}
 		>
 			<TextStyled type="p">
@@ -84,5 +90,6 @@ export interface Props {
 	title: string;
 	subtitle: string;
 	selected: boolean;
+	onlyVisual?: boolean;
 	onClick?: () => void;
 }
