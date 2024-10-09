@@ -53,6 +53,7 @@ const CheckboxList = (props: Props) => {
 							error={item.error}
 							selected={active}
 							height={props.height}
+							shape={props.shape}
 							width={props.width}
 							position={props.position}
 							avatarEnabled={props.avatarEnabled}
@@ -88,5 +89,5 @@ export interface Props {
 	onChange?: (result: Array<{ id: string; [key: string]: any }>) => void;
 	position?: "left" | "right";
 	avatarEnabled?: boolean;
-	roundedBox?: boolean;
+	shape?: "circle" | "square";
 }

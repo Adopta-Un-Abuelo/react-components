@@ -207,7 +207,6 @@ export interface Props extends ComponentPropsWithoutRef<"button"> {
 	width?: number;
 	position?: "left" | "right";
 	avatarEnabled?: boolean;
-	roundedBox?: boolean;
-	shape?: "circle" | "square"; // Cambiamos el nombre de roundedBox a shape
+	shape?: "circle" | "square";
 
 }
