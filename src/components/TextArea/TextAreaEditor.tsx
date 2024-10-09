@@ -73,7 +73,6 @@ const TextAreaEditor = (props: TextAreaEditorProps) => {
 				theme="snow"
 				style={{ height: "100%" }}
 				value={value}
-				defaultValue={props.defaultValue}
 				placeholder={props.placeholder}
 				modules={{
 					toolbar: [

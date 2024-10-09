@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within, fn } from "@storybook/test";
 
 import Button from "./Button";
@@ -14,8 +14,8 @@ const meta: Meta<typeof Button> = {
 		disabled: false,
 		children: <p role="label">Button label</p>,
 		onSuccess: fn(),
-		onClick: fn()
-	}
+		onClick: fn(),
+	},
 };
 
 export default meta;
@@ -24,7 +24,7 @@ type Story = StoryObj<typeof Button>;
 export const Primary: Story = {
 	args: {
 		design: "primary",
-		success: false
+		success: false,
 	},
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
@@ -44,6 +44,28 @@ export const PrimaryWithIcon: Story = {
 		design: "primary",
 		success: false,
 		icon: <Flag role="icon" height={20} width={20} />,
+	},
+	play: async ({ canvasElement, step }: any) => {
+		const canvas = within(canvasElement);
+		const button = await canvas.getByRole("button");
+		const icon = await canvas.getByRole("icon");
+		await step("render", async () => {
+			expect(button).toBeInTheDocument();
+			expect(icon).toBeInTheDocument();
+		});
+		await step("hover and click", async () => {
+			await userEvent.hover(button);
+			await userEvent.click(button);
+		});
+	},
+};
+
+export const PrimaryWithCountdown: Story = {
+	args: {
+		design: "primary",
+		success: false,
+		countdown: 30,
+		onCountdownEnd: fn(),
 	},
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);

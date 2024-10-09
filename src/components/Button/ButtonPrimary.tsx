@@ -22,19 +22,16 @@ const ButtonPrimary = styled.button<{
 		props.$loading
 			? "0px"
 			: props.$size === "small"
-				? "0px 12px"
-				: "0px 24px"};
+			? "0px 12px"
+			: "0px 24px"};
 	border-radius: 1000px;
 	border: none;
 	color: white;
 	background-color: ${(props) =>
 		props.$success ? Color.status.color.success : Color.background.primary};
 	opacity: ${(props) => (props.disabled ? 0.48 : 1)};
-	transition:
-		transform 0.05s ease-out,
-		width 0.2s ease-out,
-		background-color 0.2s ease-out,
-		opacity 0.2s ease-out;
+	transition: transform 0.05s ease-out, width 0.2s ease-out,
+		background-color 0.2s ease-out, opacity 0.2s ease-out;
 	min-width: ${(props) => (props.$size === "small" ? "80px" : "100px")};
 	cursor: ${(props) =>
 		props.disabled || props.$loading ? "default" : "pointer"};
@@ -53,6 +50,9 @@ const Label = styled(Text)<{
 	$size?: "small" | "normal";
 	$icon: boolean;
 }>`
+	display: flex;
+	align-items: center;
+	gap: 6px;
 	font-size: ${(props) => (props.$size === "small" ? "14px" : "15px")};
 	width: 100%;
 	margin-left: ${(props) => (props.$icon ? 6 : 0)};
@@ -68,10 +68,30 @@ const Button = ({
 	icon,
 	iconPosition,
 	animationTime,
+	countdown,
+	onCountdownEnd,
 	...restProps
 }: Props) => {
 	const [showLabel, setShowLabel] = useState(true);
 	const [prevLabel, setPrevLabel] = useState(restProps.children);
+	const [secondsRemaining, setSecondsRemaining] = useState(
+		countdown ? countdown : 0
+	);
+
+	useEffect(() => {
+		if (countdown) {
+			const intervalId = setInterval(() => {
+				setSecondsRemaining((prevSeconds) => prevSeconds - 1);
+			}, 1000);
+			if (secondsRemaining <= 0) {
+				clearInterval(intervalId);
+				onCountdownEnd && onCountdownEnd();
+			}
+			return () => clearInterval(intervalId);
+		} else {
+			setSecondsRemaining(0);
+		}
+	}, [secondsRemaining, countdown]);
 
 	useEffect(() => {
 		if (prevLabel !== restProps.children) {
@@ -142,8 +162,8 @@ const Button = ({
 							fontSize: restProps.style?.fontSize
 								? restProps.style?.fontSize
 								: size === "small"
-									? 14
-									: 15,
+								? 14
+								: 15,
 							color: restProps.style?.color
 								? restProps.style.color
 								: "white",
@@ -160,6 +180,8 @@ const Button = ({
 						}}
 					>
 						{prevLabel}
+						{secondsRemaining > 0
+							&& ` ${secondsRemaining} segundos`}
 					</Label>
 					{icon && iconPosition === "right" && icon}
 				</>
@@ -176,5 +198,7 @@ export interface Props extends ComponentPropsWithoutRef<"button"> {
 	success?: boolean;
 	animationDelay?: number;
 	animationTime?: number;
+	countdown?: number;
 	onSuccess?: (success: boolean) => void;
+	onCountdownEnd?: () => void
 }
