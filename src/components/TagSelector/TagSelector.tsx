@@ -55,6 +55,7 @@ const TagSelector = (props: Props) => {
 						title={item.title}
 						subtitle={item.subtitle}
 						selected={isSelected}
+						onlyVisual={props.onlyVisual}
 						onClick={() => onClick(item)}
 					/>
 				) : (
@@ -63,6 +64,7 @@ const TagSelector = (props: Props) => {
 						key={item.id}
 						title={item.title}
 						selected={isSelected}
+						onlyVisual={props.onlyVisual}
 						onClick={() => onClick(item)}
 					/>
 				);
@@ -77,10 +79,11 @@ export interface Props {
 	options: Array<OptionProps>;
 	optionsSelected?: Array<OptionProps>;
 	onChange?: (selection: Array<OptionProps>) => void;
+	onlyVisual?: boolean;
 }
 export interface OptionProps {
 	id: string;
 	title: string;
 	subtitle?: string;
-	style?: React.CSSProperties; // Add a style property to OptionProps
+	style?: React.CSSProperties;
 }
