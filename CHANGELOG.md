@@ -1,3 +1,21 @@
+# v0.3.27 (Wed Oct 09 2024)
+
+#### 🐛 Bug Fix
+
+- Merge remote-tracking branch 'origin/feature/roundedBox-CheckBox' [#15](https://github.com/Adopta-Un-Abuelo/react-components/pull/15) (guillermo.angeles@adoptaunabuelo.com)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/button-countdown' (guillermo.angeles@adoptaunabuelo.com)
+- fix: visual test error (guillermo.angeles@adoptaunabuelo.com)
+- feat: button countdown (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.26 (Tue Oct 08 2024)
 
 #### ⚠️ Pushed to `main`
