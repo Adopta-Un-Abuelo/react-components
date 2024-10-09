@@ -30,5 +30,7 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
 	success?: boolean;
 	animationDelay?: number;
 	animationTime?: number;
+	countdown?: number;
 	onSuccess?: (success: boolean) => void;
+	onCountdownEnd?: () => void
 }
