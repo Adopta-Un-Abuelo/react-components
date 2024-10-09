@@ -53,7 +53,6 @@ const CheckboxList = (props: Props) => {
 							error={item.error}
 							selected={active}
 							height={props.height}
-							roundedBox={props.roundedBox}
 							width={props.width}
 							position={props.position}
 							avatarEnabled={props.avatarEnabled}

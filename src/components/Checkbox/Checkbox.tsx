@@ -25,6 +25,7 @@ const Box = styled.div<{
 	$error?: boolean;
 	$height?: number;
 	$width?: number;
+	$shape: "circle" | "square";
 }>`
 	display: flex;
 	align-items: center;
@@ -53,6 +54,9 @@ const Box = styled.div<{
 		background-color 0.2s ease-in-out,
 		border 0.2s ease-in-out,
 		transform 0.05s ease-out;
+
+	border-radius: ${(props) => (props.$shape === "square" ? "4px" : "50%")};
+
 	&:hover {
 		background-color: ${(props) =>
 			props.$selected
@@ -100,8 +104,8 @@ const Checkbox = ({
 	sublabel,
 	selected = false,
 	avatarEnabled,
-	roundedBox = false, 
-	...props
+	shape = "square",
+		...props
 }: Props) => {
 	const [isSelected, setIsSelected] = useState(selected);
 
@@ -116,15 +120,13 @@ const Checkbox = ({
 		props.onClick && props.onClick(event);
 	};
 
-	const boxStyle = {
-		borderRadius: roundedBox ? "50%" : "4px",
-	};
+
 
 	return (
 		<Container data-testid="checkbox" onClick={onClick} {...props}>
 			{position === "left" && (
 				<Box
-					style={boxStyle}
+					$shape={shape}
 					$selected={selected}
 					$error={error}
 					$height={props.height}
@@ -169,7 +171,7 @@ const Checkbox = ({
 			</TextView>
 			{position === "right" && (
 				<Box
-					style={boxStyle}
+					$shape={shape}
 					$selected={selected}
 					$error={error}
 					$height={props.height}
@@ -206,4 +208,6 @@ export interface Props extends ComponentPropsWithoutRef<"button"> {
 	position?: "left" | "right";
 	avatarEnabled?: boolean;
 	roundedBox?: boolean;
+	shape?: "circle" | "square"; // Cambiamos el nombre de roundedBox a shape
+
 }
