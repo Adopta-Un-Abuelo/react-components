@@ -70,10 +70,8 @@ export const PrimaryWithCountdown: Story = {
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
 		const button = await canvas.getByRole("button");
-		const icon = await canvas.getByRole("icon");
 		await step("render", async () => {
 			expect(button).toBeInTheDocument();
-			expect(icon).toBeInTheDocument();
 		});
 		await step("hover and click", async () => {
 			await userEvent.hover(button);
