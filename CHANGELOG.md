@@ -1,3 +1,15 @@
+# v0.3.28 (Wed Oct 09 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: types error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.27 (Wed Oct 09 2024)
 
 #### 🐛 Bug Fix
