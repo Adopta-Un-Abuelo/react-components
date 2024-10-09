@@ -37,7 +37,8 @@ export const Editor: Story = {
 			height: 300,
 			boxShadow: "0px 3px 6px 0px rgba(0, 0, 0, 0.06)",
 		},
-		ToolbarButton: <Building/>
+		value: "Test value",
+		ToolbarButton: <Building />,
 	},
 	play: async ({ canvasElement }: any) => {
 		const canvas = within(canvasElement);
