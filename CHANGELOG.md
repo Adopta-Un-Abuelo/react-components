@@ -1,3 +1,15 @@
+# v0.3.29 (Mon Oct 14 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: input image without crop (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.28 (Wed Oct 09 2024)
 
 #### ⚠️ Pushed to `main`
