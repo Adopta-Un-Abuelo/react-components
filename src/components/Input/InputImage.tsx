@@ -23,6 +23,7 @@ import Button from "../Button/Button";
 import Color from "../../constants/ColorV2";
 import Modal from "../Modal/Modal";
 import Text from "../Text/Text";
+import ColorV2 from "../../constants/ColorV2";
 
 const Container = styled.div``;
 const CropContainer = styled.div`
@@ -61,9 +62,6 @@ const Cell = styled.div`
 	cursor: pointer;
 	gap: 12px;
 	padding: 12px 24px;
-	&:hover {
-		background-color: ${Color.surface.background};
-	}
 `;
 const Row = styled.div`
 	display: flex;
@@ -84,17 +82,17 @@ const CaptureButton = styled.div`
 function centerAspectCrop(
 	mediaWidth: number,
 	mediaHeight: number,
-	aspect: number,
+	aspect: number
 ) {
 	return centerCrop(
 		makeAspectCrop(
 			{ unit: "%", width: 60 },
 			aspect,
 			mediaWidth,
-			mediaHeight,
+			mediaHeight
 		),
 		mediaWidth,
-		mediaHeight,
+		mediaHeight
 	);
 }
 
@@ -163,7 +161,7 @@ const InputImage = (props: InputImageProps) => {
 				0,
 				0,
 				image.naturalWidth,
-				image.naturalHeight,
+				image.naturalHeight
 			);
 			ctx.restore();
 		}
@@ -180,10 +178,16 @@ const InputImage = (props: InputImageProps) => {
 
 	const onSelectFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e && e.target && e.target.files && e.target.files[0]) {
-			setCrop(undefined);
-			const base64: any = await toBase64(e.target.files[0]);
-			setImgSrc(base64);
-			if (inputRef.current) inputRef.current.value = "";
+			const file = e.target.files[0];
+			if (props.hideCrop) {
+				const blob = new Blob([file], { type: "image/webp" });
+				compressImage(blob);
+			} else {
+				setCrop(undefined);
+				const base64: any = await toBase64(file);
+				setImgSrc(base64);
+				if (inputRef.current) inputRef.current.value = "";
+			}
 		}
 	};
 
@@ -198,19 +202,23 @@ const InputImage = (props: InputImageProps) => {
 		setLoading(true);
 		previewCanvasRef.current?.toBlob((blob) => {
 			if (blob) {
-				new Compressor(blob, {
-					quality: 0.8,
-					maxHeight: props.maxHeight,
-					maxWidth: props.maxWidth,
-					success: async (compressedResult) => {
-						setImgSrc("");
-						const base64 = await toBase64(compressedResult);
-						props.onChange && props.onChange(base64);
-						setLoading(false);
-					},
-				});
+				compressImage(blob);
 			} else setLoading(false);
 		}, "image/webp");
+	};
+
+	const compressImage = (blob: Blob) => {
+		new Compressor(blob, {
+			quality: 1,
+			maxHeight: props.maxHeight,
+			maxWidth: props.maxWidth,
+			success: async (compressedResult) => {
+				setImgSrc("");
+				const base64 = await toBase64(compressedResult);
+				props.onChange && props.onChange(base64);
+				setLoading(false);
+			},
+		});
 	};
 
 	const cancelCrop = () => {
@@ -232,6 +240,9 @@ const InputImage = (props: InputImageProps) => {
 			setShowModal(false);
 			setShowWebcam(false);
 			setImgSrc(image);
+			if (props.hideCrop) {
+				props.onChange && props.onChange(image);
+			}
 		}
 	}, [webcamRef]);
 
@@ -240,10 +251,22 @@ const InputImage = (props: InputImageProps) => {
 			<Modal
 				isVisible={showModal}
 				type={isMobile ? "full-screen" : "default"}
+				hideClose={true}
+				hideHeader={true}
+				style={{ width: isMobile ? "100%" : 400 }}
 				contentStyle={{
-					padding: 0,
-					paddingBottom: 12,
+					padding: "16px 0px",
 					backgroundColor: showWebcam ? "black" : "white",
+				}}
+				buttonProps={{
+					children: "Cancelar",
+					style: {
+						backgroundColor: ColorV2.surface.neutralSoft,
+						width: "100%",
+						height: 52,
+						color: ColorV2.text.neutralHard,
+					},
+					onClick: () => setShowModal(false),
 				}}
 				onClose={() => setShowModal(false)}
 			>
@@ -301,7 +324,7 @@ const InputImage = (props: InputImageProps) => {
 				type="file"
 				ref={inputRef}
 			/>
-			{imgSrc && (
+			{imgSrc && !props.hideCrop && (
 				<CropContainer>
 					<ToolBar>
 						<Button
@@ -357,5 +380,6 @@ export interface InputImageProps {
 	label?: string;
 	maxHeight?: number;
 	maxWidth?: number;
+	hideCrop?: boolean;
 	onChange?: (image: any) => void;
 }
