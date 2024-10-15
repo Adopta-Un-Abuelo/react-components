@@ -1,3 +1,15 @@
+# v0.3.30 (Tue Oct 15 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: switch color prop (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.29 (Mon Oct 14 2024)
 
 #### ⚠️ Pushed to `main`
