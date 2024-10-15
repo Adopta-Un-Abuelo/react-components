@@ -24,7 +24,7 @@ const Container = styled.div<{ $selected: boolean, $onlyVisual: boolean }>`
 	cursor: ${(props) => (props.$onlyVisual ? "default" : "pointer")};
 	margin-bottom: 8px;
 	cursor: pointer;
-	max-width: 120px;
+	max-width: 150px;
 	flex: 0 1 auto;
 	gap: 10px;
 
