@@ -3,7 +3,7 @@ import { ColorV2 } from "../../constants";
 import { useEffect, useState } from "react";
 import { Check } from "lucide-react";
 
-const Container = styled.div<{ $active: boolean }>`
+const Container = styled.div<{ $active: boolean, $color?: string }>`
     position: relative;
 	display: flex;
 	width: 48px;
@@ -13,7 +13,7 @@ const Container = styled.div<{ $active: boolean }>`
 	gap: 10px;
 	border-radius: 100px;
 	background: ${(props) =>
-		props.$active ? ColorV2.surface.primary : ColorV2.surface.neutralLow};
+		props.$active ? (props.$color ? props.$color : ColorV2.surface.primary) : ColorV2.surface.neutralLow};
 	cursor: pointer;
     transition: background 0.3s;
 `;
@@ -43,6 +43,7 @@ const Switch = (props: SwitchProps) => {
 		<Container
             role="container"
 			$active={active}
+			$color={props.color}
 			onClick={() => {
 				props.onChange && props.onChange(!active);
 				setActive(!active);
@@ -53,7 +54,7 @@ const Switch = (props: SwitchProps) => {
                 $active={active}
             >
                 {active &&
-                    <Check color={ColorV2.text.primary} strokeWidth={3} height={18} width={18}/>
+                    <Check color={props.color ? props.color : ColorV2.text.primary} strokeWidth={3} height={18} width={18}/>
                 }
             </Tag>
 		</Container>
@@ -62,5 +63,6 @@ const Switch = (props: SwitchProps) => {
 export default Switch;
 export interface SwitchProps {
 	active?: boolean;
+	color?: string;
 	onChange?: (on: boolean) => void;
 }
