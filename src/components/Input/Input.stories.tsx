@@ -399,14 +399,14 @@ export const InputRangeWithoutRangeView: Story = {
 export const InputRangeWithPresents: Story = {
 	args: {
 		type: "range",
-		min: 0,
-		max: 100,
+		min: 50,
+		max: 250,
 		unit: "€",
-		defaultValue: 30,
+		defaultValue: 150,
 		hideRange: true,
 		presents: [
 			{
-				value: 80,
+				value: 200,
 				icon: <Gift height={18} width={18} color="white" />,
 				color: "#FF5A5A",
 				onClick: fn(),

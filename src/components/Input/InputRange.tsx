@@ -3,6 +3,7 @@ import {
 	useEffect,
 	useState,
 	ReactNode,
+	createRef,
 } from "react";
 import styled from "styled-components";
 import { Player } from "@lottiefiles/react-lottie-player";
@@ -34,13 +35,13 @@ const InputStyled = styled.input<{
 		(props.$lineColor ? props.$lineColor : Color.text.primary) +
 		" " +
 		props.$backValue +
-		"%, " +
+		"px, " +
 		(props.$backgroundColor
 			? props.$backgroundColor
 			: Color.surface.primaryLow) +
 		" " +
 		props.$backValue +
-		"%, " +
+		"px, " +
 		(props.$backgroundColor
 			? props.$backgroundColor
 			: Color.surface.primaryLow) +
@@ -89,7 +90,7 @@ const InputStyled = styled.input<{
 	}
 `;
 const RangeValue = styled.div<{ $value: number }>`
-	left: ${(props) => props.$value + "%"};
+	left: ${(props) => props.$value + "px"};
 	position: absolute;
 	top: 15px;
 `;
@@ -131,7 +132,7 @@ const BottomRow = styled.div`
 `;
 const PresentContainer = styled.div`
 	position: absolute;
-	bottom: 15px;
+	top: -8px;
 	gap: 12px;
 	display: flex;
 	flex-direction: column;
@@ -167,8 +168,9 @@ const PresentView = styled.div<{
 	align-items: center;
 	border-radius: 44px;
 	cursor: pointer;
-	transform: ${props => props.$isSelected ? "scale(1.2)" : "scale(1)"};
+	transform: ${(props) => (props.$isSelected ? "scale(1.2)" : "scale(1)")};
 	transition: transform 0.05s ease-out;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.24);
 	background-color: ${(props) =>
 		props.$isSelected
 			? props.$backgroundColor
@@ -177,6 +179,9 @@ const PresentView = styled.div<{
 			: props.$color
 			? props.$color
 			: Color.surface.primaryLow};
+	&:hover {
+		transform: scale(1.2);
+	}
 `;
 const PresentPlayer = styled.div`
 	position: absolute;
@@ -186,6 +191,8 @@ const PresentPlayer = styled.div`
 `;
 
 const InputRange = (props: InputRangeProps) => {
+	const elem = createRef<any>();
+	const [width, setWidth] = useState(0);
 	const [value, setValue] = useState<number>(
 		props.value && typeof props.value === "number"
 			? props.value
@@ -194,6 +201,10 @@ const InputRange = (props: InputRangeProps) => {
 			: 0
 	);
 	const { style, hideRange, unit, ...restProps } = props;
+
+	useEffect(() => {
+		if (elem.current) setWidth(elem.current.offsetWidth);
+	}, [elem.current]);
 
 	useEffect(() => {
 		if (props.value && typeof props.value === "number")
@@ -206,15 +217,16 @@ const InputRange = (props: InputRangeProps) => {
 	};
 
 	return (
-		<Container style={style}>
+		<Container ref={elem} style={style}>
 			{!hideRange && (
 				<RangeValue
 					role="range"
 					id="bubbleHeight"
 					$value={
 						props.min && props.max
-							? (value / (props.max - props.min)) * 100
-							: value
+							? ((value - props.min) / (props.max - props.min)) *
+							  width
+							: (value / 100) * width
 					}
 				>
 					<RangeValueSpan>{value}</RangeValueSpan>
@@ -223,13 +235,14 @@ const InputRange = (props: InputRangeProps) => {
 			{props.presents?.map((item) => {
 				const itemPosition =
 					props.min && props.max
-						? (item.value / (props.max - props.min)) * 100
-						: item.value;
+						? ((item.value - props.min) / (props.max - props.min)) *
+						  width
+						: (item.value / 100) * width;
 				const isSelected = value >= item.value ? true : false;
 				return (
 					<PresentContainer
 						style={{
-							left: `calc(${itemPosition}% - 18px)`,
+							left: `calc(${itemPosition}px - 18px)`,
 						}}
 					>
 						{isSelected && (
@@ -273,12 +286,13 @@ const InputRange = (props: InputRangeProps) => {
 				$backgroundColor={props.backgroundColor}
 				$backValue={
 					props.min && props.max
-						? (value / (props.max - props.min)) * 100
-						: value
+						? ((value - props.min) / (props.max - props.min)) *
+						  width
+						: (value / 100) * width
 				}
 				onChange={onChange}
 			/>
-			{props.min && props.max ? (
+			{props.min && props.max && !props.hideLabels ? (
 				<BottomRow>
 					<Text type="p2" style={{ color: Color.text.neutralMedium }}>
 						{props.min} {unit}
@@ -300,6 +314,7 @@ export interface InputRangeProps extends ComponentPropsWithoutRef<"input"> {
 	max?: number;
 	unit?: string;
 	hideRange?: boolean;
+	hideLabels?: boolean;
 	presents?: {
 		value: number;
 		icon: ReactNode;
