@@ -5,7 +5,7 @@ import {
 	ReactNode,
 	createRef,
 } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Player } from "@lottiefiles/react-lottie-player";
 import Color from "../../constants/ColorV2";
 import Text from "../Text/Text";
@@ -16,7 +16,6 @@ const Container = styled.div`
 	flex-direction: column;
 	position: relative;
 	width: 100%;
-	padding-top: 25px;
 `;
 const InputStyled = styled.input<{
 	$lineColor?: string;
@@ -130,17 +129,26 @@ const BottomRow = styled.div`
 	justify-content: space-between;
 	margin-top: 8px;
 `;
+const PresentKeyframes = keyframes`
+	40% { transform: rotate(0deg) }
+ 	60% { transform: rotate(-10deg) scale(1.2) }
+ 	80% { transform: rotate(10deg) scale(1.2)}
+ 	100% { transform: rotate(0deg) }
+`;
 const PresentContainer = styled.div`
 	position: absolute;
-	top: -8px;
+	top: -33px;
 	gap: 12px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	transform-origin: bottom center;
+	animation-name: ${PresentKeyframes};
+	animation-duration: 2s;
 `;
 const PresentDot = styled.div<{
 	$color?: string;
-	$backgroundColor?: string;
+	$lineColor?: string;
 	$isSelected: boolean;
 }>`
 	width: 10px;
@@ -149,8 +157,8 @@ const PresentDot = styled.div<{
 	border: 2px solid white;
 	background-color: ${(props) =>
 		props.$isSelected
-			? props.$backgroundColor
-				? props.$backgroundColor
+			? props.$lineColor
+				? props.$lineColor
 				: Color.text.primary
 			: props.$color
 			? props.$color
@@ -158,7 +166,7 @@ const PresentDot = styled.div<{
 `;
 const PresentView = styled.div<{
 	$color?: string;
-	$backgroundColor?: string;
+	$lineColor?: string;
 	$isSelected: boolean;
 }>`
 	display: flex;
@@ -173,8 +181,8 @@ const PresentView = styled.div<{
 	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.24);
 	background-color: ${(props) =>
 		props.$isSelected
-			? props.$backgroundColor
-				? props.$backgroundColor
+			? props.$lineColor
+				? props.$lineColor
 				: Color.text.primary
 			: props.$color
 			? props.$color
@@ -260,7 +268,7 @@ const InputRange = (props: InputRangeProps) => {
 							</PresentPlayer>
 						)}
 						<PresentView
-							$backgroundColor={props.backgroundColor}
+							$lineColor={props.lineColor}
 							$color={item.color}
 							$isSelected={isSelected}
 							onClick={() => item.onClick && item.onClick()}
@@ -268,7 +276,7 @@ const InputRange = (props: InputRangeProps) => {
 							{item.icon}
 						</PresentView>
 						<PresentDot
-							$backgroundColor={props.backgroundColor}
+							$lineColor={props.lineColor}
 							$color={item.color}
 							$isSelected={isSelected}
 						/>

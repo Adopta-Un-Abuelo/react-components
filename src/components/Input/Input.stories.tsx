@@ -404,6 +404,8 @@ export const InputRangeWithPresents: Story = {
 		unit: "€",
 		defaultValue: 150,
 		hideRange: true,
+		hideLabels: true,
+		style: { marginTop: 32 },
 		presents: [
 			{
 				value: 200,
