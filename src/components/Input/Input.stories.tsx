@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Input from "./Input";
 import { userEvent, within, expect, fn } from "@storybook/test";
 
-import { Flag, Search, Clock } from "lucide-react";
+import { Flag, Search, Clock, icons, Gift } from "lucide-react";
 
 const meta: Meta<typeof Input> = {
 	title: "Components/Input",
@@ -255,7 +255,7 @@ export const InputTelephone: Story = {
 		type: "tel",
 		defaultValue: "912345678",
 		country: "+34",
-		onPhoneChange: fn()
+		onPhoneChange: fn(),
 	},
 	// play: async ({ canvasElement, step }: any) => {
 	// 	const canvas = within(canvasElement);
@@ -386,6 +386,32 @@ export const InputRangeWithoutRangeView: Story = {
 		unit: "€",
 		defaultValue: 40,
 		hideRange: true,
+	},
+	play: async ({ canvasElement, step }: any) => {
+		const canvas = within(canvasElement);
+		const input = canvas.getByRole("input");
+		await step("render", async () => {
+			expect(input).toBeInTheDocument();
+		});
+	},
+};
+
+export const InputRangeWithPresents: Story = {
+	args: {
+		type: "range",
+		min: 0,
+		max: 100,
+		unit: "€",
+		defaultValue: 30,
+		hideRange: true,
+		presents: [
+			{
+				value: 80,
+				icon: <Gift height={18} width={18} color="white" />,
+				color: "#FF5A5A",
+				onClick: fn(),
+			},
+		],
 	},
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
