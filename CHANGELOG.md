@@ -1,3 +1,19 @@
+# v0.3.31 (Wed Oct 16 2024)
+
+#### 🐛 Bug Fix
+
+- Merge remote-tracking branch 'origin/feature/TagSelectorAdjustment' [#16](https://github.com/Adopta-Un-Abuelo/react-components/pull/16) (guillermo.angeles@adoptaunabuelo.com)
+
+#### ⚠️ Pushed to `main`
+
+- feat: input range with presents (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.30 (Tue Oct 15 2024)
 
 #### ⚠️ Pushed to `main`
