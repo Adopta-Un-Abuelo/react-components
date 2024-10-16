@@ -17,7 +17,11 @@ const CellContainer = styled.div<{ $disabled?: boolean }>`
 	align-items: center;
 	cursor: ${(props) => (props.$disabled ? "default" : "pointer")};
 `;
-const Cell = styled.div<{ $selected: boolean; $disabled?: boolean }>`
+const Cell = styled.div<{
+	$selected: boolean;
+	$disabled?: boolean;
+	$design: "design1" | "design2";
+}>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -28,24 +32,29 @@ const Cell = styled.div<{ $selected: boolean; $disabled?: boolean }>`
 	gap: 8px;
 	margin: 4px;
 	min-width: 95px;
-	box-shadow: 0 0 0
-		${(props) =>
-			props.$selected
-				? "2px " + Color.line.primary
-				: "2px " + Color.line.white};
+	cursor: pointer;
+	box-shadow: ${(props) =>
+		props.$selected
+			? "0 0 0 2px " + Color.line.primary
+			: props.$design === "design2"
+			? "0 0 0 1px " + Color.line.soft
+			: "0 0 0 1px " + Color.text.white};
+
 	background-color: ${(props) =>
-		props.$disabled ? Color.line.soft : props.$selected ? "white" : "white"};
+		props.$disabled
+			? Color.line.soft
+			: props.$selected
+			? "white"
+			: "white"};
 	opacity: ${(props) => (props.$disabled ? 0.3 : 1)};
-	transition:
-		transform 0.05s ease-out,
-		background-color 0.1s ease-out;
+	transition: transform 0.05s ease-out, background-color 0.1s ease-out;
 	&:hover {
 		background-color: ${(props) =>
 			props.$disabled
 				? Color.line.soft
 				: props.$selected
-					? Color.background.primaryLow
-					: Color.line.soft};
+				? Color.background.primaryLow
+				: Color.line.soft};
 	}
 	&:active {
 		transform: ${(props) => (props.$disabled ? "none" : "scale(0.95)")};
@@ -61,7 +70,7 @@ const TextView = styled.div`
 
 const CellSelector = (props: Props) => {
 	const [selectedOptions, setSelectedOptions] = useState(
-		props.selectedOptions ? props.selectedOptions : [],
+		props.selectedOptions ? props.selectedOptions : []
 	);
 
 	useEffect(() => {
@@ -108,6 +117,7 @@ const CellSelector = (props: Props) => {
 							$selected={isSelected}
 							style={props.cellStyle}
 							$disabled={item.disabled}
+							$design={props.design || "design1"}
 						>
 							{item.icon}
 							<Text
@@ -157,6 +167,7 @@ export interface Props {
 	type?: "single" | "multiple";
 	onChange?: (array: Array<OptionProps>) => void;
 	onClick?: (item: OptionProps) => void;
+	design?: "design1" | "design2";
 }
 export interface OptionProps {
 	id: string;
