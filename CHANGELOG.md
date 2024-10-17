@@ -1,3 +1,15 @@
+# v0.3.34 (Thu Oct 17 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: input animation error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.33 (Wed Oct 16 2024)
 
 #### ⚠️ Pushed to `main`
