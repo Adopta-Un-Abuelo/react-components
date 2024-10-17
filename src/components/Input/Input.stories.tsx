@@ -405,7 +405,7 @@ export const InputRangeWithPresents: Story = {
 		defaultValue: 150,
 		hideRange: true,
 		hideLabels: true,
-		style: { marginTop: 32 },
+		style: { marginTop: 42 },
 		presents: [
 			{
 				value: 200,

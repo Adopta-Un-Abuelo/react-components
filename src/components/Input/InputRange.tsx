@@ -176,7 +176,7 @@ const PresentView = styled.div<{
 	align-items: center;
 	border-radius: 44px;
 	cursor: pointer;
-	transform: ${(props) => (props.$isSelected ? "scale(1.2)" : "scale(1)")};
+	transform: ${(props) => (props.$isSelected ? "scale(1.2) translateY(-8px)" : "scale(1) translateY(0px)")};
 	transition: transform 0.05s ease-out;
 	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.24);
 	background-color: ${(props) =>
@@ -188,14 +188,14 @@ const PresentView = styled.div<{
 			? props.$color
 			: Color.surface.primaryLow};
 	&:hover {
-		transform: scale(1.2);
+		transform: ${(props) => `scale(1.2) ${props.$isSelected ? "translateY(-8px)" : "translateY(0px)"}`};
 	}
 `;
 const PresentPlayer = styled.div`
 	position: absolute;
-	top: -90px;
-	height: 220px;
-	width: 220px;
+	top: -40px;
+	height: 100px;
+	width: 100px;
 `;
 
 const InputRange = (props: InputRangeProps) => {
