@@ -117,6 +117,7 @@ const FilterCheckbox = forwardRef(
 					options={optionsState}
 					selectedOptions={checkboxSelection}
 					type={type}
+					shape={restProps.shape}
 					height={isMobile ? 22 : 18}
 					width={isMobile ? 22 : 18}
 					position={isMobile ? "right" : "left"}
@@ -135,6 +136,7 @@ export interface FilterCheckboxProps {
 	hideSearchBar?: boolean;
 	style?: CSSProperties;
 	type: "single" | "multiple";
+	shape?: "circle" | "square";
 	options: Array<{
 		id: string;
 		label: string;
