@@ -1,3 +1,19 @@
+# v0.3.35 (Wed Oct 23 2024)
+
+#### 🐛 Bug Fix
+
+- Merge remote-tracking branch 'origin/feature/FilterCheckboxShape' [#17](https://github.com/Adopta-Un-Abuelo/react-components/pull/17) (guillermo.angeles@adoptaunabuelo.com)
+
+#### ⚠️ Pushed to `main`
+
+- fix: input errors (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.34 (Thu Oct 17 2024)
 
 #### ⚠️ Pushed to `main`
