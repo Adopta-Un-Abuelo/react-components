@@ -139,7 +139,7 @@ const InputPrimary = (props: InputPrimaryProps) => {
 							onChange={(item) => onCountryChange(item)}
 							id="country"
 							options={Country}
-							$focus={false}
+							focus={false}
 						/>
 					</IconView>
 				) : null}

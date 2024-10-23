@@ -409,8 +409,9 @@ export const InputRangeWithPresents: Story = {
 		presents: [
 			{
 				value: 200,
-				icon: <Gift height={18} width={18} color="white" />,
-				color: "#FF5A5A",
+				icon: (props: any) => <Gift {...props} />,
+				color: "#FFE5E5",
+				colorSuccess: "#FF5A5A",
 				onClick: fn(),
 			},
 		],

@@ -52,8 +52,8 @@ const InputStyled = styled.input<{
 
 	&::-moz-range-thumb {
 		-webkit-appearance: none;
-		height: 40px;
-		width: 40px;
+		height: 44px;
+		width: 44px;
 		border: 2px solid white;
 		appearance: none;
 		border-radius: 50%;
@@ -64,12 +64,12 @@ const InputStyled = styled.input<{
 		background-size: 18px;
 		background-repeat: no-repeat;
 		cursor: pointer;
-		filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.18));
+		filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.04));
 	}
 	&::-webkit-slider-thumb {
 		-webkit-appearance: none;
-		height: 40px;
-		width: 40px;
+		height: 44px;
+		width: 44px;
 		border: 2px solid white;
 		appearance: none;
 		border-radius: 50%;
@@ -80,11 +80,11 @@ const InputStyled = styled.input<{
 		background-size: 18px;
 		background-repeat: no-repeat;
 		cursor: pointer;
-		filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.18));
+		filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.04));
 		transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 		&:active {
 			transform: scale(1.1);
-			box-shadow: 0px 10px 12px rgba(0, 0, 0, 0.1);
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
 		}
 	}
 `;
@@ -137,7 +137,7 @@ const PresentKeyframes = keyframes`
 `;
 const PresentContainer = styled.div`
 	position: absolute;
-	top: -33px;
+	top: -35px;
 	gap: 12px;
 	display: flex;
 	flex-direction: column;
@@ -147,8 +147,8 @@ const PresentContainer = styled.div`
 	animation-duration: 2s;
 `;
 const PresentDot = styled.div<{
-	$color?: string;
-	$lineColor?: string;
+	$colorSuccess: string;
+	$color: string;
 	$isSelected: boolean;
 }>`
 	width: 10px;
@@ -156,17 +156,11 @@ const PresentDot = styled.div<{
 	border-radius: 44px;
 	border: 2px solid white;
 	background-color: ${(props) =>
-		props.$isSelected
-			? props.$lineColor
-				? props.$lineColor
-				: Color.text.primary
-			: props.$color
-			? props.$color
-			: Color.surface.primaryLow};
+		props.$isSelected ? props.$colorSuccess : props.$colorSuccess};
 `;
 const PresentView = styled.div<{
-	$color?: string;
-	$lineColor?: string;
+	$color: string;
+	$colorSuccess: string;
 	$isSelected: boolean;
 }>`
 	display: flex;
@@ -176,19 +170,20 @@ const PresentView = styled.div<{
 	align-items: center;
 	border-radius: 44px;
 	cursor: pointer;
-	transform: ${(props) => (props.$isSelected ? "scale(1.2) translateY(-8px)" : "scale(1) translateY(0px)")};
-	transition: transform 0.05s ease-out;
-	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.24);
-	background-color: ${(props) =>
+	transform: ${(props) =>
 		props.$isSelected
-			? props.$lineColor
-				? props.$lineColor
-				: Color.text.primary
-			: props.$color
-			? props.$color
-			: Color.surface.primaryLow};
+			? "scale(1.2) translateY(-8px)"
+			: "scale(1) translateY(0px)"};
+	transition: transform 0.05s ease-out;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.04);
+	background-color: ${(props) =>
+		props.$isSelected ? props.$colorSuccess : props.$color};
+	border: 1px solid rgba(0, 29, 61, 0.10);
 	&:hover {
-		transform: ${(props) => `scale(1.2) ${props.$isSelected ? "translateY(-8px)" : "translateY(0px)"}`};
+		transform: ${(props) =>
+			`scale(1.2) ${
+				props.$isSelected ? "translateY(-8px)" : "translateY(0px)"
+			}`};
 	}
 `;
 const PresentPlayer = styled.div`
@@ -250,7 +245,7 @@ const InputRange = (props: InputRangeProps) => {
 				return (
 					<PresentContainer
 						style={{
-							left: `calc(${itemPosition}px - 18px)`,
+							left: `calc(${itemPosition}px - 22px)`,
 						}}
 					>
 						{isSelected && (
@@ -268,16 +263,20 @@ const InputRange = (props: InputRangeProps) => {
 							</PresentPlayer>
 						)}
 						<PresentView
-							$lineColor={props.lineColor}
+							$colorSuccess={item.colorSuccess}
 							$color={item.color}
 							$isSelected={isSelected}
 							onClick={() => item.onClick && item.onClick()}
 						>
-							{item.icon}
+							<item.icon
+								height={20}
+								width={20}
+								color={isSelected ? "white" : item.colorSuccess}
+							/>
 						</PresentView>
 						<PresentDot
-							$lineColor={props.lineColor}
 							$color={item.color}
+							$colorSuccess={item.colorSuccess}
 							$isSelected={isSelected}
 						/>
 					</PresentContainer>
@@ -325,8 +324,9 @@ export interface InputRangeProps extends ComponentPropsWithoutRef<"input"> {
 	hideLabels?: boolean;
 	presents?: {
 		value: number;
-		icon: ReactNode;
+		icon: any;
 		color: string;
+		colorSuccess: string;
 		onClick?: () => void;
 	}[];
 }

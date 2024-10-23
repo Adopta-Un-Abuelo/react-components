@@ -86,14 +86,6 @@ const TextAreaEditor = (props: TextAreaEditorProps) => {
 					],
 				}}
 				onChange={onTextAreChange}
-				onFocus={() => {
-					const toolbar = document.querySelector(".ql-toolbar");
-					toolbar?.classList.remove("hidden");
-				}}
-				onBlur={() => {
-					const toolbar = document.querySelector(".ql-toolbar");
-					toolbar?.classList.add("hidden");
-				}}
 			/>
 		</Container>
 	);
