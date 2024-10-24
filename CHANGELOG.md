@@ -1,3 +1,15 @@
+# v0.3.36 (Thu Oct 24 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: UI errors (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.35 (Wed Oct 23 2024)
 
 #### 🐛 Bug Fix
