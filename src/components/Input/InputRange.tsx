@@ -2,7 +2,6 @@ import {
 	ComponentPropsWithoutRef,
 	useEffect,
 	useState,
-	ReactNode,
 	createRef,
 } from "react";
 import styled, { keyframes } from "styled-components";
@@ -172,8 +171,8 @@ const PresentView = styled.div<{
 	cursor: pointer;
 	transform: ${(props) =>
 		props.$isSelected
-			? "scale(1.2) translateY(-8px)"
-			: "scale(1) translateY(0px)"};
+			? "translateY(-8px)"
+			: "translateY(0px)"};
 	transition: transform 0.05s ease-out;
 	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.04);
 	background-color: ${(props) =>

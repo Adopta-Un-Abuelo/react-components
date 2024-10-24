@@ -11,6 +11,7 @@ import Color from "../../constants/Color";
 const ButtonPrimary = styled.button<{
 	$size?: "small" | "normal";
 	$loading?: boolean;
+	$countdown?: boolean;
 	$success?: boolean;
 }>`
 	display: flex;
@@ -34,16 +35,18 @@ const ButtonPrimary = styled.button<{
 		background-color 0.2s ease-out, opacity 0.2s ease-out;
 	min-width: ${(props) => (props.$size === "small" ? "80px" : "100px")};
 	cursor: ${(props) =>
-		props.disabled || props.$loading ? "default" : "pointer"};
+		props.disabled || props.$loading || props.$countdown
+			? "default"
+			: "pointer"};
 	&:hover {
 		background-color: ${(props) =>
-			props.disabled || props.$loading
+			props.disabled || props.$loading || props.$countdown
 				? Color.background.primary
 				: Color.status.primary.hover};
 	}
 	&:active {
 		transform: ${(props) =>
-			props.disabled || props.$loading ? "none" : "scale(0.95)"};
+			props.disabled || props.$loading || props.$countdown ? "none" : "scale(0.95)"};
 	}
 `;
 const Label = styled(Text)<{
@@ -111,12 +114,14 @@ const Button = ({
 			role="button"
 			type="button"
 			$loading={loading}
+			$countdown={secondsRemaining > 0}
 			$success={success}
 			$size={size}
 			{...restProps}
 			onClick={(e: any) =>
 				restProps.onClick &&
 				!loading &&
+				secondsRemaining <= 0 &&
 				!restProps.disabled &&
 				restProps.onClick(e)
 			}
@@ -180,8 +185,8 @@ const Button = ({
 						}}
 					>
 						{prevLabel}
-						{secondsRemaining > 0
-							&& ` ${secondsRemaining} segundos`}
+						{secondsRemaining > 0 &&
+							` ${secondsRemaining} segundos`}
 					</Label>
 					{icon && iconPosition === "right" && icon}
 				</>
@@ -200,5 +205,5 @@ export interface Props extends ComponentPropsWithoutRef<"button"> {
 	animationTime?: number;
 	countdown?: number;
 	onSuccess?: (success: boolean) => void;
-	onCountdownEnd?: () => void
+	onCountdownEnd?: () => void;
 }

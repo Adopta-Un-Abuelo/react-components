@@ -176,11 +176,6 @@
 		margin-right: 4px;
 	}
 
-	.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
-		bottom: 4px;
-		top: unset;
-	}
-
 	.ql-formats span[data-value="1"]::before {
 		font-size: 22px;
 	}
