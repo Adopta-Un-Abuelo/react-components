@@ -147,8 +147,6 @@ const InputSecondary = (props: InputSecondaryProps) => {
 		props.onBlur && props.onBlur(e);
 	};
 
-	console.log(props);
-
 	return (
 		<Container style={containerStyle}>
 			<InputContainer

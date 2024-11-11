@@ -66,11 +66,8 @@ const Select = (props: Props) => {
 	useEffect(() => {
 		//Init fuse.js search
 		if (props.options) {
-			const temp = props.options.sort((a, b) =>
-				a.esCountry.localeCompare(b.esCountry),
-			);
 			setFuse(
-				new Fuse(temp, {
+				new Fuse(props.options, {
 					keys: ["esCountry", "enCountry", "prefix"],
 				}),
 			);
@@ -78,7 +75,7 @@ const Select = (props: Props) => {
 				...props.options[0],
 				flag: Flags2[props.options[0].countryCode],
 			});
-			setOptions(temp);
+			setOptions(props.options);
 		}
 	}, [props.options]);
 
@@ -177,21 +174,6 @@ const Select = (props: Props) => {
 					id={props.id}
 					style={props.optionStyle}
 				>
-					<SearchBar
-						id="phone-search-bar"
-						placeholder="Buscar"
-						type="small"
-						style={{
-							padding: "8px 16px",
-							position: "sticky",
-							backgroundColor: "white",
-							top: 0,
-							borderBottom: "1px solid " + Color.line.soft,
-							height: 30,
-						}}
-						design="secondary"
-						onChange={onSearchChage}
-					/>
 					{options &&
 						options.map((item, index) => {
 							const Flag = Flags2[item.countryCode];
