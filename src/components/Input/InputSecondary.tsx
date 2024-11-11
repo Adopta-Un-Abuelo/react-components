@@ -86,11 +86,11 @@ const InputSecondary = (props: InputSecondaryProps) => {
 	useEffect(() => {
 		if (props.country) {
 			const result = props.countryOptions.filter(
-				(item) => item.prefix === props.country
+				(item) => item.countryCode === props.country
 			);
 			if (result.length > 0) onCountryChange(result[0]);
 		}
-	}, [props.country, props.defaultValue]);
+	}, [props.country]);
 
 	const onInputChange = (e: any) => {
 		setInputValue(e.target.value);

@@ -61,16 +61,10 @@ const Select = (props: Props) => {
 	const [showMenu, setShowMenu] = useState(false);
 	const [selectedItem, setSelectedItem] = useState<any>(undefined);
 	const [options, setOptions] = useState(props.options);
-	const [fuse, setFuse] = useState<any>(undefined);
 
 	useEffect(() => {
 		//Init fuse.js search
 		if (props.options) {
-			setFuse(
-				new Fuse(props.options, {
-					keys: ["esCountry", "enCountry", "prefix"],
-				}),
-			);
 			setSelectedItem({
 				...props.options[0],
 				flag: Flags2[props.options[0].countryCode],
@@ -121,15 +115,6 @@ const Select = (props: Props) => {
 		setShowMenu(false);
 		setOptions(props.options);
 		props.onChange && props.onChange(option);
-	};
-
-	const onSearchChage = (e: any) => {
-		const searchText = e.target.value;
-		if (searchText) {
-			const result = fuse.search(searchText);
-			const temp = result.map((obj: any) => obj.item);
-			setOptions(temp);
-		} else setOptions(props.options);
 	};
 
 	return (
