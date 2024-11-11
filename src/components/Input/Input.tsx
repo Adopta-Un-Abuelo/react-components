@@ -17,7 +17,7 @@ import InputCode, { InputCodeProps } from "./InputCode";
 import InputDate, {
 	InputDatePrimaryProps,
 	InputDateSecondaryProps,
-	InputDateThirdProps
+	InputDateThirdProps,
 } from "./InputDate";
 import { InputStyledProps } from "./InputStyled";
 import InputThird, { InputThirdProps } from "./InputThird";
@@ -33,7 +33,8 @@ const Input = (
 		| ChatProps
 		| CodeProps
 		| DatePrimaryProps
-		| DateSecondaryProps,
+		| DateSecondaryProps
+		| TelProps
 ) => {
 	const castRangeProps = (props: RangeProps): ImportedInputRangeProps => {
 		return {
@@ -68,6 +69,8 @@ const Input = (
 		<InputCode {...(props as CodeProps)} />
 	) : props.type === "date" ? (
 		<InputDate {...(props as DatePrimaryProps | DateSecondaryProps)} />
+	) : props.type === "tel" ? (
+		<InputSecondary {...(props as TelProps)} />
 	) : props.design === "secondary" ? (
 		<InputSecondary {...(props as InputSecondaryProps)} />
 	) : props.design === "third" ? (
@@ -98,11 +101,9 @@ export interface InputProps extends InputStyledProps {
 	icon?: ReactElement;
 	unit?: string;
 	error?: string | undefined;
-	country?: string;
 	hideRange?: boolean;
 	design?: "primary" | "secondary" | "third";
 	options?: any;
-	onPhoneChange?: (item: any) => void;
 }
 
 export interface LocationPrimaryProps
@@ -163,4 +164,19 @@ export interface DateSecondaryProps extends InputDateSecondaryProps {
 export interface DateThirdProps extends InputDateThirdProps {
 	design: "third";
 	type: "date";
+}
+
+export interface TelProps extends InputStyledProps {
+	type: "tel";
+	design: "secondary";
+	country?: string;
+	countryOptions: {
+		id: string;
+		esCountry: string;
+		enCountry: string;
+		prefix: string;
+		countryCode: string;
+		[key: string]: any;
+	}[];
+	onPhoneChange?: (item: any) => void;
 }

@@ -6,7 +6,6 @@ import {
 	CSSProperties,
 } from "react";
 import styled from "styled-components";
-import Country from "../../constants/Country";
 import GLPN from "google-libphonenumber";
 
 import Color from "../../constants/ColorV2";
@@ -74,7 +73,7 @@ const InputSecondary = (props: InputSecondaryProps) => {
 	const [inputValue, setInputValue] = useState<
 		string | number | readonly string[] | undefined
 	>(undefined);
-	const [country, setCountry] = useState<any>(Country[0]);
+	const [country, setCountry] = useState<any>(props.countryOptions[0]);
 	const [focus, setFocus] = useState(false);
 
 	const { containerStyle, icon, error, design, ...restProps } = props;
@@ -86,7 +85,7 @@ const InputSecondary = (props: InputSecondaryProps) => {
 
 	useEffect(() => {
 		if (props.country) {
-			const result = Country.filter(
+			const result = props.countryOptions.filter(
 				(item) => item.prefix === props.country
 			);
 			if (result.length > 0) onCountryChange(result[0]);
@@ -148,6 +147,8 @@ const InputSecondary = (props: InputSecondaryProps) => {
 		props.onBlur && props.onBlur(e);
 	};
 
+	console.log(props);
+
 	return (
 		<Container style={containerStyle}>
 			<InputContainer
@@ -164,7 +165,7 @@ const InputSecondary = (props: InputSecondaryProps) => {
 							selectedItem={country}
 							onChange={(item) => onCountryChange(item)}
 							id="country"
-							options={Country}
+							options={props.countryOptions}
 							focus={focus || inputValue ? true : false}
 						/>
 					</IconView>
@@ -227,6 +228,14 @@ export interface InputSecondaryProps extends InputStyledProps {
 	phone?: boolean;
 	design?: string;
 	country?: string;
+	countryOptions: {
+		id: string,
+		esCountry: string,
+		enCountry: string,
+		prefix: string,
+		countryCode: string,
+		[key: string]: any
+	}[],
 	onPhoneChange?: (item: {
 		country: string;
 		value?: any;
