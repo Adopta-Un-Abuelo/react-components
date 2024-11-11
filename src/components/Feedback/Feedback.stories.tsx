@@ -4,7 +4,7 @@ import { userEvent, within, expect } from "@storybook/test";
 import { action } from "@storybook/addon-actions";
 
 import Feedback from "./Feedback";
-import { X } from "lucide-react";
+import { Building, X } from "lucide-react";
 
 const meta: Meta<typeof Feedback> = {
 	title: "Components/Feedback",
@@ -115,6 +115,7 @@ export const Custom: Story = (args: any) => {
 			<Feedback
 				{...args}
 				isVisible={isVisible}
+				showClose={true}
 				onClose={() => {
 					setIsVisible(false);
 					action("onClose")();
@@ -126,7 +127,7 @@ export const Custom: Story = (args: any) => {
 Custom.args = {
 	type: "custom",
 	closeAfter: 20000,
-	icon: <X color={"rgba(255, 255, 255, 0.56)"}/>,
+	icon: <Building color={"rgba(255, 255, 255, 0.56)"}/>,
 	style: {
 		borderRadius: 12,
 		background: "linear-gradient(72deg, #5963F6 0%, #CD59F6 100%)"

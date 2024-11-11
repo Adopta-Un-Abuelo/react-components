@@ -1,9 +1,15 @@
-import { ComponentPropsWithoutRef, ReactNode, useEffect, useState } from "react";
+import {
+	ComponentPropsWithoutRef,
+	ReactNode,
+	useEffect,
+	useState,
+} from "react";
 import styled from "styled-components";
 
 import { Check, X } from "lucide-react";
 import Text from "../Text/Text";
 import { Color } from "../../constants";
+import Button from "../Button/Button";
 
 const Container = styled.div<{
 	$text?: string;
@@ -46,10 +52,13 @@ const FeedBack = ({
 
 	useEffect(() => {
 		setShow(isVisible);
-		setTimeout(() => {
-			props.onClose && props.onClose();
-			setShow(false);
-		}, props.closeAfter ? props.closeAfter : 3000);
+		setTimeout(
+			() => {
+				props.onClose && props.onClose();
+				setShow(false);
+			},
+			props.closeAfter ? props.closeAfter : 3000
+		);
 	}, [isVisible]);
 
 	return show ? (
@@ -78,6 +87,17 @@ const FeedBack = ({
 				>
 					{text}
 				</Text>
+				{props.showClose && (
+					<Button
+						style={{ position: "absolute", top: 0, right: 0 }}
+						design="image"
+						icon={<X height={18} width={18} color="white" />}
+						onClick={() => {
+							props.onClose && props.onClose();
+							setShow(false);
+						}}
+					/>
+				)}
 			</View>
 		</Container>
 	) : null;
@@ -89,5 +109,6 @@ export interface Props extends ComponentPropsWithoutRef<"div"> {
 	icon?: ReactNode;
 	text: string;
 	closeAfter?: number;
+	showClose?: boolean;
 	onClose?: () => void;
 }
