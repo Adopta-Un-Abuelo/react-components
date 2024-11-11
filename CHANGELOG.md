@@ -1,3 +1,15 @@
+# v0.3.37 (Mon Nov 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: input errors (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.36 (Thu Oct 24 2024)
 
 #### ⚠️ Pushed to `main`
