@@ -71,7 +71,7 @@ const Select = (props: Props) => {
 			});
 			setOptions(props.options);
 		}
-	}, [props.options]);
+	}, []);
 
 	useEffect(() => {
 		//Init on click listener
