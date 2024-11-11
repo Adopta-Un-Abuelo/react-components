@@ -73,7 +73,19 @@ const InputSecondary = (props: InputSecondaryProps) => {
 	const [inputValue, setInputValue] = useState<
 		string | number | readonly string[] | undefined
 	>(undefined);
-	const [country, setCountry] = useState<any>(props.countryOptions[0]);
+	const [country, setCountry] = useState<{
+		id: string;
+		esCountry: string;
+		enCountry: string;
+		prefix: string;
+		countryCode: string;
+	}>({
+		id: "spain",
+		esCountry: "España",
+		enCountry: "Spain",
+		prefix: "+34",
+		countryCode: "ES"
+	});
 	const [focus, setFocus] = useState(false);
 
 	const { containerStyle, icon, error, design, ...restProps } = props;
