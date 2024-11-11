@@ -1,3 +1,15 @@
+# v0.3.38 (Mon Nov 11 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: remove search bar in input phone (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.37 (Mon Nov 11 2024)
 
 #### ⚠️ Pushed to `main`
