@@ -85,7 +85,7 @@
 }
 
 .ql-snow.ql-toolbar button.ql-active {
-	background-color: rgba(0, 29, 61, 0.14);
+	background-color: white;
 }
 
 .ql-snow.ql-toolbar button.ql-active .ql-stroke {
@@ -121,8 +121,8 @@
 
 .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options {
 	border: 1px solid rgba(0, 29, 61, 0.1);
-	border-radius: 12px;
-	padding: 0px;
+	border-radius: 6px;
+	padding: 4px;
 	text-align: center;
 	top: 0px;
 	z-index: 2;
@@ -130,6 +130,12 @@
 	width: 125px;
 }
 
+.ql-snow.ql-toolbar .ql-picker-item{
+	text-align: left;
+	padding: 4px 8px;
+	border-radius: 6px;
+	color: rgba(0, 29, 61, 0.92);
+}
 .ql-snow.ql-toolbar .ql-picker-item:hover {
 	background-color: rgba(0, 29, 61, 0.04);
 	color: rgba(0, 29, 61, 0.92);
