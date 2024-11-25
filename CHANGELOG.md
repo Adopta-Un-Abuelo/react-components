@@ -1,3 +1,15 @@
+# v0.3.44 (Mon Nov 25 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: text area editor (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.43 (Tue Nov 12 2024)
 
 #### ⚠️ Pushed to `main`
