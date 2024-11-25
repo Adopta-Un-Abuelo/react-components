@@ -1,3 +1,7 @@
+.quill {
+	height: calc(100% - 48px);
+}
+
 .quill h1 {
 	font-size: 24px !important;
 	color: rgba(0, 29, 61, 0.92);
@@ -130,7 +134,7 @@
 	width: 125px;
 }
 
-.ql-snow.ql-toolbar .ql-picker-item{
+.ql-snow.ql-toolbar .ql-picker-item {
 	text-align: left;
 	padding: 4px 8px;
 	border-radius: 6px;
@@ -152,11 +156,11 @@
 	.quill h1 {
 		font-size: 22px !important;
 	}
-	
+
 	.quill h2 {
 		font-size: 16px !important;
 	}
-	
+
 	.quill p {
 		font-size: 14px !important;
 	}
@@ -185,12 +189,12 @@
 	.ql-formats span[data-value="1"]::before {
 		font-size: 22px;
 	}
-	
+
 	.ql-formats span[data-value="2"]::before {
 		font-size: 16px;
 	}
 
-	.ql-snow .ql-picker-label{
+	.ql-snow .ql-picker-label {
 		padding: 0px;
 	}
 }

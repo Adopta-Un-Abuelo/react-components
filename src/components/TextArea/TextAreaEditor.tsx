@@ -71,7 +71,6 @@ const TextAreaEditor = (props: TextAreaEditorProps) => {
 			<ReactQuill
 				ref={quill}
 				theme="snow"
-				style={{ height: "100%" }}
 				value={value}
 				placeholder={props.placeholder}
 				modules={{
