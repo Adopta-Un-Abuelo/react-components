@@ -1,3 +1,15 @@
+# v0.3.46 (Thu Nov 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: idem (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.45 (Thu Nov 28 2024)
 
 #### ⚠️ Pushed to `main`
