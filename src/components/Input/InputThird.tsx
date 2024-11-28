@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState, CSSProperties } from "react";
+import { ReactElement, useEffect, useState, CSSProperties, useRef } from "react";
 import styled from "styled-components";
 import Color from "../../constants/Color";
 import Country from "../../constants/Country";
@@ -43,6 +43,7 @@ const InputThird = (props: InputThirdProps) => {
 	const { design, icon, error, containerStyle, ...restProps } = props;
 	const isMobile = window.innerWidth <= 450;
 	const phoneUtil = GLPN.PhoneNumberUtil.getInstance();
+	const input = useRef<HTMLInputElement>(null);
 
 	const [inputValue, setInputValue] = useState<
 		string | number | readonly string[] | undefined
@@ -108,8 +109,10 @@ const InputThird = (props: InputThirdProps) => {
 
 	const onInputFocus = (e: any) => {
 		if (props.type === "date") {
-			if (isMobile) setShowDateModal(true);
-			else {
+			if (isMobile) {
+				input.current?.blur();
+				setShowDateModal(true);
+			} else {
 				setFocus(true);
 				props.onFocus && props.onFocus(e);
 			}
@@ -157,6 +160,7 @@ const InputThird = (props: InputThirdProps) => {
 				) : null}
 				<Column>
 					<InputStyled
+						ref={input}
 						{...restProps}
 						type={props.type === "date" ? "text" : props.type}
 						value={inputValue}

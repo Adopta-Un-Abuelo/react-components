@@ -181,7 +181,10 @@ const InputSecondary = (props: InputSecondaryProps) => {
 				$focus={focus}
 				onClick={() => {
 					if (props.type === "date") {
-						if (isMobile) setShowDateModal(true);
+						if (isMobile) {
+							input.current?.blur();
+							setShowDateModal(true);
+						}
 						else {
 							input.current?.focus();
 						}
