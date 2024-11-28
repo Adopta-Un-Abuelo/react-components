@@ -1,3 +1,16 @@
+# v0.3.45 (Thu Nov 28 2024)
+
+#### ⚠️ Pushed to `main`
+
+- Merge remote-tracking branch 'origin/main' (guillermo.angeles@adoptaunabuelo.com)
+- fix: input date (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.44 (Mon Nov 25 2024)
 
 #### ⚠️ Pushed to `main`
