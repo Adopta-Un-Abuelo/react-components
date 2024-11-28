@@ -169,7 +169,7 @@ const InputSecondary = (props: InputSecondaryProps) => {
 				isVisible={showDateModal}
 				onSave={(date) => {
 					onInputChange({
-						target: { value: moment(date).format("YYYY-MM-DD") },
+						target: { value: moment(date).format("DD/MM/YYYY") },
 					});
 					setShowDateModal(false);
 				}}

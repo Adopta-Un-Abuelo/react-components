@@ -3,10 +3,12 @@ import styled from "styled-components";
 import Color from "../../constants/Color";
 import Country from "../../constants/Country";
 import GLPN from "google-libphonenumber";
+import moment from "moment";
 
 import Select, { CountryProps } from "../Select/SelectPhone";
 import Text from "../Text/Text";
 import InputStyled, { InputStyledProps } from "./InputStyled";
+import DatePickerModal from "../DatePicker/DatePickerModal";
 
 const Container = styled.div``;
 const InputContainer = styled.div<{ $focus?: boolean; $error?: boolean }>`
@@ -18,7 +20,8 @@ const InputContainer = styled.div<{ $focus?: boolean; $error?: boolean }>`
 	height: 34px;
 	min-height: 34px;
 	outline: none;
-	border-bottom: 1px solid ${props => props.$focus ? Color.line.full : Color.line.soft};
+	border-bottom: 1px solid
+		${(props) => (props.$focus ? Color.line.full : Color.line.soft)};
 `;
 const ErrorDiv = styled.div`
 	font-style: normal;
@@ -38,7 +41,7 @@ const IconView = styled.div`
 `;
 const InputThird = (props: InputThirdProps) => {
 	const { design, icon, error, containerStyle, ...restProps } = props;
-
+	const isMobile = window.innerWidth <= 450;
 	const phoneUtil = GLPN.PhoneNumberUtil.getInstance();
 
 	const [inputValue, setInputValue] = useState<
@@ -46,6 +49,7 @@ const InputThird = (props: InputThirdProps) => {
 	>(undefined);
 	const [country, setCountry] = useState<CountryProps>(Country[0]);
 	const [focus, setFocus] = useState(false);
+	const [showDateModal, setShowDateModal] = useState(false);
 
 	useEffect(() => {
 		setInputValue(props.value);
@@ -54,7 +58,7 @@ const InputThird = (props: InputThirdProps) => {
 	useEffect(() => {
 		if (props.country) {
 			const result = Country.filter(
-				(item) => item.prefix === props.country,
+				(item) => item.prefix === props.country
 			);
 			if (result.length > 0) onCountryChange(result[0]);
 		}
@@ -74,8 +78,8 @@ const InputThird = (props: InputThirdProps) => {
 						phone.length > 8 && phone.length < 18
 							? phoneUtil.isValidNumberForRegion(
 									phoneUtil.parse(phone, country.countryCode),
-									country.countryCode,
-								)
+									country.countryCode
+							  )
 							: false,
 				});
 		}
@@ -96,15 +100,23 @@ const InputThird = (props: InputThirdProps) => {
 					phone.length >= 6 && phone.length < 18
 						? phoneUtil.isValidNumberForRegion(
 								phoneUtil.parse(phone, country.countryCode),
-								country.countryCode,
-							)
+								country.countryCode
+						  )
 						: false,
 			});
 	};
 
 	const onInputFocus = (e: any) => {
-		setFocus(true);
-		props.onFocus && props.onFocus(e);
+		if (props.type === "date") {
+			if (isMobile) setShowDateModal(true);
+			else {
+				setFocus(true);
+				props.onFocus && props.onFocus(e);
+			}
+		} else {
+			setFocus(true);
+			props.onFocus && props.onFocus(e);
+		}
 	};
 
 	const onInputBlur = (e: any) => {
@@ -114,6 +126,16 @@ const InputThird = (props: InputThirdProps) => {
 
 	return (
 		<Container style={props.containerStyle}>
+			<DatePickerModal
+				isVisible={showDateModal}
+				onSave={(date) => {
+					onInputChange({
+						target: { value: moment(date).format("DD/MM/YYYY") },
+					});
+					setShowDateModal(false);
+				}}
+				onClose={() => setShowDateModal(false)}
+			/>
 			<InputContainer
 				$error={props.error ? true : false}
 				style={props.style}
@@ -129,13 +151,14 @@ const InputThird = (props: InputThirdProps) => {
 							onChange={(item) => onCountryChange(item)}
 							id="country"
 							options={Country}
-							$focus={false}
+							focus={false}
 						/>
 					</IconView>
 				) : null}
 				<Column>
 					<InputStyled
 						{...restProps}
+						type={props.type === "date" ? "text" : props.type}
 						value={inputValue}
 						onChange={onInputChange}
 						onFocus={onInputFocus}
