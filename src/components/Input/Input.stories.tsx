@@ -345,7 +345,7 @@ export const InputDate: Story = {
 	args: {
 		design: "secondary",
 		type: "date",
-		defaultValue: undefined,
+		defaultValue: undefined
 	},
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
@@ -355,9 +355,6 @@ export const InputDate: Story = {
 			expect(input).toBeInTheDocument();
 			expect(placeholder).toBeInTheDocument();
 		});
-		await step("typing", async () => {
-			userEvent.type(input, "23052023", { delay: 100 });
-		});
 	},
 };
 
@@ -365,7 +362,6 @@ export const InputDateWithCalendar: Story = {
 	args: {
 		design: "secondary",
 		type: "date",
-		showCalendar: true,
 		defaultValue: undefined,
 	},
 	play: async ({ canvasElement, step }: any) => {

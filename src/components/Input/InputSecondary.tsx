@@ -7,11 +7,13 @@ import {
 } from "react";
 import styled from "styled-components";
 import GLPN from "google-libphonenumber";
+import moment from "moment";
 
 import Color from "../../constants/ColorV2";
 import Select from "../Select/SelectPhone";
 import Text from "../Text/Text";
 import InputStyled, { InputStyledProps } from "./InputStyled";
+import DatePickerModal from "../DatePicker/DatePickerModal";
 
 const Container = styled.div``;
 const InputContainer = styled.div<{ $focus: boolean; $error: boolean }>`
@@ -67,6 +69,7 @@ const Placeholder = styled(Text)<{
 	transition: top 0.1s ease-out, font-size 0.1s ease-out;
 `;
 const InputSecondary = (props: InputSecondaryProps) => {
+	const isMobile = window.innerWidth <= 450;
 	const phoneUtil = GLPN.PhoneNumberUtil.getInstance();
 
 	const input = useRef<HTMLInputElement>(null);
@@ -84,9 +87,10 @@ const InputSecondary = (props: InputSecondaryProps) => {
 		esCountry: "España",
 		enCountry: "Spain",
 		prefix: "+34",
-		countryCode: "ES"
+		countryCode: "ES",
 	});
 	const [focus, setFocus] = useState(false);
+	const [showDateModal, setShowDateModal] = useState(false);
 
 	const { containerStyle, icon, error, design, ...restProps } = props;
 
@@ -161,11 +165,30 @@ const InputSecondary = (props: InputSecondaryProps) => {
 
 	return (
 		<Container style={containerStyle}>
+			<DatePickerModal
+				isVisible={showDateModal}
+				onSave={(date) => {
+					onInputChange({
+						target: { value: moment(date).format("YYYY-MM-DD") },
+					});
+					setShowDateModal(false);
+				}}
+				onClose={() => setShowDateModal(false)}
+			/>
 			<InputContainer
 				$error={error ? true : false}
 				style={props.style}
 				$focus={focus}
-				onClick={() => input.current?.focus()}
+				onClick={() => {
+					if (props.type === "date") {
+						if (isMobile) setShowDateModal(true);
+						else {
+							input.current?.focus();
+						}
+					} else {
+						input.current?.focus();
+					}
+				}}
 			>
 				{icon ? (
 					<IconView>{icon}</IconView>
@@ -193,6 +216,7 @@ const InputSecondary = (props: InputSecondaryProps) => {
 					<InputStyled
 						ref={input}
 						{...restProps}
+						type={props.type === "date" ? "text" : props.type}
 						value={props.value ? props.value : inputValue}
 						placeholder=""
 						style={{
@@ -239,13 +263,13 @@ export interface InputSecondaryProps extends InputStyledProps {
 	design?: string;
 	country?: string;
 	countryOptions: {
-		id: string,
-		esCountry: string,
-		enCountry: string,
-		prefix: string,
-		countryCode: string,
-		[key: string]: any
-	}[],
+		id: string;
+		esCountry: string;
+		enCountry: string;
+		prefix: string;
+		countryCode: string;
+		[key: string]: any;
+	}[];
 	onPhoneChange?: (item: {
 		country: string;
 		value?: any;
