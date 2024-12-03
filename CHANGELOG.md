@@ -1,3 +1,15 @@
+# v0.3.48 (Tue Dec 03 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: dropdown already selected value ([@AdrianChacon](https://github.com/AdrianChacon))
+
+#### Authors: 1
+
+- Adrián Chacón Madueño ([@AdrianChacon](https://github.com/AdrianChacon))
+
+---
+
 # v0.3.47 (Thu Nov 28 2024)
 
 #### ⚠️ Pushed to `main`
