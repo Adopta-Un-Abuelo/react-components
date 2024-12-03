@@ -86,36 +86,39 @@ const Box = styled.div<{ $selected: boolean }>`
 `;
 const Dropdown = (props: Props) => {
 	const [open, setOpen] = useState(false);
-	const [selected, setSelected] = useState<Array<OptionProps>>([]);
+	const [selected, setSelected] = useState<Array<OptionProps>>(
+		props.selectedOptions || []
+	);
 	const [update, setUpdate] = useState(false);
 
 	useEffect(() => {
-		if (props.selectedOptions) {
+		if (Array.isArray(props.selectedOptions) && props.selectedOptions.length > 0) {
 			const temp: any = [];
-			props.options.map((item) => {
-				if (
-					props.selectedOptions &&
-					props.selectedOptions.findIndex(
-						(temp) => temp.id === item.id,
-					) > -1
-				) {
+			props.options.forEach((item) => {
+				if (props.selectedOptions && props.selectedOptions.some((temp) => temp.id === item.id)) {
 					temp.push(item);
 				}
 			});
 			setSelected(temp);
-		} else setSelected([]);
-	}, [props.selectedOptions]);
+		} else {
+			setSelected([]);
+		}
+	}, [props.selectedOptions, props.options]);
 
 	useEffect(() => {
-		//On click outside the filter view
-		document.addEventListener("mousedown", (e: any) => {
+		// On click outside the filter view
+		const handleClickOutside = (e: any) => {
 			const element = document.getElementById(props.id);
-			if (element !== null) {
-				if (!element.contains(e.target)) if (open) onFilterClick(e);
+			if (element !== null && !element.contains(e.target) && open) {
+				onFilterClick(e);
 			}
-		});
-		return document.removeEventListener("mousedown", onFilterClick);
-	});
+		};
+
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [open, props.id]);
 
 	const onFilterClick = (e: any) => {
 		e.stopPropagation();
@@ -129,7 +132,7 @@ const Dropdown = (props: Props) => {
 			props.onChange && props.onChange([item]);
 		} else {
 			const result = selected.findIndex((obj) => item.id === obj.id);
-			let tempArray = selected;
+			let tempArray = [...selected];
 			if (result === -1) tempArray.push(item);
 			else tempArray.splice(result, 1);
 			setSelected(tempArray);
@@ -161,8 +164,8 @@ const Dropdown = (props: Props) => {
 				>
 					{selected.length > 0
 						? selected.map((item, index) =>
-								index === 0 ? item.title : ", " + item.title,
-							)
+								index === 0 ? item.title : ", " + item.title
+						  )
 						: props.placeholder}
 				</Text>
 				{open ? (
@@ -186,7 +189,9 @@ const Dropdown = (props: Props) => {
 						/>
 					)}
 					{props.options.map((item) => {
-						const isSelected = selected.includes(item);
+						const isSelected = selected.some(
+							(selectedItem) => selectedItem.id === item.id
+						);
 						return (
 							<Option
 								key={item.id}
