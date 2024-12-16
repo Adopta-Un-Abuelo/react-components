@@ -1,7 +1,7 @@
 import { CSSProperties, forwardRef, Ref, useEffect, useImperativeHandle, useState } from "react";
 import Fuse from "fuse.js";
 
-import FilterDefault from "./FilterDefault";
+import FilterDefault, { FilterDefaultProps } from "./FilterDefault";
 import Checkbox from "../Checkbox/CheckboxList";
 import Button from "../Button/Button";
 
@@ -10,7 +10,6 @@ const FilterCheckbox = forwardRef(
 		type,
 		options,
 		selectedOptions,
-		hideSearchBar,
 		onChange,
 		...restProps
 	}: FilterCheckboxProps, ref: Ref<FilterCheckboxRef>) => {
@@ -128,13 +127,7 @@ const FilterCheckbox = forwardRef(
 	},
 );
 export default FilterCheckbox;
-export interface FilterCheckboxProps {
-	id: string;
-	placeholder: string;
-	disabled?: boolean;
-	position?: "bottom-right" | "bottom-left";
-	hideSearchBar?: boolean;
-	style?: CSSProperties;
+export interface FilterCheckboxProps extends FilterDefaultProps{
 	type: "single" | "multiple";
 	shape?: "circle" | "square";
 	options: Array<{

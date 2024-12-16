@@ -306,7 +306,7 @@ const Filter = (props: FilterDefaultProps) => {
 				</div>
 			</Modal>
 			{!isMobile && showFilterView && (
-				<FilterView ref={filterViewRef} $position={props.position}>
+				<FilterView style={props.menuStyle} ref={filterViewRef} $position={props.position}>
 					{!props.hideSearchBar && (
 						<SearchBar
 							defaultValue={searchText}
@@ -338,6 +338,7 @@ export interface FilterDefaultProps {
 	position?: "bottom-right" | "bottom-left";
 	hideSearchBar?: boolean;
 	style?: CSSProperties;
+	menuStyle?: CSSProperties;
 	children: React.ReactNode;
 	childrenBottomBar?: React.ReactNode;
 	onClose?: () => void;

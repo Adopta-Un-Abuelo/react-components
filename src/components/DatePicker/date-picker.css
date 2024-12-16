@@ -44,7 +44,7 @@
 
 .datepicker .datepicker-navbar {
     box-shadow: 0px -1px 0px 0px var(--border-clear-neutral-soft, rgba(0, 29, 61, 0.10));
-	padding: 16px 16px 24px;
+	padding: 16px;
 	display: flex;
 	flex-direction: row-reverse;
 	justify-content: space-between;
