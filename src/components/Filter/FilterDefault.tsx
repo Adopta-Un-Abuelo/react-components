@@ -339,7 +339,7 @@ export interface FilterDefaultProps {
 	hideSearchBar?: boolean;
 	style?: CSSProperties;
 	menuStyle?: CSSProperties;
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	childrenBottomBar?: React.ReactNode;
 	onClose?: () => void;
 	onSearchChange?: (searchText: string) => void;
