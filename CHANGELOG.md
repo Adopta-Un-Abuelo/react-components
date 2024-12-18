@@ -1,3 +1,15 @@
+# v0.3.53 (Wed Dec 18 2024)
+
+#### ⚠️ Pushed to `main`
+
+- fix: chat UI errors (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.52 (Wed Dec 18 2024)
 
 #### ⚠️ Pushed to `main`
