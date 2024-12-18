@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import { ColorV2 } from "../../constants";
 import Input from "../Input/Input";
 import ChatBubble, { ChatMessageProps } from "./ChatBubble";
@@ -8,20 +9,25 @@ const Container = styled.div`
 	position: relative;
 	height: 100%;
 	background-color: ${ColorV2.surface.background};
+    overflow: hidden;
 `;
 const List = styled.div`
-	height: calc(100% - 3rem);
+	height: calc(100% - 110px);
 	overflow-y: scroll;
-	padding: 1rem;
-	padding-bottom: 0.5rem;
+    padding: 24px 24px 86px;
 `;
 const InputView = styled.div`
-	padding: 16px 24px;
+    position: sticky;
+    bottom: 0px;
+	padding: 8px 24px 24px;
+    background-color: ${ColorV2.surface.background};
 `;
 
 const Chat = (props: ChatProps) => {
 	return (
-		<Container>
+		<Container
+            style={props.style}
+        >
 			<List>
 				{props.messages.map((message, index) => (
 					<ChatBubble
@@ -43,6 +49,7 @@ const Chat = (props: ChatProps) => {
 };
 export default Chat;
 export interface ChatProps {
+    style?: CSSProperties
 	messages: ChatMessageProps[];
     onSend?: (text: string) => void
 }
