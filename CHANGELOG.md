@@ -1,3 +1,15 @@
+# v0.3.52 (Wed Dec 18 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: chat message component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.51 (Mon Dec 16 2024)
 
 #### ⚠️ Pushed to `main`
