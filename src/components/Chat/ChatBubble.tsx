@@ -3,17 +3,39 @@ import Avatar from "../Avatar/Avatar";
 import styled from "styled-components";
 import moment from "moment";
 import { ColorV2 } from "../../constants";
+import * as icons from "lucide-react";
+import { useEffect, useState } from "react";
 
 const Content = styled.div``;
 const FooterView = styled.div`
 	display: flex;
 	justify-content: flex-end;
+	align-items: center;
+	gap: 4px;
 	font-size: 10px;
-    color: ${ColorV2.text.neutralMedium};
-    margin-top: 4px;
+	color: ${ColorV2.text.neutralMedium};
+	margin-top: 4px;
 `;
 
 const ChatBubble = (props: ChatProps) => {
+	const [Icon, setIcon] = useState<any>(undefined);
+
+	useEffect(() => {
+		setIcon(
+			icons[
+				props.message.state === "delivered"
+					? "CheckCheck"
+					: props.message.state === "failed"
+					? "X"
+					: props.message.state === "read"
+					? "CheckCheck"
+					: props.message.state === "sent"
+					? "Check"
+					: "Clock"
+			]
+		);
+	}, []);
+
 	return (
 		<div
 			className={`bubble-container ${
@@ -44,6 +66,17 @@ const ChatBubble = (props: ChatProps) => {
 				<Content>{props.message.text}</Content>
 				<FooterView>
 					{moment(props.message.createdAt).format("HH:mm")}
+					{Icon && (
+						<Icon
+							height={14}
+							width={14}
+							color={
+								props.message.state === "read"
+									? ColorV2.text.primary
+									: ColorV2.text.neutralMedium
+							}
+						/>
+					)}
 				</FooterView>
 			</div>
 		</div>
@@ -61,6 +94,7 @@ export interface ChatMessageProps {
 	};
 	text: string;
 	type: "sender" | "recipient";
+	state: "sent" | "undelivered" | "delivered" | "failed" | "read";
 	createdAt: Date;
 	jump?: boolean;
 }

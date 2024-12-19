@@ -9,67 +9,74 @@ const meta: Meta<typeof Chat> = {
 	args: {
 		messages: [
 			{
-                key: "1-sender",
+				key: "1-sender",
 				User: {
 					name: "Pepe",
 				},
 				text: "Sender message",
 				type: "sender",
-				createdAt: new Date("2024-12-18 22:22")
+				state: "delivered",
+				createdAt: new Date("2024-12-18 22:22"),
 			},
 			{
-                key: "1-recipient",
+				key: "1-recipient",
 				User: {
 					name: "Pepa",
 				},
 				text: "Recipient message",
 				type: "recipient",
-				createdAt: new Date("2024-12-18 22:23")
+				state: "failed",
+				createdAt: new Date("2024-12-18 22:23"),
 			},
-            {
-                key: "2-recipient",
+			{
+				key: "2-recipient",
 				User: {
 					name: "Pepa",
 				},
 				text: "Recipient message 2",
 				type: "recipient",
-				createdAt: new Date("2024-12-18 22:24")
+				state: "read",
+				createdAt: new Date("2024-12-18 22:24"),
 			},
 			{
-                key: "2-sender",
+				key: "2-sender",
 				User: {
 					name: "Pepe",
 				},
 				text: "Sender message",
 				type: "sender",
-				createdAt: new Date("2024-12-18 22:25")
+				state: "sent",
+				createdAt: new Date("2024-12-18 22:25"),
 			},
 			{
-                key: "3-sender",
+				key: "3-sender",
 				User: {
 					name: "Pepe",
 				},
 				text: "Sender message más largo donde debería aparecer un salto de linea",
 				type: "sender",
-				createdAt: new Date("2024-12-18 22:26")
+				state: "undelivered",
+				createdAt: new Date("2024-12-18 22:26"),
 			},
 			{
-                key: "4-sender",
+				key: "4-sender",
 				User: {
 					name: "Pepe",
 				},
 				text: "Sender message más largo donde debería",
 				type: "sender",
-				createdAt: new Date("2024-12-18 22:27")
+				state: "read",
+				createdAt: new Date("2024-12-18 22:27"),
 			},
 			{
-                key: "4-sender",
+				key: "4-sender",
 				User: {
 					name: "Pepe",
 				},
 				text: "Sender message más largo donde debería aparecer un salto de linea",
 				type: "sender",
-				createdAt: new Date("2024-12-18 22:28")
+				state: "read",
+				createdAt: new Date("2024-12-18 22:28"),
 			},
 		],
 	},
