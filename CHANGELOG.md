@@ -1,3 +1,15 @@
+# v0.3.54 (Thu Dec 19 2024)
+
+#### ⚠️ Pushed to `main`
+
+- feat: chat message with state (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.53 (Wed Dec 18 2024)
 
 #### ⚠️ Pushed to `main`
