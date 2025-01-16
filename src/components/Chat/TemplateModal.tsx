@@ -40,10 +40,11 @@ const TemplateModal: React.FC<TemplateModalProps> = (props) => {
 			contentStyle={{ paddingBottom: 24 }}
 			onClose={props.onClose}
 		>
-			{props.templates.map((template) => {
+			{props.templates.map((template, index) => {
 				const isSelected = selectedOption === template.id;
 				return (
 					<Cell
+						key={"template-"+index}
 						title={template.description}
 						$isSelected={isSelected}
 						onClick={() => setSelectedOption(template.id)}

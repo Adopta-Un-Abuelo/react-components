@@ -8,46 +8,7 @@ const meta: Meta<typeof Chat> = {
 	tags: ["autodocs"],
 	args: {
 		messages: [
-			{
-				key: "1-sender",
-				User: {
-					name: "Pepe",
-				},
-				text: "Sender message",
-				type: "sender",
-				state: "delivered",
-				createdAt: new Date("2024-12-18 22:22"),
-			},
-			{
-				key: "1-recipient",
-				User: {
-					name: "Pepa",
-				},
-				text: "Recipient message",
-				type: "recipient",
-				state: "failed",
-				createdAt: new Date("2024-12-18 22:23"),
-			},
-			{
-				key: "2-recipient",
-				User: {
-					name: "Pepa",
-				},
-				text: "Recipient message 2",
-				type: "recipient",
-				state: "read",
-				createdAt: new Date("2024-12-18 22:24"),
-			},
-			{
-				key: "2-sender",
-				User: {
-					name: "Pepe",
-				},
-				text: "Sender message",
-				type: "sender",
-				state: "sent",
-				createdAt: new Date("2024-12-18 22:25"),
-			},
+			
 			{
 				key: "3-sender",
 				User: {
@@ -58,26 +19,7 @@ const meta: Meta<typeof Chat> = {
 				state: "undelivered",
 				createdAt: new Date("2024-12-20 22:26"),
 			},
-			{
-				key: "4-sender",
-				User: {
-					name: "Pepe",
-				},
-				media: [
-					{
-						category: "media",
-						filename: null,
-						size: 965,
-						content_type: "image/png",
-						sid: "ME82c979932cf8bc1f36dece00b9c3f83f",
-						url: "https://raw.githubusercontent.com/test-images/png/refs/heads/main/202105/cs-black-000.png",
-					},
-				],
-				text: "Sender message más largo donde debería",
-				type: "sender",
-				state: "read",
-				createdAt: new Date("2024-12-20 22:27"),
-			},
+			
 			{
 				key: "5-sender",
 				User: {
@@ -160,6 +102,56 @@ export const WithTemplates: Story = {
 				type: "recipient",
 				state: "failed",
 				createdAt: new Date("2024-12-18 22:23"),
+			},
+			{
+				key: "2-recipient",
+				User: {
+					name: "Pepa",
+				},
+				text: "Recipient message 2",
+				type: "recipient",
+				state: "read",
+				createdAt: new Date("2024-12-18 22:24"),
+			},
+			{
+				key: "2-recipient",
+				User: {
+					name: "Pepa",
+				},
+				text: "Recipient message 2",
+				type: "recipient",
+				state: "read",
+				createdAt: new Date("2024-12-18 22:24"),
+			},
+			{
+				key: "2-recipient",
+				User: {
+					name: "Pepa",
+				},
+				text: "Recipient message 2",
+				type: "recipient",
+				state: "read",
+				createdAt: new Date("2024-12-18 22:24"),
+			},
+			{
+				key: "2-recipient",
+				User: {
+					name: "Pepa",
+				},
+				text: "Recipient message 2",
+				type: "recipient",
+				state: "read",
+				createdAt: new Date("2024-12-18 22:24"),
+			},
+			{
+				key: "2-recipient",
+				User: {
+					name: "Pepa",
+				},
+				text: "Recipient message 2",
+				type: "recipient",
+				state: "read",
+				createdAt: new Date("2024-12-18 22:24"),
 			},
 			{
 				key: "2-recipient",

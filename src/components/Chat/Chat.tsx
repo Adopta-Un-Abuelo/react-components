@@ -1,4 +1,4 @@
-import { CSSProperties, Fragment, useEffect, useState } from "react";
+import { CSSProperties, Fragment, useEffect, useRef, useState } from "react";
 import { ColorV2 } from "../../constants";
 import Input from "../Input/Input";
 import ChatBubble, { ChatMessageProps } from "./ChatBubble";
@@ -12,13 +12,17 @@ import { Image, NotebookText } from "lucide-react";
 import TemplateModal from "./TemplateModal";
 
 const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
 	position: relative;
-	height: 100%;
 	max-height: 100vh;
+	height: 100vh;
 	background-color: ${ColorV2.surface.background};
-	overflow-y: scroll;
+	overflow: hidden;
 `;
 const List = styled.div`
+	overflow: scroll;
 	padding: 24px 24px 32px;
 	${media.lessThan("small")`
         padding: 16px 16px 32px;
@@ -28,7 +32,6 @@ const InputView = styled.div`
 	position: sticky;
 	bottom: 0px;
 	padding: 8px 24px 24px;
-	background-color: ${ColorV2.surface.background};
 	${media.lessThan("small")`
         padding: 8px 16px 24px;
     `}
@@ -53,6 +56,7 @@ const ShowTemplatesView = styled.div`
 `;
 
 const Chat = (props: ChatProps) => {
+	const scrollRef = useRef<HTMLDivElement>(null);
 	const [groupedMessages, setGroupedMessages] = useState<
 		Record<string, ChatMessageProps[]>
 	>({});
@@ -71,7 +75,15 @@ const Chat = (props: ChatProps) => {
 				setShowTemplates(true);
 			}
 		}
-	}, []);
+
+		//Scroll to bottom
+		if (scrollRef.current) {
+			scrollRef.current.scrollTo({
+				top: scrollRef.current.scrollHeight,
+				behavior: "smooth",
+			});
+		}
+	}, [props.messages]);
 
 	const groupMessagesByDate = (messages: ChatMessageProps[]) => {
 		const result = messages.reduce((acc, message) => {
@@ -88,6 +100,22 @@ const Chat = (props: ChatProps) => {
 	const onOptionClick = (id: string) => {
 		if (id === "template") {
 			setShowTemplatesModal(true);
+		} else if (id === "image") {
+			const input = document.createElement("input");
+			input.type = "file";
+			input.accept = "image/*";
+			input.onchange = (event) => {
+				const file = (event.target as HTMLInputElement).files?.[0];
+				if (file) {
+					const reader = new FileReader();
+					reader.onloadend = () => {
+						const base64String = reader.result as string;
+						props.onSend({ mediaBase64: base64String });
+					};
+					reader.readAsDataURL(file);
+				}
+			};
+			input.click();
 		}
 	};
 
@@ -99,7 +127,7 @@ const Chat = (props: ChatProps) => {
 				onSend={props.onSend}
 				onClose={() => setShowTemplatesModal(false)}
 			/>
-			<List>
+			<List ref={scrollRef}>
 				{Object.keys(groupedMessages).map((date) => (
 					<Fragment key={date}>
 						<DateDivider>
@@ -109,6 +137,7 @@ const Chat = (props: ChatProps) => {
 						</DateDivider>
 						{groupedMessages[date].map((message, index) => (
 							<ChatBubble
+								key={message.key}
 								message={{
 									...message,
 									jump: groupedMessages[date][index + 1]
@@ -124,9 +153,7 @@ const Chat = (props: ChatProps) => {
 			<InputView>
 				{showTemplates && (
 					<ShowTemplatesView>
-						<Text
-							type="c2"
-						>
+						<Text type="c2">
 							El último mensaje es de hace más de 24 horas.
 							Continuar la conversación usando plantillas.
 						</Text>
@@ -164,5 +191,9 @@ export interface ChatProps {
 		subtitle: string;
 		description: string;
 	}[];
-	onSend: (data: { text?: string; template?: string }) => void;
+	onSend: (data: {
+		text?: string;
+		template?: string;
+		mediaBase64?: string;
+	}) => void;
 }
