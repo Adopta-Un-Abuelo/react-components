@@ -120,7 +120,7 @@ const Chat = (props: ChatProps) => {
 	};
 
 	return (
-		<Container style={props.style}>
+		<Container role="container" style={props.style}>
 			<TemplateModal
 				isVisible={showTemplatesModal}
 				templates={props.templates}

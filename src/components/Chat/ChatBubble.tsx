@@ -48,6 +48,7 @@ const ChatBubble = (props: ChatProps) => {
 
 	return (
 		<div
+			role={props.message.role}
 			className={`bubble-container ${
 				props.message.type === "sender"
 					? "bubble-direction-reverse"
@@ -108,6 +109,7 @@ export interface ChatProps {
 }
 export interface ChatMessageProps {
 	key: string;
+	role?: string;
 	User: {
 		imageUrl?: string;
 		name?: string;
