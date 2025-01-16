@@ -1,5 +1,6 @@
 .bubble-container {
 	display: flex;
+	flex: 1;
 	font-family: "Poppins";
 	font-size: 12px;
 	align-items: flex-end;
@@ -13,14 +14,16 @@
 
 .bubble {
 	background-color: #f2f2f2;
-	border-radius: 8px;
-	box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.24);
-	display: block;
-	padding: 8px 12px 4px;
+	border-radius: 6px;
+	box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	padding: 4px;
 	position: relative;
 	vertical-align: top;
 	word-wrap: break-word;
 	color: rgba(0, 29, 61, 0.92);
+	max-width: 350px;
 }
 
 .bubble::before {
@@ -36,22 +39,22 @@
 }
 
 .me {
-	background-color: #ece5dd;
-	margin-left: 18px;
-	margin-right: 60px;
+	background-color: white;
+	margin-left: 12px;
+	margin-right: 40%;
 }
 
 .me::before {
 	left: -18px;
     transform: rotate(-90deg);
-	border-color: transparent transparent transparent #ece5dd;
+	border-color: transparent transparent transparent white;
     border-radius: 24px 0px 0px 0px;
 }
 
 .you {
 	background-color: #dcf8c6;
-	margin-left: 60px;
-	margin-right: 18px;
+	margin-left: 40%;
+	margin-right: 12px;
 }
 
 .you::before {
@@ -76,4 +79,17 @@
 
 .bubble-jump .me::before {
 	display: none;
+}
+
+@media only screen and (max-width: 450px) {
+	.me {
+		background-color: white;
+		margin-left: 12px;
+		margin-right: 40px;
+	}
+	.you {
+		background-color: #dcf8c6;
+		margin-left: 40px;
+		margin-right: 12px;
+	}
 }

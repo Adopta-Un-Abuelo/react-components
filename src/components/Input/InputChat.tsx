@@ -41,6 +41,9 @@ const Input = styled.input<{ $loading?: boolean }>`
 	border: none;
 	color: ${Color.text.neutralHard};
 	background-color: transparent;
+	&::placeholder {
+		color: ${(props) => props.$loading ? Color.text.neutralHard : Color.text.neutralHard};
+	}
 	&:focus {
 		outline: none;
 	}
@@ -89,7 +92,7 @@ const InputChat = (props: InputChatProps) => {
 	return (
 		<Container
 			style={style}
-			$loading={props.loading}
+			$loading={props.loading || props.disabled}
 			$focus={focus}
 			$options={options}
 		>
@@ -106,8 +109,8 @@ const InputChat = (props: InputChatProps) => {
 				{...rest}
 				value={text}
 				ref={input}
-				disabled={props.loading}
-				$loading={props.loading}
+				disabled={props.loading || props.disabled}
+				$loading={props.loading || props.disabled}
 				onChange={onChange}
 				onKeyDown={onKeyDown}
 				onFocus={onInputFocus}

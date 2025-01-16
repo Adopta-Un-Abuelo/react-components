@@ -6,7 +6,9 @@ import { ColorV2 } from "../../constants";
 import * as icons from "lucide-react";
 import { useEffect, useState } from "react";
 
-const Content = styled.div``;
+const Content = styled.div`
+	padding: 4px 6px;
+`;
 const FooterView = styled.div`
 	display: flex;
 	justify-content: flex-end;
@@ -14,7 +16,15 @@ const FooterView = styled.div`
 	gap: 4px;
 	font-size: 10px;
 	color: ${ColorV2.text.neutralMedium};
-	margin-top: 4px;
+	padding: 0px 6px;
+`;
+const ImageView = styled.div``;
+const Image = styled.img`
+	max-width: 100%;
+	width: auto;
+	height: auto;
+	border-radius: 6px;
+	object-fit: cover;
 `;
 
 const ChatBubble = (props: ChatProps) => {
@@ -53,7 +63,12 @@ const ChatBubble = (props: ChatProps) => {
 		>
 			{!props.message.jump && (
 				<Avatar
-					style={{ height: 42, width: 42 }}
+					style={{
+						height: 42,
+						width: 42,
+						minWidth: 42,
+						minHeight: 42,
+					}}
 					name={props.message.User.name}
 					icon={props.message.User.imageUrl}
 				/>
@@ -63,6 +78,11 @@ const ChatBubble = (props: ChatProps) => {
 					props.message.type === "sender" ? "you" : "me"
 				}`}
 			>
+				{props.message.media && props.message.media.length > 0 && (
+					<ImageView>
+						<Image src={props.message.media[0].url}></Image>
+					</ImageView>
+				)}
 				<Content>{props.message.text}</Content>
 				<FooterView>
 					{moment(props.message.createdAt).format("HH:mm")}
@@ -92,6 +112,14 @@ export interface ChatMessageProps {
 		imageUrl?: string;
 		name?: string;
 	};
+	media?: {
+		category: string;
+		filename: string | null;
+		size: number;
+		content_type: string;
+		sid: string;
+		url: string;
+	}[];
 	text: string;
 	type: "sender" | "recipient";
 	state: "sent" | "undelivered" | "delivered" | "failed" | "read";
