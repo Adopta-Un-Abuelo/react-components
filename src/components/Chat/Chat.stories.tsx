@@ -8,7 +8,6 @@ const meta: Meta<typeof Chat> = {
 	tags: ["autodocs"],
 	args: {
 		messages: [
-			
 			{
 				key: "3-sender",
 				User: {
@@ -19,7 +18,7 @@ const meta: Meta<typeof Chat> = {
 				state: "undelivered",
 				createdAt: new Date("2024-12-20 22:26"),
 			},
-			
+
 			{
 				key: "5-sender",
 				User: {
@@ -144,6 +143,44 @@ export const WithTemplates: Story = {
 					name: "Pepe",
 				},
 				text: "Sender message más largo donde debería",
+				type: "sender",
+				state: "read",
+				createdAt: new Date("2024-12-20 22:27"),
+			},
+			{
+				key: "5-recipient",
+				User: {
+					name: "Pepa",
+				},
+				media: [
+					{
+						category: "media",
+						filename: null,
+						size: 4876,
+						content_type: "audio/ogg",
+						sid: "MEd7ee0c986576dbaa5aa08975766e27a0",
+						url: "https://media.us1.twilio.com/MEd7ee0c986576dbaa5aa08975766e27a0?Expires=1737028310&Signature=KtsFBDEYHB20azQUaeyQjXykDMABKqdbBccR2ClLq1kCsrZiJ-T5h47~Kcq4OgY3rvTx5dkbrJUmQSGBriVqaIleY6K3pl1ORh0TcT0O92WS~fX0iF3GTLttawBFMwBONtkMLa9eRSVc92ovqVg~UShVQ4ntbPE6W-Lsj7VVnzZp6zDLBArrpAUPwxhC4ADIXFJehezmPAdyGoJ~~xs6BIbS-u011zSMSP1DIDV9IPyB36HhuyGqvWHF8vJzct8DBfGFRnpvvM5XicS6yjj7rH56a7cE1unZXLfDfnr1YC-b51qSymBMaHHFeutv~H9O4b9rm-CKlxkvy4F6mkxG5Q__&Key-Pair-Id=APKAJWF6YVTMIIYOF3AA"
+					},
+				],
+				type: "recipient",
+				state: "read",
+				createdAt: new Date("2024-12-20 22:27"),
+			},
+			{
+				key: "5-sender",
+				User: {
+					name: "Pepa",
+				},
+				media: [
+					{
+						category: "media",
+						filename: null,
+						size: 4876,
+						content_type: "audio/ogg",
+						sid: "MEd7ee0c986576dbaa5aa08975766e27a0",
+						url: "https://media.us1.twilio.com/MEd7ee0c986576dbaa5aa08975766e27a0?Expires=1737028310&Signature=KtsFBDEYHB20azQUaeyQjXykDMABKqdbBccR2ClLq1kCsrZiJ-T5h47~Kcq4OgY3rvTx5dkbrJUmQSGBriVqaIleY6K3pl1ORh0TcT0O92WS~fX0iF3GTLttawBFMwBONtkMLa9eRSVc92ovqVg~UShVQ4ntbPE6W-Lsj7VVnzZp6zDLBArrpAUPwxhC4ADIXFJehezmPAdyGoJ~~xs6BIbS-u011zSMSP1DIDV9IPyB36HhuyGqvWHF8vJzct8DBfGFRnpvvM5XicS6yjj7rH56a7cE1unZXLfDfnr1YC-b51qSymBMaHHFeutv~H9O4b9rm-CKlxkvy4F6mkxG5Q__&Key-Pair-Id=APKAJWF6YVTMIIYOF3AA"
+					},
+				],
 				type: "sender",
 				state: "read",
 				createdAt: new Date("2024-12-20 22:27"),

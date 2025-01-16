@@ -1,0 +1,17 @@
+.you--audio::-webkit-media-controls-panel {
+	background-color: #dcf8c6;
+	padding: 4px 4px 0px;
+}
+
+.me--audio::-webkit-media-controls-panel {
+	background-color: #fff;
+	padding: 4px 4px 0px;
+}
+
+audio::-webkit-media-controls-mute-button {
+	display: none !important;
+}
+
+audio::-webkit-media-controls-volume-slider {
+	display: none !important;
+}

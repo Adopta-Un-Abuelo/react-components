@@ -1,4 +1,5 @@
 import "./ChatBubble.css";
+import "./Audio.css";
 import Avatar from "../Avatar/Avatar";
 import styled from "styled-components";
 import moment from "moment";
@@ -25,6 +26,9 @@ const Image = styled.img`
 	height: auto;
 	border-radius: 6px;
 	object-fit: cover;
+`;
+const AudioPlayer = styled.audio`
+	height: 30px;
 `;
 
 const ChatBubble = (props: ChatProps) => {
@@ -81,10 +85,31 @@ const ChatBubble = (props: ChatProps) => {
 			>
 				{props.message.media && props.message.media.length > 0 && (
 					<ImageView>
-						<Image src={props.message.media[0].url}></Image>
+						{props.message.media[0].content_type.startsWith(
+							"image"
+						) && <Image src={props.message.media[0].url}></Image>}
+						{props.message.media[0].content_type.startsWith(
+							"audio"
+						) && (
+							<AudioPlayer
+								className={
+									props.message.type === "sender"
+										? "you--audio"
+										: "me--audio"
+								}
+								controls
+								controlsList="nodownload"
+							>
+								<source
+									src={props.message.media[0].url}
+									type={props.message.media[0].content_type}
+								/>
+								Your browser does not support the audio element.
+							</AudioPlayer>
+						)}
 					</ImageView>
 				)}
-				<Content>{props.message.text}</Content>
+				{props.message.text && <Content>{props.message.text}</Content>}
 				<FooterView>
 					{moment(props.message.createdAt).format("HH:mm")}
 					{Icon && (
@@ -122,7 +147,7 @@ export interface ChatMessageProps {
 		sid: string;
 		url: string;
 	}[];
-	text: string;
+	text?: string;
 	type: "sender" | "recipient";
 	state: "sent" | "undelivered" | "delivered" | "failed" | "read";
 	createdAt: Date;
