@@ -110,7 +110,12 @@ const Chat = (props: ChatProps) => {
 					const reader = new FileReader();
 					reader.onloadend = () => {
 						const base64String = reader.result as string;
-						props.onSend({ mediaBase64: base64String });
+						props.onSend({
+							media: {
+								base64: base64String,
+								contentType: "image/*",
+							},
+						});
 					};
 					reader.readAsDataURL(file);
 				}
@@ -173,7 +178,7 @@ const Chat = (props: ChatProps) => {
 						{ id: "image", label: "Fotos", icon: <Image /> },
 					]}
 					onOptionClick={onOptionClick}
-					onSend={(text: string) => props.onSend({ text: text })}
+					onSend={(data) => props.onSend(data)}
 				/>
 			</InputView>
 		</Container>
@@ -194,6 +199,9 @@ export interface ChatProps {
 	onSend: (data: {
 		text?: string;
 		template?: string;
-		mediaBase64?: string;
+		media?: {
+			base64: string;
+			contentType: string;
+		};
 	}) => void;
 }
