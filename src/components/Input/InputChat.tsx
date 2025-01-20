@@ -64,7 +64,6 @@ const InputChat = (props: InputChatProps) => {
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 	const animationIdRef = useRef<number | null>(null);
 	const [isRecording, setIsRecording] = useState(false);
-	const [audioChunks, setAudioChunks] = useState<BlobPart[]>([]);
 	const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
 		null
 	);
@@ -115,18 +114,13 @@ const InputChat = (props: InputChatProps) => {
 			});
 			const recorder = new MediaRecorder(stream);
 
-			recorder.ondataavailable = (event) => {
-				setAudioChunks((prev) => [...prev, event.data]);
-			};
-
 			recorder.onstop = () => {
-				stream.getTracks().forEach((track) => track.stop());
+				setIsRecording(false);
 			};
 
 			recorder.start();
 			setMediaRecorder(recorder);
 			setMediaStream(stream);
-			setAudioChunks([]);
 			setIsRecording(true);
 
 			// Iniciar visualización
@@ -138,12 +132,18 @@ const InputChat = (props: InputChatProps) => {
 			analyserRef.current = analyser;
 			visualize();
 		} catch (error) {
-			console.error("Error al acceder al micrófono:", error);
+			console.error("Error al iniciar la grabación:", error);
 		}
 	};
 
-	const cancelRecording = () => {
+	const cancelRecording = (option: string) => {
 		if (mediaRecorder) {
+			mediaRecorder.ondataavailable = (event) => {
+				if (event.data.size > 0 && option === "send") {
+					sendRecording([event.data])
+				}
+			};
+
 			mediaRecorder.stop();
 			setMediaRecorder(null);
 		}
@@ -153,12 +153,12 @@ const InputChat = (props: InputChatProps) => {
 			setMediaStream(null);
 		}
 
-		setAudioChunks([]);
 		setIsRecording(false);
 		console.log("Grabación cancelada.");
 	};
 
-	const sendRecording = () => {
+	const sendRecording = (audioChunks: Blob[]) => {
+		console.log("Iniciar envio grabación");
 		if (audioChunks.length === 0) {
 			console.error("No hay datos de audio para enviar.");
 			return;
@@ -168,14 +168,13 @@ const InputChat = (props: InputChatProps) => {
 		// Convertir Blob a base64
 		const reader = new FileReader();
 		reader.onloadend = () => {
-			const contentType = reader.result?.toString().split(",")[0];
 			const base64 = reader.result?.toString().split(",")[1];
-			if (contentType && base64) {
+			if (base64) {
 				props.onSend &&
 					props.onSend({
 						media: {
 							base64: base64,
-							contentType: contentType,
+							contentType: "audio/wav",
 						},
 					});
 			}
@@ -246,7 +245,9 @@ const InputChat = (props: InputChatProps) => {
 						<Trash2
 							height={20}
 							width={20}
-							onClick={cancelRecording}
+							onClick={() => {
+								cancelRecording("delete");
+							}}
 						/>
 					}
 				/>
@@ -304,9 +305,11 @@ const InputChat = (props: InputChatProps) => {
 						onClick={() => {
 							if (text) onSend();
 							else {
-								isRecording
-									? sendRecording()
-									: startRecording();
+								if (isRecording) {
+									cancelRecording("send");
+								} else {
+									startRecording();
+								}
 							}
 						}}
 					/>
