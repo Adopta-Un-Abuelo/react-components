@@ -1,3 +1,22 @@
+# v0.3.55 (Mon Jan 20 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/chat' (guillermo.angeles@adoptaunabuelo.com)
+- fix: audio recording errors solved (guillermo.angeles@adoptaunabuelo.com)
+- feat: send audio messages (guillermo.angeles@adoptaunabuelo.com)
+- fix: version updates (guillermo.angeles@adoptaunabuelo.com)
+- feat: read audio messages (guillermo.angeles@adoptaunabuelo.com)
+- fix: test errors (guillermo.angeles@adoptaunabuelo.com)
+- feat: onSend media base64 & UI errors (guillermo.angeles@adoptaunabuelo.com)
+- feat: chat templates and photo messages (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.54 (Thu Dec 19 2024)
 
 #### ⚠️ Pushed to `main`
