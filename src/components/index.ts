@@ -17,6 +17,7 @@ export { default as TextArea } from "./TextArea/TextArea";
 export { default as RadioButton } from "./RadioButton/RadioButtonList";
 export { default as CellSelector } from "./CellSelector/CellSelector";
 export { default as Tabs } from "./Tabs/Tabs";
+export { default as DatePicker } from "./DatePicker/DatePickerModal";
 export { default as Payout } from "./Payout/Payout";
 export { default as SwitchTag } from "./SwitchTag/SwitchTag";
 export { default as Pagination } from "./Pagination/Pagination";
