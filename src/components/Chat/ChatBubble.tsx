@@ -1,4 +1,5 @@
 import "./ChatBubble.css";
+import "./Audio.css";
 import Avatar from "../Avatar/Avatar";
 import styled from "styled-components";
 import moment from "moment";
@@ -6,7 +7,9 @@ import { ColorV2 } from "../../constants";
 import * as icons from "lucide-react";
 import { useEffect, useState } from "react";
 
-const Content = styled.div``;
+const Content = styled.div`
+	padding: 4px 6px;
+`;
 const FooterView = styled.div`
 	display: flex;
 	justify-content: flex-end;
@@ -14,7 +17,18 @@ const FooterView = styled.div`
 	gap: 4px;
 	font-size: 10px;
 	color: ${ColorV2.text.neutralMedium};
-	margin-top: 4px;
+	padding: 0px 6px;
+`;
+const ImageView = styled.div``;
+const Image = styled.img`
+	max-width: 100%;
+	width: auto;
+	height: auto;
+	border-radius: 6px;
+	object-fit: cover;
+`;
+const AudioPlayer = styled.audio`
+	height: 30px;
 `;
 
 const ChatBubble = (props: ChatProps) => {
@@ -38,6 +52,7 @@ const ChatBubble = (props: ChatProps) => {
 
 	return (
 		<div
+			role={props.message.role}
 			className={`bubble-container ${
 				props.message.type === "sender"
 					? "bubble-direction-reverse"
@@ -53,7 +68,12 @@ const ChatBubble = (props: ChatProps) => {
 		>
 			{!props.message.jump && (
 				<Avatar
-					style={{ height: 42, width: 42 }}
+					style={{
+						height: 42,
+						width: 42,
+						minWidth: 42,
+						minHeight: 42,
+					}}
 					name={props.message.User.name}
 					icon={props.message.User.imageUrl}
 				/>
@@ -63,7 +83,33 @@ const ChatBubble = (props: ChatProps) => {
 					props.message.type === "sender" ? "you" : "me"
 				}`}
 			>
-				<Content>{props.message.text}</Content>
+				{props.message.media && props.message.media.length > 0 && (
+					<ImageView>
+						{props.message.media[0].content_type.startsWith(
+							"image"
+						) && <Image src={props.message.media[0].url}></Image>}
+						{props.message.media[0].content_type.startsWith(
+							"audio"
+						) && (
+							<AudioPlayer
+								className={
+									props.message.type === "sender"
+										? "you--audio"
+										: "me--audio"
+								}
+								controls
+								controlsList="nodownload"
+							>
+								<source
+									src={props.message.media[0].url}
+									type={props.message.media[0].content_type}
+								/>
+								Your browser does not support the audio element.
+							</AudioPlayer>
+						)}
+					</ImageView>
+				)}
+				{props.message.text && <Content>{props.message.text}</Content>}
 				<FooterView>
 					{moment(props.message.createdAt).format("HH:mm")}
 					{Icon && (
@@ -88,11 +134,20 @@ export interface ChatProps {
 }
 export interface ChatMessageProps {
 	key: string;
+	role?: string;
 	User: {
 		imageUrl?: string;
 		name?: string;
 	};
-	text: string;
+	media?: {
+		category: string;
+		filename: string | null;
+		size: number;
+		content_type: string;
+		sid: string;
+		url: string;
+	}[];
+	text?: string;
 	type: "sender" | "recipient";
 	state: "sent" | "undelivered" | "delivered" | "failed" | "read";
 	createdAt: Date;
