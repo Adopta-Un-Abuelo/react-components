@@ -1,3 +1,15 @@
+# v0.3.56 (Wed Jan 29 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: last recipient message filter (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.55 (Mon Jan 20 2025)
 
 #### ⚠️ Pushed to `main`
