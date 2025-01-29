@@ -18,12 +18,12 @@ const Container = styled.div`
 	position: relative;
 	max-height: 100vh;
 	height: 100vh;
-	background-color: ${ColorV2.surface.background};
+	background-color: "white";
 	overflow: hidden;
 `;
 const List = styled.div`
 	overflow: scroll;
-	padding: 24px 24px 32px;
+	padding: 24px 16px 32px;
 	${media.lessThan("small")`
         padding: 16px 16px 32px;
     `}
@@ -65,16 +65,21 @@ const Chat = (props: ChatProps) => {
 
 	useEffect(() => {
 		groupMessagesByDate(props.messages);
-		const lastMessage = props.messages[props.messages.length - 1];
-		if (lastMessage) {
+		const lastRecipientMessage = props.messages
+			.slice()
+			.reverse()
+			.find((message) => message.type === "recipient");
+			console.log(lastRecipientMessage)
+		if (lastRecipientMessage) {
 			const hoursDifference = moment().diff(
-				moment(lastMessage.createdAt),
+				moment(lastRecipientMessage.createdAt),
 				"hours"
 			);
 			if (hoursDifference >= 24) {
 				setShowTemplates(true);
 			}
 		}
+		else setShowTemplates(true);
 
 		//Scroll to bottom
 		if (scrollRef.current) {
@@ -143,13 +148,7 @@ const Chat = (props: ChatProps) => {
 						{groupedMessages[date].map((message, index) => (
 							<ChatBubble
 								key={message.key}
-								message={{
-									...message,
-									jump: groupedMessages[date][index + 1]
-										? message.type ===
-										  groupedMessages[date][index + 1].type
-										: false,
-								}}
+								message={message}
 							/>
 						))}
 					</Fragment>

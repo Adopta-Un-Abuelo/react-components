@@ -1,11 +1,12 @@
 .you--audio::-webkit-media-controls-panel {
-	background-color: #dcf8c6;
+	background-color: #008FF5;
 	padding: 4px 4px 0px;
 }
 
 .me--audio::-webkit-media-controls-panel {
-	background-color: #fff;
+	background-color: #f2f2f2;
 	padding: 4px 4px 0px;
+	color: white;
 }
 
 audio::-webkit-media-controls-mute-button {

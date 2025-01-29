@@ -18,7 +18,6 @@ const meta: Meta<typeof Chat> = {
 				state: "undelivered",
 				createdAt: new Date("2024-12-20 22:26"),
 			},
-
 			{
 				key: "5-sender",
 				User: {
@@ -26,6 +25,16 @@ const meta: Meta<typeof Chat> = {
 				},
 				text: "Sender message más largo donde debería aparecer un salto de linea",
 				type: "sender",
+				state: "read",
+				createdAt: new Date(),
+			},
+			{
+				key: "5-recipient",
+				User: {
+					name: "Jose Carlos",
+				},
+				text: "Recipient message más largo donde debería aparecer un salto de linea",
+				type: "recipient",
 				state: "read",
 				createdAt: new Date(),
 			},
@@ -59,20 +68,31 @@ const meta: Meta<typeof Chat> = {
 		],
 		onSend: fn(),
 	},
-};
-
-export default meta;
-type Story = StoryObj<typeof Chat>;
-
-export const Default: Story = {
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step, args }: any) => {
 		const canvas = within(canvasElement);
 		const container = await canvas.getByRole("container");
 		await step("render", async () => {
 			expect(container).toBeInTheDocument();
 		});
+
+		await step("Add a new message", async () => {
+			const newMessage = {
+				key: "6-recipient",
+				User: { name: "María" },
+				text: "Este es un mensaje añadido dinámicamente.",
+				type: "recipient",
+				state: "sent",
+				createdAt: new Date(),
+			};
+			args.messages = [...args.messages, newMessage];
+		});
 	},
 };
+
+export default meta;
+type Story = StoryObj<typeof Chat>;
+
+export const Default: Story = {};
 
 export const WithTemplates: Story = {
 	args: {
@@ -159,7 +179,7 @@ export const WithTemplates: Story = {
 						size: 4876,
 						content_type: "audio/ogg",
 						sid: "MEd7ee0c986576dbaa5aa08975766e27a0",
-						url: "https://media.us1.twilio.com/MEd7ee0c986576dbaa5aa08975766e27a0?Expires=1737028310&Signature=KtsFBDEYHB20azQUaeyQjXykDMABKqdbBccR2ClLq1kCsrZiJ-T5h47~Kcq4OgY3rvTx5dkbrJUmQSGBriVqaIleY6K3pl1ORh0TcT0O92WS~fX0iF3GTLttawBFMwBONtkMLa9eRSVc92ovqVg~UShVQ4ntbPE6W-Lsj7VVnzZp6zDLBArrpAUPwxhC4ADIXFJehezmPAdyGoJ~~xs6BIbS-u011zSMSP1DIDV9IPyB36HhuyGqvWHF8vJzct8DBfGFRnpvvM5XicS6yjj7rH56a7cE1unZXLfDfnr1YC-b51qSymBMaHHFeutv~H9O4b9rm-CKlxkvy4F6mkxG5Q__&Key-Pair-Id=APKAJWF6YVTMIIYOF3AA"
+						url: "https://media.us1.twilio.com/MEd7ee0c986576dbaa5aa08975766e27a0?Expires=1737028310&Signature=KtsFBDEYHB20azQUaeyQjXykDMABKqdbBccR2ClLq1kCsrZiJ-T5h47~Kcq4OgY3rvTx5dkbrJUmQSGBriVqaIleY6K3pl1ORh0TcT0O92WS~fX0iF3GTLttawBFMwBONtkMLa9eRSVc92ovqVg~UShVQ4ntbPE6W-Lsj7VVnzZp6zDLBArrpAUPwxhC4ADIXFJehezmPAdyGoJ~~xs6BIbS-u011zSMSP1DIDV9IPyB36HhuyGqvWHF8vJzct8DBfGFRnpvvM5XicS6yjj7rH56a7cE1unZXLfDfnr1YC-b51qSymBMaHHFeutv~H9O4b9rm-CKlxkvy4F6mkxG5Q__&Key-Pair-Id=APKAJWF6YVTMIIYOF3AA",
 					},
 				],
 				type: "recipient",
@@ -178,7 +198,7 @@ export const WithTemplates: Story = {
 						size: 4876,
 						content_type: "audio/ogg",
 						sid: "MEd7ee0c986576dbaa5aa08975766e27a0",
-						url: "https://media.us1.twilio.com/MEd7ee0c986576dbaa5aa08975766e27a0?Expires=1737028310&Signature=KtsFBDEYHB20azQUaeyQjXykDMABKqdbBccR2ClLq1kCsrZiJ-T5h47~Kcq4OgY3rvTx5dkbrJUmQSGBriVqaIleY6K3pl1ORh0TcT0O92WS~fX0iF3GTLttawBFMwBONtkMLa9eRSVc92ovqVg~UShVQ4ntbPE6W-Lsj7VVnzZp6zDLBArrpAUPwxhC4ADIXFJehezmPAdyGoJ~~xs6BIbS-u011zSMSP1DIDV9IPyB36HhuyGqvWHF8vJzct8DBfGFRnpvvM5XicS6yjj7rH56a7cE1unZXLfDfnr1YC-b51qSymBMaHHFeutv~H9O4b9rm-CKlxkvy4F6mkxG5Q__&Key-Pair-Id=APKAJWF6YVTMIIYOF3AA"
+						url: "https://media.us1.twilio.com/MEd7ee0c986576dbaa5aa08975766e27a0?Expires=1737028310&Signature=KtsFBDEYHB20azQUaeyQjXykDMABKqdbBccR2ClLq1kCsrZiJ-T5h47~Kcq4OgY3rvTx5dkbrJUmQSGBriVqaIleY6K3pl1ORh0TcT0O92WS~fX0iF3GTLttawBFMwBONtkMLa9eRSVc92ovqVg~UShVQ4ntbPE6W-Lsj7VVnzZp6zDLBArrpAUPwxhC4ADIXFJehezmPAdyGoJ~~xs6BIbS-u011zSMSP1DIDV9IPyB36HhuyGqvWHF8vJzct8DBfGFRnpvvM5XicS6yjj7rH56a7cE1unZXLfDfnr1YC-b51qSymBMaHHFeutv~H9O4b9rm-CKlxkvy4F6mkxG5Q__&Key-Pair-Id=APKAJWF6YVTMIIYOF3AA",
 					},
 				],
 				type: "sender",

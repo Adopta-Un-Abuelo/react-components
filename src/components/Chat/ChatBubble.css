@@ -2,10 +2,12 @@
 	display: flex;
 	flex: 1;
 	font-family: "Poppins";
-	font-size: 12px;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px;
 	align-items: flex-end;
 	margin-top: 4px;
-    margin-bottom: 12px;
 }
 
 .bubble-direction-reverse {
@@ -15,10 +17,8 @@
 .bubble {
 	background-color: #f2f2f2;
 	border-radius: 6px;
-	box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.1);
 	display: flex;
 	flex-direction: column;
-	padding: 4px;
 	position: relative;
 	vertical-align: top;
 	word-wrap: break-word;
@@ -26,70 +26,24 @@
 	max-width: 350px;
 }
 
-.bubble::before {
-	content: "\00a0";
-	display: block;
-	position: absolute;
-	width: 0px;
-	height: 0px;
-	border-style: solid;
-	border-width: 24px 0 0px 24px;
-	transform: rotate(0deg);
-    bottom: 2px;
-}
-
 .me {
-	background-color: white;
+	background-color: #F0F3F6;
 	margin-left: 12px;
 	margin-right: 40%;
 }
 
-.me::before {
-	left: -18px;
-    transform: rotate(-90deg);
-	border-color: transparent transparent transparent white;
-    border-radius: 24px 0px 0px 0px;
-}
-
 .you {
-	background-color: #dcf8c6;
+	background-color: #008FF5;
 	margin-left: 40%;
 	margin-right: 12px;
-}
-
-.you::before {
-	right: -16px;
-	border-color: transparent transparent transparent #dcf8c6;
-    border-radius: 0px 0px 24px 0px;
-}
-
-.bubble-jump {
-	margin-bottom: 4px;
-	margin-left: 42px;
-}
-
-.bubble-jump-reverse {
-	margin-bottom: 4px;
-	margin-right: 42px;
-}
-
-.bubble-jump-reverse .you::before {
-	display: none;
-}
-
-.bubble-jump .me::before {
-	display: none;
+	color: white;
 }
 
 @media only screen and (max-width: 450px) {
 	.me {
-		background-color: white;
-		margin-left: 12px;
 		margin-right: 40px;
 	}
 	.you {
-		background-color: #dcf8c6;
-		margin-left: 40px;
 		margin-right: 12px;
 	}
 }
