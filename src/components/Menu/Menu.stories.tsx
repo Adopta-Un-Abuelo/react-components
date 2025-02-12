@@ -3,6 +3,7 @@ import { userEvent, within, expect } from "@storybook/test";
 import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from '@storybook/react';
 import { Package, Palette, Option } from "lucide-react";
+import { Color } from "../../constants";
 
 const meta: Meta<typeof Menu> ={
   title: "Components/Menu",
@@ -41,6 +42,7 @@ export const MenuList: Story = {
       {
         id: "option1",
         label: "Option 1",
+        labelColor: Color.text.primary,
         icon: <Option height={20} width={20} />,
       },
       {
