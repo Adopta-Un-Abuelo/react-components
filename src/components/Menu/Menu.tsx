@@ -123,7 +123,7 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
                         onClick={(e: any) => onClick(e, option)}
                     >
                         {option.icon}
-                        <Text type='p'>
+                        <Text type="p" style={{ color: option.labelColor }}>
                             {option.label}
                         </Text>
                     </MenuCell>
@@ -148,6 +148,7 @@ export interface MenuProps{
 export interface OptionsProps{
     id: string,
     label: string,
+    labelColor?: string,
     icon?: any
 }
 export interface MenuRef{
