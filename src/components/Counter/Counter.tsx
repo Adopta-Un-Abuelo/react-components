@@ -5,7 +5,7 @@ import FlipClockDigit from "./CounterDigit";
 
 function Counter(props: Props) {
 	const [counter, setCounter] = useState(
-		props.amount > 0 ? props.amount - 10 : 0,
+		props.amount > 0 ? props.amount - 10 : 0
 	);
 	const counterRef = useRef(counter);
 	counterRef.current = counter;
@@ -16,7 +16,7 @@ function Counter(props: Props) {
 		setCounter(
 			props.amount > 0
 				? props.amount - (props.amount >= 10 ? 10 : props.amount)
-				: 0,
+				: 0
 		);
 		countdownRef.current = window.setInterval(tick, 400);
 		return () => clearTimer();
@@ -64,6 +64,7 @@ function Counter(props: Props) {
 			"--fcc-digit-block-width": props.width && props.width + "px",
 			"--fcc-digit-block-height": props.height && props.height + "px",
 			"--fcc-digit-font-size": props.fontSize && props.fontSize + "px",
+			"--fcc-divider-color": props.borderColor,
 		};
 		return t;
 	}, [props]);
@@ -101,5 +102,6 @@ export interface Props {
 	amount: number;
 	color?: string;
 	backgroundColor?: string;
+	borderColor?: string;
 	fontSize?: number;
 }

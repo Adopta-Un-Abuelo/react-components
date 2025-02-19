@@ -38,14 +38,19 @@ const InputView = styled.div`
 `;
 const DateDivider = styled.div`
 	display: flex;
+	flex: 1;
 	justify-content: center;
-	text-align: center;
-	padding: 8px;
+	align-items: center;
+	padding: 16px 8px;
 `;
 const DateDividerText = styled(Text)`
-	padding: 4px 8px;
-	background-color: ${ColorV2.surface.neutralLow};
-	border-radius: 6px;
+	padding: 0px 8px;
+`;
+const DateDividerLine = styled.div`
+	display: flex;
+	flex: 1;
+	border-top: 1px solid ${ColorV2.border.neutralSoft};
+	height: 1px;
 `;
 const ShowTemplatesView = styled.div`
 	display: flex;
@@ -141,9 +146,11 @@ const Chat = (props: ChatProps) => {
 				{Object.keys(groupedMessages).map((date) => (
 					<Fragment key={date}>
 						<DateDivider>
-							<DateDividerText type="c2">
+							<DateDividerLine/>
+							<DateDividerText type="c1">
 								{moment(date).format("ddd DD MMM")}
 							</DateDividerText>
+							<DateDividerLine/>
 						</DateDivider>
 						{groupedMessages[date].map((message, index) => (
 							<ChatBubble
