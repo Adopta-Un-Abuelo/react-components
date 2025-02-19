@@ -1,3 +1,19 @@
+# v0.3.57 (Wed Feb 19 2025)
+
+#### 🐛 Bug Fix
+
+- Merge remote-tracking branch 'origin/feature/r-1261' [#19](https://github.com/Adopta-Un-Abuelo/react-components/pull/19) (guillermo.angeles@adoptaunabuelo.com)
+
+#### ⚠️ Pushed to `main`
+
+- fix: counter shadow (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.56 (Wed Jan 29 2025)
 
 #### ⚠️ Pushed to `main`
