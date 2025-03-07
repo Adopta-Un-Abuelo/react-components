@@ -100,13 +100,13 @@ const InputSecondary = (props: InputSecondaryProps) => {
 	}, [props.value, props.defaultValue]);
 
 	useEffect(() => {
-		if (props.country) {
+		if (props.country && props.countryOptions) {
 			const result = props.countryOptions.filter(
 				(item) => item.countryCode === props.country
 			);
 			if (result.length > 0) onCountryChange(result[0]);
 		}
-	}, [props.country]);
+	}, [props.country, props.countryOptions]);
 
 	const onInputChange = (e: any) => {
 		setInputValue(e.target.value);
@@ -184,8 +184,7 @@ const InputSecondary = (props: InputSecondaryProps) => {
 						if (isMobile) {
 							input.current?.blur();
 							setShowDateModal(true);
-						}
-						else {
+						} else {
 							input.current?.focus();
 						}
 					} else {
@@ -195,7 +194,7 @@ const InputSecondary = (props: InputSecondaryProps) => {
 			>
 				{icon ? (
 					<IconView>{icon}</IconView>
-				) : props.type === "tel" ? (
+				) : props.type === "tel" && props.countryOptions ? (
 					<IconView>
 						<Select
 							selectedItem={country}
@@ -265,7 +264,7 @@ export interface InputSecondaryProps extends InputStyledProps {
 	phone?: boolean;
 	design?: string;
 	country?: string;
-	countryOptions: {
+	countryOptions?: {
 		id: string;
 		esCountry: string;
 		enCountry: string;

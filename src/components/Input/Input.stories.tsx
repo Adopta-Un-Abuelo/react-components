@@ -468,7 +468,7 @@ export const InputLocation: Story = {
 		design: "secondary",
 		type: "location",
 		icon: <Search role="icon" />,
-		defaultValue: undefined,
+		defaultValue: "HoLA",
 	},
 	play: async ({ canvasElement, step }: any) => {
 		/*const canvas = within(canvasElement);

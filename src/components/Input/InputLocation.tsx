@@ -110,6 +110,7 @@ const InputLocation = (
 								className: "location-search-input",
 								placeholder: props.placeholder,
 							})}
+							defaultValue={props.defaultValue}
 							value={searchText}
 							onKeyDown={(e: any) => onKeyDown(e, suggestions)}
 							containerStyle={{
@@ -125,6 +126,7 @@ const InputLocation = (
 								className: "location-search-input",
 								placeholder: props.placeholder,
 							})}
+							defaultValue={props.defaultValue}
 							value={searchText}
 							onKeyDown={(e: any) => onKeyDown(e, suggestions)}
 							containerStyle={{
@@ -139,6 +141,7 @@ const InputLocation = (
 								className: "location-search-input",
 								placeholder: props.placeholder,
 							})}
+							defaultValue={props.defaultValue}
 							value={searchText}
 							onKeyDown={(e: any) => onKeyDown(e, suggestions)}
 							containerStyle={{
