@@ -1,3 +1,15 @@
+# v0.3.61 (Mon Mar 10 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: remove axios (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.60 (Mon Mar 10 2025)
 
 #### ⚠️ Pushed to `main`
