@@ -1,3 +1,18 @@
+# v0.3.58 (Mon Mar 10 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: push github action (guillermo.angeles@adoptaunabuelo.com)
+- fix: react version (guillermo.angeles@adoptaunabuelo.com)
+- feat: location form (guillermo.angeles@adoptaunabuelo.com)
+- fix: location input default value (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.57 (Wed Feb 19 2025)
 
 #### 🐛 Bug Fix
