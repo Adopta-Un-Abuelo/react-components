@@ -58,7 +58,6 @@
     "styled-media-query": "^2.1.2"
   },
   "devDependencies": {
-    "axios": "^1.8.2",
     "@chromatic-com/storybook": "^3.2.5",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-json": "^4.1.0",

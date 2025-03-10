@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Input from "../Input/Input";
 import { useState } from "react";
-import axios from "axios";
 
 const Container = styled.div`
 	display: flex;
@@ -81,16 +80,10 @@ const LocationForm = (props: LocationFormProps) => {
 			};
 
 			//Get the timezone
-			const result2 = await axios({
-				method: "GET",
-				url:
-					"https://maps.googleapis.com/maps/api/timezone/json?location=" +
-					item.location.lat +
-					"%2C" +
-					item.location.lng +
-					"&timestamp=1331161200&key=" +
-					googleAPIKey,
-			});
+			const response = await fetch(
+				`https://maps.googleapis.com/maps/api/timezone/json?location=${item.location.lat},${item.location.lng}&timestamp=1331161200&key=${googleAPIKey}`
+			);
+			const result2 = await response.json();
 			if (result2.data.status === "OK") {
 				setLocation({
 					...tempLocation,
