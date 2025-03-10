@@ -19,7 +19,6 @@ const HiddenView = styled.div<{ visible?: boolean }>`
 `;
 
 const LocationForm = (props: LocationFormProps) => {
-	const googleAPIKey = "AIzaSyA_H7WVmlnxy8OWrNuIJmGclYWwXFB49Wk";
 	const [location, setLocation] = useState<
 		| (LocationProps & {
 				sortAddress?: string;
@@ -81,7 +80,7 @@ const LocationForm = (props: LocationFormProps) => {
 
 			//Get the timezone
 			const response = await fetch(
-				`https://maps.googleapis.com/maps/api/timezone/json?location=${item.location.lat},${item.location.lng}&timestamp=1331161200&key=${googleAPIKey}`
+				`https://maps.googleapis.com/maps/api/timezone/json?location=${item.location.lat},${item.location.lng}&timestamp=1331161200&key=${props.googleAPIKey}`
 			);
 			const result2 = await response.json();
 			if (result2.data.status === "OK") {
@@ -173,6 +172,7 @@ export default LocationForm;
 export interface LocationFormProps {
 	type: "location";
 	design?: "primary" | "secondary" | "third";
+	googleAPIKey: string;
 	defaultLocation?: LocationProps;
 	onSubmit: (result: {
 		data?: LocationProps & {
