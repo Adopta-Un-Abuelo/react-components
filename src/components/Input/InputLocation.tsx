@@ -45,11 +45,11 @@ const InputLocation = (
 	props:
 		| InputLocationPrimaryProps
 		| InputLocationSecondaryProps
-		| InputLocationThirdProps,
+		| InputLocationThirdProps
 ) => {
 	const [searchText, setSearchText] = useState<string | undefined>(undefined);
 	const [pointerPosition, setPointerPosition] = useState<number | undefined>(
-		undefined,
+		undefined
 	);
 
 	const onLocationChange = (address: string) => {
@@ -57,9 +57,23 @@ const InputLocation = (
 	};
 
 	const handleSelect = async (address: string) => {
-		setSearchText(address);
 		const result = await geocodeByAddress(address);
 		const latLng = await getLatLng(result[0]);
+		if (props.isForm) {
+			const route = result[0].address_components.filter((it) =>
+				it.types.includes("route")
+			);
+			const streetNumber = result[0].address_components.filter((it) =>
+				it.types.includes("street_number")
+			);
+			setSearchText(
+				`${route.length > 0 ? route[0].long_name : ""} ${
+					streetNumber.length > 0 ? streetNumber[0].long_name : ""
+				}`
+			);
+		} else {
+			setSearchText(address);
+		}
 		props.onLocationChange &&
 			props.onLocationChange({
 				address: address,
@@ -99,7 +113,7 @@ const InputLocation = (
 					? props.searchOptions
 					: {
 							types: ["address"],
-						}
+					  }
 			}
 		>
 			{({ getInputProps, suggestions, getSuggestionItemProps }) => (
@@ -156,7 +170,12 @@ const InputLocation = (
 						<DropdownMenu
 							role="menu"
 							style={{
-								top: props.design === "primary" ? 48 : props.design === "secondary" ? 64 : 42,
+								top:
+									props.design === "primary"
+										? 48
+										: props.design === "secondary"
+										? 64
+										: 42,
 							}}
 						>
 							{suggestions.map((suggestion, index) => {
@@ -190,6 +209,7 @@ export interface InputLocationPrimaryProps extends InputPrimaryProps {
 	searchOptions?: {
 		types: string[];
 	};
+	isForm?: boolean;
 	suggestionViewStyle?: React.CSSProperties;
 	onLocationChange?: (result: {
 		address: string;
@@ -203,6 +223,7 @@ export interface InputLocationSecondaryProps extends InputSecondaryProps {
 	searchOptions?: {
 		types: string[];
 	};
+	isForm?: boolean;
 	suggestionViewStyle?: React.CSSProperties;
 	onLocationChange?: (result: {
 		address: string;
@@ -217,6 +238,7 @@ export interface InputLocationThirdProps extends InputThirdProps {
 	searchOptions?: {
 		types: string[];
 	};
+	isForm?: boolean;
 	suggestionViewStyle?: React.CSSProperties;
 	onLocationChange?: (result: {
 		address: string;
