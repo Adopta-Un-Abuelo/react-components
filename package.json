@@ -34,7 +34,6 @@
     "@stripe/react-stripe-js": "^3.3.0",
     "@stripe/stripe-js": "^5.10.0",
     "auto": "^11.3.0",
-    "axios": "^1.8.2",
     "clsx": "^2.1.1",
     "compressorjs": "^1.2.1",
     "country-flag-icons": "^1.5.18",
@@ -59,6 +58,7 @@
     "styled-media-query": "^2.1.2"
   },
   "devDependencies": {
+    "axios": "^1.8.2",
     "@chromatic-com/storybook": "^3.2.5",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-json": "^4.1.0",
