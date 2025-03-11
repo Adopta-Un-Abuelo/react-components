@@ -106,7 +106,7 @@ const InputLocation = (
 			sortAddress: sortAddress,
 			route: route,
 			routeNumber: routeNumber,
-			coordinates: latLng,
+			location: latLng,
 			country: country,
 			city: city,
 			province: province,
@@ -296,6 +296,6 @@ export interface LocationProps {
 	province?: string;
 	zipCode?: string;
 	country?: string;
-	coordinates?: google.maps.LatLngLiteral;
+	location?: google.maps.LatLngLiteral;
 	timeZone?: string;
 }
