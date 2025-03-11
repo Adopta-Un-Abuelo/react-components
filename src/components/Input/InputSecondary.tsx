@@ -16,7 +16,11 @@ import InputStyled, { InputStyledProps } from "./InputStyled";
 import DatePickerModal from "../DatePicker/DatePickerModal";
 
 const Container = styled.div``;
-const InputContainer = styled.div<{ $focus: boolean; $error: boolean }>`
+const InputContainer = styled.div<{
+	$focus: boolean;
+	$error: boolean;
+	$disabled: boolean;
+}>`
 	position: relative;
 	display: flex;
 	flex: 1;
@@ -34,8 +38,10 @@ const InputContainer = styled.div<{ $focus: boolean; $error: boolean }>`
 				? "1px " + Color.text.red
 				: "1px " + Color.border.neutralSoft};
 	padding: 0px 16px;
-	background-color: white;
-	cursor: text;
+	background-color: ${(props) =>
+		props.$disabled ? Color.border.neutralSoft : "white"};
+	cursor: ${(props) => (props.$disabled ? "default" : "text")};
+	opacity: ${(props) => (props.$disabled ? 0.6 : 1)};
 `;
 const ErrorDiv = styled.div`
 	margin: 0px 12px;
@@ -179,6 +185,7 @@ const InputSecondary = (props: InputSecondaryProps) => {
 				$error={error ? true : false}
 				style={props.style}
 				$focus={focus}
+				$disabled={props.disabled ? true : false}
 				onClick={() => {
 					if (props.type === "date") {
 						if (isMobile) {

@@ -9,7 +9,11 @@ import Text from "../Text/Text";
 import InputStyled, { InputStyledProps } from "./InputStyled";
 
 const Container = styled.div``;
-const InputContainer = styled.div<{ $focus?: boolean; $error?: boolean }>`
+const InputContainer = styled.div<{
+	$focus?: boolean;
+	$error?: boolean;
+	$disabled: boolean;
+}>`
 	position: relative;
 	display: flex;
 	flex: 1;
@@ -26,8 +30,9 @@ const InputContainer = styled.div<{ $focus?: boolean; $error?: boolean }>`
 		props.$focus
 			? "white"
 			: props.$error
-				? Color.status.color.errorDefault
-				: Color.background.soft};
+			? Color.status.color.errorDefault
+			: Color.background.soft};
+	opacity: ${(props) => (props.$disabled ? 0.5 : 1)};
 `;
 const ErrorDiv = styled.div`
 	margin: 0px 12px;
@@ -64,7 +69,7 @@ const InputPrimary = (props: InputPrimaryProps) => {
 	useEffect(() => {
 		if (props.country) {
 			const result = Country.filter(
-				(item) => item.prefix === props.country,
+				(item) => item.prefix === props.country
 			);
 			if (result.length > 0) onCountryChange(result[0]);
 		}
@@ -84,8 +89,8 @@ const InputPrimary = (props: InputPrimaryProps) => {
 						phone.length > 8 && phone.length < 18
 							? phoneUtil.isValidNumberForRegion(
 									phoneUtil.parse(phone, country.countryCode),
-									country.countryCode,
-								)
+									country.countryCode
+							  )
 							: false,
 				});
 		}
@@ -106,8 +111,8 @@ const InputPrimary = (props: InputPrimaryProps) => {
 					phone.length >= 6 && phone.length < 18
 						? phoneUtil.isValidNumberForRegion(
 								phoneUtil.parse(phone, country.countryCode),
-								country.countryCode,
-							)
+								country.countryCode
+						  )
 						: false,
 			});
 	};
@@ -128,6 +133,7 @@ const InputPrimary = (props: InputPrimaryProps) => {
 				$error={props.error ? true : false}
 				style={props.style}
 				$focus={focus}
+				$disabled={props.disabled ? true : false}
 			>
 				{icon ? (
 					<IconView>{icon}</IconView>

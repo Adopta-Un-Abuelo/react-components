@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Input from "../Input/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { LocationProps } from "../Input/InputLocation";
 
 const Container = styled.div`
 	display: flex;
@@ -19,89 +20,27 @@ const HiddenView = styled.div<{ visible?: boolean }>`
 `;
 
 const LocationForm = (props: LocationFormProps) => {
-	const [location, setLocation] = useState<
-		| (LocationProps & {
-				sortAddress?: string;
-				coordinates?: google.maps.LatLngLiteral;
-				timeZone?: string;
-		  })
-		| undefined
-	>(props.defaultLocation);
+	const [location, setLocation] = useState<LocationProps | undefined>(
+		props.defaultLocation
+	);
 	const [inputError, setInputError] = useState<string | undefined>(undefined);
 
-	const onLocationChange = async (item: {
-		address: string;
-		geocoder: google.maps.GeocoderResult;
-		location: google.maps.LatLngLiteral;
-	}) => {
+	useEffect(() => {
+		setLocation(props.defaultLocation);
+	}, [props.defaultLocation]);
+
+	const onLocationChange = async (item: LocationProps) => {
 		setInputError(undefined);
-		const route = item.geocoder.address_components.filter((it) =>
-			it.types.includes("route")
-		);
-		const streetNumber = item.geocoder.address_components.filter((it) =>
-			it.types.includes("street_number")
-		);
-
-		if (
-			route &&
-			route.length > 0 &&
-			streetNumber &&
-			streetNumber.length > 0
-		) {
-			const locality = item.geocoder.address_components.filter((it) =>
-				it.types.includes("locality")
-			);
-			const city = item.geocoder.address_components.filter((it) =>
-				it.types.includes("administrative_area_level_2")
-			);
-			const country = item.geocoder.address_components.filter((it) =>
-				it.types.includes("country")
-			);
-			const postal_code = item.geocoder.address_components.filter((it) =>
-				it.types.includes("postal_code")
-			);
-			const sortAddress =
-				(locality.length > 0 ? locality[0].long_name + ", " : "") +
-				(city.length > 0 ? city[0].long_name + ", " : "") +
-				country[0].long_name;
-			const tempLocation = {
-				...location,
-				address: `${route[0].long_name} ${streetNumber[0].long_name}`,
-				sortAddress: sortAddress,
-				coordinates: item.location,
-				country: country[0].short_name,
-				city: locality.length > 0 ? locality[0].long_name : undefined,
-				province: city.length > 0 ? city[0].long_name : undefined,
-				zipCode:
-					postal_code.length > 0
-						? postal_code[0].long_name
-						: undefined,
-			};
-
-			//Get the timezone
-			const response = await fetch(
-				`https://maps.googleapis.com/maps/api/timezone/json?location=${item.location.lat},${item.location.lng}&timestamp=1331161200&key=${props.googleAPIKey}`
-			);
-			const result2 = await response.json();
-			if (result2.data.status === "OK") {
-				setLocation({
-					...tempLocation,
-					timeZone: result2.data.timeZoneId,
-				});
-				props.onSubmit({
-					data: {
-						...tempLocation,
-						timeZone: result2.data.timeZoneId,
-					},
-				});
-			} else {
-				setLocation(tempLocation);
-				props.onSubmit({
-					data: tempLocation,
-				});
-			}
+		if (item.route && item.routeNumber) {
+			const address = `${item.route} ${item.routeNumber}, ${
+				location?.routeInfo ? location.routeInfo + ", " : ""
+			}${item.zipCode}, ${item.city}, ${item.province}, ${item.country}`;
+			setLocation({ ...location, ...item, address: address });
+			props.onSubmit({
+				data: { ...location, ...item, address: address },
+			});
 		} else {
-			setLocation(undefined);
+			setLocation({ routeInfo: location?.routeInfo });
 			const message =
 				"Añade la dirección completa, incluyendo el número de la calle";
 			setInputError(message);
@@ -111,36 +50,45 @@ const LocationForm = (props: LocationFormProps) => {
 		}
 	};
 
+	const onRouteInfoChange = (e: any) => {
+		if (location) {
+			const address = `${location.route} ${location.routeNumber}, ${e.target.value}, ${location.zipCode}, ${location.city}, ${location.province}, ${location.country}`;
+			const tempLocation = {
+				...location,
+				address: address,
+				routeInfo: e.target.value,
+			};
+			setLocation(tempLocation);
+			props.onSubmit({
+				data: tempLocation,
+			});
+		}
+	};
+
 	return (
 		<Container>
 			<Input
 				type="location"
 				design={props.design}
+				googleAPIKey={props.googleAPIKey}
 				placeholder="Nombre y número de la calle"
-				value={location?.address}
+				defaultValue={
+					location && location.route
+						? `${location.route} ${location.routeNumber}`
+						: undefined
+				}
 				isForm={true}
 				error={inputError}
 				onLocationChange={onLocationChange}
 			/>
-			<HiddenView visible={location?.address ? true : false}>
+			<HiddenView visible={location?.route ? true : false}>
 				<Input
 					containerStyle={{ flex: 1 }}
 					type="text"
 					placeholder="Apartamento, suite, unidad, edificio o piso"
 					design={props.design}
-					defaultValue={location?.addressInfo}
-					onChange={(e) => {
-						setLocation({
-							...location,
-							addressInfo: e.target.value,
-						});
-						props.onSubmit({
-							data: {
-								...location,
-								addressInfo: e.target.value,
-							},
-						});
-					}}
+					defaultValue={location?.routeInfo}
+					onChange={onRouteInfoChange}
 				/>
 				<Row>
 					<Input
@@ -149,6 +97,7 @@ const LocationForm = (props: LocationFormProps) => {
 						placeholder="Ciudad"
 						design={props.design}
 						defaultValue={location?.city}
+						disabled={true}
 					/>
 					<Input
 						containerStyle={{ flex: 2 }}
@@ -156,6 +105,7 @@ const LocationForm = (props: LocationFormProps) => {
 						placeholder="Código postal"
 						design={props.design}
 						defaultValue={location?.zipCode}
+						disabled={true}
 					/>
 				</Row>
 				<Input
@@ -163,6 +113,7 @@ const LocationForm = (props: LocationFormProps) => {
 					placeholder="Provincia"
 					design={props.design}
 					defaultValue={location?.province}
+					disabled={true}
 				/>
 			</HiddenView>
 		</Container>
@@ -174,20 +125,7 @@ export interface LocationFormProps {
 	design?: "primary" | "secondary" | "third";
 	googleAPIKey: string;
 	defaultLocation?: LocationProps;
-	onSubmit: (result: {
-		data?: LocationProps & {
-			sortAddress?: string;
-			coordinates?: google.maps.LatLngLiteral;
-			timeZone?: string;
-		};
-		error?: string;
-	}) => void;
+	onSubmit: (result: { data?: LocationProps; error?: string }) => void;
 }
-interface LocationProps {
-	address?: string;
-	addressInfo?: string;
-	city?: string;
-	province?: string;
-	zipCode?: string;
-	country?: string;
-}
+
+//TODO definir un objeto de direcciones coerente que sea lo más escalable posible, incluyendo un address y sortAddress y variable de verificación.

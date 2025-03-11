@@ -1,4 +1,10 @@
-import { ReactElement, useEffect, useState, CSSProperties, useRef } from "react";
+import {
+	ReactElement,
+	useEffect,
+	useState,
+	CSSProperties,
+	useRef,
+} from "react";
 import styled from "styled-components";
 import Color from "../../constants/Color";
 import Country from "../../constants/Country";
@@ -11,7 +17,11 @@ import InputStyled, { InputStyledProps } from "./InputStyled";
 import DatePickerModal from "../DatePicker/DatePickerModal";
 
 const Container = styled.div``;
-const InputContainer = styled.div<{ $focus?: boolean; $error?: boolean }>`
+const InputContainer = styled.div<{
+	$focus?: boolean;
+	$error?: boolean;
+	$disabled: boolean;
+}>`
 	position: relative;
 	display: flex;
 	flex: 1;
@@ -22,6 +32,7 @@ const InputContainer = styled.div<{ $focus?: boolean; $error?: boolean }>`
 	outline: none;
 	border-bottom: 1px solid
 		${(props) => (props.$focus ? Color.line.full : Color.line.soft)};
+	opacity: ${(props) => (props.$disabled ? 0.5 : 1)};
 `;
 const ErrorDiv = styled.div`
 	font-style: normal;
@@ -143,6 +154,7 @@ const InputThird = (props: InputThirdProps) => {
 				$error={props.error ? true : false}
 				style={props.style}
 				$focus={focus}
+				$disabled={props.disabled ? true : false}
 			>
 				{icon ? (
 					<IconView>{icon}</IconView>

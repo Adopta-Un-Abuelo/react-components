@@ -469,6 +469,8 @@ export const InputLocation: Story = {
 		type: "location",
 		icon: <Search role="icon" />,
 		defaultValue: "Default value",
+		googleAPIKey: process.env.GOOGLE_MAPS_API,
+		onLocationChange: fn(),
 	},
 	play: async ({ canvasElement, step }: any) => {
 		/*const canvas = within(canvasElement);

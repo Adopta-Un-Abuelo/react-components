@@ -58,28 +58,86 @@ const InputLocation = (
 
 	const handleSelect = async (address: string) => {
 		const result = await geocodeByAddress(address);
+		const geocoder = result[0];
 		const latLng = await getLatLng(result[0]);
-		if (props.isForm) {
-			const route = result[0].address_components.filter((it) =>
-				it.types.includes("route")
+
+		const routeObj = geocoder.address_components.filter((it) =>
+			it.types.includes("route")
+		);
+		const route = routeObj.length > 0 ? routeObj[0].long_name : undefined;
+
+		const routeNumberObj = geocoder.address_components.filter((it) =>
+			it.types.includes("street_number")
+		);
+		const routeNumber =
+			routeNumberObj.length > 0 ? routeNumberObj[0].long_name : undefined;
+
+		const cityObj = geocoder.address_components.filter((it) =>
+			it.types.includes("locality")
+		);
+		const city = cityObj.length > 0 ? cityObj[0].long_name : undefined;
+
+		const provinceObj = geocoder.address_components.filter((it) =>
+			it.types.includes("administrative_area_level_2")
+		);
+		const province =
+			provinceObj.length > 0 ? provinceObj[0].long_name : undefined;
+
+		const countryObj = geocoder.address_components.filter((it) =>
+			it.types.includes("country")
+		);
+		const country =
+			countryObj.length > 0 ? countryObj[0].short_name : undefined;
+
+		const zipCodeObj = geocoder.address_components.filter((it) =>
+			it.types.includes("postal_code")
+		);
+		const zipCode =
+			zipCodeObj.length > 0 ? zipCodeObj[0].long_name : undefined;
+
+		const addressString = `${route}${
+			routeNumber ? " " + routeNumber : ""
+		}, ${zipCode}, ${city}, ${province}, ${country}`;
+		const sortAddress = `${city ? city + ", " : ""}${
+			province ? province + ", " : ""
+		}${country}`;
+		const tempLocation = {
+			address: addressString,
+			sortAddress: sortAddress,
+			route: route,
+			routeNumber: routeNumber,
+			coordinates: latLng,
+			country: country,
+			city: city,
+			province: province,
+			zipCode: zipCode,
+		};
+
+		//Get the timezone. Skip if it is a form and there is no route and route number
+		if (!props.isForm || (route && routeNumber)) {
+			const response = await fetch(
+				`https://maps.googleapis.com/maps/api/timezone/json?location=${latLng.lat},${latLng.lng}&timestamp=1331161200&key=${props.googleAPIKey}`
 			);
-			const streetNumber = result[0].address_components.filter((it) =>
-				it.types.includes("street_number")
-			);
-			setSearchText(
-				`${route.length > 0 ? route[0].long_name : ""} ${
-					streetNumber.length > 0 ? streetNumber[0].long_name : ""
-				}`
-			);
-		} else {
-			setSearchText(address);
+			const result2 = await response.json();
+			if (result2.status === "OK") {
+				props.onLocationChange &&
+					props.onLocationChange({
+						...tempLocation,
+						timeZone: result2.timeZoneId,
+					});
+			} else {
+				props.onLocationChange && props.onLocationChange(tempLocation);
+			}
 		}
-		props.onLocationChange &&
-			props.onLocationChange({
-				address: address,
-				geocoder: result[0],
-				location: latLng,
-			});
+		else{
+			props.onLocationChange && props.onLocationChange(tempLocation);
+		}
+
+		if (props.isForm) {
+			setSearchText(`${route}${routeNumber ? " " + routeNumber : ""}`);
+		} else {
+			setSearchText(addressString);
+		}
 	};
 
 	const onKeyDown = (e: any, suggestions: Readonly<Array<Suggestion>>) => {
@@ -108,13 +166,9 @@ const InputLocation = (
 			value={searchText}
 			onChange={onLocationChange}
 			onSelect={handleSelect}
-			searchOptions={
-				props.searchOptions
-					? props.searchOptions
-					: {
-							types: ["address"],
-					  }
-			}
+			searchOptions={{
+				types: ["address"],
+			}}
 		>
 			{({ getInputProps, suggestions, getSuggestionItemProps }) => (
 				<SearchView>
@@ -133,6 +187,7 @@ const InputLocation = (
 							}}
 							icon={props.icon}
 							error={props.error}
+							disabled={props.disabled}
 						/>
 					) : props.design === "third" ? (
 						<InputThird
@@ -148,6 +203,7 @@ const InputLocation = (
 								...props.containerStyle,
 							}}
 							error={props.error}
+							disabled={props.disabled}
 						/>
 					) : (
 						<InputSecondary
@@ -164,6 +220,7 @@ const InputLocation = (
 							}}
 							icon={props.icon}
 							error={props.error}
+							disabled={props.disabled}
 						/>
 					)}
 					{suggestions.length > 0 && (
@@ -205,44 +262,40 @@ const InputLocation = (
 export default InputLocation;
 export interface InputLocationPrimaryProps extends InputPrimaryProps {
 	design?: "primary";
+	googleAPIKey: string;
 	error?: string;
-	searchOptions?: {
-		types: string[];
-	};
 	isForm?: boolean;
 	suggestionViewStyle?: React.CSSProperties;
-	onLocationChange?: (result: {
-		address: string;
-		geocoder: google.maps.GeocoderResult;
-		location: google.maps.LatLngLiteral;
-	}) => void;
+	onLocationChange?: (result: LocationProps) => void;
 }
 export interface InputLocationSecondaryProps extends InputSecondaryProps {
 	design?: "secondary";
+	googleAPIKey: string;
 	error?: string;
-	searchOptions?: {
-		types: string[];
-	};
 	isForm?: boolean;
 	suggestionViewStyle?: React.CSSProperties;
-	onLocationChange?: (result: {
-		address: string;
-		geocoder: google.maps.GeocoderResult;
-		location: google.maps.LatLngLiteral;
-	}) => void;
+	onLocationChange?: (result: LocationProps) => void;
 }
 
 export interface InputLocationThirdProps extends InputThirdProps {
 	design?: "third";
+	googleAPIKey: string;
 	error?: string;
-	searchOptions?: {
-		types: string[];
-	};
 	isForm?: boolean;
 	suggestionViewStyle?: React.CSSProperties;
-	onLocationChange?: (result: {
-		address: string;
-		geocoder: google.maps.GeocoderResult;
-		location: google.maps.LatLngLiteral;
-	}) => void;
+	onLocationChange?: (result: LocationProps) => void;
+}
+
+export interface LocationProps {
+	address?: string;
+	sortAddress?: string;
+	route?: string;
+	routeNumber?: string;
+	routeInfo?: string;
+	city?: string;
+	province?: string;
+	zipCode?: string;
+	country?: string;
+	coordinates?: google.maps.LatLngLiteral;
+	timeZone?: string;
 }
