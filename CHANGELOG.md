@@ -1,3 +1,15 @@
+# v0.3.63 (Tue Mar 11 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: input location onLocationChange types modification (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.62 (Mon Mar 10 2025)
 
 #### ⚠️ Pushed to `main`
