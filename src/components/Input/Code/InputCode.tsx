@@ -25,8 +25,8 @@ const InputContainer = styled.div<{
 			props.$focus
 				? "2px " + Color.border.neutralMedium
 				: props.$error
-					? "1px " + Color.text.red
-					: "1px " + Color.border.neutralSoft};
+				? "1px " + Color.text.red
+				: "1px " + Color.border.neutralSoft};
 	background-color: white;
 	opacity: ${(props) => (props.$loading ? 0.5 : 1)};
 	cursor: ${(props) => (props.$loading ? "default" : "text")};
@@ -94,6 +94,7 @@ const InputCode = (props: InputCodeProps) => {
 					value={value}
 					placeholder="------"
 					disabled={props.loading}
+					autoFocus={props.autoFocus}
 					onFocus={() => setFocus(true)}
 					onBlur={() => setFocus(false)}
 					onChange={onTextChange}
@@ -121,6 +122,7 @@ export default InputCode;
 export interface InputCodeProps {
 	style?: CSSProperties;
 	containerStyle?: CSSProperties;
+	autoFocus?: boolean;
 	error?: string;
 	loading?: boolean;
 	onChange?: (code: string) => void;
