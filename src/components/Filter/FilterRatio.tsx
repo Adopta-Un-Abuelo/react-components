@@ -7,7 +7,7 @@ import {
 	useImperativeHandle,
 } from "react";
 
-import Input from "../Input/Basic/Input";
+import InputRange from "../Input/Range/InputRange";
 import FilterDefault from "./FilterDefault";
 
 const Filter = forwardRef(
@@ -72,12 +72,11 @@ const Filter = forwardRef(
 				onSave={onSave}
 				onRemove={onRemove}
 			>
-				<Input
+				<InputRange
 					style={{
 						width: "100%",
 						margin: isMobile ? "20px 0px" : 20,
 					}}
-					type="range"
 					min={min}
 					max={max}
 					unit={unit}

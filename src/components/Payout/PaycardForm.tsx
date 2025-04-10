@@ -29,25 +29,25 @@ const InputContainer = styled.div<{
 			props.$focus
 				? props.$design === "secondary"
 					? "2px " + Color.border.neutralMedium
-					: "1px " + Color.border.primarySoft
+					: "1px " + Color.border.neutralHard
 				: props.$design === "secondary"
-					? "1px " + Color.border.neutralSoft
-					: "none"};
+				? "1px " + Color.border.neutralSoft
+				: "none"};
 	background-color: ${(props) =>
 		props.$focus
 			? "white"
 			: props.$design === "secondary"
-				? "white"
-				: props.$error
-					? Color.text.red
-					: Color.surface.background};
+			? "white"
+			: props.$error
+			? Color.surface.redSoft
+			: Color.surface.neutralSoft};
 	border-radius: ${(props) =>
 		props.$design === "secondary" ? "12px" : "6px"};
 	padding: ${(props) =>
 		props.$design === "secondary" ? "19px 16px" : "10px 16px"};
 `;
 const ErrorDiv = styled.div`
-	margin: 0px 12px;
+	margin: 0px 8px;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 14px;
@@ -60,10 +60,10 @@ const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) => {
 	const [name, setName] = useState<string | undefined>(undefined);
 	const [email, setEmail] = useState<string | undefined>(undefined);
 	const [inputNameError, setInputNameError] = useState<string | undefined>(
-		undefined,
+		undefined
 	);
 	const [inputEmailError, setInputEmailError] = useState<string | undefined>(
-		undefined,
+		undefined
 	);
 	const [inputPaymentError, setInputPaymentError] = useState<
 		string | undefined
@@ -225,7 +225,10 @@ const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) => {
 							style: {
 								base: {
 									fontFamily: "Poppins",
-									fontSize: "15px",
+									fontSize:
+										props.design === "secondary"
+											? "15px"
+											: "14px",
 									"::placeholder": {
 										color: Color.text.neutralMedium,
 									},
@@ -244,7 +247,10 @@ const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) => {
 							style: {
 								base: {
 									fontFamily: "Poppins",
-									fontSize: "15px",
+									fontSize:
+										props.design === "secondary"
+											? "15px"
+											: "14px",
 									"::placeholder": {
 										color: Color.text.neutralMedium,
 									},
@@ -261,9 +267,10 @@ const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) => {
 				<ErrorDiv>
 					<Text
 						type="p"
+						weight="medium"
 						style={{
 							color: Color.text.red,
-							marginTop: 8,
+							marginTop: 4,
 							fontSize: 14,
 						}}
 					>
