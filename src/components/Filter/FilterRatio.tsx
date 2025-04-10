@@ -7,7 +7,7 @@ import {
 	useImperativeHandle,
 } from "react";
 
-import Input from "../Input/Input";
+import Input from "../Input/Basic/Input";
 import FilterDefault from "./FilterDefault";
 
 const Filter = forwardRef(

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Input from "../Input/Input";
 import { useEffect, useState } from "react";
-import { LocationProps } from "../Input/InputLocation";
+import InputLocation, { LocationProps } from "../Input/Location/InputLocation";
+import Input from "../Input/Basic/Input";
 
 const Container = styled.div`
 	display: flex;
@@ -67,8 +67,7 @@ const LocationForm = (props: LocationFormProps) => {
 
 	return (
 		<Container>
-			<Input
-				type="location"
+			<InputLocation
 				design={props.design}
 				googleAPIKey={props.googleAPIKey}
 				placeholder="Nombre y número de la calle"
@@ -127,5 +126,3 @@ export interface LocationFormProps {
 	defaultLocation?: LocationProps;
 	onSubmit: (result: { data?: LocationProps; error?: string }) => void;
 }
-
-//TODO definir un objeto de direcciones coerente que sea lo más escalable posible, incluyendo un address y sortAddress y variable de verificación.

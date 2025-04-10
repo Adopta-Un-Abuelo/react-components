@@ -1,11 +1,9 @@
 import { useState, useEffect, ComponentPropsWithoutRef } from "react";
 import styled from "styled-components";
 import Flags from "country-flag-icons/react/3x2";
-import Fuse from "fuse.js";
 
-import Text from "../Text/Text";
-import Color from "../../constants/Color";
-import SearchBar from "../SearchBar/SearchBar";
+import Text from "../../Text/Text";
+import Color from "../../../constants/Color";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 const Container = styled.div``;
@@ -51,9 +49,10 @@ const Icon = styled.div`
 const Title = styled(Text)<{ $focus: boolean; color?: string }>`
 	flex: 1;
 	color: ${(props) => (props.color ? props.color : Color.text.full)};
-	margin-left: 6px;
+	margin-left: 2px;
 	margin-top: ${(props) => (props.$focus ? "15px" : "0px")};
 	transition: margin-top 0.1s ease-out;
+	font-size: 14px !important;
 `;
 
 const Select = (props: Props) => {
