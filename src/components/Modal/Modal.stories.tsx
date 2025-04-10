@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "./Modal";
 import Text from "../Text/Text";
-import Input from "../Input/Input";
+import Input from "../Input/Basic/Input";
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from "@storybook/addon-actions";
 import { userEvent, within, expect } from "@storybook/test";

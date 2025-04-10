@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import "../../assets/css/react_dates_overrides.css";
+import "./react_dates_overrides.css";
 import { DateRangePicker, FocusedInputShape } from "react-dates";
-import Color from "../../constants/ColorV2";
+import Color from "../../../constants/ColorV2";
 
 const InputContainer = styled.div<{ $focus: boolean }>`
 	display: flex;

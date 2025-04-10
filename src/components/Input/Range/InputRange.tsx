@@ -6,9 +6,9 @@ import {
 } from "react";
 import styled, { keyframes } from "styled-components";
 import { Player } from "@lottiefiles/react-lottie-player";
-import Color from "../../constants/ColorV2";
-import Text from "../Text/Text";
-import AnimationPop from "../../assets/animations/pop.json";
+import Color from "../../../constants/ColorV2";
+import Text from "../../Text/Text";
+import AnimationPop from "../../../assets/animations/pop.json";
 
 const Container = styled.div`
 	display: flex;
@@ -90,7 +90,7 @@ const InputStyled = styled.input<{
 const RangeValue = styled.div<{ $value: number }>`
 	left: ${(props) => props.$value + "px"};
 	position: absolute;
-	top: 15px;
+	top: -8px;
 `;
 const RangeValueSpan = styled.span`
 	height: 24px;

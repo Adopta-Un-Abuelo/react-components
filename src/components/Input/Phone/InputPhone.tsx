@@ -9,11 +9,11 @@ import styled from "styled-components";
 import GLPN from "google-libphonenumber";
 import moment from "moment";
 
-import Color from "../../constants/ColorV2";
-import Select from "../Select/SelectPhone";
-import Text from "../Text/Text";
-import InputStyled, { InputStyledProps } from "./InputStyled";
-import DatePickerModal from "../DatePicker/DatePickerModal";
+import Color from "../../../constants/ColorV2";
+import Select from "../../Select/SelectPhone";
+import Text from "../../Text/Text";
+import InputStyled, { InputStyledProps } from "../InputStyled";
+import DatePickerModal from "../../DatePicker/DatePickerModal";
 
 const Container = styled.div``;
 const InputContainer = styled.div<{

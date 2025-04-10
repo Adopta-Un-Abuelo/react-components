@@ -1,6 +1,6 @@
 import { CSSProperties, Fragment, useEffect, useRef, useState } from "react";
 import { ColorV2 } from "../../constants";
-import Input from "../Input/Input";
+import Input from "../Input/Basic/Input";
 import ChatBubble, { ChatMessageProps } from "./ChatBubble";
 import "./ChatBubble.css";
 import styled from "styled-components";

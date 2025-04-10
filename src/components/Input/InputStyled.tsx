@@ -43,6 +43,7 @@ export interface InputStyledProps extends ComponentPropsWithRef<"input"> {
 		| "image"
 		| "chat"
 		| "code"
-		| "location";
+		| "location"
+		| "birthday";
 	hideCalendar?: boolean;
 }
