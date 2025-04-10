@@ -1,3 +1,18 @@
+# v0.3.65 (Thu Apr 10 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: react version (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/n-60' (guillermo.angeles@adoptaunabuelo.com)
+- feat: input redistribution (guillermo.angeles@adoptaunabuelo.com)
+- feat: input UI update (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.64 (Tue Mar 11 2025)
 
 #### ⚠️ Pushed to `main`
