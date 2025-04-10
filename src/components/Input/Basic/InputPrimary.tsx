@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState, CSSProperties } from "react";
+import { ReactElement, useEffect, useState, CSSProperties, forwardRef, Ref } from "react";
 import styled, { keyframes } from "styled-components";
 import Color from "../../../constants/ColorV2";
 
@@ -45,10 +45,6 @@ const InputContainer = styled.div<{
 `;
 const ErrorDiv = styled.div<{ $error: boolean }>`
 	margin: 2px 8px 0px;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 13px;
-	line-height: 20px;
 	display: flex;
 	color: ${Color.text.red};
 	animation-name: ${(props) => (props.$error ? fadeInAnimation : "none")};
@@ -59,7 +55,7 @@ const Column = styled.div`
 	flex: 1;
 	flex-direction: column;
 `;
-const InputPrimary = (props: InputPrimaryProps) => {
+const InputPrimary = forwardRef((props: InputPrimaryProps, ref: Ref<HTMLInputElement>) => {
 	const { LeftContent, design, error, containerStyle, ...restProps } = props;
 
 	const [inputValue, setInputValue] = useState<
@@ -98,6 +94,7 @@ const InputPrimary = (props: InputPrimaryProps) => {
 				<Column>
 					<InputStyled
 						{...restProps}
+						ref={ref}
 						value={inputValue}
 						onChange={onInputChange}
 						onFocus={onInputFocus}
@@ -122,7 +119,7 @@ const InputPrimary = (props: InputPrimaryProps) => {
 			)}
 		</Container>
 	);
-};
+});
 export default InputPrimary;
 export interface InputPrimaryProps extends InputStyledProps {
 	LeftContent?: ReactElement;

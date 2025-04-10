@@ -1,16 +1,19 @@
+import { forwardRef, Ref } from "react";
 import InputPrimary, { InputPrimaryProps } from "./InputPrimary";
 import InputSecondary, { InputSecondaryProps } from "./InputSecondary";
 import InputThird, { InputThirdProps } from "./InputThird";
 
-const Input = (props: InputProps) => {
+const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
 	return props.design === "primary" ? (
-		<InputPrimary {...props} />
+		<InputPrimary {...props} ref={ref} />
 	) : props.design === "secondary" ? (
-		<InputSecondary {...props} />
+		<InputSecondary {...props} ref={ref} />
 	) : props.design === "third" ? (
-		<InputThird {...props} />
-	) : <InputSecondary {...props} design="secondary" />;
-};
+		<InputThird {...props} ref={ref} />
+	) : (
+		<InputSecondary {...props} design="secondary" ref={ref} />
+	);
+});
 
 export default Input;
 export type InputProps = (

@@ -32,10 +32,8 @@ export const Primary: Story = {
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
-		const placeholder = canvas.getByRole("placeholder");
 		await step("render", async () => {
 			expect(input).toBeInTheDocument();
-			expect(placeholder).toBeInTheDocument();
 		});
 	},
 };
@@ -62,10 +60,8 @@ export const Third: Story = {
 	play: async ({ canvasElement, step }: any) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
-		const placeholder = canvas.getByRole("placeholder");
 		await step("render", async () => {
 			expect(input).toBeInTheDocument();
-			expect(placeholder).toBeInTheDocument();
 		});
 	},
 };

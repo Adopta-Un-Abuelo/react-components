@@ -15,8 +15,20 @@ const meta: Meta<typeof InputBirthday> = {
 export default meta;
 type Story = StoryObj<typeof InputBirthday>;
 
-export const Default: Story = {
+export const Primary: Story = {
     args: {
-       
+       design: "primary",
+    },
+};
+
+export const Secondary: Story = {
+    args: {
+       design: "secondary",
+    },
+};
+
+export const Third: Story = {
+    args: {
+       design: "third",
     },
 };

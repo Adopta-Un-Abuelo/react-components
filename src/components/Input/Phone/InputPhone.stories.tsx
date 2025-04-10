@@ -7,34 +7,7 @@ const meta: Meta<typeof InputPhone> = {
 	component: InputPhone,
 	tags: ["autodocs"],
 	args: {
-		placeholder: "Placeholder",
-		defaultValue: "Default value",
-		onChange: fn(),
-	},
-	argTypes: {
-		design: {
-			table: {
-				defaultValue: { summary: "primary" },
-			},
-			control: "select",
-			options: ["primary", "secondary", "third"],
-		},
-		type: {
-			table: {
-				defaultValue: { summary: "text" },
-			},
-			control: "select",
-		},
-	},
-};
-
-export default meta;
-type Story = StoryObj<typeof InputPhone>;
-
-export const Default: Story = {
-	args: {
-		design: "secondary",
-		type: "tel",
+        placeholder: "Placeholder",
 		defaultValue: "912345678",
 		country: "+34",
 		countryOptions: [
@@ -80,6 +53,76 @@ export const Default: Story = {
 			},
 		],
 		onPhoneChange: fn(),
+	},
+	argTypes: {
+		design: {
+			table: {
+				defaultValue: { summary: "primary" },
+			},
+			control: "select",
+			options: ["primary", "secondary", "third"],
+		},
+	},
+};
+
+export default meta;
+type Story = StoryObj<typeof InputPhone>;
+
+export const Primary: Story = {
+	args: {
+		design: "primary",
+	},
+	// play: async ({ canvasElement, step }: any) => {
+	// 	const canvas = within(canvasElement);
+	// 	const input = canvas.getByRole("input");
+	// 	const placeholder = canvas.getByRole("placeholder");
+	// 	await step("render", async () => {
+	// 		expect(input).toBeInTheDocument();
+	// 		expect(placeholder).toBeInTheDocument();
+	// 	});
+	// 	await step("country selection", async () => {
+	// 		const select = canvas.getByRole("select");
+	// 		userEvent.click(select);
+	// 		const menu = await canvas.findByRole("menu");
+	// 		expect(menu).toBeVisible();
+	// 		const option = await canvas.findByRole("country17");
+	// 		userEvent.click(option);
+	// 	});
+	// 	await step("typing", async () => {
+	// 		userEvent.type(input, "912345678", { delay: 100 });
+	// 	});
+	// },
+};
+
+export const Secondary: Story = {
+	args: {
+		design: "secondary",
+	},
+	// play: async ({ canvasElement, step }: any) => {
+	// 	const canvas = within(canvasElement);
+	// 	const input = canvas.getByRole("input");
+	// 	const placeholder = canvas.getByRole("placeholder");
+	// 	await step("render", async () => {
+	// 		expect(input).toBeInTheDocument();
+	// 		expect(placeholder).toBeInTheDocument();
+	// 	});
+	// 	await step("country selection", async () => {
+	// 		const select = canvas.getByRole("select");
+	// 		userEvent.click(select);
+	// 		const menu = await canvas.findByRole("menu");
+	// 		expect(menu).toBeVisible();
+	// 		const option = await canvas.findByRole("country17");
+	// 		userEvent.click(option);
+	// 	});
+	// 	await step("typing", async () => {
+	// 		userEvent.type(input, "912345678", { delay: 100 });
+	// 	});
+	// },
+};
+
+export const Third: Story = {
+	args: {
+		design: "third",
 	},
 	// play: async ({ canvasElement, step }: any) => {
 	// 	const canvas = within(canvasElement);
