@@ -1,3 +1,15 @@
+# v0.3.66 (Thu Apr 10 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: input import errors (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.65 (Thu Apr 10 2025)
 
 #### ⚠️ Pushed to `main`
