@@ -2,8 +2,10 @@ import styled from "styled-components";
 import Text from "../../Text/Text";
 import { ColorV2 } from "../../../constants";
 import { CSSProperties, useEffect, useRef, useState } from "react";
+import media from "styled-media-query";
 
 const Container = styled.div`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
@@ -82,6 +84,44 @@ const InputContainer = styled.div<{
 		box-shadow: 0 0 0 2px ${ColorV2.border.primary};
 	}
 `;
+const LabelContainer = styled.div`
+	display: flex;
+	margin-bottom: 6px;
+`;
+const Label = styled(Text)`
+	position: relative;
+	padding: 8px 12px;
+	background-color: ${ColorV2.surface.primary};
+	border-radius: 8px;
+	color: white;
+	max-width: 50%;
+	text-align: center;
+	${media.lessThan("small")`
+        max-width: 100%;
+    `}
+`;
+const LabelContainerSpan = styled.span<{
+	$position: "left" | "center" | "right";
+}>`
+	&::before {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-top: 11px solid ${ColorV2.surface.primary};
+		border-left: 8px solid transparent;
+		border-right: 8px solid transparent;
+		top: 100%;
+		left: ${(props) =>
+			props.$position === "left"
+				? "20%"
+				: props.$position === "right"
+				? "80%"
+				: "50%"};
+		margin-left: -8px;
+		margin-top: -1px;
+	}
+`;
 
 const InputPrice = (props: InputPriceProps) => {
 	const input = useRef<HTMLInputElement>(null);
@@ -109,8 +149,7 @@ const InputPrice = (props: InputPriceProps) => {
 	const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 		setInputFocus(false);
 		const priceInt = parseInt(e.target.value);
-		console.log(priceInt);
-		if (priceInt < 5) {
+		if (priceInt < 5 || !priceInt) {
 			setInputError("La donación mínima es de 5€");
 		} else {
 			setInputError("");
@@ -127,14 +166,54 @@ const InputPrice = (props: InputPriceProps) => {
 
 	const onCellClick = (option: number) => {
 		setCustomPrice("");
+        setInputError("");
 		setOptionSelected(option);
 		props.onChange && props.onChange(option);
 	};
 
 	return (
-		<Container
-            style={props.style}
-        >
+		<Container style={props.style}>
+			{props.label && props.labelValueConversion && (
+				<LabelContainer
+					style={{
+						justifyContent: optionSelected
+							? props.options.indexOf(optionSelected) === 0
+								? "flex-start"
+								: props.options.indexOf(optionSelected) === 1
+								? "center"
+								: "flex-end"
+							: "center",
+					}}
+				>
+					<Label type="c1">
+						{props.label.replace(
+							"{{value}}",
+							(
+								props.labelValueConversion *
+								(optionSelected
+									? optionSelected
+									: customPrice
+									? parseInt(customPrice)
+									: 0)
+							).toFixed(0)
+						)}
+						<LabelContainerSpan
+							$position={
+								optionSelected
+									? props.options.indexOf(optionSelected) ===
+									  0
+										? "left"
+										: props.options.indexOf(
+												optionSelected
+										  ) === 1
+										? "center"
+										: "right"
+									: "center"
+							}
+						/>
+					</Label>
+				</LabelContainer>
+			)}
 			<Row>
 				{props.options.map((option, index) => {
 					const isSelected =
@@ -170,7 +249,7 @@ const InputPrice = (props: InputPriceProps) => {
 								: "unset",
 					}}
 					type="number"
-                    value={customPrice}
+					value={customPrice}
 					placeholder="Otra cantidad"
 					onChange={onInputChange}
 					onFocus={onInputFocus}
@@ -200,8 +279,10 @@ const InputPrice = (props: InputPriceProps) => {
 };
 export default InputPrice;
 export type InputPriceProps = {
-    style?: CSSProperties;
+	style?: CSSProperties;
 	options: number[];
+	label?: string;
+	labelValueConversion?: number;
 	currency: string;
 	defaultOption?: number;
 	onChange?: (value: number) => void;
