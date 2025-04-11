@@ -13,6 +13,7 @@ export { default as InputImage } from "./Input/Image/InputImage";
 export { default as InputLocation } from "./Input/Location/InputLocation";
 export { default as InputPhone } from "./Input/Phone/InputPhone";
 export { default as InputRange } from "./Input/Range/InputRange";
+export { default as InputPrice } from "./Input/Price/InputPrice";
 export { default as Select } from "./Select/Select";
 export { default as SearchBar } from "./SearchBar/SearchBar";
 export { default as Modal } from "./Modal/Modal";
