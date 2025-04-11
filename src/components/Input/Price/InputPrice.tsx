@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Text from "../../Text/Text";
 import { ColorV2 } from "../../../constants";
-import { useEffect, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 
 const Container = styled.div`
 	display: flex;
@@ -132,7 +132,9 @@ const InputPrice = (props: InputPriceProps) => {
 	};
 
 	return (
-		<Container>
+		<Container
+            style={props.style}
+        >
 			<Row>
 				{props.options.map((option, index) => {
 					const isSelected =
@@ -198,8 +200,9 @@ const InputPrice = (props: InputPriceProps) => {
 };
 export default InputPrice;
 export type InputPriceProps = {
+    style?: CSSProperties;
 	options: number[];
 	currency: string;
-	defaultOption: number;
+	defaultOption?: number;
 	onChange?: (value: number) => void;
 };
