@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import InputPrice from "./InputPrice";
-import { within, expect, fn } from "@storybook/test";
+import { fn } from "@storybook/test";
 
 const meta: Meta<typeof InputPrice> = {
 	title: "Input/Price",
@@ -10,6 +10,8 @@ const meta: Meta<typeof InputPrice> = {
 		options: [5, 15, 21],
 		currency: "€",
 		defaultOption: 15,
+        label: "Nos ayudas a cumplir el sueño de {{value}} abuelos",
+        labelValueConversion: 0.2,
 		onChange: fn(),
 	},
 };
