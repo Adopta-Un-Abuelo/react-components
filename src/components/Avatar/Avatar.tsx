@@ -75,10 +75,6 @@ const Avatar = (props: Props) => {
 				onClose={() => setShowModal(false)}
 				contentStyle={{ padding: 0, backgroundColor: "black" }}
 				hideHeader={true}
-				buttonProps={{
-					children: "Cerrar",
-					onClick: () => setShowModal(false),
-				}}
 			>
 				<BigIcon src={props.icon} />
 			</Modal>

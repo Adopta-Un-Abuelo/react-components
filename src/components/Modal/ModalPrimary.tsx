@@ -19,7 +19,7 @@ const TitleView = styled.div`
 	position: sticky;
 	display: flex;
 	flex-direction: column;
-	padding: 18px 24px;
+	padding: 10px 24px 16px;
 	top: 0px;
 	background-color: white;
 	z-index: 100;
@@ -35,8 +35,7 @@ const Buttons = styled.div`
 	bottom: 0;
 	align-items: center;
 	justify-content: flex-end;
-	padding: 8px 24px;
-	border-top: 1px solid ${Color.border.neutralSoft};
+	padding: 16px 24px;
 	background-color: white;
 	${media.lessThan("small")`
         padding: 8px 16px;
@@ -46,6 +45,11 @@ const ErrorView = styled.div`
 	background-color: ${Color.surface.redSoft};
 	padding: 12px 24px;
 	margin-top: 24px;
+`;
+const CloseView = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px 10px 0px 24px;
 `;
 
 const ModalComponent = forwardRef(
@@ -119,7 +123,7 @@ const ModalComponent = forwardRef(
 								? isLargeScreen
 									? "400px"
 									: "100%"
-								: 500,
+								: 486,
 						maxWidth:
 							props.type === "full-screen"
 								? "100%"
@@ -127,9 +131,12 @@ const ModalComponent = forwardRef(
 								? isLargeScreen
 									? "400px"
 									: "100%"
-								: "90%",
+								: "calc(100% - 96px)",
 						height: props.type === "lateral" ? "100%" : undefined,
-						maxHeight: props.type === "lateral" ? "100%" : "90%",
+						maxHeight:
+							props.type === "lateral"
+								? "100%"
+								: "calc(100% - 96px)",
 						background: "#FFFFFF",
 						boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
 						borderRadius:
@@ -184,42 +191,46 @@ const ModalComponent = forwardRef(
 					},
 					overlay: {
 						backgroundColor:
-							"rgba(0, 0, 0, " + (show ? (props.overlayBackgroundOpacity ? props.overlayBackgroundOpacity : 0.6) : 0) + ")",
+							"rgba(0, 0, 0, " +
+							(show
+								? props.overlayBackgroundOpacity
+									? props.overlayBackgroundOpacity
+									: 0.6
+								: 0) +
+							")",
 						transition: " background-color 0.3s ease-out",
 						zIndex: 1000,
 					},
 				}}
 			>
-				{!props.hideHeader && (
-					<TitleView>
-						{!props.hideClose && (
-							<Button
-								style={{
-									position: "absolute",
-									top: 9,
-									right: 14,
-								}}
-								icon={
-									<X
-										height={20}
-										width={20}
-										color={Color.text.neutralHard}
-									/>
-								}
-								design="image"
-								onClick={onClose}
-							/>
-						)}
+				{!props.hideClose && (
+					<CloseView>
+						<Button
+							style={{
+								backgroundColor: "white",
+								borderRadius: 50,
+							}}
+							icon={
+								<X
+									height={20}
+									width={20}
+									color={Color.text.neutralHard}
+								/>
+							}
+							design="image"
+							onClick={onClose}
+						/>
+					</CloseView>
+				)}
+				{!props.hideHeader && (props.title || props.subtitle) && (
+					<TitleView style={{ paddingTop: props.hideClose ? 16 : 4 }}>
 						{props.title && (
-							<Text type="h5" weight="semibold">
+							<Text type="h3" weight="semibold">
 								{props.title}
 							</Text>
 						)}
 						{props.subtitle && (
-							<Text
-								type="p2"
-								style={{ color: Color.text.neutralMedium }}
-							>
+							<Text type="p2" style={{ marginTop: 8 }}>
 								{props.subtitle}
 							</Text>
 						)}
