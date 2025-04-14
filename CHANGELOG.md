@@ -1,3 +1,23 @@
+# v0.3.68 (Mon Apr 14 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: add package-lock.json (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/n-74' (guillermo.angeles@adoptaunabuelo.com)
+- feat: modal ui updated (guillermo.angeles@adoptaunabuelo.com)
+- fix: github actions (guillermo.angeles@adoptaunabuelo.com)
+- fix: import error (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'feature/n-72' (guillermo.angeles@adoptaunabuelo.com)
+- feat: label in price input (guillermo.angeles@adoptaunabuelo.com)
+- fix: add style props (guillermo.angeles@adoptaunabuelo.com)
+- feat: select price input (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.67 (Thu Apr 10 2025)
 
 #### ⚠️ Pushed to `main`
