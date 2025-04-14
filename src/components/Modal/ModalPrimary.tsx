@@ -21,7 +21,6 @@ const TitleView = styled.div`
 	flex-direction: column;
 	padding: 10px 24px 16px;
 	top: 0px;
-	background-color: white;
 	z-index: 100;
 `;
 const ChildrenView = styled.div`
@@ -223,7 +222,12 @@ const ModalComponent = forwardRef(
 					</CloseView>
 				)}
 				{!props.hideHeader && (props.title || props.subtitle) && (
-					<TitleView style={{ paddingTop: props.hideClose ? 16 : 4 }}>
+					<TitleView
+						style={{
+							paddingTop: props.hideClose ? 16 : 4,
+							...props.titleStyle,
+						}}
+					>
 						{props.title && (
 							<Text type="h3" weight="semibold">
 								{props.title}
@@ -276,6 +280,7 @@ export interface ModalPrimaryProps extends ComponentPropsWithoutRef<"div"> {
 	error?: string;
 	hideClose?: boolean;
 	hideHeader?: boolean;
+	titleStyle?: CSSProperties;
 	contentStyle?: CSSProperties;
 	Header?: JSX.Element;
 	Bottom?: JSX.Element;
