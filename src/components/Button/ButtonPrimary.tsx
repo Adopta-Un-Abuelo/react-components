@@ -18,7 +18,7 @@ const ButtonPrimary = styled.button<{
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	height: ${(props) => (props.$size === "small" ? "36px" : "56px")};
+	height: ${(props) => (props.$size === "small" ? "40px" : "56px")};
 	padding: ${(props) =>
 		props.$loading
 			? "0px"

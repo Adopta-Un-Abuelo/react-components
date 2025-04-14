@@ -2,6 +2,17 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Run storybook",
+			"type": "node",
+			"request": "launch",
+			"runtimeExecutable": "bash",
+			"runtimeArgs": [
+				"-c",
+				"npm run storybook"
+			],
+			"console": "integratedTerminal"
+		},
+		{
 			"name": "Publish package",
 			"type": "node",
 			"request": "launch",
