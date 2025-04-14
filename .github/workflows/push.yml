@@ -18,15 +18,16 @@ jobs:
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: yarn-deps-${{ hashFiles('yarn.lock') }}
+          key: npm-deps-${{ hashFiles('package-lock.json') }}
           restore-keys: |
-            yarn-deps-${{ hashFiles('yarn.lock') }}
-      - name: Create Release
+            npm-deps-${{ hashFiles('package-lock.json') }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Build and Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          yarn install --frozen-lockfile
-          yarn build
-          yarn release
+          npm run build
+          npm run release

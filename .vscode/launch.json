@@ -1,0 +1,16 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Publish package",
+			"type": "node",
+			"request": "launch",
+			"runtimeExecutable": "bash",
+			"runtimeArgs": [
+				"-c",
+				"npm run build && npm run release"
+			],
+			"console": "integratedTerminal"
+		}
+	]
+}
