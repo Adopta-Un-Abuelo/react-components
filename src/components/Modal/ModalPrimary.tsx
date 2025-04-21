@@ -130,12 +130,12 @@ const ModalComponent = forwardRef(
 								? isLargeScreen
 									? "400px"
 									: "100%"
-								: "calc(100% - 96px)",
+								: `calc(100% - ${isLargeScreen ? 96 : 48}px)`,
 						height: props.type === "lateral" ? "100%" : undefined,
 						maxHeight:
 							props.type === "lateral"
 								? "100%"
-								: "calc(100% - 96px)",
+								: `calc(100% - ${isLargeScreen ? 96 : 48}px)`,
 						background: "#FFFFFF",
 						boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
 						borderRadius:

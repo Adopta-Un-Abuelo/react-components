@@ -147,7 +147,7 @@ const InputLocation = ({
 				}
 			} else {
 				setErrorString(
-					"Parece que la dirección no está completa. Indica el número de la calle si es preciso."
+					"Necesitamos una dirección más precisa para encontrar tu código postal. Por favor, indica el número de la calle."
 				);
 			}
 		} else {
