@@ -1,3 +1,15 @@
+# v0.3.70 (Mon Apr 21 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: minor errors (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.69 (Mon Apr 14 2025)
 
 #### ⚠️ Pushed to `main`
