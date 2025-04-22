@@ -49,6 +49,9 @@ const InputBirthday = ({
 	const monthInput = useRef<HTMLInputElement>(null);
 	const yearInput = useRef<HTMLInputElement>(null);
 
+	const [dayValue, setDayValue] = useState("");
+	const [monthValue, setMonthValue] = useState("");
+	const [yearValue, setYearValue] = useState("");
 	const [date, setDate] = useState<{
 		day: string | undefined;
 		month: string | undefined;
@@ -67,7 +70,8 @@ const InputBirthday = ({
 	}, [error]);
 
 	const onDayChange = (e: any) => {
-		const day = e.target.value;
+		const day = e.target.value.replace(/\D/g, "");
+		setDayValue(day);
 		if (day.length === 2) {
 			monthInput.current?.focus();
 		}
@@ -78,7 +82,8 @@ const InputBirthday = ({
 	};
 
 	const onMonthChange = (e: any) => {
-		const month = e.target.value;
+		const month = e.target.value.replace(/\D/g, "");
+		setMonthValue(month);
 		if (month.length === 0) {
 			dayInput.current?.focus();
 		} else if (month.length === 2) {
@@ -91,7 +96,8 @@ const InputBirthday = ({
 	};
 
 	const onYearChange = (e: any) => {
-		const year = e.target.value;
+		const year = e.target.value.replace(/\D/g, "");
+		setYearValue(year);
 		if (year.length === 0) {
 			monthInput.current?.focus();
 		}
@@ -134,8 +140,10 @@ const InputBirthday = ({
 			<Row>
 				<Input
 					ref={dayInput}
-					value={date.day}
+					value={dayValue}
 					containerStyle={{ flex: 1, ...containerStyle }}
+					inputMode="numeric"
+					pattern="[0-9]*"
 					{...restProps}
 					placeholder="Día"
 					maxLength={2}
@@ -143,8 +151,10 @@ const InputBirthday = ({
 				/>
 				<Input
 					ref={monthInput}
-					value={date.month}
+					value={monthValue}
 					containerStyle={{ flex: 1, ...containerStyle }}
+					inputMode="numeric"
+					pattern="[0-9]*"
 					{...restProps}
 					placeholder="Mes"
 					maxLength={2}
@@ -152,8 +162,10 @@ const InputBirthday = ({
 				/>
 				<Input
 					ref={yearInput}
-					value={date.year}
+					value={yearValue}
 					containerStyle={{ flex: 1, ...containerStyle }}
+					inputMode="numeric"
+					pattern="[0-9]*"
 					{...restProps}
 					placeholder="Año"
 					maxLength={4}

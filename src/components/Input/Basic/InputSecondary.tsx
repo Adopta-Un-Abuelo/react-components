@@ -78,25 +78,12 @@ const Placeholder = styled(Text)<{
 const InputSecondary = forwardRef(
 	(props: InputSecondaryProps, ref: Ref<HTMLInputElement>) => {
 		const input = useRef<HTMLInputElement>(null);
-		const [inputValue, setInputValue] = useState<
-			string | number | readonly string[] | undefined
-		>(undefined);
 		const [focus, setFocus] = useState(false);
 
 		const { LeftContent, containerStyle, error, design, ...restProps } =
 			props;
 
 		useImperativeHandle(ref, () => input.current!);
-
-		useEffect(() => {
-			if (props.defaultValue) setInputValue(props.defaultValue);
-			else if (props.value) setInputValue(props.value);
-		}, [props.value, props.defaultValue]);
-
-		const onInputChange = (e: any) => {
-			setInputValue(e.target.value);
-			props.onChange && props.onChange(e);
-		};
 
 		const onInputFocus = (e: any) => {
 			setFocus(true);
@@ -124,7 +111,7 @@ const InputSecondary = forwardRef(
 						<Placeholder
 							role="placeholder"
 							type="p"
-							$focus={focus || inputValue ? true : false}
+							$focus={focus || input.current?.value ? true : false}
 							$error={error ? true : false}
 						>
 							{props.placeholder}
@@ -132,13 +119,11 @@ const InputSecondary = forwardRef(
 						<InputStyled
 							ref={input}
 							{...restProps}
-							value={props.value ? props.value : inputValue}
 							placeholder=""
 							style={{
 								marginTop: 14,
 								...props.style,
 							}}
-							onChange={onInputChange}
 							onFocus={onInputFocus}
 							onBlur={onInputBlur}
 						/>
