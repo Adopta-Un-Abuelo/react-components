@@ -1,3 +1,15 @@
+# v0.3.71 (Tue Apr 22 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: update color var (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.70 (Mon Apr 21 2025)
 
 #### ⚠️ Pushed to `main`
