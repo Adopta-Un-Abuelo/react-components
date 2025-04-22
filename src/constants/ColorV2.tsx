@@ -56,7 +56,7 @@ const ColorV2 = {
 	},
 	text: {
 		neutralHard: "#001D3DEB",
-		neutralMedium: "#00315C57",
+		neutralMedium: "#001d3d8f",
 		neutralSoft: "#00315C1A",
 		invert: "#FFFFFF",
 		invertHigh: "#FFFFFFAD",
