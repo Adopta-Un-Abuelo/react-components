@@ -1,3 +1,15 @@
+# v0.3.72 (Tue Apr 22 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: birthday input error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.71 (Tue Apr 22 2025)
 
 #### ⚠️ Pushed to `main`
