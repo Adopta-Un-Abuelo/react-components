@@ -79,11 +79,16 @@ const InputSecondary = forwardRef(
 	(props: InputSecondaryProps, ref: Ref<HTMLInputElement>) => {
 		const input = useRef<HTMLInputElement>(null);
 		const [focus, setFocus] = useState(false);
+		const [defaultFocus, setDefaultFocus] = useState(false);
 
 		const { LeftContent, containerStyle, error, design, ...restProps } =
 			props;
 
 		useImperativeHandle(ref, () => input.current!);
+
+		useEffect(() => {
+			setDefaultFocus(props.defaultValue || props.value ? true : false);
+		}, [props.defaultValue, props.value]);
 
 		const onInputFocus = (e: any) => {
 			setFocus(true);
@@ -111,7 +116,11 @@ const InputSecondary = forwardRef(
 						<Placeholder
 							role="placeholder"
 							type="p"
-							$focus={focus || input.current?.value ? true : false}
+							$focus={
+								focus || (defaultFocus && input.current?.value)
+									? true
+									: false
+							}
 							$error={error ? true : false}
 						>
 							{props.placeholder}
