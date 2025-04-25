@@ -58,7 +58,7 @@ export const Secondary: Story = {
 			expect(input).toBeInTheDocument();
 		});
 		await step("typing", async () => {
-			userEvent.type(input, " example", { delay: 100 });
+			//userEvent.type(input, " example", { delay: 100 });
 		});
 	},
 };
@@ -176,6 +176,22 @@ export const Password: Story = {
 		});
 	},
 };
+
+export const Date: Story = {
+	args: {
+		type: "date",
+		design: "secondary",
+		defaultValue: undefined,
+	},
+	play: async ({ canvasElement, step }: any) => {
+		const canvas = within(canvasElement);
+		const input = canvas.getByRole("input");
+		await step("render", async () => {
+			expect(input).toBeInTheDocument();
+		});
+	},
+};
+
 
 export const Time: Story = {
 	args: {

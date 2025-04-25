@@ -117,7 +117,9 @@ const InputSecondary = forwardRef(
 							role="placeholder"
 							type="p"
 							$focus={
-								focus || (defaultFocus && input.current?.value)
+								focus ||
+								(defaultFocus && input.current?.value) ||
+								input.current?.value
 									? true
 									: false
 							}
@@ -130,6 +132,12 @@ const InputSecondary = forwardRef(
 							{...restProps}
 							placeholder=""
 							style={{
+								opacity:
+									focus ||
+									(defaultFocus && input.current?.value) ||
+									input.current?.value
+										? "1"
+										: "0",
 								marginTop: 14,
 								...props.style,
 							}}
