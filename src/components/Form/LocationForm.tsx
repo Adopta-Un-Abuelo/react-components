@@ -70,7 +70,11 @@ const LocationForm = (props: LocationFormProps) => {
 			<InputLocation
 				design={props.design}
 				googleAPIKey={props.googleAPIKey}
-				placeholder="Nombre y número de la calle"
+				placeholder={
+					props.placeholder
+						? props.placeholder
+						: "Nombre y número de la calle"
+				}
 				defaultValue={
 					location && location.route
 						? `${location.route} ${location.routeNumber}`
@@ -122,6 +126,7 @@ export default LocationForm;
 export interface LocationFormProps {
 	type: "location";
 	design?: "primary" | "secondary" | "third";
+	placeholder?: string;
 	googleAPIKey: string;
 	defaultLocation?: LocationProps;
 	onSubmit: (result: { data?: LocationProps; error?: string }) => void;
