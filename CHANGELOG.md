@@ -1,3 +1,15 @@
+# v0.3.76 (Tue Apr 29 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: placeholder in location form (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.75 (Tue Apr 29 2025)
 
 #### ⚠️ Pushed to `main`
