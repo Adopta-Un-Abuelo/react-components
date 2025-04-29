@@ -55,6 +55,12 @@ const InputLocation = ({
 		setErrorString(error);
 	}, [error]);
 
+	useEffect(() => {
+		if (restProps.defaultValue)
+			setInputValue(restProps.defaultValue as string);
+		else setInputValue("");
+	}, [restProps.defaultValue]);
+
 	const onPlaceSelect = async (place: google.maps.places.Place) => {
 		setErrorString(undefined);
 		if (place.addressComponents && place.location) {
