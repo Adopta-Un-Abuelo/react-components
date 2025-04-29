@@ -1,3 +1,15 @@
+# v0.3.75 (Tue Apr 29 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: location form default value (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.74 (Fri Apr 25 2025)
 
 #### ⚠️ Pushed to `main`
