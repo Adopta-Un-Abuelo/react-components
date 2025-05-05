@@ -82,6 +82,23 @@ const InputBirthday = ({
 		year: initialDate.year || undefined,
 	});
 
+	useEffect(() => {
+		if (
+			restProps.defaultValue &&
+			typeof restProps.defaultValue === "string"
+		) {
+			const [year, month, day] = restProps.defaultValue.split("-");
+			setDayValue(day || "");
+			setMonthValue(month || "");
+			setYearValue(year || "");
+			setDate({
+				day: day || undefined,
+				month: month || undefined,
+				year: year || undefined,
+			});
+		}
+	}, [restProps.defaultValue]);
+
 	const [errorString, setErrorString] = useState<string | undefined>(
 		undefined
 	);
