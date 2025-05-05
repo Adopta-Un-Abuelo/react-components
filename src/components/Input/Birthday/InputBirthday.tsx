@@ -49,18 +49,39 @@ const InputBirthday = ({
 	const monthInput = useRef<HTMLInputElement>(null);
 	const yearInput = useRef<HTMLInputElement>(null);
 
-	const [dayValue, setDayValue] = useState("");
-	const [monthValue, setMonthValue] = useState("");
-	const [yearValue, setYearValue] = useState("");
+	const initialDate = (() => {
+		if (
+			restProps.defaultValue &&
+			typeof restProps.defaultValue === "string"
+		) {
+			const parts = restProps.defaultValue.split("-");
+			return {
+				day: parts[2] || "",
+				month: parts[1] || "",
+				year: parts[0] || "",
+			};
+		}
+		return {
+			day: "",
+			month: "",
+			year: "",
+		};
+	})();
+
+	const [dayValue, setDayValue] = useState(initialDate.day);
+	const [monthValue, setMonthValue] = useState(initialDate.month);
+	const [yearValue, setYearValue] = useState(initialDate.year);
+
 	const [date, setDate] = useState<{
 		day: string | undefined;
 		month: string | undefined;
 		year: string | undefined;
 	}>({
-		day: undefined,
-		month: undefined,
-		year: undefined,
+		day: initialDate.day || undefined,
+		month: initialDate.month || undefined,
+		year: initialDate.year || undefined,
 	});
+
 	const [errorString, setErrorString] = useState<string | undefined>(
 		undefined
 	);
