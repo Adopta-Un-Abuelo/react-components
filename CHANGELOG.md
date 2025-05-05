@@ -1,3 +1,16 @@
+# v0.3.77 (Mon May 05 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/n-138' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- defaultValue on InputBirthday ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.76 (Tue Apr 29 2025)
 
 #### ⚠️ Pushed to `main`
