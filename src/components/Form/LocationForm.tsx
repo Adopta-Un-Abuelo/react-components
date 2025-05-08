@@ -90,7 +90,7 @@ const LocationForm = (props: LocationFormProps) => {
 					type="text"
 					placeholder="Apartamento, suite, unidad, edificio o piso"
 					design={props.design}
-					defaultValue={location?.routeInfo}
+					value={location?.routeInfo}
 					onChange={onRouteInfoChange}
 				/>
 				<Row>
@@ -99,7 +99,7 @@ const LocationForm = (props: LocationFormProps) => {
 						type="text"
 						placeholder="Ciudad"
 						design={props.design}
-						defaultValue={location?.city}
+						value={location?.city}
 						disabled={true}
 					/>
 					<Input
@@ -107,7 +107,7 @@ const LocationForm = (props: LocationFormProps) => {
 						type="text"
 						placeholder="Código postal"
 						design={props.design}
-						defaultValue={location?.zipCode}
+						value={location?.zipCode}
 						disabled={true}
 					/>
 				</Row>
@@ -115,7 +115,7 @@ const LocationForm = (props: LocationFormProps) => {
 					type="text"
 					placeholder="Provincia"
 					design={props.design}
-					defaultValue={location?.province}
+					value={location?.province}
 					disabled={true}
 				/>
 			</HiddenView>
