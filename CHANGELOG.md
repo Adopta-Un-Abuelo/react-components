@@ -1,3 +1,16 @@
+# v0.3.80 (Thu May 08 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/n-182v2' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- fix: values on LocationForm ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.79 (Mon May 05 2025)
 
 #### ⚠️ Pushed to `main`
