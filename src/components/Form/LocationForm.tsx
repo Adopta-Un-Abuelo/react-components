@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import InputLocation, { LocationProps } from "../Input/Location/InputLocation";
 import Input from "../Input/Basic/Input";
-import Modal from "../Modal/Modal";
 
 const Container = styled.div`
 	display: flex;
@@ -25,7 +24,7 @@ const LocationForm = (props: LocationFormProps) => {
 		props.defaultLocation
 	);
 	const [inputError, setInputError] = useState<string | undefined>(undefined);
-	const [,setErrorToggle] = useState(false);
+	const [, setErrorToggle] = useState(false);
 
 	useEffect(() => {
 		setLocation(props.defaultLocation);
