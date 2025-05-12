@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import InputLocation, { LocationProps } from "../Input/Location/InputLocation";
 import Input from "../Input/Basic/Input";
+import Modal from "../Modal/Modal";
 
 const Container = styled.div`
 	display: flex;
@@ -24,10 +25,13 @@ const LocationForm = (props: LocationFormProps) => {
 		props.defaultLocation
 	);
 	const [inputError, setInputError] = useState<string | undefined>(undefined);
+	const [,setErrorToggle] = useState(false);
 
 	useEffect(() => {
 		setLocation(props.defaultLocation);
 	}, [props.defaultLocation]);
+
+	let addressTemp = "";
 
 	const onLocationChange = async (item: LocationProps) => {
 		setInputError(undefined);
@@ -40,12 +44,37 @@ const LocationForm = (props: LocationFormProps) => {
 				data: { ...location, ...item, address: address },
 			});
 		} else {
-			setLocation({ routeInfo: location?.routeInfo });
-			const message =
+			addressTemp =
+				item.route && item.routeNumber
+					? `${item.route} ${item.routeNumber}, ${
+							location?.routeInfo ? location.routeInfo + ", " : ""
+					  }${item.zipCode ?? ""}, ${item.city ?? ""}, ${
+							item.province ?? ""
+					  }, ${item.country ?? ""}`
+					: "";
+
+			setLocation({
+				...location,
+				route: item.route,
+				routeNumber: item.routeNumber ? item.routeNumber : "",
+				address: addressTemp,
+				routeInfo: location?.routeInfo,
+			});
+
+			const baseMessage =
 				"Añade la dirección completa, incluyendo el número de la calle";
-			setInputError(message);
-			props.onSubmit({
-				error: message,
+			const altMessage = baseMessage + ".";
+
+			setInputError(undefined);
+
+			setErrorToggle((prev) => {
+				const nextToggle = !prev;
+				const nextMessage = nextToggle ? baseMessage : altMessage;
+
+				setInputError(nextMessage);
+				props.onSubmit({ error: nextMessage });
+
+				return nextToggle;
 			});
 		}
 	};
@@ -75,7 +104,7 @@ const LocationForm = (props: LocationFormProps) => {
 						? props.placeholder
 						: "Nombre y número de la calle"
 				}
-				defaultValue={
+				value={
 					location && location.route
 						? `${location.route} ${location.routeNumber}`
 						: undefined
