@@ -35,13 +35,17 @@ const LocationForm = (props: LocationFormProps) => {
 	const onLocationChange = async (item: LocationProps) => {
 		setInputError(undefined);
 		if (item.route && item.routeNumber) {
-			const address = `${item.route} ${item.routeNumber}, ${
-				location?.routeInfo ? location.routeInfo + ", " : ""
-			}${item.zipCode}, ${item.city}, ${item.province}, ${item.country}`;
-			setLocation({ ...location, ...item, address: address });
-			props.onSubmit({
-				data: { ...location, ...item, address: address },
-			});
+			const address = `${item.route} ${item.routeNumber}, ${item.zipCode}, ${item.city}, ${item.province}, ${item.country}`;
+
+			const { routeInfo, ...restLocation } = location ?? {};
+			const updatedLocation = {
+				...restLocation,
+				...item,
+				address,
+			};
+
+			setLocation(updatedLocation);
+			props.onSubmit({ data: updatedLocation });
 		} else {
 			addressTemp =
 				item.route && item.routeNumber
@@ -63,8 +67,6 @@ const LocationForm = (props: LocationFormProps) => {
 			const baseMessage =
 				"Añade la dirección completa, incluyendo el número de la calle";
 			const altMessage = baseMessage + ".";
-
-			setInputError(undefined);
 
 			setErrorToggle((prev) => {
 				const nextToggle = !prev;
@@ -118,7 +120,7 @@ const LocationForm = (props: LocationFormProps) => {
 					type="text"
 					placeholder="Apartamento, suite, unidad, edificio o piso"
 					design={props.design}
-					value={location?.routeInfo}
+					value={location?.routeInfo ?? ""}
 					onChange={onRouteInfoChange}
 				/>
 				<Row>
