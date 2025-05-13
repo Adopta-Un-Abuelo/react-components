@@ -1,3 +1,16 @@
+# v0.3.82 (Tue May 13 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/n-196' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- removing routeInfo when change address ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.81 (Mon May 12 2025)
 
 #### ⚠️ Pushed to `main`
