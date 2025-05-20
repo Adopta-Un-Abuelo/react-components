@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { ChevronDown, ChevronUp } from "lucide-react";
 import Text from "../Text/Text";
-import { Color } from "../../constants";
+import { Color, ColorV2 } from "../../constants";
 
 const Container = styled.div``;
 const Cell = styled.div<{ $selected: boolean }>`
@@ -21,9 +21,7 @@ const Column = styled.div`
 `;
 
 const FAQs = (props: Props) => {
-	const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
-		undefined,
-	);
+	const [selectedIndex, setSelectedIndex] = useState<number | undefined>(0);
 
 	const onCellClick = (index: number) => {
 		const selection = index === selectedIndex ? undefined : index;
@@ -60,13 +58,15 @@ const FAQs = (props: Props) => {
 							)}
 						</Column>
 						<Column style={{ marginLeft: 12 }}>
-							<Text type="h6">{item.title}</Text>
+							<Text type="p" weight="medium">
+								{item.title}
+							</Text>
 							<Text
-								type="p"
+								type="p2"
 								style={{
 									display: selected ? "flex" : "none",
 									marginTop: 8,
-									color: Color.text.high,
+									color: ColorV2.text.neutralMedium,
 								}}
 							>
 								{item.description}
