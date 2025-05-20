@@ -1,3 +1,20 @@
+# v0.3.83 (Tue May 20 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'fix/faqs' (guillermo.angeles@adoptaunabuelo.com)
+- fix: faqs UI (guillermo.angeles@adoptaunabuelo.com)
+
+#### 🔩 Dependency Updates
+
+- Merge remote-tracking branch 'origin/feature/n-180' into fix/faqs [#20](https://github.com/Adopta-Un-Abuelo/react-components/pull/20) (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.82 (Tue May 13 2025)
 
 #### ⚠️ Pushed to `main`
