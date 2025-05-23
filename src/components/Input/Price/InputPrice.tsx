@@ -151,7 +151,9 @@ const InputPrice = (props: InputPriceProps) => {
 		const priceInt = parseInt(e.target.value);
 		const minPrice = props.options[0];
 		if (priceInt < minPrice || !priceInt) {
-			setInputError(`La donación mínima es de ${minPrice}${props.currency}`);
+			setInputError(
+				`La donación mínima es de ${minPrice}${props.currency}`
+			);
 		} else {
 			setInputError("");
 			props.onChange &&
@@ -235,37 +237,39 @@ const InputPrice = (props: InputPriceProps) => {
 					);
 				})}
 			</Row>
-			<InputContainer
-				$focus={inputFocus}
-				$isSelected={customPrice.length > 0}
-				$error={inputError.length > 0 ? true : false}
-				onClick={() => input.current?.focus()}
-			>
-				<Input
-					ref={input}
-					style={{
-						width:
-							customPrice.length > 0
-								? customPrice.length + "ch"
-								: "unset",
-					}}
-					type="number"
-					value={customPrice}
-					placeholder="Otra cantidad"
-					onChange={onInputChange}
-					onFocus={onInputFocus}
-					onBlur={onInputBlur}
-				/>
-				{customPrice.length > 0 && (
-					<Text
-						type="h6"
-						weight="medium"
-						style={{ fontSize: 18, marginTop: 6 }}
-					>
-						{props.currency}
-					</Text>
-				)}
-			</InputContainer>
+			{!props.hideCustomAmount && (
+				<InputContainer
+					$focus={inputFocus}
+					$isSelected={customPrice.length > 0}
+					$error={inputError.length > 0 ? true : false}
+					onClick={() => input.current?.focus()}
+				>
+					<Input
+						ref={input}
+						style={{
+							width:
+								customPrice.length > 0
+									? customPrice.length + "ch"
+									: "unset",
+						}}
+						type="number"
+						value={customPrice}
+						placeholder="Otra cantidad"
+						onChange={onInputChange}
+						onFocus={onInputFocus}
+						onBlur={onInputBlur}
+					/>
+					{customPrice.length > 0 && (
+						<Text
+							type="h6"
+							weight="medium"
+							style={{ fontSize: 18, marginTop: 6 }}
+						>
+							{props.currency}
+						</Text>
+					)}
+				</InputContainer>
+			)}
 			{inputError && (
 				<Text
 					type="p2"
@@ -286,5 +290,6 @@ export type InputPriceProps = {
 	labelValueConversion?: number;
 	currency: string;
 	defaultOption?: number;
+	hideCustomAmount?: boolean;
 	onChange?: (value: number) => void;
 };

@@ -10,8 +10,8 @@ const meta: Meta<typeof InputPrice> = {
 		options: [5, 15, 21],
 		currency: "€",
 		defaultOption: 15,
-        label: "Nos ayudas a cumplir el sueño de {{value}} abuelos",
-        labelValueConversion: 0.2,
+		label: "Nos ayudas a cumplir el sueño de {{value}} abuelos",
+		labelValueConversion: 0.2,
 		onChange: fn(),
 	},
 };
@@ -20,3 +20,4 @@ export default meta;
 type Story = StoryObj<typeof InputPrice>;
 
 export const Default: Story = {};
+export const HideCustomAmount: Story = { args: { hideCustomAmount: true } };
