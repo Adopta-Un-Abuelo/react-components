@@ -149,8 +149,9 @@ const InputPrice = (props: InputPriceProps) => {
 	const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 		setInputFocus(false);
 		const priceInt = parseInt(e.target.value);
-		if (priceInt < 5 || !priceInt) {
-			setInputError("La donación mínima es de 5€");
+		const minPrice = props.options[0];
+		if (priceInt < minPrice || !priceInt) {
+			setInputError(`La donación mínima es de ${minPrice}${props.currency}`);
 		} else {
 			setInputError("");
 			props.onChange &&
@@ -166,7 +167,7 @@ const InputPrice = (props: InputPriceProps) => {
 
 	const onCellClick = (option: number) => {
 		setCustomPrice("");
-        setInputError("");
+		setInputError("");
 		setOptionSelected(option);
 		props.onChange && props.onChange(option);
 	};
