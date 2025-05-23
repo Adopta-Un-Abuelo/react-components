@@ -1,3 +1,15 @@
+# v0.3.84 (Fri May 23 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: input price error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.83 (Tue May 20 2025)
 
 #### ⚠️ Pushed to `main`
