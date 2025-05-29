@@ -131,10 +131,25 @@ const InputPrice = (props: InputPriceProps) => {
 	const [customPrice, setCustomPrice] = useState<string>("");
 	const [inputFocus, setInputFocus] = useState(false);
 	const [inputError, setInputError] = useState("");
+	const [numberFontSize, setNumberFontSize] = useState(24);
 
 	useEffect(() => {
 		setOptionSelected(props.defaultOption);
 	}, [props.defaultOption]);
+
+	useEffect(() => {
+		if (props.options.length > 0) {
+			const lastOption = props.options[props.options.length - 1];
+			const lastOptionLength = lastOption.toString().length;
+			if (lastOptionLength > 5) {
+				setNumberFontSize(16);
+			} else if (lastOptionLength > 4) {
+				setNumberFontSize(18);
+			} else if (lastOptionLength > 3) {
+				setNumberFontSize(21);
+			}
+		}
+	}, [props.options]);
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setCustomPrice(e.target.value);
@@ -227,9 +242,15 @@ const InputPrice = (props: InputPriceProps) => {
 							$selected={isSelected}
 							onClick={() => onCellClick(option)}
 						>
-							<Text type="h3" weight="medium">
-								{option}
-								<span style={{ fontSize: 18 }}>
+							<Text
+								type="h3"
+								weight="medium"
+								style={{ fontSize: numberFontSize }}
+							>
+								{option.toLocaleString("es-ES", {
+									useGrouping: true,
+								})}
+								<span style={{ fontSize: numberFontSize - 6 }}>
 									{props.currency}
 								</span>
 							</Text>

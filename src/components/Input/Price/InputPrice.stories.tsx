@@ -7,8 +7,8 @@ const meta: Meta<typeof InputPrice> = {
 	component: InputPrice,
 	tags: ["autodocs"],
 	args: {
-		options: [5, 15, 21],
-		currency: "€",
+		options: [120, 225, 300],
+		currency: "ARS",
 		defaultOption: 15,
 		label: "Nos ayudas a cumplir el sueño de {{value}} abuelos",
 		labelValueConversion: 0.2,
