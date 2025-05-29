@@ -1,3 +1,15 @@
+# v0.3.86 (Thu May 29 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: input price with big numbers (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.85 (Fri May 23 2025)
 
 #### ⚠️ Pushed to `main`
