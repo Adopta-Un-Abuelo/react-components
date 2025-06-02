@@ -1,3 +1,15 @@
+# v0.3.87 (Mon Jun 02 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: new color constant (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.86 (Thu May 29 2025)
 
 #### ⚠️ Pushed to `main`
