@@ -10,6 +10,7 @@ const ColorV2 = {
 		primaryHigh: "#005AA8",
 		primary: "#008FF5",
 		primaryLow: "#93CCF5",
+		primarySoft: "#ECF4FB",
 		secondaryHard: "#A25700",
 		secondaryHigh: "#C76B00",
 		secondary: "#FFAA47",
