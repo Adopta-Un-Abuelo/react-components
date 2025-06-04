@@ -1,7 +1,7 @@
 import Select from "./Select";
-import { userEvent, within, expect } from "@storybook/test";
-import { action } from "@storybook/addon-actions";
-import type { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within, expect } from "storybook/test";
+import { action } from "storybook/actions";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import { Dog, Cat, Cake, Calendar } from "lucide-react";
 

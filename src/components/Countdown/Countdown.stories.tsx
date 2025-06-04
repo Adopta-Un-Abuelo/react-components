@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import Countdown from "./Countdown";
 import Color from "../../constants/Color";
-import { expect,within } from "@storybook/test";
+import { expect,within } from "storybook/test";
 
 const meta: Meta<typeof Countdown> = {
   title: "Components/Countdown",

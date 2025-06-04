@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { expect, userEvent, within, fn } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/nextjs";
+import { expect, userEvent, within, fn } from "storybook/test";
 
 import Button from "./Button";
 import { Flag } from "lucide-react";

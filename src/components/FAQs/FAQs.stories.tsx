@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import FAQs from "./FAQs";
-import { userEvent, within } from "@storybook/test";
-import { action } from "@storybook/addon-actions";
-import { expect } from "@storybook/test";
+import { userEvent, within } from "storybook/test";
+import { action } from "storybook/actions";
+import { expect } from "storybook/test";
 
 const meta: Meta<typeof FAQs> ={
   title: "Components/FAQs",

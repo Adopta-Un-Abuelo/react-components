@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import InputChat from "./InputChat";
-import { within, expect, fn, userEvent } from "@storybook/test";
+import { within, expect, fn, userEvent } from "storybook/test";
 import { Clock } from "lucide-react";
 
 const meta: Meta<typeof InputChat> = {

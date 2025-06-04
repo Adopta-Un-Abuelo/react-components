@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import InputRange from "./InputRange";
-import { within, expect, fn } from "@storybook/test";
+import { within, expect, fn } from "storybook/test";
 import { Gift } from "lucide-react";
 
 const meta: Meta<typeof InputRange> = {

@@ -1,7 +1,7 @@
 import Menu from "./Menu";
-import { userEvent, within, expect } from "@storybook/test";
-import { action } from "@storybook/addon-actions";
-import type { Meta, StoryObj } from '@storybook/react';
+import { userEvent, within, expect } from "storybook/test";
+import { action } from "storybook/actions";
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Package, Palette, Option } from "lucide-react";
 import { Color } from "../../constants";
 

@@ -1,4 +1,4 @@
-import { create } from '@storybook/theming';
+import { create } from 'storybook/theming';
 import Color from '../src/constants/Color';
 
 export default create({

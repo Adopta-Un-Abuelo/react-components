@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import InputCode from "./InputCode";
-import { within, expect, fn, userEvent } from "@storybook/test";
+import { within, expect, fn, userEvent } from "storybook/test";
 
 const meta: Meta<typeof InputCode> = {
 	title: "Input/Code",

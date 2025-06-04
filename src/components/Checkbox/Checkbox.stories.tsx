@@ -1,7 +1,7 @@
 import CheckboxList from "./CheckboxList";
-import { userEvent, within, expect } from "@storybook/test";
-import { action } from "@storybook/addon-actions";
-import type { Meta, StoryObj } from '@storybook/react';
+import { userEvent, within, expect } from "storybook/test";
+import { action } from "storybook/actions";
+import type { Meta, StoryObj } from '@storybook/nextjs';
 
 const meta: Meta<typeof CheckboxList> = {
   title: "Components/Checkbox",

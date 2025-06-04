@@ -1,6 +1,6 @@
 import BreadCrumb from "./BreadCrumb";
-import type { Meta, StoryObj } from '@storybook/react';
-import { within, expect } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/nextjs';
+import { within, expect } from "storybook/test";
 
 const meta: Meta<typeof BreadCrumb> = {
 	title: "Components/BreadCrumb",

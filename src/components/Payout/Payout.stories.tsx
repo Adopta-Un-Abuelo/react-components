@@ -1,5 +1,5 @@
 import Payout, { PayoutRef } from "./Payout";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { useRef } from "react";
 
 const meta: Meta<typeof Payout> = {

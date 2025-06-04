@@ -1,8 +1,8 @@
 import SwitchTag from "./SwitchTag";
-import { within, userEvent, expect } from "@storybook/test";
+import { within, userEvent, expect } from "storybook/test";
 
-import { action } from "@storybook/addon-actions";
-import type { Meta, StoryObj } from "@storybook/react";
+import { action } from "storybook/actions";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import { Flag, FlagOff } from "lucide-react";
 

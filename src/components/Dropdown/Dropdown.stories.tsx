@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import Label from "./Dropdown";
-import { within, expect } from "@storybook/test";
-import { action } from "@storybook/addon-actions";
+import { within, expect } from "storybook/test";
+import { action } from "storybook/actions";
 
 import { Goal, Flag, FlagOff, Flame } from "lucide-react";
 import Color from "../../constants/Color";

@@ -1,7 +1,7 @@
 import Tabs from "./Tabs";
-import { userEvent, within, expect } from "@storybook/test";
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from "@storybook/addon-actions";
+import { userEvent, within, expect } from "storybook/test";
+import type { Meta, StoryObj } from '@storybook/nextjs';
+import { action } from "storybook/actions";
 
 const meta: Meta<typeof Tabs> = {
   title: "Components/Tabs",

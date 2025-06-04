@@ -1,7 +1,7 @@
 import Pagination from "./Pagination";
-import { within, userEvent, expect } from "@storybook/test";
-import type { Meta, StoryObj } from '@storybook/react';
-import { action } from "@storybook/addon-actions";
+import { within, userEvent, expect } from "storybook/test";
+import type { Meta, StoryObj } from '@storybook/nextjs';
+import { action } from "storybook/actions";
 
 
 const meta: Meta<typeof Pagination> = {

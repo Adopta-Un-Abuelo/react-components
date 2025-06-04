@@ -1,6 +1,6 @@
 import Label from "./Label";
-import { expect, within } from "@storybook/test";
-import type { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from "storybook/test";
+import type { Meta, StoryObj } from '@storybook/nextjs';
 
 
 const meta: Meta<typeof Label> = {

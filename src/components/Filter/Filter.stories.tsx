@@ -1,6 +1,6 @@
 import Filter from "./Filter";
-import { within, fn } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { within, fn } from "storybook/test";
+import { expect } from "storybook/test";
 import moment from "moment";
 import Button from "../Button/Button";
 import { useRef } from "react";

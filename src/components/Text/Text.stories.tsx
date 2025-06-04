@@ -1,6 +1,6 @@
 import Text from "./Text";
-import { within } from "@storybook/test";
-import { expect } from "@storybook/test";
+import { within } from "storybook/test";
+import { expect } from "storybook/test";
 
 export default {
   title: "Design System/Text",

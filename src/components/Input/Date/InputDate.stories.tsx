@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import InputDate from "./InputDate";
-import { within, expect, fn } from "@storybook/test";
+import { within, expect, fn } from "storybook/test";
 
 const meta: Meta<typeof InputDate> = {
 	title: "Input/Date",

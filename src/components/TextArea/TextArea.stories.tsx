@@ -1,8 +1,8 @@
 import TextArea from "./TextArea";
-import { within, expect, fn } from "@storybook/test";
+import { within, expect, fn } from "storybook/test";
 
-import type { Meta, StoryObj } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
+import type { Meta, StoryObj } from "@storybook/nextjs";
+import { action } from "storybook/actions";
 import { Building } from "lucide-react";
 
 const meta: Meta<typeof TextArea> = {
