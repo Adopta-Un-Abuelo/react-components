@@ -1,3 +1,15 @@
+# v0.3.88 (Wed Jun 04 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: storybook update to 9 (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.87 (Mon Jun 02 2025)
 
 #### ⚠️ Pushed to `main`
