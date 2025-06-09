@@ -1,3 +1,15 @@
+# v0.3.89 (Mon Jun 09 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: currency selector component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.88 (Wed Jun 04 2025)
 
 #### ⚠️ Pushed to `main`
