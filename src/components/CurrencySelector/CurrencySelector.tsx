@@ -49,17 +49,17 @@ const CheckIcon = styled.div`
 const CurrencySelector = (props: CurrencySelectorProps) => {
 	const isMobile = window.innerWidth <= 450;
 	const [selectedOption, setSelectedOption] = useState(
-		props.selectedOptions || props.options[0]
+		props.selectedOption || props.options[0]
 	);
 	const [showModal, setShowModal] = useState(false);
 
 	useEffect(() => {
-		if (props.selectedOptions) {
-			setSelectedOption(props.selectedOptions);
+		if (props.selectedOption) {
+			setSelectedOption(props.selectedOption);
 		} else if (props.options.length > 0) {
 			setSelectedOption(props.options[0]);
 		}
-	}, [props.selectedOptions, props.options]);
+	}, [props.selectedOption, props.options]);
 
 	const onCurrencyChange = (option: CurrencySelectorOption) => {
 		setSelectedOption(option);
@@ -111,7 +111,7 @@ const CurrencySelector = (props: CurrencySelectorProps) => {
 					);
 				})}
 			</ModalComponent>
-			<Container onClick={() => setShowModal(true)}>
+			<Container style={props.style} onClick={() => setShowModal(true)}>
 				<Text type="b2">
 					{selectedOption.symbol} {selectedOption.currency}
 				</Text>
@@ -121,8 +121,9 @@ const CurrencySelector = (props: CurrencySelectorProps) => {
 };
 export default CurrencySelector;
 export interface CurrencySelectorProps {
+	style?: React.CSSProperties;
 	options: CurrencySelectorOption[];
-	selectedOptions?: CurrencySelectorOption;
+	selectedOption?: CurrencySelectorOption;
 	onChange?: (option: CurrencySelectorOption) => void;
 }
 interface CurrencySelectorOption {
