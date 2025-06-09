@@ -38,3 +38,4 @@ export { default as Stamp } from "./Stamp/Stamp";
 export { default as Switch } from "./Switch/Switch";
 export { default as Chat } from "./Chat/Chat";
 export { default as Form } from "./Form/Form";
+export { default as CurrencySelector } from "./CurrencySelector/CurrencySelector";
