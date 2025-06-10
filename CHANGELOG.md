@@ -1,3 +1,15 @@
+# v0.3.91 (Tue Jun 10 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: progress bar percentage view (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.90 (Mon Jun 09 2025)
 
 #### ⚠️ Pushed to `main`
