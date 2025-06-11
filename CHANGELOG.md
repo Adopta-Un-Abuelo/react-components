@@ -1,3 +1,15 @@
+# v0.3.92 (Wed Jun 11 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: progress bar label to fixed (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.91 (Tue Jun 10 2025)
 
 #### ⚠️ Pushed to `main`
