@@ -89,10 +89,10 @@ const ProgressBar = (props: Props) => {
 							style={{ color: "white" }}
 						>
 							{typeof progressValue === "number" &&
-								`${
+								`${(
 									(progressValue / (maxValue - minValue)) *
 									100
-								}%`}
+								).toFixed(0)}%`}
 						</Text>
 					</PercentageView>
 				) : (
@@ -113,9 +113,10 @@ const ProgressBar = (props: Props) => {
 								weight="medium"
 								style={{ color: "white" }}
 							>
-								{`${
-									(item.value / (maxValue - minValue)) * 100
-								}%`}
+								{`${(
+									(item.value / (maxValue - minValue)) *
+									100
+								).toFixed(0)}%`}
 							</Text>
 						</PercentageView>
 					))
