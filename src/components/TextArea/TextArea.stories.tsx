@@ -35,7 +35,7 @@ export const Editor: Story = {
 		type: "edit",
 		style: {
 			height: 300,
-			boxShadow: "0px 3px 6px 0px rgba(0, 0, 0, 0.06)",
+			border: "1px solid rgba(0, 0, 0, 0.06)",
 		},
 		value: "Test value",
 		ToolbarButton: <Building />,
