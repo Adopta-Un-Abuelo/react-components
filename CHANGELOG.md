@@ -1,3 +1,15 @@
+# v0.3.94 (Mon Jun 23 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: input location search delay (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.93 (Wed Jun 11 2025)
 
 #### ⚠️ Pushed to `main`
