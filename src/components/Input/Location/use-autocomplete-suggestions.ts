@@ -1,5 +1,5 @@
 import { useMapsLibrary } from "@vis.gl/react-google-maps";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export type UseAutocompleteSuggestionsReturn = {
 	suggestions: google.maps.places.AutocompleteSuggestion[];
@@ -47,7 +47,9 @@ export function useAutocompleteSuggestions(
 	const placesLib = useMapsLibrary("places");
 
 	// stores the current sessionToken
-	let sessionTokenRef: { current: google.maps.places.AutocompleteSessionToken | null } = { current: null };
+	let sessionTokenRef: {
+		current: google.maps.places.AutocompleteSessionToken | null;
+	} = { current: null };
 
 	// the suggestions based on the specified input
 	const [suggestions, setSuggestions] = useState<

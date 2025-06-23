@@ -182,6 +182,9 @@ const PlaceAutocomplete = ({ onPlaceSelect, value, ...restProps }: Props) => {
 	const [inputValue, setInputValue] = useState<
 		string | number | readonly string[] | undefined
 	>("");
+	const [searchTimeout, setSearchTimeout] = useState<
+		NodeJS.Timeout | undefined
+	>(undefined);
 	const { suggestions, resetSession } = useAutocompleteSuggestions(
 		searchValue,
 		{
@@ -195,10 +198,20 @@ const PlaceAutocomplete = ({ onPlaceSelect, value, ...restProps }: Props) => {
 		else setInputValue("");
 	}, [value]);
 
-	const handleInput = useCallback((event: FormEvent<HTMLInputElement>) => {
-		setSearchValue((event.target as HTMLInputElement).value);
-		setInputValue((event.target as HTMLInputElement).value);
-	}, []);
+	const handleInput = useCallback(
+		(event: FormEvent<HTMLInputElement>) => {
+			const value = (event.target as HTMLInputElement).value;
+			setInputValue(value);
+			if (searchTimeout) {
+				clearTimeout(searchTimeout);
+			}
+			const timeout = setTimeout(() => {
+				setSearchValue(value);
+			}, 500);
+			setSearchTimeout(timeout);
+		},
+		[searchTimeout]
+	);
 
 	const handleSuggestionClick = useCallback(
 		async (suggestion: google.maps.places.AutocompleteSuggestion) => {
