@@ -1,5 +1,4 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
-import { LoadScript } from "@react-google-maps/api";
 import debounce from "lodash.debounce";
 import Input, { InputProps } from "../Basic/Input";
 import styled from "styled-components";
@@ -39,10 +38,8 @@ const SuggestionText = styled(Text)`
 	border-radius: 8px;
 `;
 
-const GOOGLE_MAP_LIBRARIES: any = ["places"];
-
 const InputLocation = ({
-	googleAPIKey,
+	isLoaded,
 	isForm,
 	onLocationChange,
 	...restProps
@@ -59,16 +56,20 @@ const InputLocation = ({
 		undefined
 	);
 
-	const handleScriptLoad = () => {
-		if (typeof google === "undefined") return;
+	useEffect(() => {
+		if (isLoaded) {
+			if (typeof google === "undefined") return;
 
-		const mapDiv = document.createElement("div");
-		const dummyMap = new google.maps.Map(mapDiv);
+			const mapDiv = document.createElement("div");
+			const dummyMap = new google.maps.Map(mapDiv);
 
-		autocompleteService.current =
-			new google.maps.places.AutocompleteService();
-		placesService.current = new google.maps.places.PlacesService(dummyMap);
-	};
+			autocompleteService.current =
+				new google.maps.places.AutocompleteService();
+			placesService.current = new google.maps.places.PlacesService(
+				dummyMap
+			);
+		}
+	}, [isLoaded]);
 
 	const fetchPredictions = useCallback(
 		debounce((value: string) => {
@@ -204,11 +205,7 @@ const InputLocation = ({
 		);
 	};
 	return (
-		<LoadScript
-			googleMapsApiKey={googleAPIKey}
-			libraries={GOOGLE_MAP_LIBRARIES}
-			onLoad={handleScriptLoad}
-		>
+		<>
 			<SearchView className="autocomplete-container">
 				<Input
 					value={input}
@@ -219,6 +216,10 @@ const InputLocation = ({
 						flexDirection: "column",
 					}}
 					{...restProps}
+					disabled={isLoaded ? restProps.disabled : true}
+					placeholder={
+						isLoaded ? restProps.placeholder : "Cargando..."
+					}
 				/>
 				{predictions.length > 0 && (
 					<DropdownMenu className="custom-list">
@@ -248,13 +249,13 @@ const InputLocation = ({
 					{errorString}
 				</Text>
 			)}
-		</LoadScript>
+		</>
 	);
 };
 export default InputLocation;
 export type InputLocationProps = InputProps & {
 	isForm?: boolean;
-	googleAPIKey: string;
+	isLoaded: boolean;
 	onLocationChange?: (result: LocationProps) => void;
 };
 export interface LocationProps {

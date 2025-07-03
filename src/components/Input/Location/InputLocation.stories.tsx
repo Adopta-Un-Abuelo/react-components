@@ -1,16 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import InputLocation from "./InputLocation";
 import { fn } from "storybook/test";
+import { useJsApiLoader } from "@react-google-maps/api";
 
 const meta: Meta<typeof InputLocation> = {
 	title: "Input/Location",
 	component: InputLocation,
 	tags: ["autodocs"],
 	args: {
-		googleAPIKey: process.env.GOOGLE_MAPS_API,
-        placeholder: "Buscar dirección",
+		placeholder: "Buscar dirección",
 		isForm: false,
 		onLocationChange: fn(),
+	},
+	render: (args) => {
+		const { isLoaded } = useJsApiLoader({
+			googleMapsApiKey: process.env.GOOGLE_MAPS_API as string,
+			libraries: ["places"],
+		});
+		return <InputLocation {...args} isLoaded={isLoaded} />;
 	},
 };
 
