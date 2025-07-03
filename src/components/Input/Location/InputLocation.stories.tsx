@@ -10,6 +10,8 @@ const meta: Meta<typeof InputLocation> = {
 	args: {
 		placeholder: "Buscar dirección",
 		isForm: false,
+		searchTypes: ["address"],
+		searchFields: ["geometry", "address_components"],
 		onLocationChange: fn(),
 	},
 	render: (args) => {

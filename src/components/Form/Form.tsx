@@ -7,4 +7,5 @@ const Form = (props: FormProps & LocationFormProps) => {
 export default Form;
 export interface FormProps {
 	type: "location";
+	isLoaded: boolean
 }

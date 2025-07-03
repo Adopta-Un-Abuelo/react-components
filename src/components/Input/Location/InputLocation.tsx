@@ -41,6 +41,8 @@ const SuggestionText = styled(Text)`
 const InputLocation = ({
 	isLoaded,
 	isForm,
+	searchTypes,
+	searchFields,
 	onLocationChange,
 	...restProps
 }: InputLocationProps) => {
@@ -77,7 +79,7 @@ const InputLocation = ({
 			autocompleteService.current.getPlacePredictions(
 				{
 					input: value,
-					types: ["address"],
+					types: searchTypes ? searchTypes : ["address"],
 				},
 				(results) => {
 					setPredictions(results || []);
@@ -93,13 +95,15 @@ const InputLocation = ({
 		fetchPredictions(value);
 	};
 
-	const handleSelect = (placeId: string) => {
+	const handleSelect = (suggestion: google.maps.places.AutocompletePrediction) => {
 		if (!placesService.current) return;
 
 		placesService.current.getDetails(
 			{
-				placeId,
-				fields: ["geometry", "address_components"],
+				placeId: suggestion.place_id,
+				fields: searchFields
+					? searchFields
+					: ["geometry", "address_components"],
 			},
 			(place) => {
 				if (
@@ -196,6 +200,17 @@ const InputLocation = ({
 							"Necesitamos una dirección más precisa para encontrar tu código postal. Por favor, indica el número de la calle."
 						);
 					}
+				} else if (place && place.geometry && place.geometry.location) {
+					setPredictions([]);
+					setErrorString(undefined);
+					setInput(suggestion.description)
+					onLocationChange &&
+						onLocationChange({
+							location: {
+								lat: place.geometry.location.lat(),
+								lng: place.geometry.location.lng(),
+							},
+						});
 				} else {
 					setErrorString(
 						"Parece que hubo un error de conexión al obtener la dirección. Prueba de nuevo más tarde."
@@ -229,7 +244,7 @@ const InputLocation = ({
 									key={index}
 									className="custom-list-item"
 									onClick={() =>
-										handleSelect(suggestion.place_id)
+										handleSelect(suggestion)
 									}
 								>
 									<SuggestionText type="p2">
@@ -256,6 +271,8 @@ export default InputLocation;
 export type InputLocationProps = InputProps & {
 	isForm?: boolean;
 	isLoaded: boolean;
+	searchTypes?: string[];
+	searchFields?: string[];
 	onLocationChange?: (result: LocationProps) => void;
 };
 export interface LocationProps {

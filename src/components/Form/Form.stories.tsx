@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import Form from "./Form";
 import { fn } from "storybook/test";
+import { useJsApiLoader } from "@react-google-maps/api";
 
 const meta: Meta<typeof Form> = {
 	title: "Components/Form",
@@ -25,6 +26,13 @@ const meta: Meta<typeof Form> = {
 			control: "select",
 			options: ["location"],
 		},
+	},
+	render: (args) => {
+		const { isLoaded } = useJsApiLoader({
+			googleMapsApiKey: process.env.GOOGLE_MAPS_API as string,
+			libraries: ["places"],
+		});
+		return <Form {...args} isLoaded={isLoaded} />;
 	},
 };
 

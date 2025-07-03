@@ -99,7 +99,7 @@ const LocationForm = (props: LocationFormProps) => {
 		<Container>
 			<InputLocation
 				design={props.design}
-				googleAPIKey={props.googleAPIKey}
+				isLoaded={props.isLoaded}
 				placeholder={
 					props.placeholder
 						? props.placeholder
@@ -159,5 +159,6 @@ export interface LocationFormProps {
 	placeholder?: string;
 	googleAPIKey: string;
 	defaultLocation?: LocationProps;
+	isLoaded: boolean;
 	onSubmit: (result: { data?: LocationProps; error?: string }) => void;
 }
