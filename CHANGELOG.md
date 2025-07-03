@@ -1,3 +1,15 @@
+# v0.3.97 (Thu Jul 03 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: input location search types and search fields (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.96 (Thu Jul 03 2025)
 
 #### ⚠️ Pushed to `main`
