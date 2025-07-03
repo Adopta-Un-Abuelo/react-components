@@ -1,3 +1,15 @@
+# v0.3.98 (Thu Jul 03 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: location form props error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.97 (Thu Jul 03 2025)
 
 #### ⚠️ Pushed to `main`
