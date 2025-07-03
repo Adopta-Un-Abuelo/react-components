@@ -1,3 +1,15 @@
+# v0.3.95 (Thu Jul 03 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: input location google maps api modification (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.94 (Mon Jun 23 2025)
 
 #### ⚠️ Pushed to `main`
