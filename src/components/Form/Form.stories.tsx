@@ -9,7 +9,6 @@ const meta: Meta<typeof Form> = {
 	tags: ["autodocs"],
 	args: {
 		onSubmit: fn(),
-		googleAPIKey: process.env.GOOGLE_MAPS_API,
 	},
 	argTypes: {
 		design: {

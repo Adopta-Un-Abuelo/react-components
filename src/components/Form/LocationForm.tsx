@@ -157,7 +157,6 @@ export interface LocationFormProps {
 	type: "location";
 	design?: "primary" | "secondary" | "third";
 	placeholder?: string;
-	googleAPIKey: string;
 	defaultLocation?: LocationProps;
 	isLoaded: boolean;
 	onSubmit: (result: { data?: LocationProps; error?: string }) => void;
