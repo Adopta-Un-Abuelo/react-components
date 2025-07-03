@@ -1,3 +1,15 @@
+# v0.3.96 (Thu Jul 03 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: error on google place api load (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.95 (Thu Jul 03 2025)
 
 #### ⚠️ Pushed to `main`
