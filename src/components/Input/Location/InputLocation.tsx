@@ -59,6 +59,12 @@ const InputLocation = ({
 	);
 
 	useEffect(() => {
+		if(restProps.defaultValue) {
+			setInput(restProps.defaultValue.toString());
+		}
+	}, [restProps.defaultValue]);
+
+	useEffect(() => {
 		if (isLoaded) {
 			if (typeof google === "undefined") return;
 
