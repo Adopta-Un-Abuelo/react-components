@@ -105,7 +105,7 @@ const LocationForm = (props: LocationFormProps) => {
 						? props.placeholder
 						: "Nombre y número de la calle"
 				}
-				value={
+				defaultValue={
 					location && location.route
 						? `${location.route} ${location.routeNumber}`
 						: undefined
