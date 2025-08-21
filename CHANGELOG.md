@@ -1,3 +1,16 @@
+# v0.3.99 (Thu Aug 21 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'fix/LocationForm2' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- fix error when modify location form with defaultValues ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.98 (Thu Jul 03 2025)
 
 #### ⚠️ Pushed to `main`
