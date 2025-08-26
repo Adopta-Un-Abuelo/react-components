@@ -1,3 +1,16 @@
+# v0.3.100 (Tue Aug 26 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'fix/Re-LocationForm' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- refresh route field ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.99 (Thu Aug 21 2025)
 
 #### ⚠️ Pushed to `main`
