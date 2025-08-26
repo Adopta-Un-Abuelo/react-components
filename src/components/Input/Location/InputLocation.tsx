@@ -46,11 +46,20 @@ const InputLocation = ({
 	onLocationChange,
 	...restProps
 }: InputLocationProps) => {
+	const {
+		defaultValue,
+		value: _ignoredValue,
+		onChange: _ignoredOnChange,
+		...passthrough
+	} = restProps as any;
+
 	const autocompleteService =
 		useRef<google.maps.places.AutocompleteService | null>(null);
 	const placesService = useRef<google.maps.places.PlacesService | null>(null);
 
-	const [input, setInput] = useState("");
+	const [input, setInput] = useState<string>(() =>
+		defaultValue !== undefined ? String(defaultValue) : ""
+	);
 	const [predictions, setPredictions] = useState<
 		google.maps.places.AutocompletePrediction[]
 	>([]);
@@ -58,11 +67,13 @@ const InputLocation = ({
 		undefined
 	);
 
+	const userTypedRef = useRef(false);
+
 	useEffect(() => {
-		if(restProps.defaultValue) {
-			setInput(restProps.defaultValue.toString());
+		if (defaultValue !== undefined) {
+			setInput(String(defaultValue));
 		}
-	}, [restProps.defaultValue]);
+	}, [defaultValue]);
 
 	useEffect(() => {
 		if (isLoaded) {
@@ -78,6 +89,12 @@ const InputLocation = ({
 			);
 		}
 	}, [isLoaded]);
+
+	useEffect(() => {
+		if (isLoaded && !userTypedRef.current && defaultValue !== undefined) {
+			setInput(String(defaultValue));
+		}
+	}, [isLoaded, defaultValue]);
 
 	const fetchPredictions = useCallback(
 		debounce((value: string) => {
@@ -101,7 +118,9 @@ const InputLocation = ({
 		fetchPredictions(value);
 	};
 
-	const handleSelect = (suggestion: google.maps.places.AutocompletePrediction) => {
+	const handleSelect = (
+		suggestion: google.maps.places.AutocompletePrediction
+	) => {
 		if (!placesService.current) return;
 
 		placesService.current.getDetails(
@@ -209,7 +228,7 @@ const InputLocation = ({
 				} else if (place && place.geometry && place.geometry.location) {
 					setPredictions([]);
 					setErrorString(undefined);
-					setInput(suggestion.description)
+					setInput(suggestion.description);
 					onLocationChange &&
 						onLocationChange({
 							location: {
@@ -229,6 +248,7 @@ const InputLocation = ({
 		<>
 			<SearchView className="autocomplete-container">
 				<Input
+					{...passthrough}
 					value={input}
 					onChange={handleInputChange}
 					containerStyle={{
@@ -236,10 +256,9 @@ const InputLocation = ({
 						flex: 1,
 						flexDirection: "column",
 					}}
-					{...restProps}
-					disabled={isLoaded ? restProps.disabled : true}
+					disabled={isLoaded ? passthrough.disabled : true}
 					placeholder={
-						isLoaded ? restProps.placeholder : "Cargando..."
+						isLoaded ? passthrough.placeholder : "Cargando..."
 					}
 				/>
 				{predictions.length > 0 && (
@@ -249,9 +268,7 @@ const InputLocation = ({
 								<SuggestionView
 									key={index}
 									className="custom-list-item"
-									onClick={() =>
-										handleSelect(suggestion)
-									}
+									onClick={() => handleSelect(suggestion)}
 								>
 									<SuggestionText type="p2">
 										{suggestion.description}
