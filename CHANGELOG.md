@@ -1,3 +1,15 @@
+# v0.3.101 (Mon Sep 08 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: text area error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.100 (Tue Aug 26 2025)
 
 #### ⚠️ Pushed to `main`
