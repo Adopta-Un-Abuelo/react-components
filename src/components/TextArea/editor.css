@@ -30,8 +30,13 @@
 	position: relative;
 }
 
+.ql-toolbar.hidden {
+	display: block !important;
+}
+
 .ql-editor {
 	padding: 24px;
+	height: 100%;
 }
 
 .ql-editor.ql-blank::before {
@@ -59,12 +64,13 @@
 .ql-toolbar.ql-snow {
 	border: none;
 	background-color: transparent;
-	border-bottom: 1px solid rgba(0, 29, 61, 0.10);
+	border-bottom: 1px solid rgba(0, 29, 61, 0.1);
 	padding: 18px;
 }
 
 .ql-container.ql-snow {
 	border: none;
+	height: 100%;
 }
 
 /*Toolbar buttons*/
@@ -93,7 +99,7 @@
 }
 
 .ql-snow.ql-toolbar button.ql-active .ql-stroke {
-	stroke: #008FF5;
+	stroke: #008ff5;
 }
 
 .ql-snow.ql-toolbar button svg {
