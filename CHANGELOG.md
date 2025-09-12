@@ -1,3 +1,15 @@
+# v0.3.102 (Fri Sep 12 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: text area UI (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.101 (Mon Sep 08 2025)
 
 #### ⚠️ Pushed to `main`
