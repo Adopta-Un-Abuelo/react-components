@@ -1,3 +1,16 @@
+# v0.3.103 (Thu Sep 18 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/n-611' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Add marginTop on InputRange Ratio ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.102 (Fri Sep 12 2025)
 
 #### ⚠️ Pushed to `main`
