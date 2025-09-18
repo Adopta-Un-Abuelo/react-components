@@ -76,6 +76,7 @@ const Filter = forwardRef(
 					style={{
 						width: "100%",
 						margin: isMobile ? "20px 0px" : 20,
+						marginTop: 40,
 					}}
 					min={min}
 					max={max}
