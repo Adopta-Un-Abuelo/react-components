@@ -1,3 +1,17 @@
+# v0.3.104 (Mon Oct 06 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/n-611' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- update version ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- optional icon in Label component ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.103 (Thu Sep 18 2025)
 
 #### ⚠️ Pushed to `main`
