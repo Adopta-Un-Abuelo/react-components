@@ -1,7 +1,13 @@
-import { ComponentPropsWithoutRef, useState, useEffect } from "react";
+import {
+	ComponentPropsWithoutRef,
+	useState,
+	useEffect,
+	ReactElement,
+} from "react";
 import styled from "styled-components";
 import { Color } from "../../constants";
 import Text from "../Text/Text";
+import { Icon } from "lucide-react";
 
 const LabelStyled = styled.div`
 	display: flex;
@@ -254,25 +260,41 @@ const Label = (props: Props) => {
 				background: props.backgroundColor
 					? props.backgroundColor
 					: selectedColor
-						? selectedColor.backgroundColor
-						: Color.background.soft,
+					? selectedColor.backgroundColor
+					: Color.background.soft,
 				...props.style,
 			}}
 		>
-			<Text
-				type="p"
-				style={{
-					fontSize: props.style?.fontSize ? props.style.fontSize : 14,
-					fontWeight: 500,
-					color: props.color
-						? props.color
-						: selectedColor
+			<>
+				{props.icon && (
+					<span
+						style={{
+							display: "flex",
+							alignItems: "center",
+							marginRight: 4,
+						}}
+					>
+						{props.icon}
+					</span>
+				)}
+
+				<Text
+					type="p"
+					style={{
+						fontSize: props.style?.fontSize
+							? props.style.fontSize
+							: 14,
+						fontWeight: 500,
+						color: props.color
+							? props.color
+							: selectedColor
 							? selectedColor.color
 							: Color.text.full,
-				}}
-			>
-				{selectedColor?.text ? selectedColor.text : props.text}
-			</Text>
+					}}
+				>
+					{selectedColor?.text ? selectedColor.text : props.text}
+				</Text>
+			</>
 		</LabelStyled>
 	);
 };
@@ -282,6 +304,7 @@ export interface Props extends ComponentPropsWithoutRef<"div"> {
 	disabled?: boolean;
 	type?: "label" | "chip";
 	size?: "big" | "small" | "selector";
+	icon?: ReactElement;
 	backgroundColor?: string;
 	color?: string;
 }
