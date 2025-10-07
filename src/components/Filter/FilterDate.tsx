@@ -92,6 +92,7 @@ const Filter = forwardRef(
 				{...restProps}
 				label={label}
 				hideSearchBar={true}
+				position={position}
 				onSave={onSave}
 				onRemove={onRemove}
 			>
