@@ -70,12 +70,18 @@ const Row = styled.div`
 const CaptureButton = styled.div`
 	height: 48px;
 	width: 48px;
-	border-radius: 400px;
-	background-color: white;
+	border-radius: 50%;
+	background-color: ${ColorV2.text.neutralSoft};
+	border: 3px solid white;
 	cursor: pointer;
-	margin-top: 8px;
-	&:hover {
-		background-color: ${Color.surface.primaryLow};
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.2s ease-in-out;
+
+	&:active {
+		transform: scale(0.9);
 	}
 `;
 
@@ -258,18 +264,59 @@ const InputImage = (props: InputImageProps) => {
 					padding: "16px 0px",
 					backgroundColor: showWebcam ? "black" : "white",
 				}}
-				buttonProps={{
-					children: "Cancelar",
-					style: {
-						backgroundColor: ColorV2.surface.neutralSoft,
-						width: "100%",
-						height: 52,
-						color: ColorV2.text.neutralHard,
-					},
-					onClick: () => setShowModal(false),
-				}}
+				buttonProps={
+					showWebcam
+						? {
+								children: (
+									<Row
+										style={{
+											position: "relative",
+											justifyContent: "center",
+											alignItems: "center",
+											width: "100%",
+											padding: "0 32px",
+										}}
+									>
+										<CaptureButton
+											onClick={onCaptureClick}
+										/>
+									</Row>
+								),
+								style: {
+									backgroundColor: "transparent",
+									width: "100%",
+									marginTop: 12,
+									marginBottom: 12,
+									paddingBottom:
+										"calc(env(safe-area-inset-bottom, 0) + 8px)",
+								},
+						  }
+						: undefined
+				}
 				onClose={() => setShowModal(false)}
 			>
+				{showWebcam && (
+					<Button
+						design="image"
+						icon={<X />}
+						onClick={() => {
+							setShowWebcam(false);
+							setShowModal(false);
+						}}
+						style={{
+							position: "absolute",
+							top: 12,
+							right: 12,
+							backgroundColor: "rgba(0, 0, 0, 0.4)",
+							color: "white",
+							border: "none",
+							padding: 8,
+							borderRadius: "50%",
+							cursor: "pointer",
+							zIndex: 10,
+						}}
+					/>
+				)}
 				{showWebcam ? (
 					<>
 						<Webcam
@@ -280,9 +327,6 @@ const InputImage = (props: InputImageProps) => {
 								facingMode: "environment",
 							}}
 						/>
-						<Row style={{ justifyContent: "center" }}>
-							<CaptureButton onClick={onCaptureClick} />
-						</Row>
 					</>
 				) : (
 					<>
