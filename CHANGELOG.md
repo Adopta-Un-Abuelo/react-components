@@ -1,3 +1,16 @@
+# v0.3.109 (Thu Oct 16 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/n-640' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- add close button on InputImage component ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.107 (Thu Oct 16 2025)
 
 #### ⚠️ Pushed to `main`
