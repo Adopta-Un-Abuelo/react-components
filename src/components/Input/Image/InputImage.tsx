@@ -85,6 +85,12 @@ const CaptureButton = styled.div`
 	}
 `;
 
+const Xcontainer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 16px;
+`;
+
 function centerAspectCrop(
 	mediaWidth: number,
 	mediaHeight: number,
@@ -330,10 +336,23 @@ const InputImage = (props: InputImageProps) => {
 					</>
 				) : (
 					<>
+						<Xcontainer>
+							<X
+								style={{
+									cursor: "pointer",
+								}}
+								onClick={() => {
+									setShowWebcam(false);
+									setShowModal(false);
+								}}
+							/>
+						</Xcontainer>
+
 						<Cell onClick={() => onOptionClick("camera")}>
 							<Camera />
 							<Text type="p">Cámara</Text>
 						</Cell>
+
 						<Cell onClick={() => onOptionClick("library")}>
 							<Image />
 							<Text type="p">Imagen de librería</Text>
