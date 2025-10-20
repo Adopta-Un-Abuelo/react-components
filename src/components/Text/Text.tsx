@@ -2,7 +2,7 @@ import Header, { HeaderProps } from "./Header";
 import Paragraph, { ParagraphProps } from "./Paragraph";
 import Button, { ButtonProps } from "./Button";
 
-const Text = (props: HeaderProps | ParagraphProps | ButtonProps) => {
+const Text = (props: TextProps) => {
 	return props.type === "d1" ||
 		props.type === "h1" ||
 		props.type === "h2" ||
@@ -29,3 +29,4 @@ const Text = (props: HeaderProps | ParagraphProps | ButtonProps) => {
 	) : null;
 };
 export default Text;
+export type TextProps = HeaderProps | ParagraphProps | ButtonProps;
