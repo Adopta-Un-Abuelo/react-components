@@ -1,3 +1,16 @@
+# v0.3.110 (Mon Oct 20 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/TextAnimated' (guillermo.angeles@adoptaunabuelo.com)
+- feat: TextAnimated (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.109 (Thu Oct 16 2025)
 
 #### ⚠️ Pushed to `main`
