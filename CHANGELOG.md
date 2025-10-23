@@ -1,3 +1,16 @@
+# v0.3.111 (Thu Oct 23 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'feature/Hover' (guillermo.angeles@adoptaunabuelo.com)
+- feat: Hover component (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.110 (Mon Oct 20 2025)
 
 #### ⚠️ Pushed to `main`
