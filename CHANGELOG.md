@@ -1,3 +1,15 @@
+# v0.3.112 (Mon Oct 27 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: data in Input price (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.111 (Thu Oct 23 2025)
 
 #### ⚠️ Pushed to `main`
