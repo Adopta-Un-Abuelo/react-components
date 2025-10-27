@@ -299,6 +299,7 @@ const InputPrice = (props: InputPriceProps) => {
 													display: "flex",
 													gap: 8,
 												}}
+												key={`column-${index}-data-${index2}`}
 											>
 												<Icon
 													height={16}
@@ -307,7 +308,7 @@ const InputPrice = (props: InputPriceProps) => {
 												/>
 												<Text
 													type="c1"
-													key={`column-${index}-data-${index2}`}
+													style={{ flex: 1 }}
 												>
 													{item.title}
 												</Text>
