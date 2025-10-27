@@ -3,6 +3,7 @@ import Text from "../../Text/Text";
 import { ColorV2 } from "../../../constants";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import media from "styled-media-query";
+import * as icons from "lucide-react";
 
 const Container = styled.div`
 	position: relative;
@@ -18,10 +19,11 @@ const Row = styled.div`
 const Cell = styled.div<{ $selected: boolean }>`
 	display: flex;
 	flex: 1;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 64px;
-	padding: 0px 16px;
+	padding: 14px 16px;
+	height: fit-content;
 	border-radius: 16px;
 	box-shadow: ${(props) =>
 		props.$selected
@@ -124,6 +126,7 @@ const LabelContainerSpan = styled.span<{
 `;
 
 const InputPrice = (props: InputPriceProps) => {
+	const iconsT: any = icons;
 	const input = useRef<HTMLInputElement>(null);
 	const [optionSelected, setOptionSelected] = useState<number | undefined>(
 		undefined
@@ -140,7 +143,7 @@ const InputPrice = (props: InputPriceProps) => {
 	useEffect(() => {
 		if (props.options.length > 0) {
 			const lastOption = props.options[props.options.length - 1];
-			const lastOptionLength = lastOption.toString().length;
+			const lastOptionLength = lastOption.price.toString().length;
 			if (lastOptionLength > 5) {
 				setNumberFontSize(16);
 			} else if (lastOptionLength > 4) {
@@ -164,7 +167,7 @@ const InputPrice = (props: InputPriceProps) => {
 	const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 		setInputFocus(false);
 		const priceInt = parseInt(e.target.value);
-		const minPrice = props.options[0];
+		const minPrice = props.options[0].price;
 		if (priceInt < minPrice || !priceInt) {
 			setInputError(
 				`La donación mínima es de ${minPrice}${props.currency}`
@@ -195,9 +198,13 @@ const InputPrice = (props: InputPriceProps) => {
 				<LabelContainer
 					style={{
 						justifyContent: optionSelected
-							? props.options.indexOf(optionSelected) === 0
+							? props.options.findIndex(
+									(i) => i.price === optionSelected
+							  ) === 0
 								? "flex-start"
-								: props.options.indexOf(optionSelected) === 1
+								: props.options.findIndex(
+										(i) => i.price === optionSelected
+								  ) === 1
 								? "center"
 								: "flex-end"
 							: "center",
@@ -218,11 +225,13 @@ const InputPrice = (props: InputPriceProps) => {
 						<LabelContainerSpan
 							$position={
 								optionSelected
-									? props.options.indexOf(optionSelected) ===
-									  0
+									? props.options.findIndex(
+											(i) => i.price === optionSelected
+									  ) === 0
 										? "left"
-										: props.options.indexOf(
-												optionSelected
+										: props.options.findIndex(
+												(i) =>
+													i.price === optionSelected
 										  ) === 1
 										? "center"
 										: "right"
@@ -235,25 +244,66 @@ const InputPrice = (props: InputPriceProps) => {
 			<Row>
 				{props.options.map((option, index) => {
 					const isSelected =
-						optionSelected === option && customPrice.length === 0;
+						optionSelected === option.price &&
+						customPrice.length === 0;
 					return (
 						<Cell
 							key={"price-option-" + index}
 							$selected={isSelected}
-							onClick={() => onCellClick(option)}
+							onClick={() => onCellClick(option.price)}
 						>
 							<Text
 								type="h3"
 								weight="medium"
 								style={{ fontSize: numberFontSize }}
 							>
-								{option.toLocaleString("es-ES", {
+								{option.price.toLocaleString("es-ES", {
 									useGrouping: true,
 								})}
 								<span style={{ fontSize: numberFontSize - 6 }}>
 									{props.currency}
 								</span>
 							</Text>
+							{option.data && option.data.length > 0 && (
+								<div
+									style={{
+										display: "flex",
+										flexDirection: "column",
+										gap: 3,
+										marginTop: 12,
+										paddingTop: 12,
+										borderTop:
+											"1px solid " +
+											ColorV2.border.neutralSoft,
+									}}
+								>
+									{option.data.map((item, index2) => {
+										const Icon = item.icon
+											? iconsT[item.icon]
+											: iconsT["Check"];
+										return (
+											<div
+												style={{
+													display: "flex",
+													gap: 8,
+												}}
+											>
+												<Icon
+													height={16}
+													width={16}
+													color={ColorV2.text.primary}
+												/>
+												<Text
+													type="c1"
+													key={`column-${index}-data-${index2}`}
+												>
+													{item.title}
+												</Text>
+											</div>
+										);
+									})}
+								</div>
+							)}
 						</Cell>
 					);
 				})}
@@ -306,7 +356,13 @@ const InputPrice = (props: InputPriceProps) => {
 export default InputPrice;
 export type InputPriceProps = {
 	style?: CSSProperties;
-	options: number[];
+	options: {
+		price: number;
+		data?: {
+			title: string;
+			icon?: string;
+		}[];
+	}[];
 	label?: string;
 	labelValueConversion?: number;
 	currency: string;

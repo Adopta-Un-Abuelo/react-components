@@ -7,7 +7,7 @@ const meta: Meta<typeof InputPrice> = {
 	component: InputPrice,
 	tags: ["autodocs"],
 	args: {
-		options: [9, 15, 20],
+		options: [{ price: 9 }, { price: 15 }, { price: 20 }],
 		currency: "€",
 		defaultOption: 15,
 		label: "Nos ayudas a cumplir el sueño de {{value}} abuelos",
@@ -21,3 +21,60 @@ type Story = StoryObj<typeof InputPrice>;
 
 export const Default: Story = {};
 export const HideCustomAmount: Story = { args: { hideCustomAmount: true } };
+export const WithData: Story = {
+	args: {
+		options: [
+			{
+				price: 9,
+				data: [
+					{
+						title: "Financias la campaña Una Carta Para Un Abuelo",
+						icon: "Mail"
+					},
+					{
+						title: "Nos ayudas a acompañar a 3 personas mayores",
+						icon: "Heart"
+					},
+				],
+			},
+			{
+				price: 15,
+				data: [
+					{
+						title: "Financias la campaña Una Carta Para Un Abuelo",
+						icon: "Mail"
+					},
+					{
+						title: "Nos ayudas a acompañar a 3 personas mayores",
+						icon: "Heart"
+					},
+					{
+						title: "Podemos celebrar el cumpleaños de 2 personas mayores",
+						icon: "Cake"
+					},
+				],
+			},
+			{
+				price: 20,
+				data: [
+					{
+						title: "Financias la campaña Una Carta Para Un Abuelo",
+						icon: "Mail"
+					},
+					{
+						title: "Nos ayudas a acompañar a 3 personas mayores",
+						icon: "Heart"
+					},
+					{
+						title: "Podemos celebrar el cumpleaños de 2 personas mayores",
+						icon: "Cake"
+					},
+					{
+						title: "Podemos cumplir el sueño de una persona mayor",
+						icon: "Rocket"
+					},
+				],
+			},
+		],
+	},
+};
