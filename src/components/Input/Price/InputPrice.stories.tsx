@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import InputPrice from "./InputPrice";
 import { fn } from "storybook/test";
+import Text from "../../Text/Text";
 
 const meta: Meta<typeof InputPrice> = {
 	title: "Input/Price",
@@ -23,17 +24,18 @@ export const Default: Story = {};
 export const HideCustomAmount: Story = { args: { hideCustomAmount: true } };
 export const WithData: Story = {
 	args: {
+		style: { flexDirection: "row" },
 		options: [
 			{
 				price: 9,
 				data: [
 					{
 						title: "Financias la campaña Una Carta Para Un Abuelo",
-						icon: "Mail"
+						icon: "Mail",
 					},
 					{
 						title: "Nos ayudas a acompañar a 3 personas mayores",
-						icon: "Heart"
+						icon: "Heart",
 					},
 				],
 			},
@@ -42,15 +44,15 @@ export const WithData: Story = {
 				data: [
 					{
 						title: "Financias la campaña Una Carta Para Un Abuelo",
-						icon: "Mail"
+						icon: "Mail",
 					},
 					{
 						title: "Nos ayudas a acompañar a 3 personas mayores",
-						icon: "Heart"
+						icon: "Heart",
 					},
 					{
 						title: "Podemos celebrar el cumpleaños de 2 personas mayores",
-						icon: "Cake"
+						icon: "Cake",
 					},
 				],
 			},
@@ -59,22 +61,28 @@ export const WithData: Story = {
 				data: [
 					{
 						title: "Financias la campaña Una Carta Para Un Abuelo",
-						icon: "Mail"
+						icon: "Mail",
 					},
 					{
 						title: "Nos ayudas a acompañar a 3 personas mayores",
-						icon: "Heart"
+						icon: "Heart",
 					},
 					{
 						title: "Podemos celebrar el cumpleaños de 2 personas mayores",
-						icon: "Cake"
+						icon: "Cake",
 					},
 					{
 						title: "Podemos cumplir el sueño de una persona mayor",
-						icon: "Rocket"
+						icon: "Rocket",
 					},
 				],
 			},
 		],
+		customAmountData: (
+			<Text type="c1">
+				Si quieres, puedes colaborar con una cantidad mayor y que
+				podamos hacer muchas más cosas. Añade la cantidad que prefieras.
+			</Text>
+		),
 	},
 };

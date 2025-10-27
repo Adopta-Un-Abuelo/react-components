@@ -11,10 +11,18 @@ const Container = styled.div`
 	flex-direction: column;
 	gap: 8px;
 `;
-const Row = styled.div`
+const Row = styled.div<{ $data: boolean }>`
+	display: flex;
+	flex-direction: row;
+`;
+const CellContainer = styled.div<{ $data: boolean }>`
 	display: flex;
 	flex-direction: row;
 	gap: 8px;
+	flex: ${(props) => (props.$data ? 3 : 1)};
+	${(props) => media.lessThan("small")`
+        flex-direction: ${props.$data ? "column" : "row"};
+    `}
 `;
 const Cell = styled.div<{ $selected: boolean }>`
 	display: flex;
@@ -64,10 +72,10 @@ const InputContainer = styled.div<{
 }>`
 	display: flex;
 	flex: 1;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: 64px;
-	max-height: 64px;
+	height: fit-content;
 	box-shadow: ${(props) =>
 		props.$focus || props.$isSelected
 			? `0 0 0 2px ${ColorV2.border.primary}`
@@ -75,12 +83,12 @@ const InputContainer = styled.div<{
 			? `0 0 0 2px ${ColorV2.border.red}`
 			: `0 0 0 1px ${ColorV2.border.neutralSoft}`};
 	border-radius: 16px;
-	padding-right: 24px;
+	padding: 14px 16px;
 	background-color: ${(props) =>
 		props.$isSelected || props.$focus
 			? ColorV2.border.primarySoft
 			: "transparent"};
-	cursor: text;
+	cursor: pointer;
 	&:hover {
 		background-color: ${ColorV2.border.primarySoft};
 		box-shadow: 0 0 0 2px ${ColorV2.border.primary};
@@ -194,54 +202,58 @@ const InputPrice = (props: InputPriceProps) => {
 
 	return (
 		<Container style={props.style}>
-			{props.label && props.labelValueConversion && (
-				<LabelContainer
-					style={{
-						justifyContent: optionSelected
-							? props.options.findIndex(
-									(i) => i.price === optionSelected
-							  ) === 0
-								? "flex-start"
-								: props.options.findIndex(
+			{props.label &&
+				props.labelValueConversion &&
+				!props.options[0].data && (
+					<LabelContainer
+						style={{
+							justifyContent: optionSelected
+								? props.options.findIndex(
 										(i) => i.price === optionSelected
-								  ) === 1
-								? "center"
-								: "flex-end"
-							: "center",
-					}}
-				>
-					<Label type="c1">
-						{props.label.replace(
-							"{{value}}",
-							(
-								props.labelValueConversion *
-								(optionSelected
-									? optionSelected
-									: customPrice
-									? parseInt(customPrice)
-									: 0)
-							).toFixed(0)
-						)}
-						<LabelContainerSpan
-							$position={
-								optionSelected
-									? props.options.findIndex(
+								  ) === 0
+									? "flex-start"
+									: props.options.findIndex(
 											(i) => i.price === optionSelected
-									  ) === 0
-										? "left"
-										: props.options.findIndex(
+									  ) === 1
+									? "center"
+									: "flex-end"
+								: "center",
+						}}
+					>
+						<Label type="c1">
+							{props.label.replace(
+								"{{value}}",
+								(
+									props.labelValueConversion *
+									(optionSelected
+										? optionSelected
+										: customPrice
+										? parseInt(customPrice)
+										: 0)
+								).toFixed(0)
+							)}
+							<LabelContainerSpan
+								$position={
+									optionSelected
+										? props.options.findIndex(
 												(i) =>
 													i.price === optionSelected
-										  ) === 1
-										? "center"
-										: "right"
-									: "center"
-							}
-						/>
-					</Label>
-				</LabelContainer>
-			)}
-			<Row>
+										  ) === 0
+											? "left"
+											: props.options.findIndex(
+													(i) =>
+														i.price ===
+														optionSelected
+											  ) === 1
+											? "center"
+											: "right"
+										: "center"
+								}
+							/>
+						</Label>
+					</LabelContainer>
+				)}
+			<CellContainer $data={props.options[0].data ? true : false}>
 				{props.options.map((option, index) => {
 					const isSelected =
 						optionSelected === option.price &&
@@ -307,7 +319,7 @@ const InputPrice = (props: InputPriceProps) => {
 						</Cell>
 					);
 				})}
-			</Row>
+			</CellContainer>
 			{!props.hideCustomAmount && (
 				<InputContainer
 					$focus={inputFocus}
@@ -315,40 +327,59 @@ const InputPrice = (props: InputPriceProps) => {
 					$error={inputError.length > 0 ? true : false}
 					onClick={() => input.current?.focus()}
 				>
-					<Input
-						ref={input}
-						style={{
-							width:
-								customPrice.length > 0
-									? customPrice.length + "ch"
-									: "unset",
-						}}
-						type="number"
-						value={customPrice}
-						placeholder="Otra cantidad"
-						onChange={onInputChange}
-						onFocus={onInputFocus}
-						onBlur={onInputBlur}
-					/>
-					{customPrice.length > 0 && (
-						<Text
-							type="h6"
-							weight="medium"
-							style={{ fontSize: 18, marginTop: 6 }}
+					<Row $data={props.options[0].data ? true : false}>
+						<Input
+							ref={input}
+							style={{
+								fontSize: numberFontSize,
+								width:
+									customPrice.length > 0
+										? customPrice.length + "ch"
+										: "unset",
+							}}
+							type="number"
+							value={customPrice}
+							placeholder="Otra cantidad"
+							onChange={onInputChange}
+							onFocus={onInputFocus}
+							onBlur={onInputBlur}
+						/>
+						{customPrice.length > 0 && (
+							<Text
+								type="h6"
+								weight="medium"
+								style={{ fontSize: 18, marginTop: 6 }}
+							>
+								{props.currency}
+							</Text>
+						)}
+					</Row>
+					{props.customAmountData && (
+						<div
+							style={{
+								marginTop: 12,
+								paddingTop: 12,
+								borderTop:
+									"1px solid " + ColorV2.border.neutralSoft,
+							}}
 						>
-							{props.currency}
+							{props.customAmountData}
+						</div>
+					)}
+					{inputError && (
+						<Text
+							type="p2"
+							weight="medium"
+							style={{
+								marginTop: 4,
+								color: ColorV2.text.red,
+								textAlign: "center",
+							}}
+						>
+							{inputError}
 						</Text>
 					)}
 				</InputContainer>
-			)}
-			{inputError && (
-				<Text
-					type="p2"
-					weight="medium"
-					style={{ color: ColorV2.text.red, textAlign: "center" }}
-				>
-					{inputError}
-				</Text>
 			)}
 		</Container>
 	);
@@ -368,5 +399,6 @@ export type InputPriceProps = {
 	currency: string;
 	defaultOption?: number;
 	hideCustomAmount?: boolean;
+	customAmountData?: React.ReactElement;
 	onChange?: (value: number) => void;
 };
