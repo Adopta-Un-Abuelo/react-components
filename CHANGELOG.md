@@ -1,3 +1,15 @@
+# v0.3.115 (Wed Oct 29 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: location form style (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.114 (Mon Oct 27 2025)
 
 #### ⚠️ Pushed to `main`
