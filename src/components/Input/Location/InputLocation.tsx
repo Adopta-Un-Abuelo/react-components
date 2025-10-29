@@ -185,7 +185,7 @@ const InputLocation = ({
 						);
 						const country =
 							countryObj.length > 0
-								? countryObj[0].short_name
+								? countryObj[0].long_name
 								: undefined;
 
 						const addressString = `${route}${
