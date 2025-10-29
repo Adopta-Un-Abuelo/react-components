@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import InputLocation, { LocationProps } from "../Input/Location/InputLocation";
 import Input from "../Input/Basic/Input";
 
@@ -96,7 +96,7 @@ const LocationForm = (props: LocationFormProps) => {
 	};
 
 	return (
-		<Container>
+		<Container style={props.style}>
 			<InputLocation
 				design={props.design}
 				isLoaded={props.isLoaded}
@@ -154,6 +154,7 @@ const LocationForm = (props: LocationFormProps) => {
 };
 export default LocationForm;
 export interface LocationFormProps {
+	style?: CSSProperties;
 	type: "location";
 	design?: "primary" | "secondary" | "third";
 	placeholder?: string;
