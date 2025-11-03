@@ -103,6 +103,7 @@ const InputLocation = ({
 				{
 					input: value,
 					types: searchTypes ? searchTypes : ["address"],
+					language: "es-ES",
 				},
 				(results) => {
 					setPredictions(results || []);
@@ -187,6 +188,10 @@ const InputLocation = ({
 							countryObj.length > 0
 								? countryObj[0].long_name
 								: undefined;
+						const shortCountry =
+							countryObj.length > 0
+								? countryObj[0].short_name
+								: undefined;
 
 						const addressString = `${route}${
 							routeNumber ? " " + routeNumber : ""
@@ -206,6 +211,7 @@ const InputLocation = ({
 								lng: place.geometry.location.lng(),
 							},
 							country: country as string,
+							shortCountry: shortCountry,
 							city: city as string,
 							province: province as string,
 							zipCode: zipCode as string,
@@ -308,6 +314,7 @@ export interface LocationProps {
 	province?: string;
 	zipCode?: string;
 	country?: string;
+	shortCountry?: string;
 	location?: google.maps.LatLngLiteral;
 	timeZone?: string;
 }
