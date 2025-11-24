@@ -46,7 +46,9 @@ const ButtonPrimary = styled.button<{
 	}
 	&:active {
 		transform: ${(props) =>
-			props.disabled || props.$loading || props.$countdown ? "none" : "scale(0.95)"};
+			props.disabled || props.$loading || props.$countdown
+				? "none"
+				: "scale(0.95)"};
 	}
 `;
 const Label = styled(Text)<{
@@ -75,8 +77,8 @@ const Button = ({
 	onCountdownEnd,
 	...restProps
 }: Props) => {
-	const [showLabel, setShowLabel] = useState(true);
-	const [prevLabel, setPrevLabel] = useState(restProps.children);
+	// const [showLabel, setShowLabel] = useState(true);
+	// const [prevLabel, setPrevLabel] = useState(restProps.children);
 	const [secondsRemaining, setSecondsRemaining] = useState(
 		countdown ? countdown : 0
 	);
@@ -172,10 +174,10 @@ const Button = ({
 							color: restProps.style?.color
 								? restProps.style.color
 								: "white",
-							opacity: showLabel ? 1 : 0,
-							transform: showLabel
-								? "translateY(0px)"
-								: "translateY(10px)",
+							// opacity: showLabel ? 1 : 0,
+							// transform: showLabel
+							// 	? "translateY(0px)"
+							// 	: "translateY(10px)",
 							transition:
 								"opacity " +
 								(animationTime ? animationTime : 0.3) +
@@ -184,7 +186,7 @@ const Button = ({
 								"s ease-out",
 						}}
 					>
-						{prevLabel}
+						{restProps.children}
 						{secondsRemaining > 0 &&
 							` ${secondsRemaining} segundos`}
 					</Label>
