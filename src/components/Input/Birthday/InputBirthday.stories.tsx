@@ -30,5 +30,6 @@ export const Secondary: Story = {
 export const Third: Story = {
     args: {
        design: "third",
+       defaultValue: "1990-01-01",
     },
 };

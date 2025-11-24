@@ -96,15 +96,15 @@ const Button = ({
 		}
 	}, [secondsRemaining, countdown]);
 
-	useEffect(() => {
-		if (prevLabel !== restProps.children) {
-			setShowLabel(false);
-			delay(animationDelay ? animationDelay : 600).then(() => {
-				setShowLabel(true);
-				setPrevLabel(restProps.children);
-			});
-		}
-	}, [restProps.children]);
+	// useEffect(() => {
+	// 	if (prevLabel !== restProps.children) {
+	// 		setShowLabel(false);
+	// 		delay(animationDelay ? animationDelay : 600).then(() => {
+	// 			setShowLabel(true);
+	// 			setPrevLabel(restProps.children);
+	// 		});
+	// 	}
+	// }, [restProps.children]);
 
 	const delay = (ms: number) =>
 		new Promise((resolve) => setTimeout(resolve, ms));
