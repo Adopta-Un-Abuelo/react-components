@@ -1,3 +1,15 @@
+# v0.3.119 (Mon Nov 24 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: remove button text animation (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.118 (Tue Nov 04 2025)
 
 #### ⚠️ Pushed to `main`
