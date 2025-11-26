@@ -10,23 +10,31 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
+	overflow-y: scroll;
+	padding: 2px;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	::-webkit-scrollbar {
+		display: none;
+	}
 `;
 const Row = styled.div<{ $data: boolean }>`
 	display: flex;
 	flex-direction: row;
 `;
-const CellContainer = styled.div<{ $data: boolean }>`
+const CellContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	gap: 8px;
-	flex: ${(props) => (props.$data ? 3 : 1)};
-	${(props) => media.lessThan("small")`
-        flex-direction: ${props.$data ? "column" : "row"};
+	flex: 1;
+	${media.lessThan("small")`
+        flex-direction: row;
     `}
 `;
 const Cell = styled.div<{ $selected: boolean }>`
 	display: flex;
 	flex: 1;
+	width: 257px;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -135,6 +143,7 @@ const LabelContainerSpan = styled.span<{
 
 const InputPrice = (props: InputPriceProps) => {
 	const iconsT: any = icons;
+	const cellRefs = useRef<HTMLInputElement[]>([]);
 	const input = useRef<HTMLInputElement>(null);
 	const [optionSelected, setOptionSelected] = useState<number | undefined>(
 		undefined
@@ -161,6 +170,21 @@ const InputPrice = (props: InputPriceProps) => {
 			}
 		}
 	}, [props.options]);
+
+	//Center the cell
+	useEffect(() => {
+		const index = props.options.findIndex(
+			(o) => o.price === optionSelected
+		);
+
+		if (index !== -1 && cellRefs?.current && cellRefs?.current[index]) {
+			cellRefs.current[index].scrollIntoView({
+				behavior: "smooth",
+				block: "center", // <-- centra verticalmente
+				inline: "center", // <-- centra horizontalmente
+			});
+		}
+	}, [optionSelected]);
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setCustomPrice(e.target.value);
@@ -253,7 +277,7 @@ const InputPrice = (props: InputPriceProps) => {
 						</Label>
 					</LabelContainer>
 				)}
-			<CellContainer $data={props.options[0].data ? true : false}>
+			<CellContainer style={props.containerStyle}>
 				{props.options.map((option, index) => {
 					const isSelected =
 						optionSelected === option.price &&
@@ -261,6 +285,7 @@ const InputPrice = (props: InputPriceProps) => {
 					return (
 						<Cell
 							key={"price-option-" + index}
+							ref={(el: any) => (cellRefs.current[index] = el)}
 							$selected={isSelected}
 							onClick={() => onCellClick(option.price)}
 						>
@@ -388,6 +413,7 @@ const InputPrice = (props: InputPriceProps) => {
 export default InputPrice;
 export type InputPriceProps = {
 	style?: CSSProperties;
+	containerStyle?: CSSProperties;
 	options: {
 		price: number;
 		data?: {
