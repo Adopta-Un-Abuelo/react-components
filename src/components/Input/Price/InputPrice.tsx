@@ -34,8 +34,8 @@ const CellContainer = styled.div`
 const Cell = styled.div<{ $selected: boolean; $data: boolean }>`
 	display: flex;
 	flex: 1;
-	width: 257px;
-	min-width: ${(props) => (props.$data ? "257px" : "unset")};
+	width: 247px;
+	min-width: ${(props) => (props.$data ? "247px" : "unset")};
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -181,8 +181,7 @@ const InputPrice = (props: InputPriceProps) => {
 		if (index !== -1 && cellRefs?.current && cellRefs?.current[index]) {
 			cellRefs.current[index].scrollIntoView({
 				behavior: "smooth",
-				block: "center", // <-- centra verticalmente
-				inline: "center", // <-- centra horizontalmente
+				inline: "center",
 			});
 		}
 	}, [optionSelected]);
