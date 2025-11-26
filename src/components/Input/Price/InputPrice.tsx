@@ -31,10 +31,11 @@ const CellContainer = styled.div`
         flex-direction: row;
     `}
 `;
-const Cell = styled.div<{ $selected: boolean }>`
+const Cell = styled.div<{ $selected: boolean; $data: boolean }>`
 	display: flex;
 	flex: 1;
 	width: 257px;
+	min-width: ${(props) => (props.$data ? "257px" : "unset")};
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -287,6 +288,7 @@ const InputPrice = (props: InputPriceProps) => {
 							key={"price-option-" + index}
 							ref={(el: any) => (cellRefs.current[index] = el)}
 							$selected={isSelected}
+							$data={option.data ? true : false}
 							onClick={() => onCellClick(option.price)}
 						>
 							<Text
