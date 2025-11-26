@@ -144,6 +144,7 @@ const LabelContainerSpan = styled.span<{
 
 const InputPrice = (props: InputPriceProps) => {
 	const iconsT: any = icons;
+	const containerRef = useRef<HTMLDivElement>(null);
 	const cellRefs = useRef<HTMLInputElement[]>([]);
 	const input = useRef<HTMLInputElement>(null);
 	const [optionSelected, setOptionSelected] = useState<number | undefined>(
@@ -178,10 +179,20 @@ const InputPrice = (props: InputPriceProps) => {
 			(o) => o.price === optionSelected
 		);
 
-		if (index !== -1 && cellRefs?.current && cellRefs?.current[index]) {
-			cellRefs.current[index].scrollIntoView({
-				behavior: "smooth",
-				inline: "center",
+		if (index !== -1 && cellRefs.current[index] && containerRef.current) {
+			const container = containerRef.current;
+			const cell = cellRefs.current[index];
+
+			const containerWidth = container.offsetWidth;
+			const cellWidth = cell.offsetWidth;
+			const cellLeft = cell.offsetLeft;
+
+			// Calculamos scrollLeft para centrar el elemento horizontalmente
+			const scrollLeft = cellLeft - (containerWidth / 2 - cellWidth / 2);
+
+			container.scrollTo({
+				left: scrollLeft,
+				behavior: "smooth", // animación opcional
 			});
 		}
 	}, [optionSelected]);
@@ -225,7 +236,7 @@ const InputPrice = (props: InputPriceProps) => {
 	};
 
 	return (
-		<Container style={props.style}>
+		<Container style={props.style} ref={containerRef}>
 			{props.label &&
 				props.labelValueConversion &&
 				!props.options[0].data && (
