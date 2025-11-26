@@ -1,3 +1,15 @@
+# v0.3.121 (Wed Nov 26 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: change price input design (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.120 (Mon Nov 24 2025)
 
 #### ⚠️ Pushed to `main`
