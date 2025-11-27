@@ -4,7 +4,7 @@ import {
 	useEffect,
 	useState,
 } from "react";
-import styled from "styled-components";
+import styled, { css, CSSProperties, keyframes } from "styled-components";
 
 import { Check, X } from "lucide-react";
 import Text from "../Text/Text";
@@ -14,7 +14,10 @@ import Button from "../Button/Button";
 const Container = styled.div<{
 	$text?: string;
 	$type: "success" | "error" | "custom";
+	$visible: boolean;
 }>`
+	transform-origin: left bottom;
+	overflow: hidden;
 	position: absolute;
 	display: flex;
 	flex-direction: row;
@@ -34,12 +37,42 @@ const Container = styled.div<{
 	box-shadow: 2px 0px 20px rgba(0, 0, 0, 0.09), 0px 4px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 4px;
 	z-index: 100;
+	animation: ${(p) =>
+		p.$visible
+			? css`
+					${slideIn} 0.3s ease-out forwards
+			  `
+			: css`
+					${slideOut} 0.3s ease-in forwards
+			  `};
 `;
 const View = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	margin: 16px;
+`;
+
+const slideIn = keyframes`
+  from {
+    opacity: 0;
+	transform: scale(0, 0)
+  }
+  to {
+    opacity: 1;
+	transform: scale(1, 1);
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    opacity: 1;
+	transform: scale(1, 1);
+  }
+  to {
+    opacity: 0;
+	transform: scale(0, 0);
+  }
 `;
 
 const FeedBack = ({
@@ -49,20 +82,34 @@ const FeedBack = ({
 	...props
 }: Props) => {
 	const [show, setShow] = useState(false);
+	const [render, setRender] = useState(false);
 
 	useEffect(() => {
 		setShow(isVisible);
-		setTimeout(
+		const timeout = setTimeout(
 			() => {
 				props.onClose && props.onClose();
 				setShow(false);
 			},
 			props.closeAfter ? props.closeAfter : 3000
 		);
+		return () => clearTimeout(timeout);
 	}, [isVisible]);
 
-	return show ? (
-		<Container $type={type} $text={text} {...props} role="feedback">
+	useEffect(() => {
+		if (isVisible) {
+			setRender(true);
+		}
+	}, [show]);
+
+	return render ? (
+		<Container
+			$type={type}
+			$text={text}
+			$visible={show}
+			{...props}
+			role="feedback"
+		>
 			<View>
 				{type === "success" ? (
 					<Check
@@ -104,6 +151,7 @@ const FeedBack = ({
 };
 export default FeedBack;
 export interface Props extends ComponentPropsWithoutRef<"div"> {
+	style?: CSSProperties;
 	isVisible: boolean;
 	type: "success" | "error" | "custom";
 	icon?: ReactNode;
