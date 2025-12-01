@@ -6,6 +6,7 @@ import {
 	useState,
 	ComponentPropsWithoutRef,
 	CSSProperties,
+	ReactElement,
 } from "react";
 import styled from "styled-components";
 import Button, { ButtonProps } from "../Button/Button";
@@ -282,8 +283,8 @@ export interface ModalPrimaryProps extends ComponentPropsWithoutRef<"div"> {
 	hideHeader?: boolean;
 	titleStyle?: CSSProperties;
 	contentStyle?: CSSProperties;
-	Header?: JSX.Element;
-	Bottom?: JSX.Element;
+	Header?: ReactElement;
+	Bottom?: ReactElement;
 	buttonProps?: ButtonProps;
 	footerStyle?: CSSProperties;
 	onClose: () => void;
