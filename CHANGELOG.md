@@ -1,3 +1,15 @@
+# v0.3.132 (Tue Dec 09 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: package update (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.131 (Tue Dec 09 2025)
 
 #### ⚠️ Pushed to `main`
