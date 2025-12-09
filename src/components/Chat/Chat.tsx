@@ -5,11 +5,11 @@ import "./ChatBubble.css";
 import styled from "styled-components";
 import { format } from "date-fns";
 import moment from "moment";
-import Text from "../Text/Text";
+import Text from "@components/Text/Text";
 import media from "styled-media-query";
 import { Image, NotebookText } from "lucide-react";
 import TemplateModal from "./TemplateModal";
-import InputChat from "../Input/Chat/InputChat";
+import InputChat from "@components/Input/Chat/InputChat";
 
 const Container = styled.div`
 	display: flex;

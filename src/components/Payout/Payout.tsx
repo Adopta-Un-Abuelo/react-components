@@ -12,8 +12,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe, PaymentMethod } from "@stripe/stripe-js";
 
 import PaycardForm, { FormRef } from "./PaycardForm";
-import Modal from "../Modal/Modal";
-import { ModalRef } from "../Modal/ModalPrimary";
+import Modal from "@components/Modal/Modal";
+import { ModalRef } from "@components/Modal/ModalPrimary";
 
 const Container = styled.div``;
 

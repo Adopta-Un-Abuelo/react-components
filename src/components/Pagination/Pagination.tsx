@@ -1,7 +1,7 @@
 import { CSSProperties, useEffect, useState } from "react";
 import styled from "styled-components";
 import Color from "@constants/Color";
-import Text from "../Text/Text";
+import Text from "@components/Text/Text";
 import {
 	ChevronLeft,
 	ChevronRight,

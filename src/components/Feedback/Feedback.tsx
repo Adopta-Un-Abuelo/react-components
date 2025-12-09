@@ -4,12 +4,12 @@ import {
 	useEffect,
 	useState,
 } from "react";
-import styled, { css, CSSProperties, keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 import { Check, X } from "lucide-react";
-import Text from "../Text/Text";
+import Text from "@components/Text/Text";
 import Color from "@constants/Color";
-import Button from "../Button/Button";
+import Button from "@components/Button/Button";
 
 const Container = styled.div<{
 	$text?: string;

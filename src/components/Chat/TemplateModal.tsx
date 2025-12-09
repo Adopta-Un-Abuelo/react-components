@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ModalComponent from "../Modal/Modal";
+import ModalComponent from "@components/Modal/Modal";
 import styled from "styled-components";
-import Text from "../Text/Text";
+import Text from "@components/Text/Text";
 import ColorV2 from "@constants/ColorV2";
 
 const Cell = styled.div<{ $isSelected?: boolean }>`

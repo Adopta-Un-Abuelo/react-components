@@ -5,11 +5,11 @@ import media from "styled-media-query";
 import { ChevronDown } from "lucide-react";
 import { X } from "lucide-react";
 import ColorV2 from "@constants/ColorV2";
-import Modal from "../Modal/Modal";
+import Modal from "@components/Modal/Modal";
 import Color from "@constants/Color";
-import Text from "../Text/Text";
-import Button from "../Button/Button";
-import SearchBar from "../SearchBar/SearchBar";
+import Text from "@components/Text/Text";
+import Button from "@components/Button/Button";
+import SearchBar from "@components/SearchBar/SearchBar";
 
 const Container = styled.div`
 	position: relative;

@@ -2,7 +2,7 @@ import { useEffect, useState, ComponentPropsWithoutRef } from "react";
 import styled from "styled-components";
 
 import Color from "@constants/Color";
-import Text from "../Text/Text";
+import Text from "@components/Text/Text";
 import ColorV2 from "@constants/ColorV2";
 
 const Container = styled.div`

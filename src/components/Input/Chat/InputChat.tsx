@@ -7,12 +7,12 @@ import {
 import styled from "styled-components";
 import { Player } from "@lottiefiles/react-lottie-player";
 
-import AnimationLoading from "../../../assets/animations/loading-small.json";
+import AnimationLoading from "@animations/loading-small.json";
 
 import { Send, Plus, Mic, Trash2 } from "lucide-react";
 import Color from "@constants/ColorV2";
-import Button from "../../Button/ButtonImage";
-import Menu from "../../Menu/Menu";
+import Button from "@components/Button/ButtonImage";
+import Menu from "@components/Menu/Menu";
 
 const Container = styled.div<{
 	$loading?: boolean;

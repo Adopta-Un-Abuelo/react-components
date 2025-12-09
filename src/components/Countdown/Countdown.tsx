@@ -3,7 +3,7 @@ import styled from "styled-components";
 import moment from "moment";
 import "moment/locale/es";
 
-import Text from "../Text/Text";
+import Text from "@components/Text/Text";
 import { Clock } from "lucide-react";
 import Color from "@constants/Color";
 

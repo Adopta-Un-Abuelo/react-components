@@ -16,8 +16,8 @@ import {
 import { StripeElementChangeEvent, PaymentMethod } from "@stripe/stripe-js";
 
 import Color from "@constants/ColorV2";
-import Input from "../Input/Basic/Input";
-import Text from "../Text/Text";
+import Input from "@components/Input/Basic/Input";
+import Text from "@components/Text/Text";
 
 const InputContainer = styled.div<{
 	$error?: boolean;
