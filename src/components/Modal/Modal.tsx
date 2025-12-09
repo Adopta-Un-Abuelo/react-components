@@ -74,7 +74,7 @@ export interface ModalProps extends ModalPrimaryProps {
 	options?: Array<{
 		id: string;
 		title?: string;
-		Data?: JSX.Element;
+		Data?: React.ReactElement;
 		hidden?: boolean;
 	}>;
 	url?: string;

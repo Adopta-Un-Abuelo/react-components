@@ -3,7 +3,7 @@ import styled from "styled-components";
 import media from "styled-media-query";
 
 import Text from "../Text/Text";
-import Color from "../../constants/Color";
+import Color from "@constants/Color";
 
 const Container = styled.div<{ $selected: boolean, $onlyVisual: boolean, $design: 'design1' | 'design2' }>`
     display: flex;

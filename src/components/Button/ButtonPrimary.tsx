@@ -6,7 +6,7 @@ import AnimationCheck from "../../assets/animations/button-check.json";
 import AnimationLoading from "../../assets/animations/button-loading.json";
 
 import Text from "../Text/Text";
-import Color from "../../constants/Color";
+import Color from "@constants/Color";
 
 const ButtonPrimary = styled.button<{
 	$size?: "small" | "normal";

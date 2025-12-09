@@ -4,7 +4,7 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import Avatar from "../Avatar/Avatar";
 import AnimationCheck from "../../assets/animations/button-check.json";
 import Text from "../Text/Text";
-import { Color } from "../../constants";
+import Color from "@constants/Color";
 
 const Container = styled.button`
 	display: flex;

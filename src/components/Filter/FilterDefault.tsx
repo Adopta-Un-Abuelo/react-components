@@ -4,9 +4,9 @@ import media from "styled-media-query";
 
 import { ChevronDown } from "lucide-react";
 import { X } from "lucide-react";
-import { ColorV2 } from "../../constants";
+import ColorV2 from "@constants/ColorV2";
 import Modal from "../Modal/Modal";
-import Color from "../../constants/Color";
+import Color from "@constants/Color";
 import Text from "../Text/Text";
 import Button from "../Button/Button";
 import SearchBar from "../SearchBar/SearchBar";
@@ -30,8 +30,8 @@ const ButtonFilter = styled.button<{ $selected: boolean }>`
 		props.disabled
 			? "0px solid " + ColorV2.border.neutralSoft
 			: props.$selected
-				? "2px solid " + ColorV2.border.primary
-				: "1px solid " + ColorV2.border.neutralSoft};
+			? "2px solid " + ColorV2.border.primary
+			: "1px solid " + ColorV2.border.neutralSoft};
 	background-color: transparent;
 	cursor: ${(props) => (props.disabled ? "default" : "pointer")};
 	&:hover {
@@ -306,7 +306,11 @@ const Filter = (props: FilterDefaultProps) => {
 				</div>
 			</Modal>
 			{!isMobile && showFilterView && (
-				<FilterView style={props.menuStyle} ref={filterViewRef} $position={props.position}>
+				<FilterView
+					style={props.menuStyle}
+					ref={filterViewRef}
+					$position={props.position}
+				>
 					{!props.hideSearchBar && (
 						<SearchBar
 							defaultValue={searchText}

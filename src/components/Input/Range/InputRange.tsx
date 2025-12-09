@@ -6,7 +6,7 @@ import {
 } from "react";
 import styled, { keyframes } from "styled-components";
 import { Player } from "@lottiefiles/react-lottie-player";
-import Color from "../../../constants/ColorV2";
+import Color from "@constants/ColorV2";
 import Text from "../../Text/Text";
 import AnimationPop from "../../../assets/animations/pop.json";
 

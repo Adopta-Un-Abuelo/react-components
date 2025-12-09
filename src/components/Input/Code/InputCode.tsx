@@ -1,7 +1,7 @@
 import { useState, useRef, CSSProperties } from "react";
 import styled from "styled-components";
 
-import Color from "../../../constants/ColorV2";
+import Color from "@constants/ColorV2";
 import Text from "../../Text/Text";
 
 const Container = styled.div`

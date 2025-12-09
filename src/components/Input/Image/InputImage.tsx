@@ -20,10 +20,10 @@ import Webcam from "react-webcam";
 
 import { Crop as CropIcon, X, Camera, Image } from "lucide-react";
 import Button from "../../Button/Button";
-import Color from "../../../constants/ColorV2";
+import Color from "@constants/ColorV2";
 import Modal from "../../Modal/Modal";
 import Text from "../../Text/Text";
-import ColorV2 from "../../../constants/ColorV2";
+import ColorV2 from "@constants/ColorV2";
 
 const Container = styled.div``;
 const CropContainer = styled.div`

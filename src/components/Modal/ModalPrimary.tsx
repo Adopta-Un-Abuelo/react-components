@@ -13,7 +13,7 @@ import Button, { ButtonProps } from "../Button/Button";
 import Text from "../Text/Text";
 import { X } from "lucide-react";
 import media from "styled-media-query";
-import Color from "../../constants/ColorV2";
+import Color from "@constants/ColorV2";
 import Modal from "react-modal";
 
 const TitleView = styled.div`

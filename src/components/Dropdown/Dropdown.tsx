@@ -2,8 +2,8 @@ import { useState, useEffect, CSSProperties } from "react";
 import styled from "styled-components";
 
 import Text from "../Text/Text";
-import Color from "../../constants/Color";
-import ColorV2 from "../../constants/ColorV2";
+import Color from "@constants/Color";
+import ColorV2 from "@constants/ColorV2";
 import SearchBar from "../SearchBar/SearchBar";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 
@@ -247,5 +247,5 @@ export interface Props {
 export interface OptionProps {
 	id: string;
 	title?: string;
-	icon?: JSX.Element;
+	icon?: React.ReactElement;
 }

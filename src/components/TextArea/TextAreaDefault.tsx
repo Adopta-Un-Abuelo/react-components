@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithoutRef, useEffect, useState } from "react";
 import styled from "styled-components";
-import Color from "../../constants/Color";
+import Color from "@constants/Color";
 import { convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import Text from "../Text/Text";

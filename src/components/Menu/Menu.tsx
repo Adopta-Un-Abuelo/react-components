@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { MoreVertical } from 'lucide-react'; 
 import Button from '../Button/Button';
-import Color from '../../constants/Color';
+import Color from '@constants/Color';
 import Text from '../Text/Text';
 
 const Container = styled.div`
@@ -137,8 +137,8 @@ export interface MenuProps{
     id: string,
     style?: CSSProperties,
     menuStyle?: CSSProperties,
-    icon?: JSX.Element,
-    Icon?: JSX.Element,
+    icon?: React.ReactElement,
+    Icon?: React.ReactElement,
     position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left',
     children?: React.ReactNode,
     options?: Array<OptionsProps>,

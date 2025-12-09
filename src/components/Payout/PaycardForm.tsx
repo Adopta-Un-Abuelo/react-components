@@ -15,7 +15,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { StripeElementChangeEvent, PaymentMethod } from "@stripe/stripe-js";
 
-import Color from "../../constants/ColorV2";
+import Color from "@constants/ColorV2";
 import Input from "../Input/Basic/Input";
 import Text from "../Text/Text";
 

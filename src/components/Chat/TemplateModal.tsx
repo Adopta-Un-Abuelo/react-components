@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ModalComponent from "../Modal/Modal";
 import styled from "styled-components";
 import Text from "../Text/Text";
-import { ColorV2 } from "../../constants";
+import ColorV2 from "@constants/ColorV2";
 
 const Cell = styled.div<{ $isSelected?: boolean }>`
 	position: relative;
@@ -44,7 +44,7 @@ const TemplateModal: React.FC<TemplateModalProps> = (props) => {
 				const isSelected = selectedOption === template.id;
 				return (
 					<Cell
-						key={"template-"+index}
+						key={"template-" + index}
 						title={template.description}
 						$isSelected={isSelected}
 						onClick={() => setSelectedOption(template.id)}

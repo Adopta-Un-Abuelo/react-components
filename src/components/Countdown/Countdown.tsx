@@ -5,7 +5,7 @@ import "moment/locale/es";
 
 import Text from "../Text/Text";
 import { Clock } from "lucide-react";
-import Color from "../../constants/Color";
+import Color from "@constants/Color";
 
 const Container = styled.div`
 	display: flex;

@@ -9,7 +9,7 @@ import {
 	useImperativeHandle,
 } from "react";
 import styled, { keyframes } from "styled-components";
-import Color from "../../../constants/ColorV2";
+import Color from "@constants/ColorV2";
 import Text from "../../Text/Text";
 import InputStyled, { InputStyledProps } from "./InputStyled";
 

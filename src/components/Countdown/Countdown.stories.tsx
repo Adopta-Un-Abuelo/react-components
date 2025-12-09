@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import Countdown from "./Countdown";
-import Color from "../../constants/Color";
+import Color from "@constants/Color";
 import { expect,within } from "storybook/test";
 
 const meta: Meta<typeof Countdown> = {

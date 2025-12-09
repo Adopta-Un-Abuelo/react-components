@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ColorV2 } from "../../constants";
+import ColorV2 from "@constants/ColorV2";
 import { useEffect, useState } from "react";
 import { Check } from "lucide-react";
 

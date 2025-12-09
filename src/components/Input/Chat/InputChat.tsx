@@ -10,7 +10,7 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import AnimationLoading from "../../../assets/animations/loading-small.json";
 
 import { Send, Plus, Mic, Trash2 } from "lucide-react";
-import Color from "../../../constants/ColorV2";
+import Color from "@constants/ColorV2";
 import Button from "../../Button/ButtonImage";
 import Menu from "../../Menu/Menu";
 
