@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import moment from "moment";
 
 import Input, { InputProps } from "../Basic/Input";
-import DatePickerModal from "../../DatePicker/DatePickerModal";
+import DatePickerModal from "@components/DatePicker/DatePickerModal";
 
 const InputDate = (props: InputDateProps) => {
 	const isMobile = window.innerWidth <= 450;

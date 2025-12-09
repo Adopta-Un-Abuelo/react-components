@@ -2,8 +2,8 @@ import React, { useState, useRef, useCallback, useEffect } from "react";
 import debounce from "lodash.debounce";
 import Input, { InputProps } from "../Basic/Input";
 import styled from "styled-components";
-import { ColorV2 } from "../../../constants";
-import Text from "../../Text/Text";
+import ColorV2 from "@constants/ColorV2";
+import Text from "@components/Text/Text";
 
 const SearchView = styled.div`
 	position: relative;

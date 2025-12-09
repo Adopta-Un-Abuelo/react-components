@@ -1,7 +1,7 @@
 import React, { ComponentPropsWithoutRef } from "react";
 import styled from "styled-components";
 
-import Color from "../../constants/Color";
+import Color from "@constants/Color";
 
 const CallToActionStyled = styled.button<{
 	$loading?: boolean;

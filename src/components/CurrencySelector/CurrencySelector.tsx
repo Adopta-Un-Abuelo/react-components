@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Text from "../Text/Text";
+import Text from "@components/Text/Text";
 import { useEffect, useState } from "react";
-import { ColorV2 } from "../../constants";
-import ModalComponent from "../Modal/Modal";
+import ColorV2 from "@constants/ColorV2";
+import ModalComponent from "@components/Modal/Modal";
 import { Check } from "lucide-react";
 import media from "styled-media-query";
 

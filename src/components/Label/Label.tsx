@@ -5,9 +5,8 @@ import {
 	ReactElement,
 } from "react";
 import styled from "styled-components";
-import { Color } from "../../constants";
-import Text from "../Text/Text";
-import { Icon } from "lucide-react";
+import Color from "@constants/Color";
+import Text from "@components/Text/Text";
 
 const LabelStyled = styled.div`
 	display: flex;

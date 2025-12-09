@@ -2,8 +2,8 @@ import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 import Input, { InputProps } from "../Basic/Input";
 import styled, { keyframes } from "styled-components";
-import Text from "../../Text/Text";
-import { ColorV2 } from "../../../constants";
+import Text from "@components/Text/Text";
+import ColorV2 from "@constants/ColorV2";
 
 const fadeInAnimation = keyframes`
 	from {

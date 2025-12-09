@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { CSSProperties, useEffect, useState } from "react";
-import InputLocation, { LocationProps } from "../Input/Location/InputLocation";
-import Input from "../Input/Basic/Input";
+import InputLocation, { LocationProps } from "@components/Input/Location/InputLocation";
+import Input from "@components/Input/Basic/Input";
 
 const Container = styled.div`
 	display: flex;

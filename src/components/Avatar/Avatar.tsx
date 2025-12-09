@@ -1,8 +1,8 @@
 import { ComponentPropsWithoutRef, useRef, useState } from "react";
 import styled from "styled-components";
 
-import Color from "../../constants/Color";
-import Modal from "../Modal/Modal";
+import Color from "@constants/Color"
+import Modal from "@components/Modal/Modal";
 
 const AvatarContainer = styled.div<{
 	$editable?: boolean;

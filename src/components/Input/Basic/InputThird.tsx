@@ -9,8 +9,8 @@ import {
 	useImperativeHandle,
 } from "react";
 import styled, { keyframes } from "styled-components";
-import Color from "../../../constants/ColorV2";
-import Text from "../../Text/Text";
+import Color from "@constants/ColorV2";
+import Text from "@components/Text/Text";
 import InputStyled, { InputStyledProps } from "./InputStyled";
 
 const fadeInAnimation = keyframes`

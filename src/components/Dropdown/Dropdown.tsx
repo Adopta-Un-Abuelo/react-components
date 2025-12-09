@@ -1,10 +1,10 @@
 import { useState, useEffect, CSSProperties } from "react";
 import styled from "styled-components";
 
-import Text from "../Text/Text";
-import Color from "../../constants/Color";
-import ColorV2 from "../../constants/ColorV2";
-import SearchBar from "../SearchBar/SearchBar";
+import Text from "@components/Text/Text";
+import Color from "@constants/Color";
+import ColorV2 from "@constants/ColorV2";
+import SearchBar from "@components/SearchBar/SearchBar";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 
 const DropdownContainer = styled.div`
@@ -247,5 +247,5 @@ export interface Props {
 export interface OptionProps {
 	id: string;
 	title?: string;
-	icon?: JSX.Element;
+	icon?: React.ReactElement;
 }

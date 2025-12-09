@@ -2,7 +2,7 @@ import "./ChatBubble.css";
 import "./Audio.css";
 import styled from "styled-components";
 import moment from "moment";
-import { ColorV2 } from "../../constants";
+import ColorV2 from "@constants/ColorV2";
 import * as icons from "lucide-react";
 import { useEffect, useState } from "react";
 

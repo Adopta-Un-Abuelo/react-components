@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Text from "../../Text/Text";
-import { ColorV2 } from "../../../constants";
+import Text from "@components/Text/Text";
+import ColorV2 from "@constants/ColorV2";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import media from "styled-media-query";
 import * as icons from "lucide-react";

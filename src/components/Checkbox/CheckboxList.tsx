@@ -77,7 +77,7 @@ export interface Props {
 		id: string;
 		label?: string;
 		sublabel?: string;
-		Element?: JSX.Element;
+		Element?: React.ReactElement;
 		error?: boolean;
 	}>;
 	selectedOptions?: Array<{

@@ -1,6 +1,6 @@
 import { forwardRef, Ref } from "react";
 import styled from "styled-components";
-import Text from "../Text/Text";
+import Text from "@components/Text/Text";
 import ModalPrimary, { ModalPrimaryProps, ModalRef } from "./ModalPrimary";
 
 const Row = styled.div`
@@ -74,7 +74,7 @@ export interface ModalProps extends ModalPrimaryProps {
 	options?: Array<{
 		id: string;
 		title?: string;
-		Data?: JSX.Element;
+		Data?: React.ReactElement;
 		hidden?: boolean;
 	}>;
 	url?: string;

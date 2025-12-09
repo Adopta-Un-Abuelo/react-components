@@ -1,10 +1,10 @@
 import React, { useState, useEffect, ComponentPropsWithoutRef } from "react";
 import styled from "styled-components";
 import { Player } from "@lottiefiles/react-lottie-player";
-import Avatar from "../Avatar/Avatar";
-import AnimationCheck from "../../assets/animations/button-check.json";
-import Text from "../Text/Text";
-import { Color } from "../../constants";
+import Avatar from "@components/Avatar/Avatar";
+import AnimationCheck from "@animations/button-check.json";
+import Text from "@components/Text/Text";
+import Color from "@constants/Color";
 
 const Container = styled.button`
 	display: flex;

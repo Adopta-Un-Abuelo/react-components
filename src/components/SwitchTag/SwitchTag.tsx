@@ -1,7 +1,7 @@
-import React, { CSSProperties, ReactElement, useState } from "react";
+import React, { CSSProperties, useState } from "react";
 import styled from "styled-components";
 
-import Color from "../../constants/ColorV2";
+import Color from "@constants/ColorV2";
 
 const Container = styled.div`
 	display: flex;
@@ -47,7 +47,7 @@ const SwitchTag = (props: Props) => {
 								: Color.border.neutralMedium,
 							height: 20,
 							width: 20,
-							...item.icon.props,
+							...(item.icon.props as any),
 						})}
 					</Cell>
 				);
@@ -60,7 +60,7 @@ export interface Props {
 	style?: CSSProperties;
 	options: Array<{
 		id: string;
-		icon: ReactElement;
+		icon: React.ReactElement;
 	}>;
 	onChange?: (option: { id: string; icon: any }) => void;
 }

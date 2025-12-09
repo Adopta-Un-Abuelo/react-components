@@ -4,12 +4,12 @@ import {
 	useEffect,
 	useState,
 } from "react";
-import styled, { css, CSSProperties, keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 import { Check, X } from "lucide-react";
-import Text from "../Text/Text";
-import { Color } from "../../constants";
-import Button from "../Button/Button";
+import Text from "@components/Text/Text";
+import Color from "@constants/Color";
+import Button from "@components/Button/Button";
 
 const Container = styled.div<{
 	$text?: string;
@@ -80,7 +80,7 @@ const FeedBack = ({
 	text,
 	isVisible = false,
 	...props
-}: Props) => {
+}: FeedBackProps) => {
 	const [show, setShow] = useState(false);
 	const [render, setRender] = useState(false);
 
@@ -150,8 +150,7 @@ const FeedBack = ({
 	) : null;
 };
 export default FeedBack;
-export interface Props extends ComponentPropsWithoutRef<"div"> {
-	style?: CSSProperties;
+export interface FeedBackProps extends ComponentPropsWithoutRef<"div"> {
 	isVisible: boolean;
 	type: "success" | "error" | "custom";
 	icon?: ReactNode;
