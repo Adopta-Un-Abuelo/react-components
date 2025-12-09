@@ -16,9 +16,6 @@
 	],
 	"types": "dist/index.d.ts",
 	"license": "MIT",
-	"peerDependencies": {
-		"react": "18.3.1"
-	},
 	"scripts": {
 		"build": "rollup -c",
 		"release": "auto shipit --base-branch=main",
