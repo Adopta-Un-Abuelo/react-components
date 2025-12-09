@@ -1,3 +1,18 @@
+# v0.3.133 (Tue Dec 09 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'test' (guillermo.angeles@adoptaunabuelo.com)
+- feat: rollup update (guillermo.angeles@adoptaunabuelo.com)
+- feat: relative path for components and constants (guillermo.angeles@adoptaunabuelo.com)
+- feat: update to react 19 & relative path (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.132 (Tue Dec 09 2025)
 
 #### ⚠️ Pushed to `main`
