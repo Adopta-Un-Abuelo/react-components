@@ -20,10 +20,14 @@
 		"build": "rollup -c",
 		"release": "auto shipit --base-branch=main",
 		"prepare": "npm run build",
-		"clean": "rm -rf package-lock.json && rm -rf node_modules && npm install",
+		"clean": "rm -rf package-lock.json && rm -rf node_modules && rm -rf dist && npm cache clean --force && npm install",
 		"chromatic": "npx chromatic --project-token=chpt_0dcfdd1e76a01ba",
 		"storybook": "BROWSER='google chrome' storybook dev -p 6006",
 		"build-storybook": "storybook build"
+	},
+	"peerDependencies": {
+		"react": "19.2.1",
+		"react-dom": "19.2.1"
 	},
 	"dependencies": {
 		"@emotion/is-prop-valid": "^1.4.0",
@@ -31,6 +35,10 @@
 		"@react-google-maps/api": "^2.20.7",
 		"@stripe/react-stripe-js": "^5.4.1",
 		"@stripe/stripe-js": "^8.5.3",
+		"@tiptap/extension-text-align": "^3.13.0",
+		"@tiptap/extension-text-style": "^3.13.0",
+		"@tiptap/react": "^3.13.0",
+		"@tiptap/starter-kit": "^3.13.0",
 		"auto": "^11.3.6",
 		"clsx": "^2.1.1",
 		"compressorjs": "^1.2.1",
@@ -44,13 +52,9 @@
 		"lucide-react": "^0.556.0",
 		"moment": "^2.30.1",
 		"next": "16.0.8",
-		"react": "19.2.1",
 		"react-dates": "^21.8.0",
-		"react-dom": "19.2.1",
 		"react-image-crop": "^11.0.10",
-		"react-mobile-datepicker": "^4.0.2",
 		"react-modal": "^3.16.3",
-		"react-quill": "^2.0.0",
 		"react-webcam": "^7.2.0",
 		"styled-components": "^6.1.19",
 		"styled-media-query": "^2.1.2"

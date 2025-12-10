@@ -7,7 +7,6 @@ export { default as Input } from "./Input/Basic/Input";
 export { default as InputBirthday } from "./Input/Birthday/InputBirthday";
 export { default as InputChat } from "./Input/Chat/InputChat";
 export { default as InputCode } from "./Input/Code/InputCode";
-export { default as InputDate } from "./Input/Date/InputDate";
 export { default as InputDateRange } from "./Input/DateRange/InputDateRange";
 export { default as InputImage } from "./Input/Image/InputImage";
 export { default as InputLocation } from "./Input/Location/InputLocation";
