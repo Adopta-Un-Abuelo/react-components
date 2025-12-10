@@ -26,6 +26,20 @@
 
 ---
 
+# v0.3.134 (Wed Dec 10 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: update git action (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'test' (guillermo.angeles@adoptaunabuelo.com)
+- fix: updates & text area package (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.133 (Tue Dec 09 2025)
 
 #### ⚠️ Pushed to `main`
