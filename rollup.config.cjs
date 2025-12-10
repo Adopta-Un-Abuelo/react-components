@@ -34,11 +34,12 @@ module.exports = [
 			json(),
 			svgr(),
 		],
+		external: ["react", "react-dom"],
 	},
 	{
 		input: "dist/esm/index.d.ts",
 		output: [{ file: "dist/index.d.ts", format: "esm" }],
 		plugins: [dts()],
-		external: [/\.css$/],
+		external: [/\.css$/, "react", "react-dom"],
 	},
 ];
