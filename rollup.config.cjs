@@ -34,7 +34,13 @@ module.exports = [
 			json(),
 			svgr(),
 		],
-		external: ["react", "react-dom"],
+		external: [
+			"react",
+			"react-dom",
+			"react/jsx-runtime",
+			"react-refresh",
+			"react-refresh/runtime",
+		],
 	},
 	{
 		input: "dist/esm/index.d.ts",
