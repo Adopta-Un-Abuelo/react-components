@@ -1,10 +1,6 @@
 {
 	"name": "@adoptaunabuelo/react-components",
-<<<<<<< HEAD
 	"version": "0.3.135",
-=======
-	"version": "0.3.134",
->>>>>>> origin/main
 	"homepage": "https://github.com/Adopta-Un-Abuelo/react-components",
 	"author": "Guillermo Angeles <guilleangeles94@gmail.com>",
 	"private": false,
