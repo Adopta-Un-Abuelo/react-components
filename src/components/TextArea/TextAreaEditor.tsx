@@ -7,7 +7,7 @@ import TextAlign from "@tiptap/extension-text-align";
 import StarterKit from "@tiptap/starter-kit";
 
 import "./editor.css";
-import ColorV2 from "@constants/ColorV2";
+import ColorV2 from "../../constants/ColorV2";
 import {
 	AlignCenter,
 	AlignLeft,
@@ -19,7 +19,7 @@ import {
 	Pilcrow,
 	Underline,
 } from "lucide-react";
-import Select from "@components/Select/Select";
+import Select from "../../components/Select/Select";
 
 const Container = styled.div`
 	position: relative;

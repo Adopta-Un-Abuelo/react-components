@@ -4,7 +4,7 @@ import { within, expect } from "storybook/test";
 import { action } from "storybook/actions";
 
 import { Goal, Flag, FlagOff, Flame } from "lucide-react";
-import Color from "@constants/Color";
+import Color from "../../constants/Color";
 
 const meta: Meta<typeof Label> = {
 	title: "Components/Dropdown",

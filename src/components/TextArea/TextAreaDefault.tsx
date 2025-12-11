@@ -1,9 +1,9 @@
 import React, { ComponentPropsWithoutRef, useEffect, useState } from "react";
 import styled from "styled-components";
-import Color from "@constants/Color";
+import Color from "../../constants/Color";
 import { convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-import Text from "@components/Text/Text";
+import Text from "../../components/Text/Text";
 
 const Container = styled.div``;
 const TextAreaView = styled.textarea<{ $design?: "primary" | "secondary" }>`

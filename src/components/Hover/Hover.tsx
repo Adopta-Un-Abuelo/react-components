@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from "react";
 import styled from "styled-components";
-import ColorV2 from "@constants/ColorV2";
+import ColorV2 from "../../constants/ColorV2";
 
 const Container = styled.div`
 	position: relative;

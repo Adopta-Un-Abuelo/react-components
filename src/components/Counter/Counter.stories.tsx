@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import Counter from "./Counter";
-import Color from "@constants/Color";
+import Color from "../../constants/Color";
 
 const meta: Meta<typeof Counter> = {
   title: "Components/Counter",

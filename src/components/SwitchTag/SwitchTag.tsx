@@ -1,7 +1,7 @@
 import React, { CSSProperties, useState } from "react";
 import styled from "styled-components";
 
-import Color from "@constants/ColorV2";
+import Color from "../../constants/ColorV2";
 
 const Container = styled.div`
 	display: flex;

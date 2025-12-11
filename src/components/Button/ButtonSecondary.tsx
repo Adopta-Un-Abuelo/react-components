@@ -2,11 +2,11 @@ import React, { ComponentPropsWithoutRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Player } from "@lottiefiles/react-lottie-player";
 
-import AnimationCheck from "@animations/button-check.json";
-import AnimationLoading from "@animations/button-loading.json";
+import AnimationCheck from "../../assets/animations/button-check.json";
+import AnimationLoading from "../../assets/animations/button-loading.json";
 
-import Text from "@components/Text/Text";
-import Color from "@constants/Color";
+import Text from "../../components/Text/Text";
+import Color from "../../constants/Color";
 
 const ButtonSecondary = styled.button<{
 	$size?: "small" | "normal";

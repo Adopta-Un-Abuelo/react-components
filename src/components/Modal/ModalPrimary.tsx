@@ -9,11 +9,11 @@ import {
 	ReactElement,
 } from "react";
 import styled from "styled-components";
-import Button, { ButtonProps } from "@components/Button/Button";
-import Text from "@components/Text/Text";
+import Button, { ButtonProps } from "../../components/Button/Button";
+import Text from "../../components/Text/Text";
 import { X } from "lucide-react";
 import media from "styled-media-query";
-import Color from "@constants/ColorV2";
+import Color from "../../constants/ColorV2";
 import Modal from "react-modal";
 
 const TitleView = styled.div`

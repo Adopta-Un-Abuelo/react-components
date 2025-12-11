@@ -5,8 +5,8 @@ import {
 	ReactElement,
 } from "react";
 import styled from "styled-components";
-import Color from "@constants/Color";
-import Text from "@components/Text/Text";
+import Color from "../../constants/Color";
+import Text from "../../components/Text/Text";
 
 const LabelStyled = styled.div`
 	display: flex;

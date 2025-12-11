@@ -7,9 +7,9 @@ import {
 import styled, { css, keyframes } from "styled-components";
 
 import { Check, X } from "lucide-react";
-import Text from "@components/Text/Text";
-import Color from "@constants/Color";
-import Button from "@components/Button/Button";
+import Text from "../../components/Text/Text";
+import Color from "../../constants/Color";
+import Button from "../../components/Button/Button";
 
 const Container = styled.div<{
 	$text?: string;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ModalComponent from "@components/Modal/Modal";
+import ModalComponent from "../../components/Modal/Modal";
 import styled from "styled-components";
-import Text from "@components/Text/Text";
-import ColorV2 from "@constants/ColorV2";
+import Text from "../../components/Text/Text";
+import ColorV2 from "../../constants/ColorV2";
 
 const Cell = styled.div<{ $isSelected?: boolean }>`
 	position: relative;

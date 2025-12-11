@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef, forwardRef } from "react";
 import styled from "styled-components";
-import Color from "@constants/ColorV2";
+import Color from "../../../constants/ColorV2";
 
 const Input = styled.input`
 	font-family: "Poppins";

@@ -2,9 +2,9 @@ import { useEffect, useState, forwardRef, Ref, useImperativeHandle, CSSPropertie
 import styled from 'styled-components';
 
 import { MoreVertical } from 'lucide-react'; 
-import Button from '@components/Button/Button';
-import Color from '@constants/Color';
-import Text from '@components/Text/Text';
+import Button from '../../components/Button/Button';
+import Color from '../../constants/Color';
+import Text from '../../components/Text/Text';
 
 const Container = styled.div`
     position: relative;

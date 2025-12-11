@@ -6,8 +6,8 @@ import {
 } from "react";
 import styled from "styled-components";
 
-import Text from "@components/Text/Text";
-import Color from "@constants/Color";
+import Text from "../../components/Text/Text";
+import Color from "../../constants/Color";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 const Container = styled.div`

@@ -6,9 +6,9 @@ import {
 } from "react";
 import styled, { keyframes } from "styled-components";
 import { Player } from "@lottiefiles/react-lottie-player";
-import Color from "@constants/ColorV2";
-import Text from "@components/Text/Text";
-import AnimationPop from "@animations/pop.json";
+import Color from "../../../constants/ColorV2";
+import Text from "../../../components/Text/Text";
+import AnimationPop from "../../../assets/animations/pop.json";
 
 const Container = styled.div`
 	display: flex;

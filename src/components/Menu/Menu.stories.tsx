@@ -3,7 +3,7 @@ import { userEvent, within, expect } from "storybook/test";
 import { action } from "storybook/actions";
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { Package, Palette, Option } from "lucide-react";
-import Color from "@constants/Color";
+import Color from "../../constants/Color";
 
 const meta: Meta<typeof Menu> = {
 	title: "Components/Menu",

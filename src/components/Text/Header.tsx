@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef } from "react";
 import styled from "styled-components";
 import media from "styled-media-query";
 
-import Color from "@constants/ColorV2";
+import Color from "../../constants/ColorV2";
 
 const D1 = styled.h1`
 	padding: 0px;

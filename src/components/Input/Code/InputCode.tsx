@@ -1,8 +1,8 @@
 import { useState, useRef, CSSProperties } from "react";
 import styled from "styled-components";
 
-import Color from "@constants/ColorV2";
-import Text from "@components/Text/Text";
+import Color from "../../../constants/ColorV2";
+import Text from "../../../components/Text/Text";
 
 const Container = styled.div`
 	width: fit-content;

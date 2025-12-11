@@ -2,8 +2,8 @@ import { forwardRef, Ref, useEffect, useImperativeHandle, useState } from "react
 import Fuse from "fuse.js";
 
 import FilterDefault, { FilterDefaultProps } from "./FilterDefault";
-import Checkbox from "@components/Checkbox/CheckboxList";
-import Button from "@components/Button/Button";
+import Checkbox from "../../components/Checkbox/CheckboxList";
+import Button from "../../components/Button/Button";
 
 const FilterCheckbox = forwardRef(
 	({

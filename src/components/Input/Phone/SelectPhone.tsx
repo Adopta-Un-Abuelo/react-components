@@ -1,8 +1,8 @@
 import { useState, useEffect, ComponentPropsWithoutRef } from "react";
 import styled from "styled-components";
 import * as Flags from "country-flag-icons/react/3x2";
-import Text from "@components/Text/Text";
-import Color from "@constants/Color";
+import Text from "../../../components/Text/Text";
+import Color from "../../../constants/Color";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 const Container = styled.div``;

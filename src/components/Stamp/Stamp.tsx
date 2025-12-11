@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Text from "@components/Text/Text";
+import Text from "../../components/Text/Text";
 import { CSSProperties } from "react";
 import media from "styled-media-query";
 

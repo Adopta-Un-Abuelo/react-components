@@ -7,7 +7,7 @@ import {
 	useImperativeHandle,
 } from "react";
 
-import InputRange from "@components/Input/Range/InputRange";
+import InputRange from "../../components/Input/Range/InputRange";
 import FilterDefault from "./FilterDefault";
 
 const Filter = forwardRef(

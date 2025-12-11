@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from "react";
 import styled from "styled-components";
 import { Search } from "lucide-react";
-import Color from "@constants/Color";
+import Color from "../../constants/Color";
 
 const InputView = styled.div`
 	display: flex;

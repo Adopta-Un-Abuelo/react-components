@@ -1,11 +1,5 @@
 {
 	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"@constants/*": ["src/constants/*"],
-			"@components/*": ["src/components/*"],
-			"@animations/*": ["src/assets/animations/*"],
-		},
 		"target": "es6",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
