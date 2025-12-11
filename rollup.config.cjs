@@ -6,7 +6,6 @@ const dts = require("rollup-plugin-dts").default;
 const { terser } = require("rollup-plugin-terser");
 const peerDepsExternal = require("rollup-plugin-peer-deps-external");
 const json = require("@rollup/plugin-json");
-const replace = require("@rollup/plugin-replace");
 const svgr = require("@svgr/rollup");
 const packageJson = require("./package.json");
 
@@ -34,13 +33,8 @@ module.exports = [
 			json(),
 			svgr(),
 		],
-		external: [
-			"react",
-			"react-dom",
-			"react/jsx-runtime",
-			"react-refresh",
-			"react-refresh/runtime",
-		],
+		external: (id) =>
+			!id.startsWith(".") && !id.startsWith("/") && !id.includes("src"),
 	},
 	{
 		input: "dist/esm/index.d.ts",
