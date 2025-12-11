@@ -1,3 +1,15 @@
+# v0.3.138 (Thu Dec 11 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: path errors solved (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.137 (Thu Dec 11 2025)
 
 #### ⚠️ Pushed to `main`
