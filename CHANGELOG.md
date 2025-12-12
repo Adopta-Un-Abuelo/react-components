@@ -1,3 +1,15 @@
+# v0.3.141 (Fri Dec 12 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: textarea onChange error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.140 (Fri Dec 12 2025)
 
 #### ⚠️ Pushed to `main`
