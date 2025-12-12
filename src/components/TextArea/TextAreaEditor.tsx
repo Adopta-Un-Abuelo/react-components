@@ -1,10 +1,11 @@
-import { ComponentPropsWithoutRef, ReactNode } from "react";
+import { ReactNode } from "react";
 import styled from "styled-components";
 import { TextStyleKit } from "@tiptap/extension-text-style";
 import type { Editor } from "@tiptap/react";
 import { EditorContent, useEditor, useEditorState } from "@tiptap/react";
 import TextAlign from "@tiptap/extension-text-align";
 import StarterKit from "@tiptap/starter-kit";
+import { Placeholder } from "@tiptap/extensions";
 
 import "./editor.css";
 import ColorV2 from "../../constants/ColorV2";
@@ -65,14 +66,6 @@ const Button = styled.button`
 		background-color: ${ColorV2.surface.neutralSoft};
 	}
 `;
-
-const extensions = [
-	TextStyleKit,
-	StarterKit,
-	TextAlign.configure({
-		types: ["heading", "paragraph"],
-	}),
-];
 
 function MenuBar({ editor }: { editor: Editor }) {
 	// Read the current editor's state, and re-render the component when it changes
@@ -228,10 +221,19 @@ function MenuBar({ editor }: { editor: Editor }) {
 
 const TextAreaEditor = (props: TextAreaEditorProps) => {
 	const editor = useEditor({
-		extensions: extensions,
+		extensions: [
+			TextStyleKit,
+			StarterKit,
+			TextAlign.configure({
+				types: ["heading", "paragraph"],
+			}),
+			Placeholder.configure({
+				placeholder: props.placeholder,
+			}),
+		],
 		content: props.value || "",
 		onUpdate: ({ editor }: { editor: Editor }) => {
-			//props.onChange && props.onChange(editor.getHTML());
+			props.onChange && props.onChange(editor.getHTML());
 		},
 	});
 
@@ -251,8 +253,8 @@ const TextAreaEditor = (props: TextAreaEditorProps) => {
 };
 
 export default TextAreaEditor;
-export interface TextAreaEditorProps
-	extends ComponentPropsWithoutRef<"textarea"> {
+export interface TextAreaEditorProps {
+	style?: React.CSSProperties;
 	value?: string;
 	defaultValue?: string;
 	placeholder?: string;
@@ -260,4 +262,5 @@ export interface TextAreaEditorProps
 	maxLength?: number;
 	design?: "primary" | "secondary";
 	ToolbarButton?: ReactNode;
+	onChange?: (value: string) => void;
 }
