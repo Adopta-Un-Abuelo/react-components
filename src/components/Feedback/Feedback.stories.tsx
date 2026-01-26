@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import { useState } from "react";
 import { userEvent, within, expect } from "storybook/test";
 import { action } from "storybook/actions";
@@ -46,7 +47,8 @@ const meta: Meta<typeof Feedback> = {
 export default meta;
 type Story = StoryObj<typeof Feedback>;
 
-export const Success: Story = (args: any) => {
+export const Success: Story = {
+	render: (args) => {
 	const [isVisible, setIsVisible] = useState(false);
 	return (
 		<div>
@@ -63,49 +65,62 @@ export const Success: Story = (args: any) => {
 			/>
 		</div>
 	);
-};
-Success.play = async ({ canvasElement, step }: any) => {
-	const canvas = within(canvasElement);
-	await step("Click button to show Feedback modal", async () => {
-		const button = await canvas.getByRole("button");
-		await userEvent.click(button);
-		const feedback = await canvas.findByRole("feedback");
-		expect(feedback).toBeInTheDocument();
-	});
-};
-
-export const Error: Story = (args: any) => {
-	const [isVisible, setIsVisible] = useState(false);
-	return (
-		<div>
-			<button role="button" onClick={() => setIsVisible(true)}>
-				Show feedback modal
-			</button>
-			<Feedback
-				{...args}
-				isVisible={isVisible}
-				onClose={() => {
-					setIsVisible(false);
-					action("onClose")();
-				}}
-			/>
-		</div>
-	);
-};
-Error.args = {
-	type: "error",
-};
-Error.play = async ({ canvasElement, step }: any) => {
-	const canvas = within(canvasElement);
-	await step("Click button to show Feedback modal", async () => {
-		const button = await canvas.getByRole("button");
-		await userEvent.click(button);
-		const feedback = await canvas.findByRole("feedback");
-		expect(feedback).toBeInTheDocument();
-	});
+	},
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Feedback>) => {
+		const canvas = within(canvasElement);
+		await step("Click button to show Feedback modal", async () => {
+			const button = await canvas.getByRole("button");
+			await userEvent.click(button);
+			const feedback = await canvas.findByRole("feedback");
+			expect(feedback).toBeInTheDocument();
+		});
+	},
 };
 
-export const Custom: Story = (args: any) => {
+export const Error: Story = {
+	args: {
+		type: "error",
+	},
+	render: (args) => {
+		const [isVisible, setIsVisible] = useState(false);
+		return (
+			<div>
+				<button role="button" onClick={() => setIsVisible(true)}>
+					Show feedback modal
+				</button>
+				<Feedback
+					{...args}
+					isVisible={isVisible}
+					onClose={() => {
+						setIsVisible(false);
+						action("onClose")();
+					}}
+				/>
+			</div>
+		);
+	},
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Feedback>) => {
+		const canvas = within(canvasElement);
+		await step("Click button to show Feedback modal", async () => {
+			const button = await canvas.getByRole("button");
+			await userEvent.click(button);
+			const feedback = await canvas.findByRole("feedback");
+			expect(feedback).toBeInTheDocument();
+		});
+	},
+};
+
+export const Custom: Story = {
+	args: {
+		type: "custom",
+		closeAfter: 20000,
+		icon: <Building color={"rgba(255, 255, 255, 0.56)"}/>,
+		style: {
+			borderRadius: 12,
+			background: "linear-gradient(72deg, #5963F6 0%, #CD59F6 100%)"
+		}
+	},
+	render: (args) => {
 	const [isVisible, setIsVisible] = useState(false);
 	return (
 		<div>
@@ -123,13 +138,5 @@ export const Custom: Story = (args: any) => {
 			/>
 		</div>
 	);
+	},
 };
-Custom.args = {
-	type: "custom",
-	closeAfter: 20000,
-	icon: <Building color={"rgba(255, 255, 255, 0.56)"}/>,
-	style: {
-		borderRadius: 12,
-		background: "linear-gradient(72deg, #5963F6 0%, #CD59F6 100%)"
-	}
-}

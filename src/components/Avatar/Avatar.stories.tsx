@@ -1,5 +1,6 @@
 import Avatar from "./Avatar";
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import { within, expect } from "storybook/test";
 
 const meta: Meta<typeof Avatar> = {
@@ -18,7 +19,7 @@ export const Default: Story = {
 	args: {
 		name: "Test"
 	},
-	play: async ({ canvasElement }: any) => {
+	play: async ({ canvasElement }: PlayFunctionContext<typeof Avatar>) => {
 		const canvas = within(canvasElement);
 		const component = await canvas.getByRole("avatar");
 		await expect(component).toBeInTheDocument();
@@ -29,7 +30,7 @@ export const WithIcon: Story = {
 	args: {
 		icon: "https://storybook.js.org/images/placeholders/350x150.png",
 	},
-	play: async ({ canvasElement }: any) => {
+	play: async ({ canvasElement }: PlayFunctionContext<typeof Avatar>) => {
 		const canvas = within(canvasElement);
 		const component = await canvas.getByRole("avatar");
 		await expect(component).toBeInTheDocument();
@@ -41,7 +42,7 @@ export const Clickable: Story = {
 		icon: "https://storybook.js.org/images/placeholders/350x150.png",
 		clickable: true,
 	},
-	play: async ({ canvasElement }: any) => {
+	play: async ({ canvasElement }: PlayFunctionContext<typeof Avatar>) => {
 		const canvas = within(canvasElement);
 		const component = await canvas.getByRole("avatar");
 		await expect(component).toBeInTheDocument();
@@ -53,7 +54,7 @@ export const Editable: Story = {
 		name: "Test",
 		editable: true,
 	},
-	play: async ({ canvasElement }: any) => {
+	play: async ({ canvasElement }: PlayFunctionContext<typeof Avatar>) => {
 		const canvas = within(canvasElement);
 		const component = await canvas.getByRole("avatar");
 		await expect(component).toBeInTheDocument();

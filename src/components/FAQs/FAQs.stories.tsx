@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import FAQs from "./FAQs";
 import { userEvent, within } from "storybook/test";
 import { action } from "storybook/actions";
@@ -40,7 +41,7 @@ export default meta;
 type Story = StoryObj<typeof FAQs>;
 
 export const Default: Story = {
-  play: async ({ canvasElement, step }: any) => {
+  play: async ({ canvasElement, step }: PlayFunctionContext<typeof FAQs>) => {
     const canvas = within(canvasElement);
     const container = canvas.getByRole("container");
     const cell = canvas.getByRole("option3");

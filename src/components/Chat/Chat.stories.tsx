@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import Chat from "./Chat";
 import { userEvent, within, expect, fn } from "storybook/test";
 
@@ -68,7 +69,7 @@ const meta: Meta<typeof Chat> = {
 		],
 		onSend: fn(),
 	},
-	play: async ({ canvasElement, step, args }: any) => {
+	play: async ({ canvasElement, step, args }: PlayFunctionContext<typeof Chat>) => {
 		const canvas = within(canvasElement);
 		const container = await canvas.getByRole("container");
 		await step("render", async () => {

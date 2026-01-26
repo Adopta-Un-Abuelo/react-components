@@ -1,6 +1,7 @@
 import RadioButton from "./RadioButtonList";
 import { within, userEvent, expect } from "storybook/test";
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { PlayFunctionContext } from "storybook/internal/csf";
 
 import { action } from "storybook/actions";
 
@@ -40,7 +41,7 @@ export const SingleSelection: Story = {
   args: {
     type: "single",
   },
-  play: async ({ canvasElement, step }: any) => {
+  play: async ({ canvasElement, step }: PlayFunctionContext<typeof RadioButton>) => {
     const canvas = within(canvasElement);
     const radiobuttonlist = await canvas.getByRole("radiobuttonlist");
     await step("render list", async () => {
@@ -61,7 +62,7 @@ export const MultipleSelection: Story = {
   args: {
     type: "multiple",
   },
-  play: async ({ canvasElement, step }: any) => {
+  play: async ({ canvasElement, step }: PlayFunctionContext<typeof RadioButton>) => {
     const canvas = within(canvasElement);
     const radiobuttonlist = await canvas.getByRole("radiobuttonlist");
     await step("render list", async () => {

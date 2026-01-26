@@ -22,7 +22,7 @@ const CheckboxList = (props: Props) => {
 		};
 	}, [props.selectedOptions]);
 
-	const onClick = (item: any) => {
+	const onClick = (item: CheckboxOption) => {
 		const result = selection.findIndex((obj) => item.id === obj.id);
 		let tempArray = selection;
 		if (props.type === "single") tempArray = [item];
@@ -70,23 +70,26 @@ const CheckboxList = (props: Props) => {
 
 export default CheckboxList;
 
+export type CheckboxOption = {
+	id: string;
+	label?: string;
+	sublabel?: string;
+	Element?: React.ReactElement;
+	error?: boolean;
+	[key: string]: string | React.ReactElement | boolean | undefined;
+};
+
 export interface Props {
 	style?: CSSProperties;
 	elementStyle?: CSSProperties;
-	options: Array<{
-		id: string;
-		label?: string;
-		sublabel?: string;
-		Element?: React.ReactElement;
-		error?: boolean;
-	}>;
+	options: Array<CheckboxOption>;
 	selectedOptions?: Array<{
 		id: string;
 	}>;
 	height?: number;
 	width?: number;
 	type: "single" | "multiple";
-	onChange?: (result: Array<{ id: string; [key: string]: any }>) => void;
+	onChange?: (result: Array<CheckboxOption>) => void;
 	position?: "left" | "right";
 	avatarEnabled?: boolean;
 	shape?: "circle" | "square";

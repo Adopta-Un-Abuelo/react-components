@@ -1,26 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent, FocusEvent } from "react";
 import styled from "styled-components";
 import GLPN from "google-libphonenumber";
 
-import Select from "./SelectPhone";
+import Select, { CountryProps } from "./SelectPhone";
 import Input, { InputProps } from "../Basic/Input";
 
 const IconView = styled.div`
 	margin-right: 8px;
 `;
+
 const InputPhone = (props: InputPhoneProps) => {
 	const phoneUtil = GLPN.PhoneNumberUtil.getInstance();
 
 	const [inputValue, setInputValue] = useState<
 		string | number | readonly string[] | undefined
 	>(undefined);
-	const [country, setCountry] = useState<{
-		id: string;
-		esCountry: string;
-		enCountry: string;
-		prefix: string;
-		countryCode: string;
-	}>({
+	const [country, setCountry] = useState<CountryProps>({
 		id: "spain",
 		esCountry: "España",
 		enCountry: "Spain",
@@ -45,7 +40,7 @@ const InputPhone = (props: InputPhoneProps) => {
 		}
 	}, [props.country, countryOptions]);
 
-	const onInputChange = (e: any) => {
+	const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(e.target.value);
 		props.onChange && props.onChange(e);
 
@@ -65,7 +60,7 @@ const InputPhone = (props: InputPhoneProps) => {
 			});
 	};
 
-	const onCountryChange = (country: any) => {
+	const onCountryChange = (country: CountryProps) => {
 		setCountry(country);
 		const temp =
 			inputValue && typeof inputValue === "string"
@@ -89,12 +84,12 @@ const InputPhone = (props: InputPhoneProps) => {
 			});
 	};
 
-	const onInputFocus = (e: any) => {
+	const onInputFocus = (e: FocusEvent<HTMLInputElement>) => {
 		setFocus(true);
 		props.onFocus && props.onFocus(e);
 	};
 
-	const onInputBlur = (e: any) => {
+	const onInputBlur = (e: FocusEvent<HTMLInputElement>) => {
 		setFocus(false);
 		props.onBlur && props.onBlur(e);
 	};
@@ -124,17 +119,10 @@ const InputPhone = (props: InputPhoneProps) => {
 export default InputPhone;
 export type InputPhoneProps = InputProps & {
 	country?: string;
-	countryOptions?: {
-		id: string;
-		esCountry: string;
-		enCountry: string;
-		prefix: string;
-		countryCode: string;
-		[key: string]: any;
-	}[];
+	countryOptions?: CountryProps[];
 	onPhoneChange?: (item: {
 		country: string;
-		value?: any;
+		value?: string | number;
 		isValid: boolean;
 	}) => void;
 };

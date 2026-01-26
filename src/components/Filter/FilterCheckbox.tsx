@@ -2,8 +2,10 @@ import { forwardRef, Ref, useEffect, useImperativeHandle, useState } from "react
 import Fuse from "fuse.js";
 
 import FilterDefault, { FilterDefaultProps } from "./FilterDefault";
-import Checkbox from "@components/Checkbox/CheckboxList";
+import Checkbox, { CheckboxOption } from "@components/Checkbox/CheckboxList";
 import Button from "@components/Button/Button";
+
+type OptionWithDynamicProps = CheckboxOption;
 
 const FilterCheckbox = forwardRef(
 	({
@@ -14,11 +16,9 @@ const FilterCheckbox = forwardRef(
 		...restProps
 	}: FilterCheckboxProps, ref: Ref<FilterCheckboxRef>) => {
 		const isMobile = window.innerWidth <= 450;
-		const [checkboxSelection, setCheckboxSelection] = useState<
-			Array<{ id: string; [key: string]: any }>
-		>([]);
+		const [checkboxSelection, setCheckboxSelection] = useState<OptionWithDynamicProps[]>([]);
 		const [optionsState, setOptionsState] = useState(options);
-		const [fuse, setFuse] = useState<any>(undefined);
+		const [fuse, setFuse] = useState<Fuse<{ id: string; label: string; sublabel?: string }> | undefined>(undefined);
 		const [label, setLabel] = useState<string | undefined>(undefined);
 
 		useImperativeHandle(ref, () => ({
@@ -42,22 +42,22 @@ const FilterCheckbox = forwardRef(
 		}, [selectedOptions]);
 
 		const onOptionChange = (
-			options: Array<{ id: string; [key: string]: any }>,
+			options: OptionWithDynamicProps[],
 		) => {
 			setCheckboxSelection(options);
 		};
 
 		const onSearchChange = (searchText: string) => {
-			if (searchText) {
+			if (searchText && fuse) {
 				const result = fuse.search(searchText);
-				const temp = result.map((obj: any) => obj.item);
+				const temp = result.map((obj) => obj.item);
 				setOptionsState(temp);
 			} else {
 				setOptionsState(options);
 			}
 		};
 
-		const changeLabel = (selection: any[]) => {
+		const changeLabel = (selection: OptionWithDynamicProps[]) => {
 			if (type === "single" && selection.length > 0) {
 				const item = selection[0];
 				if (item.label) setLabel(item.label);
@@ -135,11 +135,8 @@ export interface FilterCheckboxProps extends FilterDefaultProps{
 		label: string;
 		sublabel?: string;
 	}>;
-	selectedOptions?: Array<{
-		id: string;
-		[key: string]: any;
-	}>;
-	onChange?: (r: Array<{ id: string; [key: string]: any }>) => void;
+	selectedOptions?: OptionWithDynamicProps[];
+	onChange?: (r: OptionWithDynamicProps[]) => void;
 }
 export interface FilterCheckboxRef {
 	clean: () => void;

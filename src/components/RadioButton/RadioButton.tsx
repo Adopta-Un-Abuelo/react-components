@@ -36,7 +36,7 @@ const RadioButton = (props: Props) => {
 		setSelected(props.selected);
 	}, [props.selected]);
 
-	const onClick = (event: any) => {
+	const onClick = (event: React.MouseEvent<HTMLDivElement>) => {
 		setSelected(!selected);
 		props.onClick && props.onClick(event);
 	};

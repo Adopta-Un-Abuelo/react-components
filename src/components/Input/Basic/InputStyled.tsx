@@ -16,7 +16,7 @@ const Input = styled.input`
 		color: ${Color.text.neutralMedium};
 	}
 `;
-const InputStyled = forwardRef((props: InputStyledProps, ref: any) => {
+const InputStyled = forwardRef((props: InputStyledProps, ref: React.Ref<HTMLInputElement>) => {
 	return <Input role="input" ref={ref} {...props} />;
 });
 export default InputStyled;

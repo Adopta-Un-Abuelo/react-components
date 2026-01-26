@@ -10,7 +10,7 @@ const RadioButtonList = (props: Props) => {
 	);
 	const [update, setUpdate] = useState(false);
 
-	const onClick = (item: any) => {
+	const onClick = (item: OptionProps) => {
 		const result = selection.findIndex((obj) => item.id === obj.id);
 		let tempArray = selection;
 		if (props.type === "single") tempArray = [item];

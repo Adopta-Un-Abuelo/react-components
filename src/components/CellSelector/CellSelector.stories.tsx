@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import CellSelector from "./CellSelector";
 import { userEvent, within, expect } from "storybook/test";
 import { action } from "storybook/actions";
@@ -51,7 +52,7 @@ export const Single: Story = {
   args: {
     type: "single",
   },
-  play: async ({ canvasElement, step }: any) => {
+  play: async ({ canvasElement, step }: PlayFunctionContext<typeof CellSelector>) => {
     const canvas = within(canvasElement);
     const container = await canvas.getByRole("container");
     const cell = await canvas.getByRole("cell2");
@@ -69,7 +70,7 @@ export const Multiple: Story = {
   args: {
     type: "multiple",
   },
-  play: async ({ canvasElement, step }: any) => {
+  play: async ({ canvasElement, step }: PlayFunctionContext<typeof CellSelector>) => {
     const canvas = within(canvasElement);
     const container = await canvas.getByRole("container");
     const cell2 = await canvas.getByRole("cell2");

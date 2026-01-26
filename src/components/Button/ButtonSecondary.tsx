@@ -128,7 +128,7 @@ const Button = ({
 		<ButtonSecondary
 			role="button"
 			{...restProps}
-			onClick={(e: any) =>
+			onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
 				restProps.onClick &&
 				!loading &&
 				!restProps.disabled &&

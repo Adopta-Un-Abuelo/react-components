@@ -1,5 +1,6 @@
 import BreadCrumb from "./BreadCrumb";
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import { within, expect } from "storybook/test";
 
 const meta: Meta<typeof BreadCrumb> = {
@@ -15,7 +16,7 @@ export const Default: Story = {
 		selectedStep: 3,
 		steps: 8,
 	},
-	play: async ({ canvasElement }: any) => {
+	play: async ({ canvasElement }: PlayFunctionContext<typeof BreadCrumb>) => {
 		const canvas = within(canvasElement);
 		const component = await canvas.getByRole("bread-crumb");
 		await expect(component).toBeInTheDocument();

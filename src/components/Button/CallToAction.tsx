@@ -39,7 +39,7 @@ const CallToAction = ({
 			$size={size}
 			disabled={restProps.disabled}
 			{...restProps}
-			onClick={(e: any) =>
+			onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
 				restProps.onClick &&
 				!loading &&
 				!restProps.disabled &&

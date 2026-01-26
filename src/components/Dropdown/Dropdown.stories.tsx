@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import Label from "./Dropdown";
 import { within, expect } from "storybook/test";
 import { action } from "storybook/actions";
@@ -44,7 +45,7 @@ export const Single: Story = {
 	args: {
 		type: "single",
 	},
-	play: async ({ canvasElement }: any) => {
+	play: async ({ canvasElement }: PlayFunctionContext<typeof Label>) => {
 		const canvas = within(canvasElement);
 		const label = await canvas.getByRole("dropdown");
 		expect(label).toBeInTheDocument();
@@ -89,7 +90,7 @@ export const SingleWithIcons: Story = {
 			},
 		],
 	},
-	play: async ({ canvasElement }: any) => {
+	play: async ({ canvasElement }: PlayFunctionContext<typeof Label>) => {
 		const canvas = within(canvasElement);
 		const label = await canvas.getByRole("dropdown");
 		expect(label).toBeInTheDocument();
@@ -100,7 +101,7 @@ export const Multiple: Story = {
 	args: {
 		type: "multiple",
 	},
-	play: async ({ canvasElement }: any) => {
+	play: async ({ canvasElement }: PlayFunctionContext<typeof Label>) => {
 		const canvas = within(canvasElement);
 		const label = await canvas.getByRole("dropdown");
 		expect(label).toBeInTheDocument();
@@ -145,7 +146,7 @@ export const MultipleWithIcons: Story = {
 			},
 		],
 	},
-	play: async ({ canvasElement }: any) => {
+	play: async ({ canvasElement }: PlayFunctionContext<typeof Label>) => {
 		const canvas = within(canvasElement);
 		const label = await canvas.getByRole("dropdown");
 		expect(label).toBeInTheDocument();

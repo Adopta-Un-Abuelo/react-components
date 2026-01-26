@@ -93,9 +93,9 @@ const Dropdown = (props: Props) => {
 
 	useEffect(() => {
 		if (Array.isArray(props.selectedOptions) && props.selectedOptions.length > 0) {
-			const temp: any = [];
+			const temp: OptionProps[] = [];
 			props.options.forEach((item) => {
-				if (props.selectedOptions && props.selectedOptions.some((temp) => temp.id === item.id)) {
+				if (props.selectedOptions && props.selectedOptions.some((selectedItem) => selectedItem.id === item.id)) {
 					temp.push(item);
 				}
 			});
@@ -107,10 +107,10 @@ const Dropdown = (props: Props) => {
 
 	useEffect(() => {
 		// On click outside the filter view
-		const handleClickOutside = (e: any) => {
+		const handleClickOutside = (e: MouseEvent) => {
 			const element = document.getElementById(props.id);
-			if (element !== null && !element.contains(e.target) && open) {
-				onFilterClick(e);
+			if (element !== null && !element.contains(e.target as Node) && open) {
+				onFilterClick(e as unknown as React.MouseEvent);
 			}
 		};
 
@@ -120,7 +120,7 @@ const Dropdown = (props: Props) => {
 		};
 	}, [open, props.id]);
 
-	const onFilterClick = (e: any) => {
+	const onFilterClick = (e: React.MouseEvent) => {
 		e.stopPropagation();
 		setOpen(false);
 	};
@@ -141,7 +141,7 @@ const Dropdown = (props: Props) => {
 		}
 	};
 
-	const onSearchChange = (e: any) => {
+	const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		props.onSearchChange && props.onSearchChange(e.target.value);
 	};
 

@@ -120,7 +120,7 @@ const Button = ({
 			$success={success}
 			$size={size}
 			{...restProps}
-			onClick={(e: any) =>
+			onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
 				restProps.onClick &&
 				!loading &&
 				secondsRemaining <= 0 &&
@@ -138,7 +138,7 @@ const Button = ({
 					loop={false}
 					keepLastFrame={true}
 					src={AnimationCheck}
-					onEvent={(event: any) => {
+					onEvent={(event: string) => {
 						if (event === "complete") {
 							onSuccess && onSuccess(true);
 						}

@@ -2,6 +2,7 @@ import Menu from "./Menu";
 import { userEvent, within, expect } from "storybook/test";
 import { action } from "storybook/actions";
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import { Package, Palette, Option } from "lucide-react";
 import Color from "@constants/Color";
 
@@ -22,7 +23,7 @@ export default meta;
 type Story = StoryObj<typeof Menu>;
 
 export const Default: Story = {
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Menu>) => {
 		const canvas = within(canvasElement);
 		const select = await canvas.getByRole("menu");
 		await step("render", async () => {
@@ -56,7 +57,7 @@ export const MenuList: Story = {
 			},
 		],
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Menu>) => {
 		const canvas = within(canvasElement);
 		const select = await canvas.getByRole("menu");
 		await step("render", async () => {

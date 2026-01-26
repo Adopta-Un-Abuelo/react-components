@@ -1,5 +1,5 @@
 import moment from "moment";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, ChangeEvent } from "react";
 import Input, { InputProps } from "../Basic/Input";
 import styled, { keyframes } from "styled-components";
 import Text from "@components/Text/Text";
@@ -107,7 +107,7 @@ const InputBirthday = ({
 		setErrorString(error);
 	}, [error]);
 
-	const onDayChange = (e: any) => {
+	const onDayChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const day = e.target.value.replace(/\D/g, "");
 		setDayValue(day);
 		if (day.length === 2) {
@@ -119,7 +119,7 @@ const InputBirthday = ({
 		});
 	};
 
-	const onMonthChange = (e: any) => {
+	const onMonthChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const month = e.target.value.replace(/\D/g, "");
 		setMonthValue(month);
 		if (month.length === 0) {
@@ -133,7 +133,7 @@ const InputBirthday = ({
 		});
 	};
 
-	const onYearChange = (e: any) => {
+	const onYearChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const year = e.target.value.replace(/\D/g, "");
 		setYearValue(year);
 		if (year.length === 0) {
@@ -167,7 +167,7 @@ const InputBirthday = ({
 			if (!isValidDate) {
 				setErrorString("Fecha no válida");
 			} else {
-				const temp: any = momentDate.toDate();
+				const temp: Date = momentDate.toDate();
 				onChange && onChange(temp);
 			}
 		}
@@ -225,4 +225,6 @@ const InputBirthday = ({
 	);
 };
 export default InputBirthday;
-export type InputBirthdayProps = {} & InputProps;
+export type InputBirthdayProps = Omit<InputProps, 'onChange'> & {
+	onChange?: (date: Date | ChangeEvent<HTMLInputElement>) => void;
+};

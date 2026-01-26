@@ -143,9 +143,9 @@ const LabelContainerSpan = styled.span<{
 `;
 
 const InputPrice = (props: InputPriceProps) => {
-	const iconsT: any = icons;
+	const iconsT = icons as unknown as Record<string, React.ComponentType<{ height?: number; width?: number; color?: string }>>;
 	const containerRef = useRef<HTMLDivElement>(null);
-	const cellRefs = useRef<HTMLInputElement[]>([]);
+	const cellRefs = useRef<(HTMLDivElement | null)[]>([]);
 	const input = useRef<HTMLInputElement>(null);
 	const [optionSelected, setOptionSelected] = useState<number | undefined>(
 		undefined
@@ -296,7 +296,7 @@ const InputPrice = (props: InputPriceProps) => {
 					return (
 						<Cell
 							key={"price-option-" + index}
-							ref={(el: any) => (cellRefs.current[index] = el)}
+							ref={(el: HTMLDivElement | null) => { cellRefs.current[index] = el; }}
 							$selected={isSelected}
 							$data={option.data ? true : false}
 							onClick={() => onCellClick(option.price)}

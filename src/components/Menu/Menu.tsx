@@ -58,20 +58,21 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
 
     useEffect(() =>{
         //On click outside the filter view
-        document.addEventListener('mousedown', (e: any) => {
+        const handleClickOutside = (e: MouseEvent) => {
             const element = document.getElementById(props.id);
             if(element !== null){
-                if(!element.contains(e.target)){
+                if(!element.contains(e.target as Node)){
                     if(showView) {
-                        onButtonClick(e);
+                        onButtonClick(e as unknown as React.MouseEvent);
                     }
                 }
             }
-        });
-        return document.removeEventListener('mousedown', onButtonClick);
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
     });
 
-    const onButtonClick = (e: any) =>{
+    const onButtonClick = (e: React.MouseEvent) =>{
         e.stopPropagation();
         if(showView){
             setShowView(false);
@@ -83,7 +84,7 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
         }
     }
 
-    const onClick = (e: any, option: OptionsProps) =>{
+    const onClick = (e: React.MouseEvent, option: OptionsProps) =>{
         e.stopPropagation();
         setShowView(false);
         props.onClick && props.onClick(option)
@@ -120,7 +121,7 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
                     <MenuCell
                         key={'action'+index}
                         style={{borderBottom: index+1 === props.options?.length ? 'none' : '1px solid '+Color.line.soft}}
-                        onClick={(e: any) => onClick(e, option)}
+                        onClick={(e) => onClick(e, option)}
                     >
                         {option.icon}
                         <Text type="p" style={{ color: option.labelColor }}>
@@ -149,7 +150,7 @@ export interface OptionsProps{
     id: string,
     label: string,
     labelColor?: string,
-    icon?: any
+    icon?: React.ReactElement
 }
 export interface MenuRef{
     close: () => void

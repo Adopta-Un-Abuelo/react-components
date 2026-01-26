@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import Input from "./Input";
 import { userEvent, within, expect, fn } from "storybook/test";
 
@@ -35,7 +36,7 @@ export const Primary: Story = {
 	args: {
 		design: "primary",
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Input>) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
 		await step("render", async () => {
@@ -51,7 +52,7 @@ export const Secondary: Story = {
 	args: {
 		design: "secondary",
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Input>) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
 		await step("render", async () => {
@@ -67,7 +68,7 @@ export const Third: Story = {
 	args: {
 		design: "third",
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Input>) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
 		await step("render", async () => {
@@ -84,7 +85,7 @@ export const WithError: Story = {
 		design: "secondary",
 		error: "Error message",
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Input>) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
 		const error = canvas.getByRole("error");
@@ -107,7 +108,7 @@ export const WithLeftContent: Story = {
 			/>
 		),
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Input>) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
 		const placeholder = canvas.getByRole("placeholder");
@@ -129,7 +130,7 @@ export const Text: Story = {
 		type: "text",
 		design: "secondary",
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Input>) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
 		await step("render", async () => {
@@ -147,7 +148,7 @@ export const Email: Story = {
 		design: "secondary",
 		defaultValue: undefined,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Input>) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
 		await step("render", async () => {
@@ -165,7 +166,7 @@ export const Password: Story = {
 		design: "secondary",
 		defaultValue: undefined,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Input>) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
 		await step("render", async () => {
@@ -183,7 +184,7 @@ export const Date: Story = {
 		design: "secondary",
 		defaultValue: undefined,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Input>) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
 		await step("render", async () => {
@@ -199,7 +200,7 @@ export const Time: Story = {
 		design: "secondary",
 		defaultValue: undefined,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Input>) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
 		await step("render", async () => {
@@ -217,7 +218,7 @@ export const Number: Story = {
 		design: "secondary",
 		defaultValue: undefined,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Input>) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByRole("input");
 		await step("render", async () => {
