@@ -1,3 +1,16 @@
+# v0.3.146 (Mon Jan 26 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'fix/resolve-path-aliases-in-build' (guillermo.angeles@adoptaunabuelo.com)
+- fix(build): resolve path aliases in compiled output (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.145 (Mon Jan 26 2026)
 
 #### ⚠️ Pushed to `main`
