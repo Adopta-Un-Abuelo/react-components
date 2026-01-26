@@ -1,6 +1,7 @@
 const resolve = require("@rollup/plugin-node-resolve").default;
 const commonjs = require("@rollup/plugin-commonjs");
 const typescript = require("@rollup/plugin-typescript");
+const typescriptPaths = require("rollup-plugin-typescript-paths").default;
 const postcss = require("rollup-plugin-postcss");
 const dts = require("rollup-plugin-dts").default;
 const { terser } = require("rollup-plugin-terser");
@@ -21,6 +22,10 @@ module.exports = [
 		],
 		plugins: [
 			peerDepsExternal(),
+			typescriptPaths({
+				tsConfigPath: "./tsconfig.json",
+				preserveExtensions: true,
+			}),
 			resolve(),
 			commonjs(),
 			typescript({

@@ -8,7 +8,7 @@ import StarterKit from "@tiptap/starter-kit";
 import { Placeholder } from "@tiptap/extensions";
 
 import "./editor.css";
-import ColorV2 from "../../constants/ColorV2";
+import ColorV2 from "@constants/ColorV2";
 import {
 	AlignCenter,
 	AlignLeft,
@@ -20,7 +20,7 @@ import {
 	Pilcrow,
 	Underline,
 } from "lucide-react";
-import Select from "../../components/Select/Select";
+import Select from "@components/Select/Select";
 
 const Container = styled.div`
 	position: relative;
