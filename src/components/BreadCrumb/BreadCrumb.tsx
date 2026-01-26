@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from "react";
 import styled from "styled-components";
 
-import Color from "../../constants/Color";
+import Color from "@constants/Color";
 
 const Container = styled.div`
 	display: flex;
