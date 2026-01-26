@@ -1,3 +1,18 @@
+# v0.3.143 (Mon Jan 26 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'refactor/typescript-type-safety' (guillermo.angeles@adoptaunabuelo.com)
+- refactor: remove types any (guillermo.angeles@adoptaunabuelo.com)
+- refactor: add type safety to remaining components (guillermo.angeles@adoptaunabuelo.com)
+- refactor: improve TypeScript type safety across components and stories (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.142 (Mon Jan 26 2026)
 
 #### ⚠️ Pushed to `main`
