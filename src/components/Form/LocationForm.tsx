@@ -80,7 +80,7 @@ const LocationForm = (props: LocationFormProps) => {
 		}
 	};
 
-	const onRouteInfoChange = (e: any) => {
+	const onRouteInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (location) {
 			const address = `${location.route} ${location.routeNumber}, ${e.target.value}, ${location.zipCode}, ${location.city}, ${location.province}, ${location.country}`;
 			const tempLocation = {

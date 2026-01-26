@@ -31,7 +31,7 @@ const AudioPlayer = styled.audio`
 `;
 
 const ChatBubble = (props: ChatProps) => {
-	const [Icon, setIcon] = useState<any>(undefined);
+	const [Icon, setIcon] = useState<React.ComponentType<{ height?: number; width?: number; color?: string }> | undefined>(undefined);
 
 	useEffect(() => {
 		setIcon(

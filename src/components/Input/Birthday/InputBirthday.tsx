@@ -167,7 +167,7 @@ const InputBirthday = ({
 			if (!isValidDate) {
 				setErrorString("Fecha no válida");
 			} else {
-				const temp: any = momentDate.toDate();
+				const temp: Date = momentDate.toDate();
 				onChange && onChange(temp);
 			}
 		}
@@ -225,4 +225,6 @@ const InputBirthday = ({
 	);
 };
 export default InputBirthday;
-export type InputBirthdayProps = {} & InputProps;
+export type InputBirthdayProps = Omit<InputProps, 'onChange'> & {
+	onChange?: (date: Date | ChangeEvent<HTMLInputElement>) => void;
+};

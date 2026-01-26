@@ -194,7 +194,7 @@ const PresentPlayer = styled.div`
 `;
 
 const InputRange = (props: InputRangeProps) => {
-	const elem = createRef<any>();
+	const elem = createRef<HTMLDivElement>();
 	const [width, setWidth] = useState(0);
 	const [value, setValue] = useState<number>(
 		props.value && typeof props.value === "number"
@@ -324,7 +324,7 @@ export interface InputRangeProps extends ComponentPropsWithoutRef<"input"> {
 	hideLabels?: boolean;
 	presents?: {
 		value: number;
-		icon: any;
+		icon: React.ComponentType<{ height?: number; width?: number; color?: string }>;
 		color: string;
 		colorSuccess: string;
 		onClick?: () => void;

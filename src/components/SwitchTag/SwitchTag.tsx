@@ -62,5 +62,5 @@ export interface Props {
 		id: string;
 		icon: React.ReactElement;
 	}>;
-	onChange?: (option: { id: string; icon: any }) => void;
+	onChange?: (option: { id: string; icon: React.ReactElement }) => void;
 }

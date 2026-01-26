@@ -51,7 +51,7 @@ const InputLocation = ({
 		value: _ignoredValue,
 		onChange: _ignoredOnChange,
 		...passthrough
-	} = restProps as any;
+	} = restProps as Omit<InputProps, 'isLoaded' | 'isForm' | 'searchTypes' | 'searchFields' | 'onLocationChange'>;
 
 	const autocompleteService =
 		useRef<google.maps.places.AutocompleteService | null>(null);

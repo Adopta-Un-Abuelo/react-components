@@ -192,7 +192,7 @@ const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) => {
 				}
 				containerStyle={{ marginBottom: 8 }}
 				design={props.design}
-				onChange={(e: any) => e && onInputChange(e.target.value)}
+				onChange={(e: React.ChangeEvent<HTMLInputElement>) => e && onInputChange(e.target.value)}
 				error={inputNameError}
 			/>
 			{props.option === "sepa_debit" && !props.userData?.email && (

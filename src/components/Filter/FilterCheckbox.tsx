@@ -2,15 +2,10 @@ import { forwardRef, Ref, useEffect, useImperativeHandle, useState } from "react
 import Fuse from "fuse.js";
 
 import FilterDefault, { FilterDefaultProps } from "./FilterDefault";
-import Checkbox from "@components/Checkbox/CheckboxList";
+import Checkbox, { CheckboxOption } from "@components/Checkbox/CheckboxList";
 import Button from "@components/Button/Button";
 
-type OptionWithDynamicProps = {
-	id: string;
-	label?: string;
-	sublabel?: string;
-	[key: string]: string | number | boolean | undefined;
-};
+type OptionWithDynamicProps = CheckboxOption;
 
 const FilterCheckbox = forwardRef(
 	({

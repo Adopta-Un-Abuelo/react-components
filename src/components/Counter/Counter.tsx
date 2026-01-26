@@ -58,7 +58,7 @@ function Counter(props: Props) {
 	}, [counter]);
 
 	const containerStyle = useMemo(() => {
-		const t: any = {
+		const t: Record<string, string | number | false | undefined> = {
 			"--fcc-digit-color": props.color,
 			"--fcc-background": props.backgroundColor,
 			"--fcc-digit-block-width": props.width && props.width + "px",
