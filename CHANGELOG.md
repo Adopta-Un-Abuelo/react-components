@@ -1,3 +1,17 @@
+# v0.3.144 (Mon Jan 26 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'chore/security-and-dependencies' (guillermo.angeles@adoptaunabuelo.com)
+- fix: claude memory (guillermo.angeles@adoptaunabuelo.com)
+- chore: update license, add security policy, and restructure dependencies (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.143 (Mon Jan 26 2026)
 
 #### ⚠️ Pushed to `main`
