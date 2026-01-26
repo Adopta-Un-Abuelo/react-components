@@ -1,4 +1,4 @@
-import { useState, useRef, CSSProperties } from "react";
+import { useState, useRef, CSSProperties, ChangeEvent } from "react";
 import styled from "styled-components";
 
 import Color from "@constants/ColorV2";
@@ -69,7 +69,7 @@ const InputCode = (props: InputCodeProps) => {
 	const [focus, setFocus] = useState(false);
 	const [value, setValue] = useState<string | undefined>(undefined);
 
-	const onTextChange = (e: any) => {
+	const onTextChange = (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.value.length <= 6) {
 			setValue(e.target.value);
 			if (e.target.value.length === 6) {

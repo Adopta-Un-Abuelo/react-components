@@ -7,6 +7,7 @@ import {
 	forwardRef,
 	Ref,
 	useImperativeHandle,
+	FocusEvent,
 } from "react";
 import styled, { keyframes } from "styled-components";
 
@@ -90,12 +91,12 @@ const InputSecondary = forwardRef(
 			setDefaultFocus(props.defaultValue || props.value ? true : false);
 		}, [props.defaultValue, props.value]);
 
-		const onInputFocus = (e: any) => {
+		const onInputFocus = (e: FocusEvent<HTMLInputElement>) => {
 			setFocus(true);
 			props.onFocus && props.onFocus(e);
 		};
 
-		const onInputBlur = (e: any) => {
+		const onInputBlur = (e: FocusEvent<HTMLInputElement>) => {
 			setFocus(false);
 			props.onBlur && props.onBlur(e);
 		};

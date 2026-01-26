@@ -1,6 +1,7 @@
 import Filter from "./Filter";
 import { within, fn } from "storybook/test";
 import { expect } from "storybook/test";
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import moment from "moment";
 import Button from "../Button/Button";
 import { useRef } from "react";
@@ -61,7 +62,7 @@ export const SingleSelection = {
 			},
 		],
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext) => {
 		const canvas = within(canvasElement);
 		const filter = canvas.getByRole("filter");
 		const filterButton = canvas.getByRole("filter-button");
@@ -84,7 +85,7 @@ export const MultipleSelection = {
 			},
 		],
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext) => {
 		const canvas = within(canvasElement);
 		const filter = canvas.getByRole("filter");
 		const filterButton = canvas.getByRole("filter-button");
@@ -103,7 +104,7 @@ export const FilterDate = {
 			endDate: moment().add(5, "days"),
 		},
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext) => {
 		const canvas = within(canvasElement);
 		const filter = canvas.getByRole("filter");
 		await step("render", async () => {
@@ -121,7 +122,7 @@ export const FilterRatio = {
 		restart: false,
 		unit: "€",
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext) => {
 		const canvas = within(canvasElement);
 		const filter = canvas.getByRole("filter");
 		await step("render", async () => {
@@ -130,7 +131,7 @@ export const FilterRatio = {
 	},
 };
 
-export const RefExample = (args: any) => {
+export const RefExample = (args) => {
 	const filterSingle = useRef<any>(null);
 	const filterMultiple = useRef<any>(null);
 	const filterDate = useRef<any>(null);

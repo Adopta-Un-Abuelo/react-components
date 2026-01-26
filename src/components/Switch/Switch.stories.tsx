@@ -2,6 +2,7 @@ import Switch from "./Switch";
 import { within, userEvent, expect, fn } from "storybook/test";
 
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { PlayFunctionContext } from "storybook/internal/csf";
 
 const meta: Meta<typeof Switch> = {
 	title: "Components/Switch",
@@ -17,7 +18,7 @@ export default meta;
 type Story = StoryObj<typeof Switch>;
 
 export const Default: Story = {
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }: PlayFunctionContext<typeof Switch>) => {
 		const canvas = within(canvasElement);
 		const container = await canvas.getByRole("container");
 		await step("render", async () => {

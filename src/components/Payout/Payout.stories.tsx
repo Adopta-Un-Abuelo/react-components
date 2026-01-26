@@ -35,7 +35,12 @@ export const CardSecondary: Story = {
 	},
 };
 
-export const IBANPrimary: Story = (args: any) => {
+export const IBANPrimary: Story = {
+	args: {
+		paymentOption: "sepa_debit",
+		design: "primary",
+	},
+	render: (args) => {
 	const payout = useRef<PayoutRef>(null);
 	return (
 		<div>
@@ -51,10 +56,7 @@ export const IBANPrimary: Story = (args: any) => {
 			</button>
 		</div>
 	);
-};
-IBANPrimary.args = {
-	paymentOption: "sepa_debit",
-	design: "primary",
+	},
 };
 
 export const IBANSecondary: Story = {

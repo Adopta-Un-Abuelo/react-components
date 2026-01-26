@@ -3,6 +3,7 @@ import {
 	useEffect,
 	useState,
 	createRef,
+	ChangeEvent,
 } from "react";
 import styled, { keyframes } from "styled-components";
 import { Player } from "@lottiefiles/react-lottie-player";
@@ -213,7 +214,7 @@ const InputRange = (props: InputRangeProps) => {
 			setValue(props.value);
 	}, [props.value]);
 
-	const onChange = (e: any) => {
+	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setValue(parseInt(e.target.value));
 		props.onChange && props.onChange(e);
 	};

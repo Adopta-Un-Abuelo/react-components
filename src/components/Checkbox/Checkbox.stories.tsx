@@ -2,6 +2,7 @@ import CheckboxList from "./CheckboxList";
 import { userEvent, within, expect } from "storybook/test";
 import { action } from "storybook/actions";
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { PlayFunctionContext } from "storybook/internal/csf";
 
 const meta: Meta<typeof CheckboxList> = {
   title: "Components/Checkbox",
@@ -48,7 +49,7 @@ export const SingleSelection: Story = {
   args: {
     type: "single",
   },
-  play: async ({ canvasElement, step }: any) => {
+  play: async ({ canvasElement, step }: PlayFunctionContext<typeof CheckboxList>) => {
     const canvas = within(canvasElement);
     const checkboxList = canvas.getByRole("checkboxlist");
     const checkbox0 = await canvas.findByRole("checkbox-0");
@@ -74,7 +75,7 @@ export const MultipleSelection: Story = {
   args: {
     type: "multiple",
   },
-  play: async ({ canvasElement, step }: any) => {
+  play: async ({ canvasElement, step }: PlayFunctionContext<typeof CheckboxList>) => {
     const canvas = within(canvasElement);
     const checkboxList = canvas.getByRole("checkboxlist");
     const checkbox0 = await canvas.findByRole("checkbox-0");

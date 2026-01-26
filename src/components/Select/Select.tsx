@@ -67,26 +67,22 @@ const Select = (props: Props) => {
 		}
 	}, [props.selectedItem]);
 
-	const onSelectClick = (e: any) => {
-		if (!e) var e: any = window.event;
-		e.cancelBubble = true;
-		if (e.stopPropagation) e.stopPropagation();
+	const onSelectClick = (e: React.MouseEvent) => {
+		e.stopPropagation();
 		setShowMenu(!showMenu);
 	};
 
-	const closeMenu = (e: any) => {
+	const closeMenu = (e: MouseEvent) => {
 		const element = document.getElementById(props.id);
 		if (element !== null) {
-			if (!element.contains(e.target)) {
+			if (!element.contains(e.target as Node)) {
 				setShowMenu(false);
 			}
 		}
 	};
 
-	const onOptionClick = (option: any, e: any) => {
-		if (!e) var e: any = window.event;
-		e.cancelBubble = true;
-		if (e.stopPropagation) e.stopPropagation();
+	const onOptionClick = (option: OptionProps, e: React.MouseEvent) => {
+		e.stopPropagation();
 		setSelectedItem(option);
 		setShowMenu(false);
 		props.onChange && props.onChange(option);
@@ -128,7 +124,7 @@ const Select = (props: Props) => {
 							<Option
 								role={"cell-" + index}
 								key={props.id + "-cell-" + index}
-								onClick={(e: any) => onOptionClick(item, e)}
+								onClick={(e) => onOptionClick(item, e)}
 							>
 								{item.icon}
 								<Text type="p">{item.label}</Text>
@@ -141,13 +137,13 @@ const Select = (props: Props) => {
 	);
 };
 export default Select;
-export interface Props extends ComponentPropsWithoutRef<"div"> {
+export interface Props extends Omit<ComponentPropsWithoutRef<"div">, "onChange"> {
 	id: string;
 	optionStyle?: CSSProperties;
 	hideTitle?: boolean;
 	options: Array<OptionProps>;
 	selectedItem?: OptionProps;
-	onChange?: (option: any) => void;
+	onChange?: (option: OptionProps) => void;
 }
 interface OptionProps {
 	icon?: React.ReactElement;

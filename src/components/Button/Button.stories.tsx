@@ -26,7 +26,7 @@ export const Primary: Story = {
 		design: "primary",
 		success: false,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const button = await canvas.getByRole("button");
 		await step("render", async () => {
@@ -45,7 +45,7 @@ export const PrimaryWithIcon: Story = {
 		success: false,
 		icon: <Flag role="icon" height={20} width={20} />,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const button = await canvas.getByRole("button");
 		const icon = await canvas.getByRole("icon");
@@ -67,7 +67,7 @@ export const PrimaryWithCountdown: Story = {
 		countdown: 30,
 		onCountdownEnd: fn(),
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const button = await canvas.getByRole("button");
 		await step("render", async () => {
@@ -85,7 +85,7 @@ export const Secondary: Story = {
 		design: "secondary",
 		success: false,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const button = await canvas.getByRole("button");
 		await step("render", async () => {
@@ -104,7 +104,7 @@ export const SecondaryWithIcon: Story = {
 		success: false,
 		icon: <Flag role="icon" height={20} width={20} />,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const button = await canvas.getByRole("button");
 		const icon = await canvas.getByRole("icon");
@@ -123,7 +123,7 @@ export const ButtonText: Story = {
 	args: {
 		design: "text",
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const button = await canvas.getByRole("button");
 		await step("render", async () => {
@@ -141,7 +141,7 @@ export const ButtonTextWithIcon: Story = {
 		design: "text",
 		icon: <Flag role="icon" height={20} width={20} />,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const button = await canvas.getByRole("button");
 		const icon = await canvas.getByRole("icon");
@@ -162,7 +162,7 @@ export const ButtonImage: Story = {
 		icon: <Flag role="icon" height={20} width={20} />,
 		children: undefined,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const button = await canvas.getByRole("button");
 		const icon = await canvas.getByRole("icon");
@@ -182,7 +182,7 @@ export const ButtonImageWithLabel: Story = {
 		design: "image",
 		icon: <Flag role="icon" height={20} width={20} />,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const button = await canvas.getByRole("button");
 		const icon = await canvas.getByRole("icon");
@@ -202,7 +202,7 @@ export const CallToAction: Story = {
 		design: "call-to-action",
 		children: <p role="label">Call To Action</p>,
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const button = await canvas.getByRole("button");
 		await step("render", async () => {
@@ -222,7 +222,7 @@ export const CallToActionWithIcon: Story = {
 		icon: <Flag role="icon" />,
 		iconPosition: "left",
 	},
-	play: async ({ canvasElement, step }: any) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const button = await canvas.getByRole("button");
 		const icon = await canvas.getByRole("icon");

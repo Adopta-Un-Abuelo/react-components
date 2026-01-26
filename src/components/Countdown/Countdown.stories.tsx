@@ -18,7 +18,7 @@ export default meta;
 type Story = StoryObj<typeof Countdown>;
 
 export const Default: Story = {
-  play: async ({ canvasElement, step }: any) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
     const container = await canvas.getByRole("container");
     await step("render", async () => {

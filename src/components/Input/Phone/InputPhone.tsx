@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent, FocusEvent } from "react";
 import styled from "styled-components";
 import GLPN from "google-libphonenumber";
 
@@ -45,7 +45,7 @@ const InputPhone = (props: InputPhoneProps) => {
 		}
 	}, [props.country, countryOptions]);
 
-	const onInputChange = (e: any) => {
+	const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(e.target.value);
 		props.onChange && props.onChange(e);
 
@@ -65,7 +65,7 @@ const InputPhone = (props: InputPhoneProps) => {
 			});
 	};
 
-	const onCountryChange = (country: any) => {
+	const onCountryChange = (country: { id: string; esCountry: string; enCountry: string; prefix: string; countryCode: string; [key: string]: string }) => {
 		setCountry(country);
 		const temp =
 			inputValue && typeof inputValue === "string"
@@ -89,12 +89,12 @@ const InputPhone = (props: InputPhoneProps) => {
 			});
 	};
 
-	const onInputFocus = (e: any) => {
+	const onInputFocus = (e: FocusEvent<HTMLInputElement>) => {
 		setFocus(true);
 		props.onFocus && props.onFocus(e);
 	};
 
-	const onInputBlur = (e: any) => {
+	const onInputBlur = (e: FocusEvent<HTMLInputElement>) => {
 		setFocus(false);
 		props.onBlur && props.onBlur(e);
 	};
@@ -130,11 +130,11 @@ export type InputPhoneProps = InputProps & {
 		enCountry: string;
 		prefix: string;
 		countryCode: string;
-		[key: string]: any;
+		[key: string]: string;
 	}[];
 	onPhoneChange?: (item: {
 		country: string;
-		value?: any;
+		value?: string | number;
 		isValid: boolean;
 	}) => void;
 };

@@ -25,5 +25,6 @@
 			"@assets/*": ["src/assets/*"]
 		}
 	},
-	"include": ["src/**/*"]
+	"include": ["src/**/*"],
+	"exclude": ["src/**/*.stories.tsx", "src/**/*.stories.ts"]
 }

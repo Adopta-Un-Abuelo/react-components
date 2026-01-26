@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import CurrencySelector from "./CurrencySelector";
 import { fn } from "storybook/test";
 
@@ -24,7 +25,7 @@ type Story = StoryObj<typeof CurrencySelector>;
 
 export const Default: Story = {
 	args: {},
-	play: async ({ canvasElement }: any) => {
+	play: async ({ canvasElement }: PlayFunctionContext<typeof CurrencySelector>) => {
 		/*const canvas = within(canvasElement);
 		const label = await canvas.getByRole('dropdown');
         expect(label).toBeInTheDocument();*/
