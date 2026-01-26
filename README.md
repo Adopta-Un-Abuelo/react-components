@@ -14,14 +14,37 @@ React Components is available as an [npm package](https://www.npmjs.com/package/
 **npm:**
 
 ```sh
-npm install @adoptaunabuelo/react-components
+npm install @adoptaunabuelo/react-components react react-dom styled-components
 ```
 
 **yarn:**
 
 ```sh
-yarn add @adoptaunabuelo/react-components
+yarn add @adoptaunabuelo/react-components react react-dom styled-components
 ```
+
+### Peer Dependencies
+
+This library requires the following peer dependencies to be installed in your project:
+
+| Package | Version | Required |
+|---------|---------|----------|
+| `react` | ^18.0.0 \|\| ^19.0.0 | ✅ Yes |
+| `react-dom` | ^18.0.0 \|\| ^19.0.0 | ✅ Yes |
+| `styled-components` | ^5.0.0 \|\| ^6.0.0 | ✅ Yes |
+
+### Optional Dependencies (Required for Specific Components)
+
+Some components require additional dependencies. Install only what you need:
+
+| Component(s) | Package(s) | Installation |
+|--------------|-----------|--------------|
+| `InputLocation` | `@react-google-maps/api` | `npm install @react-google-maps/api` |
+| `Payout` | `@stripe/react-stripe-js` `@stripe/stripe-js` | `npm install @stripe/react-stripe-js @stripe/stripe-js` |
+| `TextArea` (Rich Text) | `@tiptap/react` `@tiptap/starter-kit` `@tiptap/extension-text-align` `@tiptap/extension-text-style` `@tiptap/extensions` | `npm install @tiptap/react @tiptap/starter-kit @tiptap/extension-text-align @tiptap/extension-text-style @tiptap/extensions` |
+| `Button` (Loading animations) | `@lottiefiles/react-lottie-player` | `npm install @lottiefiles/react-lottie-player` |
+| `InputImage` | `react-webcam` | `npm install react-webcam` |
+| Styled Components | `@emotion/is-prop-valid` | `npm install @emotion/is-prop-valid` |
 
 ## Getting started with React Components
 
@@ -58,7 +81,7 @@ You can checkout all the library Components and its docs in our storybook
 
 ## Changelog
 
-The [changelog](https://github.com/mui/material-ui/releases) is regularly updated to reflect what's changed in each new release.
+The [changelog](https://github.com/Adopta-Un-Abuelo/react-components/releases) is regularly updated to reflect what's changed in each new release.
 
 ## License
 

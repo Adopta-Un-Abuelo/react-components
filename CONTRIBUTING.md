@@ -78,10 +78,30 @@ A group of constants like Color, that are used to give styles to the components.
 > Note: Please, do not make any changes to this files.
 
 
-## Watch out! 
+## Watch out!
 To be able to use `<Input type=location/>`, you will need to add a new env varible to your `.env` file:
 
 ```
     GOOGLE_MAPS_API=YOUR_API_KEY
 ```
 Please, replace ``YOUR_API_KEY`` with your Google Maps API Key.
+
+### Chromatic Visual Testing
+
+To run Chromatic visual tests, you need to set up the project token as an environment variable:
+
+```sh
+# For local development, add to your .env file:
+CHROMATIC_PROJECT_TOKEN=your_chromatic_token_here
+
+# Then run:
+npm run chromatic
+```
+
+**For CI/CD (GitHub Actions):**
+The Chromatic token should be stored as a GitHub Secret:
+1. Go to repository Settings → Secrets and variables → Actions
+2. Add a new secret named `CHROMATIC_PROJECT_TOKEN`
+3. The GitHub workflow will automatically use this secret
+
+**Security Note:** Never commit API keys or tokens directly to the repository. Always use environment variables or secrets management.
