@@ -1,3 +1,17 @@
+# v0.3.142 (Mon Jan 26 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'refactor/implement-path-aliases' (guillermo.angeles@adoptaunabuelo.com)
+- docs: add Claude Code project documentation and configuration (guillermo.angeles@adoptaunabuelo.com)
+- refactor: implement TypeScript path aliases across codebase (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.141 (Fri Dec 12 2025)
 
 #### ⚠️ Pushed to `main`
