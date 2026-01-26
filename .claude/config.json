@@ -1,0 +1,24 @@
+{
+	"$schema": "https://anthropic.com/schemas/claude-config.json",
+	"description": "Claude Code configuration for Adopta Un Abuelo UI components project",
+	"knowledge": {
+		"sources": [
+			{
+				"type": "markdown",
+				"path": ".claude/agents/*.md",
+				"description": "Custom agent definitions for specialized tasks"
+			},
+			{
+				"type": "markdown",
+				"path": ".claude/memory/*.md",
+				"description": "Memory files containing important context and information"
+			}
+		]
+	},
+	"agents": {
+		"directory": ".claude/agents"
+	},
+	"settings": {
+		"local": ".claude/settings.local.json"
+	}
+}
