@@ -179,7 +179,7 @@ const InputImage = (props: InputImageProps) => {
 		}
 	};
 
-	const toBase64 = (file: any) => {
+	const toBase64 = (file: File | Blob): Promise<string | ArrayBuffer | null> => {
 		return new Promise((resolve, reject) => {
 			const reader = new FileReader();
 			reader.readAsDataURL(file);
@@ -196,8 +196,8 @@ const InputImage = (props: InputImageProps) => {
 				compressImage(blob);
 			} else {
 				setCrop(undefined);
-				const base64: any = await toBase64(file);
-				setImgSrc(base64);
+				const base64 = await toBase64(file);
+				setImgSrc(typeof base64 === 'string' ? base64 : '');
 				if (inputRef.current) inputRef.current.value = "";
 			}
 		}
@@ -444,5 +444,5 @@ export interface InputImageProps {
 	maxHeight?: number;
 	maxWidth?: number;
 	hideCrop?: boolean;
-	onChange?: (image: any) => void;
+	onChange?: (image: string | ArrayBuffer | null) => void;
 }

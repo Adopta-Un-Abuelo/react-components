@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, CSSProperties } from "react";
 import styled from "styled-components";
 
 import Tag from "./Tag";
@@ -21,7 +21,7 @@ const TagSelector = (props: Props) => {
 
     const onClick = (item: OptionProps) => {
         if (props.type === "single") {
-            const index = selection.findIndex((e: any) => e.id === item.id);
+            const index = selection.findIndex((e) => e.id === item.id);
             if (index > -1) {
                 //Remove the object
                 setSelection([]);
@@ -31,8 +31,8 @@ const TagSelector = (props: Props) => {
                 props.onChange && props.onChange([item]);
             }
         } else if (props.type === "multiple") {
-            const tempArray: any = [...selection];
-            const index = tempArray.findIndex((e: any) => e.id === item.id);
+            const tempArray: OptionProps[] = [...selection];
+            const index = tempArray.findIndex((e) => e.id === item.id);
             if (index > -1)
                 //Remove the object
                 tempArray.splice(index, 1);
@@ -77,7 +77,7 @@ const TagSelector = (props: Props) => {
 export default TagSelector;
 export interface Props {
     type?: "multiple" | "single";
-    style?: any;
+    style?: CSSProperties;
     options: Array<OptionProps>;
     optionsSelected?: Array<OptionProps>;
     onChange?: (selection: Array<OptionProps>) => void;

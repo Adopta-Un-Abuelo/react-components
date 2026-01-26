@@ -2,25 +2,20 @@ import { useEffect, useState, ChangeEvent, FocusEvent } from "react";
 import styled from "styled-components";
 import GLPN from "google-libphonenumber";
 
-import Select from "./SelectPhone";
+import Select, { CountryProps } from "./SelectPhone";
 import Input, { InputProps } from "../Basic/Input";
 
 const IconView = styled.div`
 	margin-right: 8px;
 `;
+
 const InputPhone = (props: InputPhoneProps) => {
 	const phoneUtil = GLPN.PhoneNumberUtil.getInstance();
 
 	const [inputValue, setInputValue] = useState<
 		string | number | readonly string[] | undefined
 	>(undefined);
-	const [country, setCountry] = useState<{
-		id: string;
-		esCountry: string;
-		enCountry: string;
-		prefix: string;
-		countryCode: string;
-	}>({
+	const [country, setCountry] = useState<CountryProps>({
 		id: "spain",
 		esCountry: "España",
 		enCountry: "Spain",
@@ -65,7 +60,7 @@ const InputPhone = (props: InputPhoneProps) => {
 			});
 	};
 
-	const onCountryChange = (country: { id: string; esCountry: string; enCountry: string; prefix: string; countryCode: string; [key: string]: string }) => {
+	const onCountryChange = (country: CountryProps) => {
 		setCountry(country);
 		const temp =
 			inputValue && typeof inputValue === "string"
@@ -124,14 +119,7 @@ const InputPhone = (props: InputPhoneProps) => {
 export default InputPhone;
 export type InputPhoneProps = InputProps & {
 	country?: string;
-	countryOptions?: {
-		id: string;
-		esCountry: string;
-		enCountry: string;
-		prefix: string;
-		countryCode: string;
-		[key: string]: string;
-	}[];
+	countryOptions?: CountryProps[];
 	onPhoneChange?: (item: {
 		country: string;
 		value?: string | number;
