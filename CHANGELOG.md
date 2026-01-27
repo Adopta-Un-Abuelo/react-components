@@ -1,3 +1,16 @@
+# v0.3.147 (Tue Jan 27 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'docs/add-component-jsdoc' (guillermo.angeles@adoptaunabuelo.com)
+- docs: add JSDoc documentation to component interfaces (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.146 (Mon Jan 26 2026)
 
 #### ⚠️ Pushed to `main`
