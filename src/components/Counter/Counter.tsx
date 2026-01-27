@@ -76,7 +76,6 @@ function Counter(props: Props) {
 			style={containerStyle}
 		>
 			{sections.map((item, idx) => {
-				//console.log(item);
 				return (
 					<Fragment key={`digit-block-${idx}`}>
 						<div className={styles.fcc__digit_block_container}>
@@ -96,12 +95,33 @@ function Counter(props: Props) {
 }
 
 export default Counter;
+/**
+ * Animated flip-clock style counter that animates from zero to the target amount.
+ * Each digit flips individually with a smooth animation effect.
+ *
+ * @example
+ * ```tsx
+ * <Counter
+ *   amount={12345}
+ *   height={60}
+ *   width={40}
+ *   fontSize={32}
+ * />
+ * ```
+ */
 export interface Props {
+	/** Height in pixels for each digit block */
 	height: number;
+	/** Width in pixels for each digit block */
 	width: number;
+	/** Target number to count up to (animates from amount-10 or 0) */
 	amount: number;
+	/** Text color for the digits */
 	color?: string;
+	/** Background color for each digit block */
 	backgroundColor?: string;
+	/** Border/divider color between digit segments */
 	borderColor?: string;
+	/** Font size in pixels for the numbers */
 	fontSize?: number;
 }

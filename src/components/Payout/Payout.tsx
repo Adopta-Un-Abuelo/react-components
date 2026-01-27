@@ -97,22 +97,54 @@ const Payout = forwardRef((props: PayoutProps, ref: Ref<PayoutRef>) => {
 	);
 });
 export default Payout;
+/**
+ * Stripe payment method setup component supporting card and SEPA direct debit.
+ * Handles 3D Secure authentication flow in modal. Requires Stripe publishable key.
+ *
+ * @example
+ * ```tsx
+ * const payoutRef = useRef<PayoutRef>(null);
+ *
+ * <Payout
+ *   ref={payoutRef}
+ *   stripeKey={process.env.STRIPE_KEY}
+ *   paymentOption="card"
+ *   design="secondary"
+ *   onLoading={(loading) => setIsLoading(loading)}
+ *   onSetupConfirmed={() => handleSuccess()}
+ * />
+ *
+ * // Get payment method
+ * const method = await payoutRef.current?.getPaymentMethod();
+ * ```
+ */
 export interface PayoutProps {
 	style?: CSSProperties;
+	/** Stripe publishable API key (starts with pk_) */
 	stripeKey: string;
+	/** 3D Secure confirmation URL from Stripe setup intent */
 	stripeConfirmUrl?: string;
+	/** Payment method type: credit/debit card or SEPA direct debit */
 	paymentOption: "sepa_debit" | "card";
+	/** Custom styles for the card input form */
 	cardStyle?: CSSProperties;
 	error?: boolean;
+	/** Pre-filled user data (email required for SEPA) */
 	userData?: {
 		email?: string;
 	};
+	/** Visual design variant */
 	design?: "primary" | "secondary";
+	/** Custom placeholder for name input */
 	placeholderName?: string;
+	/** Custom placeholder for email input */
 	placeholderEmail?: string;
+	/** Callback fired when 3D Secure authentication completes successfully */
 	onSetupConfirmed?: () => void;
+	/** Callback fired when loading state changes */
 	onLoading?: (a: boolean) => void;
 }
 export interface PayoutRef {
+	/** Collects payment method from Stripe and returns payment method object */
 	getPaymentMethod: () => Promise<PaymentMethod | undefined>;
 }

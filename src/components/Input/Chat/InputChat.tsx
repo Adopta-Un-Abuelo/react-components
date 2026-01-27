@@ -132,7 +132,7 @@ const InputChat = (props: InputChatProps) => {
 			analyserRef.current = analyser;
 			visualize();
 		} catch (error) {
-			console.error("Error al iniciar la grabación:", error);
+			// Error starting recording - handle gracefully
 		}
 	};
 
@@ -154,13 +154,10 @@ const InputChat = (props: InputChatProps) => {
 		}
 
 		setIsRecording(false);
-		console.log("Grabación cancelada.");
 	};
 
 	const sendRecording = (audioChunks: Blob[]) => {
-		console.log("Iniciar envio grabación");
 		if (audioChunks.length === 0) {
-			console.error("No hay datos de audio para enviar.");
 			return;
 		}
 		const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
@@ -319,10 +316,34 @@ const InputChat = (props: InputChatProps) => {
 	);
 };
 export default InputChat;
+/**
+ * Chat input with text messaging and voice recording capabilities.
+ * Features waveform visualization during recording and optional attachment menu.
+ *
+ * @example
+ * ```tsx
+ * <InputChat
+ *   placeholder="Type a message..."
+ *   options={[
+ *     { id: "photo", label: "Photo", icon: <Camera /> },
+ *     { id: "file", label: "File", icon: <Paperclip /> }
+ *   ]}
+ *   onOptionClick={(id) => handleAttachment(id)}
+ *   onSend={(data) => {
+ *     if (data.text) sendTextMessage(data.text);
+ *     if (data.media) sendAudioMessage(data.media.base64);
+ *   }}
+ * />
+ * ```
+ */
 export interface InputChatProps extends ComponentPropsWithoutRef<"input"> {
+	/** Shows loading animation, disables input */
 	loading?: boolean;
+	/** Attachment menu options (shows Plus icon button) */
 	options?: Array<optionType>;
+	/** Callback when attachment menu item is clicked */
 	onOptionClick?: (id: string) => void;
+	/** Callback when message is sent (Enter key or Send button). Audio is converted to base64 WAV format */
 	onSend?: (data: {
 		text?: string;
 		media?: { base64: string; contentType: string };

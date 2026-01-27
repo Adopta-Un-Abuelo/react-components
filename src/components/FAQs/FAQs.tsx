@@ -80,12 +80,34 @@ const FAQs = (props: Props) => {
 	);
 };
 export default FAQs;
+/**
+ * FAQ accordion component with expandable/collapsible question-answer pairs.
+ * Only one question can be expanded at a time.
+ *
+ * @example
+ * ```tsx
+ * <FAQs
+ *   options={[
+ *     {
+ *       id: "1",
+ *       title: "How do I get started?",
+ *       description: "To get started, simply..."
+ *     }
+ *   ]}
+ *   onClick={(index) => trackFaqClick(index)}
+ * />
+ * ```
+ */
 export interface Props {
 	style?: CSSProperties;
+	/** Array of FAQ items with question and answer */
 	options: Array<{
 		id: string;
+		/** Question text (always visible) */
 		title: string;
+		/** Answer text (visible when expanded) */
 		description: string;
 	}>;
+	/** Callback fired when FAQ item is clicked, receives item index */
 	onClick?: (index: number) => void;
 }

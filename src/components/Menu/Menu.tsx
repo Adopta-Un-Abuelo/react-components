@@ -134,24 +134,52 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
     )
 })
 export default MenuList;
+/**
+ * Dropdown menu component with customizable positioning and icon trigger.
+ * Automatically closes when clicking outside. Supports both predefined options and custom children.
+ *
+ * @example
+ * ```tsx
+ * <Menu
+ *   id="actions-menu"
+ *   position="bottom-right"
+ *   options={[
+ *     { id: "edit", label: "Edit", icon: <EditIcon /> },
+ *     { id: "delete", label: "Delete", labelColor: "red" }
+ *   ]}
+ *   onClick={(option) => handleAction(option.id)}
+ * />
+ * ```
+ */
 export interface MenuProps{
+    /** Unique identifier required for click-outside detection */
     id: string,
     style?: CSSProperties,
+    /** Custom styles for the dropdown menu container */
     menuStyle?: CSSProperties,
+    /** Icon for the button trigger (lowercase, used with Button component) */
     icon?: React.ReactElement,
+    /** Icon element for custom trigger (uppercase, replaces Button) */
     Icon?: React.ReactElement,
+    /** Positioning of the dropdown relative to the trigger button */
     position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left',
+    /** Custom content to display in menu (alternative to options) */
     children?: React.ReactNode,
+    /** Array of menu items with labels and icons */
     options?: Array<OptionsProps>,
+    /** Callback fired when menu visibility changes */
     onChange?: (visible: boolean) => void,
+    /** Callback fired when a menu option is clicked */
     onClick?: (option: OptionsProps) => void
 }
 export interface OptionsProps{
     id: string,
     label: string,
+    /** Custom text color for the label */
     labelColor?: string,
     icon?: React.ReactElement
 }
 export interface MenuRef{
+    /** Programmatically close the menu */
     close: () => void
 }

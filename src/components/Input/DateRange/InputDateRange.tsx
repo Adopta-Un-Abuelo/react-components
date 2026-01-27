@@ -68,14 +68,33 @@ const InputDateRange = (props: InputDateRangeProps) => {
 	);
 };
 export default InputDateRange;
+/**
+ * Date range picker powered by react-dates (Airbnb).
+ * Uses moment.js for date handling with Spanish localization.
+ *
+ * @example
+ * ```tsx
+ * <InputDateRange
+ *   startDate={startDate}
+ *   endDate={endDate}
+ *   onChange={({ startDate, endDate }) => {
+ *     setStartDate(startDate);
+ *     setEndDate(endDate);
+ *   }}
+ *   isOutsideRange={(date) => date.isBefore(moment())}
+ * />
+ * ```
+ */
 export interface InputDateRangeProps {
 	style?: CSSProperties;
 	startDate: moment.Moment | null;
 	endDate: moment.Moment | null;
 	focus?: boolean;
+	/** Callback fired when either date changes */
 	onChange: (data: {
 		startDate: moment.Moment | null;
 		endDate: moment.Moment | null;
 	}) => void;
+	/** Optional function to disable specific dates (return true to disable) */
 	isOutsideRange?: (date: moment.Moment) => boolean;
 }

@@ -433,7 +433,22 @@ const InputImage = (props: InputImageProps) => {
 	);
 };
 export default InputImage;
+/**
+ * Image upload with crop, compression, and webcam capture.
+ * Uses react-image-crop for 1:1 aspect ratio cropping and compressorjs for compression.
+ *
+ * @example
+ * ```tsx
+ * <InputImage
+ *   options={["camera", "library"]}
+ *   maxHeight={1200}
+ *   maxWidth={1200}
+ *   onChange={(base64Image) => setProfilePhoto(base64Image)}
+ * />
+ * ```
+ */
 export interface InputImageProps {
+	/** Image source options (shows modal on mobile if multiple). Default: ["library"] */
 	options?: Array<"camera" | "library">;
 	icon?: ReactElement;
 	style?: CSSProperties;
@@ -441,8 +456,12 @@ export interface InputImageProps {
 	buttonText?: string;
 	previewStyle?: CSSProperties;
 	label?: string;
+	/** Max height in pixels for compressed image */
 	maxHeight?: number;
+	/** Max width in pixels for compressed image */
 	maxWidth?: number;
+	/** Skip crop UI, immediately compress and return image */
 	hideCrop?: boolean;
+	/** Callback with base64-encoded WebP image */
 	onChange?: (image: string | ArrayBuffer | null) => void;
 }

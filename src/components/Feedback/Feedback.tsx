@@ -150,12 +150,34 @@ const FeedBack = ({
 	) : null;
 };
 export default FeedBack;
+/**
+ * Toast-style feedback notification with slide-in/out animation.
+ * Auto-dismisses after specified duration. Supports success, error, and custom types.
+ *
+ * @example
+ * ```tsx
+ * <Feedback
+ *   type="success"
+ *   text="Changes saved successfully"
+ *   isVisible={showFeedback}
+ *   closeAfter={5000}
+ *   onClose={() => setShowFeedback(false)}
+ * />
+ * ```
+ */
 export interface FeedBackProps extends ComponentPropsWithoutRef<"div"> {
+	/** Controls visibility (triggers show/hide animation) */
 	isVisible: boolean;
+	/** Visual variant: `success` (green with check), `error` (red with X), `custom` (use your own icon/color) */
 	type: "success" | "error" | "custom";
+	/** Custom icon for `type="custom"` */
 	icon?: ReactNode;
+	/** Message text to display */
 	text: string;
+	/** Auto-dismiss duration in milliseconds (default: 3000) */
 	closeAfter?: number;
+	/** Show manual close button */
 	showClose?: boolean;
+	/** Callback fired when dismissed (auto or manual) */
 	onClose?: () => void;
 }

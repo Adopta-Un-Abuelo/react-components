@@ -56,11 +56,28 @@ const SwitchTag = (props: Props) => {
 	);
 };
 export default SwitchTag;
+/**
+ * Icon-based toggle switch for switching between 2+ options.
+ * Displays icons in a pill-shaped container with active state highlighting.
+ *
+ * @example
+ * ```tsx
+ * <SwitchTag
+ *   options={[
+ *     { id: "grid", icon: <GridIcon /> },
+ *     { id: "list", icon: <ListIcon /> }
+ *   ]}
+ *   onChange={(option) => setViewMode(option.id)}
+ * />
+ * ```
+ */
 export interface Props {
 	style?: CSSProperties;
+	/** Array of icon options (automatically colors icons based on selection) */
 	options: Array<{
 		id: string;
 		icon: React.ReactElement;
 	}>;
+	/** Callback fired when option changes, receives selected option */
 	onChange?: (option: { id: string; icon: React.ReactElement }) => void;
 }

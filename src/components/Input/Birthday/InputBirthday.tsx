@@ -225,6 +225,20 @@ const InputBirthday = ({
 	);
 };
 export default InputBirthday;
+/**
+ * Birthday input split into three numeric fields (Day/Month/Year).
+ * Auto-focuses next field when complete, validates date with moment.js.
+ *
+ * @example
+ * ```tsx
+ * <InputBirthday
+ *   defaultValue="1990-05-15"
+ *   error={validationError}
+ *   onChange={(date) => setDateOfBirth(date)}
+ * />
+ * ```
+ */
 export type InputBirthdayProps = Omit<InputProps, 'onChange'> & {
+	/** Callback with valid Date object when all fields complete. Format for defaultValue: "YYYY-MM-DD" */
 	onChange?: (date: Date | ChangeEvent<HTMLInputElement>) => void;
 };

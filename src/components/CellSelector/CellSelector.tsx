@@ -159,20 +159,48 @@ const CellSelector = (props: Props) => {
 	);
 };
 export default CellSelector;
+/**
+ * Grid of selectable cells with icons, titles, and optional subtitles.
+ * Supports single or multiple selection with visual feedback and hover states.
+ *
+ * @example
+ * ```tsx
+ * <CellSelector
+ *   type="multiple"
+ *   options={[
+ *     { id: "1", title: "Option 1", icon: <Icon />, subtitle: "Description" },
+ *     { id: "2", title: "Option 2", icon: <Icon />, disabled: true }
+ *   ]}
+ *   selectedOptions={selected}
+ *   onChange={(items) => setSelected(items)}
+ * />
+ * ```
+ */
 export interface Props {
 	style?: CSSProperties;
+	/** Custom styles applied to each cell */
 	cellStyle?: CSSProperties;
+	/** Array of selectable cell options */
 	options: Array<OptionProps>;
+	/** Currently selected options (controlled component) */
 	selectedOptions?: Array<OptionProps>;
+	/** Selection mode: `single` for radio behavior, `multiple` for checkboxes */
 	type?: "single" | "multiple";
+	/** Callback fired when selection changes, receives array of selected options */
 	onChange?: (array: Array<OptionProps>) => void;
+	/** Callback fired when individual cell is clicked */
 	onClick?: (item: OptionProps) => void;
+	/** Visual design variant */
 	design?: "design1" | "design2";
 }
 export interface OptionProps {
 	id: string;
+	/** Main title displayed in the cell */
 	title: string;
+	/** Optional subtitle displayed below the cell */
 	subtitle?: string;
+	/** Icon displayed at the top of the cell */
 	icon?: ReactElement;
+	/** Disables cell interaction and applies opacity */
 	disabled?: boolean;
 }

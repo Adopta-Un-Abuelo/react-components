@@ -231,21 +231,50 @@ const Dropdown = (props: Props) => {
 	);
 };
 export default Dropdown;
+/**
+ * Dropdown select with optional search, multi-select, and icon support.
+ * Auto-closes when clicking outside. Displays selected items as comma-separated text.
+ *
+ * @example
+ * ```tsx
+ * <Dropdown
+ *   id="category-dropdown"
+ *   placeholder="Select categories"
+ *   type="multiple"
+ *   options={categories}
+ *   selectedOptions={selected}
+ *   onSearchChange={(text) => filterOptions(text)}
+ *   onChange={(items) => setSelected(items)}
+ * />
+ * ```
+ */
 export interface Props {
+	/** Unique identifier required for click-outside detection */
 	id: string;
 	style?: CSSProperties;
+	/** Custom styles for the dropdown menu container */
 	menuStyle?: CSSProperties;
+	/** Custom styles for individual option items */
 	optionStyle?: CSSProperties;
+	/** Array of selectable options */
 	options: Array<OptionProps>;
+	/** Placeholder text shown when nothing is selected */
 	placeholder: string;
+	/** Currently selected options (controlled component) */
 	selectedOptions?: Array<OptionProps>;
+	/** Selection mode: `single` for one item, `multiple` for checkboxes */
 	type?: "single" | "multiple";
+	/** Position of dropdown menu relative to trigger */
 	menuPosition?: "bottom" | "top";
+	/** Callback fired when selection changes */
 	onChange?: (a: Array<OptionProps>) => void;
+	/** Callback fired when search input changes, enables search functionality */
 	onSearchChange?: (text: string) => void;
 }
 export interface OptionProps {
 	id: string;
+	/** Display text for the option */
 	title?: string;
+	/** Optional icon displayed before title */
 	icon?: React.ReactElement;
 }
