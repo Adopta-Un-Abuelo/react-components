@@ -20,4 +20,17 @@ const Filter = forwardRef(
 		);
 	},
 );
+/**
+ * Filter component router supporting three types: checkbox (multi-select), ratio (range slider), and date (date picker).
+ * Each type has its own variant implementation with specific props.
+ *
+ * @example
+ * ```tsx
+ * <Filter
+ *   type="checkbox"
+ *   options={filterOptions}
+ *   onChange={(selected) => applyFilters(selected)}
+ * />
+ * ```
+ */
 export default Filter;

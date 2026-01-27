@@ -131,10 +131,28 @@ const Pagination = (props: Props) => {
 	);
 };
 export default Pagination;
+/**
+ * Pagination control with first/previous/next/last navigation buttons.
+ * Displays current page number and total pages (e.g., "1 de 5").
+ *
+ * @example
+ * ```tsx
+ * <Pagination
+ *   length={100}
+ *   rowsPerPage={10}
+ *   start={0}
+ *   onChange={(page) => fetchData(page)}
+ * />
+ * ```
+ */
 export interface Props {
 	style?: CSSProperties;
+	/** Initial/controlled page index (0-based) */
 	start?: number;
+	/** Total number of items to paginate */
 	length: number;
+	/** Number of items to display per page */
 	rowsPerPage: number;
+	/** Callback fired when page changes, receives new page index (0-based) */
 	onChange?: (page: number) => void;
 }

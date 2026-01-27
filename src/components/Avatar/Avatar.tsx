@@ -115,10 +115,29 @@ const Avatar = (props: Props) => {
 	);
 };
 export default Avatar;
+/**
+ * Circular avatar component supporting images, initials, and file upload.
+ * Click to view full-size image or to upload new one when editable.
+ *
+ * @example
+ * ```tsx
+ * <Avatar
+ *   icon={userImageUrl}
+ *   name="John Doe"
+ *   editable
+ *   onChange={(file) => uploadAvatar(file)}
+ * />
+ * ```
+ */
 export interface Props extends Omit<ComponentPropsWithoutRef<"div">, "onChange"> {
+	/** Image URL to display */
 	icon?: string;
+	/** User name (displays first letter as fallback when no icon) */
 	name?: string;
+	/** Enable file upload on click (accepts jpg, jpeg, png, gif) */
 	editable?: boolean;
+	/** Enable click to view full-size image in modal */
 	clickable?: boolean;
+	/** Callback fired when new image is selected, receives base64-encoded file */
 	onChange?: (file: string | ArrayBuffer | null) => void;
 }

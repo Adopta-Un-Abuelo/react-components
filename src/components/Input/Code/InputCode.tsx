@@ -119,11 +119,26 @@ const InputCode = (props: InputCodeProps) => {
 	);
 };
 export default InputCode;
+/**
+ * 6-digit verification code input with monospace font and letter spacing.
+ * Auto-blurs and triggers callback when all 6 digits are entered.
+ *
+ * @example
+ * ```tsx
+ * <InputCode
+ *   autoFocus
+ *   error={codeError}
+ *   loading={isVerifying}
+ *   onChange={(code) => verifyCode(code)}
+ * />
+ * ```
+ */
 export interface InputCodeProps {
 	style?: CSSProperties;
 	containerStyle?: CSSProperties;
 	autoFocus?: boolean;
 	error?: string;
 	loading?: boolean;
+	/** Callback fired when 6 digits are entered (input auto-blurs) */
 	onChange?: (code: string) => void;
 }

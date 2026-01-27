@@ -32,6 +32,18 @@ const Hover = ({ children, modalProps, ...props }: HoverProps) => {
 	);
 };
 export default Hover;
+/**
+ * Hover trigger component that displays content on hover.
+ * Content appears below the trigger element with shadow and border.
+ *
+ * @example
+ * ```tsx
+ * <Hover modalProps={{ children: <div>Hover content here</div> }}>
+ *   <button>Hover over me</button>
+ * </Hover>
+ * ```
+ */
 export interface HoverProps extends ComponentPropsWithoutRef<"div"> {
+	/** Props for the hover content container (including children to display) */
 	modalProps: React.ComponentProps<"div">;
 }

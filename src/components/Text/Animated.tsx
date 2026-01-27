@@ -41,7 +41,24 @@ const TextAnimated = ({ children, ...props }: TextAnimatedProps) => {
 	);
 };
 export default TextAnimated;
+/**
+ * Text component with rotating animated words that cycle through options array.
+ * Uses {{data}} placeholder in children string for where animation appears.
+ *
+ * @example
+ * ```tsx
+ * <TextAnimated
+ *   type="h1"
+ *   options={["developers", "designers", "creators"]}
+ *   interval={3000}
+ * >
+ *   Built for {{data}}
+ * </TextAnimated>
+ * ```
+ */
 export type TextAnimatedProps = TextProps & {
+	/** Array of strings to cycle through */
 	options: string[];
+	/** Time in milliseconds between transitions. Default: 2500ms */
 	interval?: number;
 };

@@ -115,7 +115,6 @@ const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) => {
 							},
 						});
 					if (error) {
-						console.error(error);
 						props.onLoading && props.onLoading(false);
 						return undefined;
 					} else {
@@ -140,7 +139,6 @@ const PayoutForm = forwardRef((props: FormProps, ref: Ref<FormRef>) => {
 							},
 						});
 					if (error) {
-						console.error(error);
 						props.onLoading && props.onLoading(false);
 						return undefined;
 					} else {

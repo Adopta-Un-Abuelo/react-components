@@ -672,9 +672,25 @@ const Stamp = (props: StampProps) => {
 	);
 };
 export default Stamp;
+/**
+ * Decorative postage stamp component with perforated edges.
+ * Displays an emoji icon and title. Responsive sizing for mobile.
+ *
+ * @example
+ * ```tsx
+ * <Stamp
+ *   icon="🎉"
+ *   title="Celebration"
+ *   backgroundColor={ColorV2.surface.greenSoft}
+ * />
+ * ```
+ */
 export interface StampProps {
 	style?: CSSProperties;
+	/** Emoji or single character to display (rendered large) */
 	icon: string;
+	/** Text label below the icon (truncates with ellipsis) */
 	title: string;
+	/** Background color for the icon area */
 	backgroundColor: string;
 }

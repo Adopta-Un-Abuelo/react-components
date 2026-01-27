@@ -122,8 +122,11 @@ const InputPrimary = forwardRef((props: InputPrimaryProps, ref: Ref<HTMLInputEle
 });
 export default InputPrimary;
 export interface InputPrimaryProps extends InputStyledProps {
+	/** Custom React element to display on the left side of the input (e.g., icon, prefix) */
 	LeftContent?: ReactElement;
+	/** Custom CSS properties for the outer container wrapper */
 	containerStyle?: CSSProperties;
+	/** Error message displayed below the input in red text */
 	error?: string | undefined;
 	design?: "primary";
 }

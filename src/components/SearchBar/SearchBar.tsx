@@ -95,7 +95,23 @@ const SearchBar = (props: Props) => {
 
 export default SearchBar;
 
+/**
+ * Search input with magnifying glass icon. Supports two sizes and visual designs.
+ * Auto-focuses on click and changes style on interaction.
+ *
+ * @example
+ * ```tsx
+ * <SearchBar
+ *   type="big"
+ *   design="primary"
+ *   placeholder="Search..."
+ *   onChange={(e) => handleSearch(e.target.value)}
+ * />
+ * ```
+ */
 export interface Props extends ComponentPropsWithoutRef<"input"> {
+	/** Size variant: `big` (48px height) or `small` (38px height) */
 	type?: "big" | "small";
+	/** Visual design: `primary` (gray background) or `secondary` (white with border) */
 	design?: "primary" | "secondary";
 }

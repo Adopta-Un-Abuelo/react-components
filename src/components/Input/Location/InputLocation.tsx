@@ -297,24 +297,53 @@ const InputLocation = ({
 	);
 };
 export default InputLocation;
+/**
+ * Location autocomplete input powered by Google Maps Places API.
+ * Debounced search (500ms) with structured address parsing in Spanish.
+ *
+ * @example
+ * ```tsx
+ * <InputLocation
+ *   isLoaded={isGoogleMapsLoaded}
+ *   placeholder="Introduce tu dirección"
+ *   searchTypes={["address"]}
+ *   searchFields={["geometry", "address_components"]}
+ *   onLocationChange={(location) => {
+ *     console.log(location.address);
+ *     console.log(location.location); // { lat, lng }
+ *   }}
+ * />
+ * ```
+ */
 export type InputLocationProps = InputProps & {
+	/** If true, only shows route + number in input after selection */
 	isForm?: boolean;
+	/** Must be true when Google Maps API is loaded */
 	isLoaded: boolean;
+	/** Google Places API search types. Default: ["address"] */
 	searchTypes?: string[];
+	/** Google Places API fields to fetch. Default: ["geometry", "address_components"] */
 	searchFields?: string[];
+	/** Callback with parsed location data */
 	onLocationChange?: (result: LocationProps) => void;
 };
 export interface LocationProps {
+	/** Full formatted address string */
 	address?: string;
+	/** Short address (city, province, country) */
 	sortAddress?: string;
+	/** Street name */
 	route?: string;
+	/** Street number */
 	routeNumber?: string;
 	routeInfo?: string;
 	city?: string;
 	province?: string;
 	zipCode?: string;
 	country?: string;
+	/** ISO country code (e.g., "ES") */
 	shortCountry?: string;
+	/** Coordinates { lat, lng } */
 	location?: google.maps.LatLngLiteral;
 	timeZone?: string;
 }

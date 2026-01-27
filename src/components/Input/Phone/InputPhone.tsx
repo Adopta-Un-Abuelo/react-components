@@ -117,12 +117,33 @@ const InputPhone = (props: InputPhoneProps) => {
 	);
 };
 export default InputPhone;
+/**
+ * Phone input with country selector and validation using google-libphonenumber.
+ * Validates phone format for the selected country region.
+ *
+ * @example
+ * ```tsx
+ * <InputPhone
+ *   country="ES"
+ *   countryOptions={countryList}
+ *   onPhoneChange={({ country, value, isValid }) => {
+ *     if (isValid) setPhoneNumber(country + value);
+ *   }}
+ * />
+ * ```
+ */
 export type InputPhoneProps = InputProps & {
+	/** ISO country code (e.g., "ES") to pre-select */
 	country?: string;
+	/** Array of country options with prefix and countryCode */
 	countryOptions?: CountryProps[];
+	/** Callback fired on input change or country change with validation status */
 	onPhoneChange?: (item: {
+		/** Country prefix (e.g., "+34") */
 		country: string;
+		/** Phone number without prefix */
 		value?: string | number;
+		/** Whether phone is valid for selected country */
 		isValid: boolean;
 	}) => void;
 };

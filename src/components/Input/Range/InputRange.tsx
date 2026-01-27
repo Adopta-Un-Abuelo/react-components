@@ -313,20 +313,51 @@ const InputRange = (props: InputRangeProps) => {
 	);
 };
 export default InputRange;
+/**
+ * Range slider with heart icon thumb and optional milestone markers ("presents").
+ * Milestones animate with Lottie pop effect when value reaches them.
+ *
+ * @example
+ * ```tsx
+ * <InputRange
+ *   min={0}
+ *   max={100}
+ *   unit="€"
+ *   value={currentValue}
+ *   presents={[
+ *     { value: 25, icon: Gift, color: "#ccc", colorSuccess: "#0088ff", onClick: () => alert("25 reached!") },
+ *     { value: 50, icon: Star, color: "#ccc", colorSuccess: "#0088ff" }
+ *   ]}
+ *   onChange={(e) => setValue(parseInt(e.target.value))}
+ * />
+ * ```
+ */
 export interface InputRangeProps extends ComponentPropsWithoutRef<"input"> {
+	/** Color for filled portion of slider track */
 	lineColor?: string;
+	/** Color for unfilled portion of slider track */
 	backgroundColor?: string;
+	/** Color for heart icon thumb */
 	thumbColor?: string;
 	min?: number;
 	max?: number;
+	/** Unit label shown at min/max (e.g., "€", "kg") */
 	unit?: string;
+	/** Hide floating value tooltip above thumb */
 	hideRange?: boolean;
+	/** Hide min/max labels below slider */
 	hideLabels?: boolean;
+	/** Milestone markers with Lottie animation when reached */
 	presents?: {
+		/** Value at which to show marker */
 		value: number;
+		/** Lucide icon component */
 		icon: React.ComponentType<{ height?: number; width?: number; color?: string }>;
+		/** Color when milestone not reached */
 		color: string;
+		/** Color when milestone reached (slider value >= milestone value) */
 		colorSuccess: string;
+		/** Optional callback when marker is clicked */
 		onClick?: () => void;
 	}[];
 }

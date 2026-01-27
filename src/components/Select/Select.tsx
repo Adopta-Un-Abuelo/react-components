@@ -137,15 +137,40 @@ const Select = (props: Props) => {
 	);
 };
 export default Select;
+/**
+ * Dropdown select component with icons and keyboard-friendly navigation.
+ * Auto-closes when clicking outside. Supports controlled and uncontrolled modes.
+ *
+ * @example
+ * ```tsx
+ * <Select
+ *   id="language-select"
+ *   options={[
+ *     { label: "English", icon: <FlagIcon /> },
+ *     { label: "Spanish", icon: <FlagIcon /> }
+ *   ]}
+ *   selectedItem={currentLanguage}
+ *   onChange={(option) => setLanguage(option)}
+ * />
+ * ```
+ */
 export interface Props extends Omit<ComponentPropsWithoutRef<"div">, "onChange"> {
+	/** Unique identifier required for click-outside detection */
 	id: string;
+	/** Custom styles for the dropdown options container */
 	optionStyle?: CSSProperties;
+	/** Hide the selected item label (icon-only mode) */
 	hideTitle?: boolean;
+	/** Array of selectable options */
 	options: Array<OptionProps>;
+	/** Current selected option (controlled component) */
 	selectedItem?: OptionProps;
+	/** Callback fired when selection changes */
 	onChange?: (option: OptionProps) => void;
 }
 interface OptionProps {
+	/** Optional icon displayed before label */
 	icon?: React.ReactElement;
+	/** Display text for the option */
 	label: string;
 }

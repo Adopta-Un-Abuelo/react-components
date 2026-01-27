@@ -298,12 +298,29 @@ const Label = (props: Props) => {
 	);
 };
 export default Label;
+/**
+ * Label/badge component with status-aware coloring and two visual types.
+ * Automatically applies predefined colors for common status values (e.g., "pending", "active", "canceled").
+ *
+ * @example
+ * ```tsx
+ * <Label type="label" text="active" />
+ * <Label type="chip" size="big" text="Pending" />
+ * <Label text="done" icon={<CheckIcon />} />
+ * ```
+ */
 export interface Props extends ComponentPropsWithoutRef<"div"> {
+	/** Text to display. For predefined status values, color is automatically applied. */
 	text: string;
 	disabled?: boolean;
+	/** Visual variant: `label` for badges, `chip` for rounded buttons */
 	type?: "label" | "chip";
+	/** Size variant for chips: `big` (full text), `small` (initials only), `selector` (bordered) */
 	size?: "big" | "small" | "selector";
+	/** Optional icon displayed before the text */
 	icon?: ReactElement;
+	/** Custom background color (overrides automatic status colors) */
 	backgroundColor?: string;
+	/** Custom text color (overrides automatic status colors) */
 	color?: string;
 }

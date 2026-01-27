@@ -29,4 +29,15 @@ const Text = (props: TextProps) => {
 	) : null;
 };
 export default Text;
+/**
+ * Unified typography component that renders headers (h1-h6, d1), paragraphs (p, p2, c1, c2, o1, o2), or button text (b1, b2, b3).
+ * Automatically chooses the correct semantic HTML element based on the `type` prop.
+ *
+ * @example
+ * ```tsx
+ * <Text type="h1" weight="bold">Page Title</Text>
+ * <Text type="p" color={ColorV2.text.neutralMedium}>Body text</Text>
+ * <Text type="b1">Button text</Text>
+ * ```
+ */
 export type TextProps = HeaderProps | ParagraphProps | ButtonProps;

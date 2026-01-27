@@ -61,8 +61,24 @@ const Switch = (props: SwitchProps) => {
 	);
 };
 export default Switch;
+/**
+ * Toggle switch component with sliding animation and checkmark indicator.
+ * Changes color and position when toggled on/off.
+ *
+ * @example
+ * ```tsx
+ * <Switch
+ *   active={isEnabled}
+ *   color={ColorV2.surface.primary}
+ *   onChange={(on) => setIsEnabled(on)}
+ * />
+ * ```
+ */
 export interface SwitchProps {
+	/** Current state (controlled component) */
 	active?: boolean;
+	/** Custom color when active (default: primary) */
 	color?: string;
+	/** Callback fired when toggled, receives new state */
 	onChange?: (on: boolean) => void;
 }

@@ -79,8 +79,25 @@ const Countdown = (props: Props) => {
 	);
 };
 export default Countdown;
+/**
+ * Countdown timer displaying human-readable time remaining or elapsed.
+ * Auto-warns with red background when less than 2 hours remain.
+ *
+ * @example
+ * ```tsx
+ * <Countdown
+ *   toDate={new Date("2024-12-31")}
+ *   color={ColorV2.surface.primary}
+ *   textColor={ColorV2.text.white}
+ * />
+ * // Shows: "3 días restantes" or "2 horas de retraso"
+ * ```
+ */
 export interface Props extends ComponentPropsWithoutRef<"div"> {
+	/** Target date to count down to (or count up from if past) */
 	toDate: Date;
+	/** Background color (overridden by warning red when <2h remain) */
 	color?: string;
+	/** Text and icon color (overridden by white when warning) */
 	textColor?: string;
 }
