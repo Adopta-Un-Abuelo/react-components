@@ -1,3 +1,15 @@
+# v0.3.148 (Mon Feb 16 2026)
+
+#### ⚠️ Pushed to `main`
+
+- chore: update configurations and add agent definitions (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.147 (Tue Jan 27 2026)
 
 #### ⚠️ Pushed to `main`
