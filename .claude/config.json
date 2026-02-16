@@ -1,24 +1,31 @@
 {
-	"$schema": "https://anthropic.com/schemas/claude-config.json",
-	"description": "Claude Code configuration for Adopta Un Abuelo UI components project",
-	"knowledge": {
-		"sources": [
-			{
-				"type": "markdown",
-				"path": ".claude/agents/*.md",
-				"description": "Custom agent definitions for specialized tasks"
-			},
-			{
-				"type": "markdown",
-				"path": ".claude/memory/*.md",
-				"description": "Memory files containing important context and information"
-			}
-		]
-	},
-	"agents": {
-		"directory": ".claude/agents"
-	},
-	"settings": {
-		"local": ".claude/settings.local.json"
-	}
+  "projectType": "web",
+  "projectName": "Web Frontend",
+  "description": "React 19 + TypeScript con Redux Toolkit, Styled Components y patrones del equipo",
+  "defaultAgent": "react",
+  "agents": [
+    "react",
+    "typescript-general"
+  ],
+  "hooks": [
+    "pre-commit-lint"
+  ],
+  "skills": [],
+  "guidelines": {
+    "framework": "React 19+",
+    "typescript": "4.9+ (strict)",
+    "stateManagement": "Redux Toolkit",
+    "styling": "Styled Components + styled-media-query",
+    "testing": "Jest + React Testing Library (configurado)",
+    "apiClient": "client-v2 (interno)",
+    "uiLibrary": "@adoptaunabuelo/react-components",
+    "tooling": "Create React App"
+  },
+  "commonTasks": [
+    "Crear componente que integre Redux y @adoptaunabuelo/react-components",
+    "Implementar WizardContainer para flow multi-step",
+    "Llamadas a API con client-v2 y error handling",
+    "Responsive design con Redux state (isMobile)",
+    "Refactorizar componente existente con patrones del equipo"
+  ]
 }
