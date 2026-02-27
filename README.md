@@ -1,89 +1,104 @@
-# react-components
-A simple, customizable, and accessible library of React components
+# @adoptaunabuelo/react-components
+
+A simple, customizable, and accessible library of React components built with TypeScript and styled-components, developed for the Adopta Un Abuelo ecosystem.
 
 [![npm latest package](https://img.shields.io/npm/v/@adoptaunabuelo/react-components/latest.svg)](https://www.npmjs.com/package/@adoptaunabuelo/react-components)
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
-<a href="https://www.chromatic.com/library?appId=64650038c7589bed568201a8" target="_blank"><img src="https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg"></a>
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Adopta-Un-Abuelo/react-components/blob/main/LICENSE)
+<a href="https://www.chromatic.com/library?appId=64650038c7589bed568201a8" target="_blank"><img src="https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg" alt="storybook"></a>
 
-## Installation
+## 🚀 Installation
 
-### React Components
-
-React Components is available as an [npm package](https://www.npmjs.com/package/@adoptaunabuelo/react-components).
-
-**npm:**
-
+### 1. Install the package
 ```sh
+# npm
 npm install @adoptaunabuelo/react-components react react-dom styled-components
-```
 
-**yarn:**
-
-```sh
+# yarn
 yarn add @adoptaunabuelo/react-components react react-dom styled-components
 ```
 
-### Peer Dependencies
-
-This library requires the following peer dependencies to be installed in your project:
+### 2. Peer Dependencies
+This library requires the following peer dependencies:
 
 | Package | Version | Required |
 |---------|---------|----------|
-| `react` | ^18.0.0 \|\| ^19.0.0 | ✅ Yes |
-| `react-dom` | ^18.0.0 \|\| ^19.0.0 | ✅ Yes |
-| `styled-components` | ^5.0.0 \|\| ^6.0.0 | ✅ Yes |
+| `react` | ^18.0.0 || ^19.0.0 | ✅ Yes |
+| `react-dom` | ^18.0.0 || ^19.0.0 | ✅ Yes |
+| `styled-components` | ^5.0.0 || ^6.0.0 | ✅ Yes |
 
-### Optional Dependencies (Required for Specific Components)
+### 3. Optional Dependencies
+Some components require additional dependencies for specific functionality:
 
-Some components require additional dependencies. Install only what you need:
+| Component | Package | Purpose |
+|-----------|---------|---------|
+| `InputLocation` | `@react-google-maps/api` | Google Maps integration |
+| `Payout` | `@stripe/react-stripe-js` `@stripe/stripe-js` | Stripe payments |
+| `TextArea` (Rich Text) | `@tiptap/*` packages | Rich text editing |
+| `Button` | `@lottiefiles/react-lottie-player` | Loading/Success animations |
+| `InputImage` | `react-webcam` | Camera access |
 
-| Component(s) | Package(s) | Installation |
-|--------------|-----------|--------------|
-| `InputLocation` | `@react-google-maps/api` | `npm install @react-google-maps/api` |
-| `Payout` | `@stripe/react-stripe-js` `@stripe/stripe-js` | `npm install @stripe/react-stripe-js @stripe/stripe-js` |
-| `TextArea` (Rich Text) | `@tiptap/react` `@tiptap/starter-kit` `@tiptap/extension-text-align` `@tiptap/extension-text-style` `@tiptap/extensions` | `npm install @tiptap/react @tiptap/starter-kit @tiptap/extension-text-align @tiptap/extension-text-style @tiptap/extensions` |
-| `Button` (Loading animations) | `@lottiefiles/react-lottie-player` | `npm install @lottiefiles/react-lottie-player` |
-| `InputImage` | `react-webcam` | `npm install react-webcam` |
-| Styled Components | `@emotion/is-prop-valid` | `npm install @emotion/is-prop-valid` |
+## 📖 Features
 
-## Getting started with React Components
+- 🛠 **Customizable**: Built with styled-components for easy theming.
+- 📦 **Modern Stack**: React 19, TypeScript, Rollup, and Storybook.
+- 🧩 **Pattern Driven**: Uses the Variant Router Pattern for clean component architecture.
+- ♿ **Accessible**: Focused on meeting standard a11y requirements.
+- 🧪 **Tested**: Interactive Storybook stories with play functions and Chromatic visual testing.
 
-Here is an example of a basic app using React Components `ProgressBar` component:
+## 🛠 Usage
 
+### Basic Example
 ```jsx
 import React from 'react';
-import { ProgressBar } from '@adoptaunabuelo/react-components';
+import { ProgressBar, Button } from '@adoptaunabuelo/react-components';
 
 function App() {
-    return (
-        <ProgressBar 
-            maxValue={100}
-            minValue={0}
-            progress={40}
-        />;
-    )
+  return (
+    <div>
+      <ProgressBar maxValue={100} minValue={0} progress={40} />
+      <Button design="primary" text="Click Me" onClick={() => console.log('Clicked!')} />
+    </div>
+  );
 }
 ```
 
-### Watch out! 
-To be able to use Input type location, you will need to add this line to your project header:
-
+### Google Maps (InputLocation)
+To use `InputLocation`, add the Google Maps script to your project's header:
 ```html
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&language=es"/>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&language=es"></script>
 ```
-Please, replace ``YOUR_API_KEY`` with your Google Maps API Key.
 
-## Storybook
+## 🏗 Development
 
-You can checkout all the library Components and its docs in our storybook
+### Environment Setup
+1. Clone the repository.
+2. Install dependencies: `npm install`.
+3. Create a `.env` file with your `GOOGLE_MAPS_API` key for local testing.
 
-[Open the Storybook](https://www.chromatic.com/library?appId=64650038c7589bed568201a8)
+### Common Commands
+- `npm run storybook`: Run dev server (port 6006)
+- `npm run build`: Build for production (Rollup)
+- `npm run chromatic`: Run visual regression tests
+- `npm run release`: Automated release (Main branch only)
 
-## Changelog
+### Architecture
+Components follow the **Variant Router Pattern**:
+- `ComponentName.tsx`: Router that delegates to variants.
+- `ComponentPrimary.tsx`, `ComponentSecondary.tsx`: Implementations.
+- `ComponentName.stories.tsx`: Documentation and tests.
 
-The [changelog](https://github.com/Adopta-Un-Abuelo/react-components/releases) is regularly updated to reflect what's changed in each new release.
+We use **Path Aliases** for clean imports:
+- `@components/*` -> `src/components/*`
+- `@constants/*` -> `src/constants/*`
+- `@assets/*` -> `src/assets/*`
 
-## License
+## 🎨 Storybook
+Checkout all library components, their documentation, and interactive states in our Storybook:
 
-This project is licensed under the terms of the
-[MIT license](/LICENSE).
+👉 **[Open Storybook](https://www.chromatic.com/library?appId=64650038c7589bed568201a8)**
+
+## 🤝 Contributing
+Contributions are welcome! Please read our [CONTRIBUTING.md](./CONTRIBUTING.md) before submitting a PR.
+
+## 📄 License
+Licensed under the [MIT License](./LICENSE).
