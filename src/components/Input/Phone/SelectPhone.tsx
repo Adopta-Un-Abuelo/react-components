@@ -1,4 +1,4 @@
-import { useState, useEffect, ComponentPropsWithoutRef } from "react";
+import { useState, useEffect, ComponentPropsWithoutRef, CSSProperties } from "react";
 import styled from "styled-components";
 import * as Flags from "country-flag-icons/react/3x2";
 import Text from "@components/Text/Text";
@@ -54,10 +54,14 @@ const Title = styled(Text)<{ $focus: boolean; color?: string }>`
 	font-size: 14px !important;
 `;
 
+type CountryWithFlag = CountryProps & {
+	flag: React.ComponentType<React.SVGProps<SVGSVGElement>>
+};
+
 const Select = (props: Props) => {
-	const Flags2: any = Flags;
+	const Flags2 = Flags as Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>>;
 	const [showMenu, setShowMenu] = useState(false);
-	const [selectedItem, setSelectedItem] = useState<any>(undefined);
+	const [selectedItem, setSelectedItem] = useState<CountryWithFlag | undefined>(undefined);
 	const [options, setOptions] = useState(props.options);
 
 	useEffect(() => {
@@ -86,26 +90,22 @@ const Select = (props: Props) => {
 		}
 	}, [props.selectedItem]);
 
-	const onSelectClick = (e: any) => {
-		if (!e) var e: any = window.event;
-		e.cancelBubble = true;
-		if (e.stopPropagation) e.stopPropagation();
+	const onSelectClick = (e: React.MouseEvent) => {
+		e.stopPropagation();
 		setShowMenu(!showMenu);
 	};
 
-	const closeMenu = (e: any) => {
+	const closeMenu = (e: MouseEvent) => {
 		const element = document.getElementById(props.id);
 		if (element) {
-			if (!element.contains(e.target)) {
+			if (!element.contains(e.target as Node)) {
 				setShowMenu(false);
 			}
 		}
 	};
 
-	const onOptionClick = (option: any, e: any) => {
-		if (!e) var e: any = window.event;
-		e.cancelBubble = true;
-		if (e.stopPropagation) e.stopPropagation();
+	const onOptionClick = (option: CountryProps, e: React.MouseEvent) => {
+		e.stopPropagation();
 		setSelectedItem({
 			...option,
 			flag: Flags2[option.countryCode],
@@ -164,7 +164,7 @@ const Select = (props: Props) => {
 								<Option
 									role={"country" + index}
 									key={"country" + index}
-									onClick={(e: any) => onOptionClick(item, e)}
+									onClick={(e) => onOptionClick(item, e)}
 								>
 									<Icon>
 										<Flag height={24} width={24} />
@@ -191,16 +191,17 @@ const Select = (props: Props) => {
 	);
 };
 export default Select;
-export interface Props extends ComponentPropsWithoutRef<"div"> {
+export interface Props extends Omit<ComponentPropsWithoutRef<"div">, "onChange"> {
 	id: string;
-	optionStyle?: any;
+	optionStyle?: CSSProperties;
 	showMenu?: boolean;
 	options: Array<CountryProps>;
 	selectedItem?: CountryProps;
 	focus: boolean;
-	onChange?: (a: any) => void;
+	onChange?: (country: CountryProps) => void;
 }
 export interface CountryProps {
+	id?: string;
 	countryCode: string;
 	prefix: string;
 	esCountry: string;

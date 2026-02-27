@@ -32,7 +32,18 @@ const BreadCrumb = ({ steps = 1, selectedStep = 0, ...restProps }: Props) => {
 	);
 };
 export default BreadCrumb;
+/**
+ * Step indicator component displaying circular dots to show progress through a multi-step flow.
+ * Highlights the current active step with primary color.
+ *
+ * @example
+ * ```tsx
+ * <BreadCrumb steps={4} selectedStep={1} />
+ * ```
+ */
 export interface Props extends ComponentPropsWithoutRef<"div"> {
+	/** Current active step index (0-based) */
 	selectedStep?: number;
+	/** Total number of steps to display */
 	steps: number;
 }

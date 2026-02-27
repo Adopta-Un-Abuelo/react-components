@@ -1,26 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent, FocusEvent } from "react";
 import styled from "styled-components";
 import GLPN from "google-libphonenumber";
 
-import Select from "./SelectPhone";
+import Select, { CountryProps } from "./SelectPhone";
 import Input, { InputProps } from "../Basic/Input";
 
 const IconView = styled.div`
 	margin-right: 8px;
 `;
+
 const InputPhone = (props: InputPhoneProps) => {
 	const phoneUtil = GLPN.PhoneNumberUtil.getInstance();
 
 	const [inputValue, setInputValue] = useState<
 		string | number | readonly string[] | undefined
 	>(undefined);
-	const [country, setCountry] = useState<{
-		id: string;
-		esCountry: string;
-		enCountry: string;
-		prefix: string;
-		countryCode: string;
-	}>({
+	const [country, setCountry] = useState<CountryProps>({
 		id: "spain",
 		esCountry: "España",
 		enCountry: "Spain",
@@ -45,7 +40,7 @@ const InputPhone = (props: InputPhoneProps) => {
 		}
 	}, [props.country, countryOptions]);
 
-	const onInputChange = (e: any) => {
+	const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(e.target.value);
 		props.onChange && props.onChange(e);
 
@@ -65,7 +60,7 @@ const InputPhone = (props: InputPhoneProps) => {
 			});
 	};
 
-	const onCountryChange = (country: any) => {
+	const onCountryChange = (country: CountryProps) => {
 		setCountry(country);
 		const temp =
 			inputValue && typeof inputValue === "string"
@@ -89,12 +84,12 @@ const InputPhone = (props: InputPhoneProps) => {
 			});
 	};
 
-	const onInputFocus = (e: any) => {
+	const onInputFocus = (e: FocusEvent<HTMLInputElement>) => {
 		setFocus(true);
 		props.onFocus && props.onFocus(e);
 	};
 
-	const onInputBlur = (e: any) => {
+	const onInputBlur = (e: FocusEvent<HTMLInputElement>) => {
 		setFocus(false);
 		props.onBlur && props.onBlur(e);
 	};
@@ -122,19 +117,33 @@ const InputPhone = (props: InputPhoneProps) => {
 	);
 };
 export default InputPhone;
+/**
+ * Phone input with country selector and validation using google-libphonenumber.
+ * Validates phone format for the selected country region.
+ *
+ * @example
+ * ```tsx
+ * <InputPhone
+ *   country="ES"
+ *   countryOptions={countryList}
+ *   onPhoneChange={({ country, value, isValid }) => {
+ *     if (isValid) setPhoneNumber(country + value);
+ *   }}
+ * />
+ * ```
+ */
 export type InputPhoneProps = InputProps & {
+	/** ISO country code (e.g., "ES") to pre-select */
 	country?: string;
-	countryOptions?: {
-		id: string;
-		esCountry: string;
-		enCountry: string;
-		prefix: string;
-		countryCode: string;
-		[key: string]: any;
-	}[];
+	/** Array of country options with prefix and countryCode */
+	countryOptions?: CountryProps[];
+	/** Callback fired on input change or country change with validation status */
 	onPhoneChange?: (item: {
+		/** Country prefix (e.g., "+34") */
 		country: string;
-		value?: any;
+		/** Phone number without prefix */
+		value?: string | number;
+		/** Whether phone is valid for selected country */
 		isValid: boolean;
 	}) => void;
 };

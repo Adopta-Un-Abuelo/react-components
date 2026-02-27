@@ -45,8 +45,9 @@ const Filter = forwardRef(
 			}
 		}, [selectedOptions]);
 
-		const onInputChange = (e: any) => {
-			setInputValue(e.target.value);
+		const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+			const value = e.target.value ? Number(e.target.value) : undefined;
+			setInputValue(value);
 		};
 
 		const onSave = () => {

@@ -1,7 +1,7 @@
 import React, { ComponentPropsWithoutRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import Color from "@constants/Color";
-import { convertToRaw } from "draft-js";
+import { convertToRaw, EditorState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import Text from "@components/Text/Text";
 
@@ -83,19 +83,22 @@ const TextAreaDefault = (props: TextAreaDefaultProps) => {
 
 	const onTextAreChange = (
 		value?: React.ChangeEvent<HTMLTextAreaElement>,
-		data?: any
+		data?: EditorState
 	) => {
-		let result: any = undefined;
-		if (value) result = value;
-		else {
+		let result: React.ChangeEvent<HTMLTextAreaElement> | undefined = undefined;
+		if (value) {
+			result = value;
+		} else if (data) {
 			const convert = draftToHtml(convertToRaw(data.getCurrentContent()));
 			result = {
 				target: {
 					name: props.name,
 					value: convert,
 				},
-			};
+			} as React.ChangeEvent<HTMLTextAreaElement>;
 		}
+
+		if (!result) return;
 
 		if (props.maxLength && result.target.value.length > props.maxLength) {
 			// Si la longitud del texto ingresado es mayor que maxLength, no hagas nada

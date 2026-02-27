@@ -54,7 +54,7 @@ const ButtonImage = ({ src, icon, loading, ...restProps }: Props) => {
 			role="button"
 			{...restProps}
 			disabled={restProps.disabled || loading}
-			onClick={(e: any) =>
+			onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
 				restProps.onClick &&
 				!loading &&
 				!restProps.disabled &&

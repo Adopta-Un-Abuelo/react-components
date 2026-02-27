@@ -1,11 +1,5 @@
 {
 	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"@constants/*": ["src/constants/*"],
-			"@components/*": ["src/components/*"],
-			"@animations/*": ["src/assets/animations/*"],
-		},
 		"target": "es6",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
@@ -23,7 +17,14 @@
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"noFallthroughCasesInSwitch": true,
-		"isolatedModules": true
+		"isolatedModules": true,
+		"baseUrl": ".",
+		"paths": {
+			"@components/*": ["src/components/*"],
+			"@constants/*": ["src/constants/*"],
+			"@assets/*": ["src/assets/*"]
+		}
 	},
-	"include": ["src/**/*"]
+	"include": ["src/**/*"],
+	"exclude": ["src/**/*.stories.tsx", "src/**/*.stories.ts"]
 }

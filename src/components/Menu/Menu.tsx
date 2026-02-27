@@ -1,10 +1,10 @@
 import { useEffect, useState, forwardRef, Ref, useImperativeHandle, CSSProperties } from 'react';
 import styled from 'styled-components';
 
-import { MoreVertical } from 'lucide-react'; 
-import Button from '@components/Button/Button';
-import Color from '@constants/Color';
-import Text from '@components/Text/Text';
+import { MoreVertical } from 'lucide-react';
+import Button from "@components/Button/Button";
+import Color from "@constants/Color";
+import Text from "@components/Text/Text";
 
 const Container = styled.div`
     position: relative;
@@ -58,20 +58,21 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
 
     useEffect(() =>{
         //On click outside the filter view
-        document.addEventListener('mousedown', (e: any) => {
+        const handleClickOutside = (e: MouseEvent) => {
             const element = document.getElementById(props.id);
             if(element !== null){
-                if(!element.contains(e.target)){
+                if(!element.contains(e.target as Node)){
                     if(showView) {
-                        onButtonClick(e);
+                        onButtonClick(e as unknown as React.MouseEvent);
                     }
                 }
             }
-        });
-        return document.removeEventListener('mousedown', onButtonClick);
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
     });
 
-    const onButtonClick = (e: any) =>{
+    const onButtonClick = (e: React.MouseEvent) =>{
         e.stopPropagation();
         if(showView){
             setShowView(false);
@@ -83,7 +84,7 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
         }
     }
 
-    const onClick = (e: any, option: OptionsProps) =>{
+    const onClick = (e: React.MouseEvent, option: OptionsProps) =>{
         e.stopPropagation();
         setShowView(false);
         props.onClick && props.onClick(option)
@@ -120,7 +121,7 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
                     <MenuCell
                         key={'action'+index}
                         style={{borderBottom: index+1 === props.options?.length ? 'none' : '1px solid '+Color.line.soft}}
-                        onClick={(e: any) => onClick(e, option)}
+                        onClick={(e) => onClick(e, option)}
                     >
                         {option.icon}
                         <Text type="p" style={{ color: option.labelColor }}>
@@ -133,24 +134,52 @@ const MenuList = forwardRef((props: MenuProps, ref: Ref<MenuRef>) =>{
     )
 })
 export default MenuList;
+/**
+ * Dropdown menu component with customizable positioning and icon trigger.
+ * Automatically closes when clicking outside. Supports both predefined options and custom children.
+ *
+ * @example
+ * ```tsx
+ * <Menu
+ *   id="actions-menu"
+ *   position="bottom-right"
+ *   options={[
+ *     { id: "edit", label: "Edit", icon: <EditIcon /> },
+ *     { id: "delete", label: "Delete", labelColor: "red" }
+ *   ]}
+ *   onClick={(option) => handleAction(option.id)}
+ * />
+ * ```
+ */
 export interface MenuProps{
+    /** Unique identifier required for click-outside detection */
     id: string,
     style?: CSSProperties,
+    /** Custom styles for the dropdown menu container */
     menuStyle?: CSSProperties,
+    /** Icon for the button trigger (lowercase, used with Button component) */
     icon?: React.ReactElement,
+    /** Icon element for custom trigger (uppercase, replaces Button) */
     Icon?: React.ReactElement,
+    /** Positioning of the dropdown relative to the trigger button */
     position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left',
+    /** Custom content to display in menu (alternative to options) */
     children?: React.ReactNode,
+    /** Array of menu items with labels and icons */
     options?: Array<OptionsProps>,
+    /** Callback fired when menu visibility changes */
     onChange?: (visible: boolean) => void,
+    /** Callback fired when a menu option is clicked */
     onClick?: (option: OptionsProps) => void
 }
 export interface OptionsProps{
     id: string,
     label: string,
+    /** Custom text color for the label */
     labelColor?: string,
-    icon?: any
+    icon?: React.ReactElement
 }
 export interface MenuRef{
+    /** Programmatically close the menu */
     close: () => void
 }

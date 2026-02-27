@@ -1,4 +1,4 @@
-import { useState, useRef, CSSProperties } from "react";
+import { useState, useRef, CSSProperties, ChangeEvent } from "react";
 import styled from "styled-components";
 
 import Color from "@constants/ColorV2";
@@ -69,7 +69,7 @@ const InputCode = (props: InputCodeProps) => {
 	const [focus, setFocus] = useState(false);
 	const [value, setValue] = useState<string | undefined>(undefined);
 
-	const onTextChange = (e: any) => {
+	const onTextChange = (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.value.length <= 6) {
 			setValue(e.target.value);
 			if (e.target.value.length === 6) {
@@ -119,11 +119,26 @@ const InputCode = (props: InputCodeProps) => {
 	);
 };
 export default InputCode;
+/**
+ * 6-digit verification code input with monospace font and letter spacing.
+ * Auto-blurs and triggers callback when all 6 digits are entered.
+ *
+ * @example
+ * ```tsx
+ * <InputCode
+ *   autoFocus
+ *   error={codeError}
+ *   loading={isVerifying}
+ *   onChange={(code) => verifyCode(code)}
+ * />
+ * ```
+ */
 export interface InputCodeProps {
 	style?: CSSProperties;
 	containerStyle?: CSSProperties;
 	autoFocus?: boolean;
 	error?: string;
 	loading?: boolean;
+	/** Callback fired when 6 digits are entered (input auto-blurs) */
 	onChange?: (code: string) => void;
 }

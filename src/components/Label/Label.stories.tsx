@@ -19,7 +19,7 @@ export const Default: Story = {
   args: {
     type: "label",
   },
-  play: async ({ canvasElement }: any) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const label = await canvas.getByRole("label");
     expect(label).toBeInTheDocument();
@@ -31,7 +31,7 @@ export const DefaultIcon: Story = {
     icon: <Monitor size={16} color= "#448B6D" />,
     type: "label",
   },
-  play: async ({ canvasElement }: any) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const label = await canvas.getByRole("label");
     expect(label).toBeInTheDocument();
@@ -42,7 +42,7 @@ export const Chip: Story = {
   args: {
     type: "chip",
   },
-  play: async ({ canvasElement }: any) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const label = await canvas.getByRole("chip");
     expect(label).toBeInTheDocument();

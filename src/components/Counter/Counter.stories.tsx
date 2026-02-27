@@ -24,7 +24,7 @@ export const Default: Story = {
     height: 50,
     width: 30,
   },
-  play: async ({ canvasElement }: any) => {
+  play: async ({ canvasElement }) => {
     /*const canvas = within(canvasElement);
 		const label = await canvas.getByRole('dropdown');
         expect(label).toBeInTheDocument();*/

@@ -1,6 +1,7 @@
 import SearchBar from "./SearchBar";
 import { userEvent, within, expect } from "storybook/test";
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { PlayFunctionContext } from "storybook/internal/csf";
 
 const meta: Meta<typeof SearchBar> = {
   title: "Components/SearchBar",
@@ -26,7 +27,7 @@ export default meta;
 type Story = StoryObj<typeof SearchBar>;
 
 export const Default: Story = {
-  play: async ({ canvasElement }: any) => {
+  play: async ({ canvasElement }: PlayFunctionContext<typeof SearchBar>) => {
     const canvas = within(canvasElement);
     const searchBar = await canvas.getByRole("search-bar");
     expect(searchBar).toBeInTheDocument();

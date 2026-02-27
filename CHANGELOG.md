@@ -1,3 +1,214 @@
+# v0.3.148 (Mon Feb 16 2026)
+
+#### ⚠️ Pushed to `main`
+
+- chore: update configurations and add agent definitions (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.147 (Tue Jan 27 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'docs/add-component-jsdoc' (guillermo.angeles@adoptaunabuelo.com)
+- docs: add JSDoc documentation to component interfaces (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.146 (Mon Jan 26 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'fix/resolve-path-aliases-in-build' (guillermo.angeles@adoptaunabuelo.com)
+- fix(build): resolve path aliases in compiled output (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.145 (Mon Jan 26 2026)
+
+#### ⚠️ Pushed to `main`
+
+- fix: storybook run (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.144 (Mon Jan 26 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'chore/security-and-dependencies' (guillermo.angeles@adoptaunabuelo.com)
+- fix: claude memory (guillermo.angeles@adoptaunabuelo.com)
+- chore: update license, add security policy, and restructure dependencies (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.143 (Mon Jan 26 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'refactor/typescript-type-safety' (guillermo.angeles@adoptaunabuelo.com)
+- refactor: remove types any (guillermo.angeles@adoptaunabuelo.com)
+- refactor: add type safety to remaining components (guillermo.angeles@adoptaunabuelo.com)
+- refactor: improve TypeScript type safety across components and stories (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.142 (Mon Jan 26 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'refactor/implement-path-aliases' (guillermo.angeles@adoptaunabuelo.com)
+- docs: add Claude Code project documentation and configuration (guillermo.angeles@adoptaunabuelo.com)
+- refactor: implement TypeScript path aliases across codebase (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.141 (Fri Dec 12 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: textarea onChange error (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.140 (Fri Dec 12 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: idem (guillermo.angeles@adoptaunabuelo.com)
+- fix: react update (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.139 (Fri Dec 12 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: idem (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.138 (Thu Dec 11 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: path errors solved (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.137 (Thu Dec 11 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: rollup modification (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.135 (Thu Dec 11 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: idem (guillermo.angeles@adoptaunabuelo.com)
+- fix: merge error (guillermo.angeles@adoptaunabuelo.com)
+- Merge remote-tracking branch 'origin/main' (guillermo.angeles@adoptaunabuelo.com)
+- fix: gulpfile (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.134 (Wed Dec 10 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: update git action (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'test' (guillermo.angeles@adoptaunabuelo.com)
+- fix: updates & text area package (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.134 (Wed Dec 10 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: update git action (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'test' (guillermo.angeles@adoptaunabuelo.com)
+- fix: updates & text area package (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.134 (Wed Dec 10 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: update git action (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'test' (guillermo.angeles@adoptaunabuelo.com)
+- fix: updates & text area package (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 1
+
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.133 (Tue Dec 09 2025)
 
 #### ⚠️ Pushed to `main`

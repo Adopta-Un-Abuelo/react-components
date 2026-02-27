@@ -1,6 +1,7 @@
 import Tabs from "./Tabs";
 import { userEvent, within, expect } from "storybook/test";
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import { action } from "storybook/actions";
 
 const meta: Meta<typeof Tabs> = {
@@ -33,7 +34,7 @@ export const Primary: Story = {
   args: {
     design: "primary",
   },
-  play: async ({ canvasElement, step }: any) => {
+  play: async ({ canvasElement, step }: PlayFunctionContext<typeof Tabs>) => {
     const canvas = within(canvasElement);
     const container = await canvas.getByRole("container");
     const tab = await canvas.findByRole("option3");
@@ -51,7 +52,7 @@ export const Secondary: Story = {
   args: {
     design: "secondary",
   },
-  play: async ({ canvasElement, step }: any) => {
+  play: async ({ canvasElement, step }: PlayFunctionContext<typeof Tabs>) => {
     const canvas = within(canvasElement);
     const container = await canvas.getByRole("container");
     const tab = await canvas.findByRole("option3");

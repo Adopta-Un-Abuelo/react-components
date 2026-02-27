@@ -1,0 +1,31 @@
+{
+  "projectType": "web",
+  "projectName": "Web Frontend",
+  "description": "React 19 + TypeScript con Redux Toolkit, Styled Components y patrones del equipo",
+  "defaultAgent": "react",
+  "agents": [
+    "react",
+    "typescript-general"
+  ],
+  "hooks": [
+    "pre-commit-lint"
+  ],
+  "skills": [],
+  "guidelines": {
+    "framework": "React 19+",
+    "typescript": "4.9+ (strict)",
+    "stateManagement": "Redux Toolkit",
+    "styling": "Styled Components + styled-media-query",
+    "testing": "Jest + React Testing Library (configurado)",
+    "apiClient": "client-v2 (interno)",
+    "uiLibrary": "@adoptaunabuelo/react-components",
+    "tooling": "Create React App"
+  },
+  "commonTasks": [
+    "Crear componente que integre Redux y @adoptaunabuelo/react-components",
+    "Implementar WizardContainer para flow multi-step",
+    "Llamadas a API con client-v2 y error handling",
+    "Responsive design con Redux state (isMobile)",
+    "Refactorizar componente existente con patrones del equipo"
+  ]
+}

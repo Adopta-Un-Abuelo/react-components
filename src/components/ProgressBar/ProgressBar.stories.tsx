@@ -1,6 +1,7 @@
 import ProgressBar from "./ProgressBar";
 import { within, expect } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { PlayFunctionContext } from "storybook/internal/csf";
 
 const meta: Meta<typeof ProgressBar> = {
 	title: "Components/ProgressBar",
@@ -25,7 +26,7 @@ export const Default: Story = {
 			</div>
 		);
 	},
-	play: async ({ canvasElement }: any) => {
+	play: async ({ canvasElement }: PlayFunctionContext<typeof ProgressBar>) => {
 		const canvas = within(canvasElement);
 		const progressBar = await canvas.getByRole("progress-bar");
 		expect(progressBar).toBeInTheDocument();
@@ -56,7 +57,7 @@ export const Multiple: Story = {
 			</div>
 		);
 	},
-	play: async ({ canvasElement }: any) => {
+	play: async ({ canvasElement }: PlayFunctionContext<typeof ProgressBar>) => {
 		const canvas = within(canvasElement);
 		canvas.getByRole("progress-bar");
 		const progressBar = await canvas.getByRole("progress-bar");

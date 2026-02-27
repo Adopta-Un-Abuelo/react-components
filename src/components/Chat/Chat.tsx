@@ -3,7 +3,6 @@ import ColorV2 from "@constants/ColorV2";
 import ChatBubble, { ChatMessageProps } from "./ChatBubble";
 import "./ChatBubble.css";
 import styled from "styled-components";
-import { format } from "date-fns";
 import moment from "moment";
 import Text from "@components/Text/Text";
 import media from "styled-media-query";
@@ -74,7 +73,6 @@ const Chat = (props: ChatProps) => {
 			.slice()
 			.reverse()
 			.find((message) => message.type === "recipient");
-			console.log(lastRecipientMessage)
 		if (lastRecipientMessage) {
 			const hoursDifference = moment().diff(
 				moment(lastRecipientMessage.createdAt),
@@ -97,7 +95,7 @@ const Chat = (props: ChatProps) => {
 
 	const groupMessagesByDate = (messages: ChatMessageProps[]) => {
 		const result = messages.reduce((acc, message) => {
-			const date = format(new Date(message.createdAt), "yyyy-MM-dd");
+			const date = moment(new Date(message.createdAt)).format("YYYY-MM-DD");
 			if (!acc[date]) {
 				acc[date] = [];
 			}
@@ -190,17 +188,36 @@ const Chat = (props: ChatProps) => {
 	);
 };
 export default Chat;
+/**
+ * Full-featured chat interface with message history, template support, and media uploads.
+ * Automatically groups messages by date and shows template prompt when last message is > 24 hours old.
+ *
+ * @example
+ * ```tsx
+ * <Chat
+ *   messages={chatMessages}
+ *   templates={messageTemplates}
+ *   loading={isSending}
+ *   onSend={(data) => handleSendMessage(data)}
+ * />
+ * ```
+ */
 export interface ChatProps {
 	style?: CSSProperties;
+	/** Array of chat messages to display, grouped automatically by date */
 	messages: ChatMessageProps[];
+	/** Shows loading spinner in input when true */
 	loading?: boolean;
+	/** Placeholder text for the input field */
 	placeholder?: string;
+	/** Available message templates shown when conversation is inactive (>24 hrs) */
 	templates: {
 		id: string;
 		title: string;
 		subtitle: string;
 		description: string;
 	}[];
+	/** Callback fired when user sends a message, template, or uploads media */
 	onSend: (data: {
 		text?: string;
 		template?: string;

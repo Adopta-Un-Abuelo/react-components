@@ -143,9 +143,9 @@ const LabelContainerSpan = styled.span<{
 `;
 
 const InputPrice = (props: InputPriceProps) => {
-	const iconsT: any = icons;
+	const iconsT = icons as unknown as Record<string, React.ComponentType<{ height?: number; width?: number; color?: string }>>;
 	const containerRef = useRef<HTMLDivElement>(null);
-	const cellRefs = useRef<HTMLInputElement[]>([]);
+	const cellRefs = useRef<(HTMLDivElement | null)[]>([]);
 	const input = useRef<HTMLInputElement>(null);
 	const [optionSelected, setOptionSelected] = useState<number | undefined>(
 		undefined
@@ -296,7 +296,7 @@ const InputPrice = (props: InputPriceProps) => {
 					return (
 						<Cell
 							key={"price-option-" + index}
-							ref={(el: any) => (cellRefs.current[index] = el)}
+							ref={(el: HTMLDivElement | null) => { cellRefs.current[index] = el; }}
 							$selected={isSelected}
 							$data={option.data ? true : false}
 							onClick={() => onCellClick(option.price)}
@@ -423,21 +423,51 @@ const InputPrice = (props: InputPriceProps) => {
 	);
 };
 export default InputPrice;
+/**
+ * Price selector with predefined options in horizontal scroll and optional custom input.
+ * Auto-centers selected option, validates minimum price. Spanish number formatting.
+ *
+ * @example
+ * ```tsx
+ * <InputPrice
+ *   options={[
+ *     { price: 10, data: [{ title: "1 coffee", icon: "Coffee" }] },
+ *     { price: 25, data: [{ title: "3 coffees", icon: "Coffee" }] },
+ *     { price: 50 }
+ *   ]}
+ *   currency="€"
+ *   label="Equivale a {{value}} cafés"
+ *   labelValueConversion={0.1}
+ *   defaultOption={25}
+ *   onChange={(price) => setDonationAmount(price)}
+ * />
+ * ```
+ */
 export type InputPriceProps = {
 	style?: CSSProperties;
 	containerStyle?: CSSProperties;
+	/** Predefined price options (scrollable horizontally) */
 	options: {
 		price: number;
+		/** Optional feature list shown below price with icons */
 		data?: {
 			title: string;
+			/** Lucide icon name (e.g., "Check", "Coffee") */
 			icon?: string;
 		}[];
 	}[];
+	/** Floating label above options. Use {{value}} for dynamic calculation */
 	label?: string;
+	/** Multiplier for {{value}} in label (e.g., 0.1 converts 100€ to "10 coffees") */
 	labelValueConversion?: number;
+	/** Currency symbol (e.g., "€", "$") */
 	currency: string;
+	/** Pre-select an option by price */
 	defaultOption?: number;
+	/** Hide custom amount input field */
 	hideCustomAmount?: boolean;
+	/** Custom element shown below custom amount input */
 	customAmountData?: React.ReactElement;
+	/** Callback with selected/entered price. Validates minimum from first option */
 	onChange?: (value: number) => void;
 };

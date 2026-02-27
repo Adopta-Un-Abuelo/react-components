@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, useRef, useState } from "react";
 import styled from "styled-components";
 
-import Color from "@constants/Color"
+import Color from "@constants/Color";
 import Modal from "@components/Modal/Modal";
 
 const AvatarContainer = styled.div<{
@@ -49,7 +49,7 @@ const Avatar = (props: Props) => {
 		else if (props.clickable) setShowModal(true);
 	};
 
-	const onInputChange = async (e: any) => {
+	const onInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target && e.target.files && e.target.files[0]) {
 			if (!e.target.files[0].name.match(/\.(jpg|jpeg|png|gif)$/)) {
 				alert("Debes seleccionar una imagen");
@@ -60,7 +60,7 @@ const Avatar = (props: Props) => {
 		}
 	};
 
-	const toBase64 = (file: any) =>
+	const toBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
 		new Promise((resolve, reject) => {
 			const reader = new FileReader();
 			reader.readAsDataURL(file);
@@ -115,10 +115,29 @@ const Avatar = (props: Props) => {
 	);
 };
 export default Avatar;
-export interface Props extends ComponentPropsWithoutRef<"div"> {
+/**
+ * Circular avatar component supporting images, initials, and file upload.
+ * Click to view full-size image or to upload new one when editable.
+ *
+ * @example
+ * ```tsx
+ * <Avatar
+ *   icon={userImageUrl}
+ *   name="John Doe"
+ *   editable
+ *   onChange={(file) => uploadAvatar(file)}
+ * />
+ * ```
+ */
+export interface Props extends Omit<ComponentPropsWithoutRef<"div">, "onChange"> {
+	/** Image URL to display */
 	icon?: string;
+	/** User name (displays first letter as fallback when no icon) */
 	name?: string;
+	/** Enable file upload on click (accepts jpg, jpeg, png, gif) */
 	editable?: boolean;
+	/** Enable click to view full-size image in modal */
 	clickable?: boolean;
-	onChange?: (file: any) => void;
+	/** Callback fired when new image is selected, receives base64-encoded file */
+	onChange?: (file: string | ArrayBuffer | null) => void;
 }

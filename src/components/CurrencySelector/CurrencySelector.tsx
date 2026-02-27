@@ -120,14 +120,37 @@ const CurrencySelector = (props: CurrencySelectorProps) => {
 	);
 };
 export default CurrencySelector;
+/**
+ * Currency selector dropdown with modal for choosing from available currencies.
+ * Displays symbol and currency code (e.g., "€ EUR"). Responsive with full-screen modal on mobile.
+ *
+ * @example
+ * ```tsx
+ * <CurrencySelector
+ *   options={[
+ *     { currency: "EUR", name: "Euro", symbol: "€" },
+ *     { currency: "USD", name: "US Dollar", symbol: "$" },
+ *     { currency: "GBP", name: "British Pound", symbol: "£" }
+ *   ]}
+ *   selectedOption={{ currency: "EUR", name: "Euro", symbol: "€" }}
+ *   onChange={(option) => setCurrency(option.currency)}
+ * />
+ * ```
+ */
 export interface CurrencySelectorProps {
 	style?: React.CSSProperties;
+	/** Available currency options */
 	options: CurrencySelectorOption[];
+	/** Currently selected currency (defaults to first option) */
 	selectedOption?: CurrencySelectorOption;
+	/** Callback when currency is selected */
 	onChange?: (option: CurrencySelectorOption) => void;
 }
 interface CurrencySelectorOption {
+	/** ISO currency code (e.g., "EUR", "USD") */
 	currency: string;
+	/** Full currency name (e.g., "Euro") */
 	name: string;
+	/** Currency symbol (e.g., "€", "$") */
 	symbol: string;
 }

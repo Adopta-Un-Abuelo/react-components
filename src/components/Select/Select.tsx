@@ -67,26 +67,22 @@ const Select = (props: Props) => {
 		}
 	}, [props.selectedItem]);
 
-	const onSelectClick = (e: any) => {
-		if (!e) var e: any = window.event;
-		e.cancelBubble = true;
-		if (e.stopPropagation) e.stopPropagation();
+	const onSelectClick = (e: React.MouseEvent) => {
+		e.stopPropagation();
 		setShowMenu(!showMenu);
 	};
 
-	const closeMenu = (e: any) => {
+	const closeMenu = (e: MouseEvent) => {
 		const element = document.getElementById(props.id);
 		if (element !== null) {
-			if (!element.contains(e.target)) {
+			if (!element.contains(e.target as Node)) {
 				setShowMenu(false);
 			}
 		}
 	};
 
-	const onOptionClick = (option: any, e: any) => {
-		if (!e) var e: any = window.event;
-		e.cancelBubble = true;
-		if (e.stopPropagation) e.stopPropagation();
+	const onOptionClick = (option: OptionProps, e: React.MouseEvent) => {
+		e.stopPropagation();
 		setSelectedItem(option);
 		setShowMenu(false);
 		props.onChange && props.onChange(option);
@@ -128,7 +124,7 @@ const Select = (props: Props) => {
 							<Option
 								role={"cell-" + index}
 								key={props.id + "-cell-" + index}
-								onClick={(e: any) => onOptionClick(item, e)}
+								onClick={(e) => onOptionClick(item, e)}
 							>
 								{item.icon}
 								<Text type="p">{item.label}</Text>
@@ -141,15 +137,40 @@ const Select = (props: Props) => {
 	);
 };
 export default Select;
-export interface Props extends ComponentPropsWithoutRef<"div"> {
+/**
+ * Dropdown select component with icons and keyboard-friendly navigation.
+ * Auto-closes when clicking outside. Supports controlled and uncontrolled modes.
+ *
+ * @example
+ * ```tsx
+ * <Select
+ *   id="language-select"
+ *   options={[
+ *     { label: "English", icon: <FlagIcon /> },
+ *     { label: "Spanish", icon: <FlagIcon /> }
+ *   ]}
+ *   selectedItem={currentLanguage}
+ *   onChange={(option) => setLanguage(option)}
+ * />
+ * ```
+ */
+export interface Props extends Omit<ComponentPropsWithoutRef<"div">, "onChange"> {
+	/** Unique identifier required for click-outside detection */
 	id: string;
+	/** Custom styles for the dropdown options container */
 	optionStyle?: CSSProperties;
+	/** Hide the selected item label (icon-only mode) */
 	hideTitle?: boolean;
+	/** Array of selectable options */
 	options: Array<OptionProps>;
+	/** Current selected option (controlled component) */
 	selectedItem?: OptionProps;
-	onChange?: (option: any) => void;
+	/** Callback fired when selection changes */
+	onChange?: (option: OptionProps) => void;
 }
 interface OptionProps {
+	/** Optional icon displayed before label */
 	icon?: React.ReactElement;
+	/** Display text for the option */
 	label: string;
 }

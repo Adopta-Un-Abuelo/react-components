@@ -154,19 +154,46 @@ const Tabs = (props: Props) => {
 	);
 };
 export default Tabs;
+/**
+ * Tab navigation component with two visual designs.
+ * Primary design shows underline indicator, secondary design shows rounded background.
+ *
+ * @example
+ * ```tsx
+ * <Tabs
+ *   design="secondary"
+ *   options={[
+ *     { id: "1", title: "Overview" },
+ *     { id: "2", title: "Details" }
+ *   ]}
+ *   selectedOption={currentTab}
+ *   onChange={(tab) => setCurrentTab(tab)}
+ * />
+ * ```
+ */
 export interface Props {
 	style?: CSSProperties;
+	/** Custom styles for individual tab cells */
 	cellStyle?: CSSProperties;
+	/** Custom styles for tab text labels */
 	textStyle?: CSSProperties;
+	/** Background color for selected tab (secondary design) */
 	cellColor?: string;
+	/** Text color for selected tab */
 	textColor?: string;
+	/** Background color for the entire tabs container */
 	backgroundColor?: string;
+	/** Array of tab options */
 	options: Array<OptionProps>;
+	/** Currently selected tab (controlled component) */
 	selectedOption?: OptionProps;
+	/** Visual design: `primary` (underline) or `secondary` (rounded background) */
 	design?: "primary" | "secondary";
+	/** Callback fired when tab selection changes */
 	onChange?: (option: OptionProps) => void;
 }
 export interface OptionProps {
 	id: string;
+	/** Display text for the tab */
 	title: string;
 }

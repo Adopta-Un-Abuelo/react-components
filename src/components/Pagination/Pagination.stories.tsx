@@ -1,6 +1,7 @@
 import Pagination from "./Pagination";
 import { within, userEvent, expect } from "storybook/test";
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { PlayFunctionContext } from "storybook/internal/csf";
 import { action } from "storybook/actions";
 
 
@@ -19,7 +20,7 @@ export default meta;
 type Story = StoryObj<typeof Pagination>;
 
 export const Default: Story = {
-  play: async ({ canvasElement, step }: any) => {
+  play: async ({ canvasElement, step }: PlayFunctionContext<typeof Pagination>) => {
     const canvas = within(canvasElement);
     const pagination = await canvas.getByRole("pagination");
     const firstArrow = await canvas.getByRole("first-arrow");

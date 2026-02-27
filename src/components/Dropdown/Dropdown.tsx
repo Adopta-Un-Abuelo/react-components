@@ -93,9 +93,9 @@ const Dropdown = (props: Props) => {
 
 	useEffect(() => {
 		if (Array.isArray(props.selectedOptions) && props.selectedOptions.length > 0) {
-			const temp: any = [];
+			const temp: OptionProps[] = [];
 			props.options.forEach((item) => {
-				if (props.selectedOptions && props.selectedOptions.some((temp) => temp.id === item.id)) {
+				if (props.selectedOptions && props.selectedOptions.some((selectedItem) => selectedItem.id === item.id)) {
 					temp.push(item);
 				}
 			});
@@ -107,10 +107,10 @@ const Dropdown = (props: Props) => {
 
 	useEffect(() => {
 		// On click outside the filter view
-		const handleClickOutside = (e: any) => {
+		const handleClickOutside = (e: MouseEvent) => {
 			const element = document.getElementById(props.id);
-			if (element !== null && !element.contains(e.target) && open) {
-				onFilterClick(e);
+			if (element !== null && !element.contains(e.target as Node) && open) {
+				onFilterClick(e as unknown as React.MouseEvent);
 			}
 		};
 
@@ -120,7 +120,7 @@ const Dropdown = (props: Props) => {
 		};
 	}, [open, props.id]);
 
-	const onFilterClick = (e: any) => {
+	const onFilterClick = (e: React.MouseEvent) => {
 		e.stopPropagation();
 		setOpen(false);
 	};
@@ -141,7 +141,7 @@ const Dropdown = (props: Props) => {
 		}
 	};
 
-	const onSearchChange = (e: any) => {
+	const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		props.onSearchChange && props.onSearchChange(e.target.value);
 	};
 
@@ -231,21 +231,50 @@ const Dropdown = (props: Props) => {
 	);
 };
 export default Dropdown;
+/**
+ * Dropdown select with optional search, multi-select, and icon support.
+ * Auto-closes when clicking outside. Displays selected items as comma-separated text.
+ *
+ * @example
+ * ```tsx
+ * <Dropdown
+ *   id="category-dropdown"
+ *   placeholder="Select categories"
+ *   type="multiple"
+ *   options={categories}
+ *   selectedOptions={selected}
+ *   onSearchChange={(text) => filterOptions(text)}
+ *   onChange={(items) => setSelected(items)}
+ * />
+ * ```
+ */
 export interface Props {
+	/** Unique identifier required for click-outside detection */
 	id: string;
 	style?: CSSProperties;
+	/** Custom styles for the dropdown menu container */
 	menuStyle?: CSSProperties;
+	/** Custom styles for individual option items */
 	optionStyle?: CSSProperties;
+	/** Array of selectable options */
 	options: Array<OptionProps>;
+	/** Placeholder text shown when nothing is selected */
 	placeholder: string;
+	/** Currently selected options (controlled component) */
 	selectedOptions?: Array<OptionProps>;
+	/** Selection mode: `single` for one item, `multiple` for checkboxes */
 	type?: "single" | "multiple";
+	/** Position of dropdown menu relative to trigger */
 	menuPosition?: "bottom" | "top";
+	/** Callback fired when selection changes */
 	onChange?: (a: Array<OptionProps>) => void;
+	/** Callback fired when search input changes, enables search functionality */
 	onSearchChange?: (text: string) => void;
 }
 export interface OptionProps {
 	id: string;
+	/** Display text for the option */
 	title?: string;
+	/** Optional icon displayed before title */
 	icon?: React.ReactElement;
 }

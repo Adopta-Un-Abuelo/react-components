@@ -163,17 +163,37 @@ const ProgressBar = (props: Props) => {
 	);
 };
 export default ProgressBar;
+/**
+ * Animated progress bar supporting single or multiple progress indicators with optional percentage display.
+ * Smoothly transitions to new values with configurable animation timing.
+ *
+ * @example
+ * ```tsx
+ * <ProgressBar
+ *   progress={75}
+ *   showPercentage
+ *   animationTime={1.5}
+ * />
+ * ```
+ */
 export interface Props extends ComponentPropsWithoutRef<"div"> {
+	/** Current progress value or array of multiple progress values with optional colors */
 	progress:
 		| number
 		| Array<{
 				value: number;
 				color?: string;
 		  }>;
+	/** Minimum value for progress calculation (default: 0) */
 	minValue?: number;
+	/** Maximum value for progress calculation (default: 100) */
 	maxValue?: number;
+	/** Bar color (overrides default primary color) */
 	color?: string;
+	/** Animation duration in seconds */
 	animationTime?: number;
+	/** Delay in seconds before animation starts */
 	animationDelay?: number;
+	/** Display percentage badge above progress bar */
 	showPercentage?: boolean;
 }

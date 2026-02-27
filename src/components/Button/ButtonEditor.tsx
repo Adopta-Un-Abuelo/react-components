@@ -1,5 +1,5 @@
-import { RichUtils } from "draft-js";
-import { useEffect, useState } from "react";
+import { RichUtils, EditorState } from "draft-js";
+import { useEffect, useState, CSSProperties } from "react";
 
 //Button para el editir de texto
 export const ButtonEditor = (props: Props) => {
@@ -17,7 +17,7 @@ export const ButtonEditor = (props: Props) => {
 	}, [editorState]);
 
 	const controlClicked = () => {
-		let newState = null;
+		let newState: EditorState | null = null;
 		setSelected(!selected);
 		if (props.type.control === "inline") {
 			newState = RichUtils.toggleInlineStyle(
@@ -26,7 +26,7 @@ export const ButtonEditor = (props: Props) => {
 			);
 		} else if (props.type.control === "blockType")
 			newState = RichUtils.toggleBlockType(editorState, props.type.value);
-		onChange && onChange(newState);
+		onChange && newState && onChange(newState);
 	};
 	return (
 		<div
@@ -50,13 +50,13 @@ export const ButtonEditor = (props: Props) => {
 
 export default ButtonEditor;
 export interface Props {
-	style?: any;
+	style?: CSSProperties;
 	text: string;
 	design?: "primary" | "secondary";
 	type: {
 		control: string;
-		value: any;
+		value: string;
 	};
-	editorState?: any;
-	onChange?: Function;
+	editorState: EditorState;
+	onChange?: (editorState: EditorState) => void;
 }

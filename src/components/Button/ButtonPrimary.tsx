@@ -2,8 +2,8 @@ import React, { ComponentPropsWithoutRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Player } from "@lottiefiles/react-lottie-player";
 
-import AnimationCheck from "@animations/button-check.json";
-import AnimationLoading from "@animations/button-loading.json";
+import AnimationCheck from "@assets/animations/button-check.json";
+import AnimationLoading from "@assets/animations/button-loading.json";
 
 import Text from "@components/Text/Text";
 import Color from "@constants/Color";
@@ -120,7 +120,7 @@ const Button = ({
 			$success={success}
 			$size={size}
 			{...restProps}
-			onClick={(e: any) =>
+			onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
 				restProps.onClick &&
 				!loading &&
 				secondsRemaining <= 0 &&
@@ -138,7 +138,7 @@ const Button = ({
 					loop={false}
 					keepLastFrame={true}
 					src={AnimationCheck}
-					onEvent={(event: any) => {
+					onEvent={(event: string) => {
 						if (event === "complete") {
 							onSuccess && onSuccess(true);
 						}

@@ -1,8 +1,8 @@
-import { ReactElement, useEffect, useState, CSSProperties, forwardRef, Ref } from "react";
+import { ReactElement, useEffect, useState, CSSProperties, forwardRef, Ref, ChangeEvent, FocusEvent } from "react";
 import styled, { keyframes } from "styled-components";
 import Color from "@constants/ColorV2";
 
-import Text from "../../Text/Text";
+import Text from "@components/Text/Text";
 import InputStyled, { InputStyledProps } from "./InputStyled";
 
 const fadeInAnimation = keyframes`
@@ -67,17 +67,17 @@ const InputPrimary = forwardRef((props: InputPrimaryProps, ref: Ref<HTMLInputEle
 		setInputValue(props.value);
 	}, [props.value]);
 
-	const onInputChange = (e: any) => {
+	const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(e.target.value);
 		props.onChange && props.onChange(e);
 	};
 
-	const onInputFocus = (e: any) => {
+	const onInputFocus = (e: FocusEvent<HTMLInputElement>) => {
 		setFocus(true);
 		props.onFocus && props.onFocus(e);
 	};
 
-	const onInputBlur = (e: any) => {
+	const onInputBlur = (e: FocusEvent<HTMLInputElement>) => {
 		setFocus(false);
 		props.onBlur && props.onBlur(e);
 	};
@@ -122,8 +122,11 @@ const InputPrimary = forwardRef((props: InputPrimaryProps, ref: Ref<HTMLInputEle
 });
 export default InputPrimary;
 export interface InputPrimaryProps extends InputStyledProps {
+	/** Custom React element to display on the left side of the input (e.g., icon, prefix) */
 	LeftContent?: ReactElement;
+	/** Custom CSS properties for the outer container wrapper */
 	containerStyle?: CSSProperties;
+	/** Error message displayed below the input in red text */
 	error?: string | undefined;
 	design?: "primary";
 }

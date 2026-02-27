@@ -70,12 +70,30 @@ const ModalComponent = forwardRef((props: ModalProps, ref: Ref<ModalRef>) => {
 	);
 });
 export default ModalComponent;
+/**
+ * Modal dialog component with three display modes: default, form, and web.
+ * Use `type="form"` with `options` for structured form layouts, or `type="web"` with `url` to embed external content.
+ *
+ * @example
+ * ```tsx
+ * <Modal
+ *   type="form"
+ *   isVisible={isOpen}
+ *   options={[
+ *     { id: "name", title: "Name", Data: <Input /> },
+ *     { id: "separator" }
+ *   ]}
+ * />
+ * ```
+ */
 export interface ModalProps extends ModalPrimaryProps {
+	/** Array of form field configurations for `type="form"`. Each item creates a labeled row or separator. */
 	options?: Array<{
 		id: string;
 		title?: string;
 		Data?: React.ReactElement;
 		hidden?: boolean;
 	}>;
+	/** External URL to display in an iframe when `type="web"` */
 	url?: string;
 }

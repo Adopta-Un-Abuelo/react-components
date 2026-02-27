@@ -7,6 +7,7 @@ import {
 	forwardRef,
 	Ref,
 	useImperativeHandle,
+	FocusEvent,
 } from "react";
 import styled, { keyframes } from "styled-components";
 
@@ -90,12 +91,12 @@ const InputSecondary = forwardRef(
 			setDefaultFocus(props.defaultValue || props.value ? true : false);
 		}, [props.defaultValue, props.value]);
 
-		const onInputFocus = (e: any) => {
+		const onInputFocus = (e: FocusEvent<HTMLInputElement>) => {
 			setFocus(true);
 			props.onFocus && props.onFocus(e);
 		};
 
-		const onInputBlur = (e: any) => {
+		const onInputBlur = (e: FocusEvent<HTMLInputElement>) => {
 			setFocus(false);
 			props.onBlur && props.onBlur(e);
 		};
@@ -168,8 +169,11 @@ const InputSecondary = forwardRef(
 );
 export default InputSecondary;
 export interface InputSecondaryProps extends InputStyledProps {
+	/** Custom React element to display on the left side of the input (e.g., icon, prefix) */
 	LeftContent?: ReactElement;
+	/** Custom CSS properties for the outer container wrapper */
 	containerStyle?: CSSProperties;
+	/** Error message displayed below the input in red text */
 	error?: string | undefined;
 	design?: "secondary";
 }
