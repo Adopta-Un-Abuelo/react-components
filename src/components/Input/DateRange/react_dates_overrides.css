@@ -1,65 +1,244 @@
-
-.DateRangePicker {
+.input-date-range .DateRangePicker {
   font-family: 'Poppins';
+  width: fit-content;
 }
 
-.DateInput{
-	width: 110px;
+.input-date-range .DateInput {
+  width: 92px;
 }
 
-.DateInput_input {
+.input-date-range .DateInput_input {
   font-family: 'Poppins';
-  font-size: 15px;
+  font-size: 14px;
   font-weight: unset;
-  padding: 11px 8px;
+  padding: 11px 6px;
 }
 
-.CalendarDay__selected_span {
+.input-date-range .CalendarDay__selected_span {
   background: #006BE5;
   color: white;
   border: 1px solid #C4DEF5;
 }
 
-.CalendarDay__selected_span:hover {
+.input-date-range .CalendarDay__selected_span:hover {
   background: #ABC7E0;
   color: white;
   border: 1px solid #C4DEF5;
 }
 
-.CalendarDay__hovered_span {
+.input-date-range .CalendarDay__hovered_span {
   background: #ABC7E0;
   border: 1px solid #C4DEF5;
   color: white;
 }
 
-.CalendarDay__hovered_span:hover {
+.input-date-range .CalendarDay__hovered_span:hover {
   background: #006BE5;
   border: 1px solid #C4DEF5;
   color: white;
 }
 
-.CalendarDay__selected {
+.input-date-range .CalendarDay__selected {
   background: #006BE5;
   color: white;
   border: 1px solid #C4DEF5;
 }
 
-.CalendarDay__selected:hover {
+.input-date-range .CalendarDay__selected:hover {
   background: #006BE5;
   color: white;
   border: 1px solid #C4DEF5;
 }
 
-.DateInput_input__focused{
+.input-date-range .DateInput_input__focused {
   border-bottom: 0px;
   background-color: #ECF4FB;
   border-radius: 8px;
 }
 
-.DateRangePickerInput_arrow{
-  margin: 0px 20px;
+.input-date-range .DateRangePickerInput_arrow {
+  margin: 0px 12px;
 }
 
-.DateRangePickerInput_clearDates{
-	display: none;
+.input-date-range .DateRangePickerInput_clearDates {
+  display: none;
+}
+
+.input-date-range .DayPicker {
+  border-radius: 0px;
+  box-shadow: none;
+  font-family: Poppins;
+  overflow: hidden;
+}
+
+.input-date-range .DayPicker__horizontal,
+.input-date-range .DayPicker_focusRegion,
+.input-date-range .DayPicker_weekHeaders,
+.input-date-range .DayPicker_transitionContainer,
+.input-date-range .CalendarMonthGrid,
+.input-date-range .CalendarMonthGrid__horizontal,
+.input-date-range .CalendarMonthGrid_month__horizontal {
+  overflow: hidden !important;
+}
+
+.input-date-range .DayPicker_weekHeaders {
+  margin-left: 9px !important;
+}
+
+.input-date-range .DayPicker_transitionContainer__horizontal {
+  height: 320px !important;
+}
+
+.input-date-range .DayPickerNavigation__horizontal {
+  height: 0;
+}
+
+.input-date-range .CalendarMonthGrid__horizontal {
+  left: 9px !important;
+}
+
+.input-date-range .CalendarMonthGrid_month__horizontal {
+  padding: 0 12px 0 0;
+}
+
+.input-date-range .CalendarMonthGrid_month__horizontal:last-child {
+  padding-right: 0;
+}
+
+.input-date-range .DateRangePicker_picker .DayPickerNavigation_leftButton__horizontalDefault {
+  left: 0px !important;
+}
+
+.input-date-range .DateRangePicker_picker .DayPickerNavigation_rightButton__horizontalDefault {
+  right: 0px !important;
+}
+
+.input-date-range .DateRangePicker_picker .DayPickerNavigation_button__horizontalDefault {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #d7dee7;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.input-date-range .DateRangePicker_picker .DayPickerNavigation_button__default:focus,
+.input-date-range .DateRangePicker_picker .DayPickerNavigation_button__default:hover {
+  border: 1px solid #cdd8e5;
+  background: #f8fbff;
+}
+
+.input-date-range .DateRangePicker_picker .DayPickerNavigation_svg__horizontal {
+  width: 20px;
+  height: 20px;
+  fill: #6b7280;
+}
+
+.input-date-range .CalendarMonth_caption {
+  padding-top: 24px;
+  padding-bottom: 28px;
+  padding-left: 70px;
+  padding-right: 84px;
+}
+
+.input-date-range .DayPickerKeyboardShortcuts_show__bottomRight {
+  display: none;
+}
+
+.input-date-range .CalendarMonth {
+  padding: 0px !important;
+}
+
+.input-date-range__month-selector {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0;
+  transform: translateX(-8px);
+}
+
+.input-date-range__select {
+  height: 34px;
+  min-width: 84px;
+  padding: 0 10px;
+  border: 1px solid #d7dee7;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #202938;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #4b5563 50%),
+    linear-gradient(135deg, #4b5563 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 2px),
+    calc(100% - 12px) calc(50% - 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  margin-top: -4px;
+}
+
+.input-date-range__select--month {
+  width: 84px;
+}
+
+.input-date-range__select:focus {
+  outline: none;
+  border-color: #1e88f7;
+  box-shadow: 0 0 0 3px rgba(30, 136, 247, 0.15);
+}
+
+.input-date-range__calendar-footer {
+  display: flex;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 29, 61, 0.1);
+}
+
+.input-date-range__clear-button {
+  border: 0;
+  background: transparent;
+  color: #1e88f7;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+  padding: 0;
+}
+
+@media (max-width: 450px) {
+  .input-date-range .DateRangePicker_picker .DayPickerNavigation_leftButton__horizontalDefault {
+    left: 8px !important;
+  }
+
+  .input-date-range .DateRangePicker_picker .DayPickerNavigation_rightButton__horizontalDefault {
+    right: 8px !important;
+  }
+
+  .input-date-range .CalendarMonth_caption {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+
+  .input-date-range__month-selector {
+    width: fit-content;
+    transform: translateX(-4px);
+  }
+
+  .input-date-range .CalendarMonthGrid_month__horizontal {
+    padding-right: 0;
+  }
 }

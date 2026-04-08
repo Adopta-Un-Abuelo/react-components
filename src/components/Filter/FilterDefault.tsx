@@ -222,6 +222,7 @@ const Filter = (props: FilterDefaultProps) => {
 				role="filter-button"
 				$selected={props.label ? true : false}
 				disabled={props.disabled}
+				style={props.buttonStyle}
 				onClick={onFilterClick}
 			>
 				<Text
@@ -343,6 +344,7 @@ export interface FilterDefaultProps {
 	hideSearchBar?: boolean;
 	style?: CSSProperties;
 	menuStyle?: CSSProperties;
+	buttonStyle?: CSSProperties;
 	children?: React.ReactNode;
 	childrenBottomBar?: React.ReactNode;
 	onClose?: () => void;
