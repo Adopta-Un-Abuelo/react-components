@@ -141,7 +141,7 @@
 .input-date-range .CalendarMonth_caption {
   padding-top: 24px;
   padding-bottom: 28px;
-  padding-left: 70px;
+  padding-left: 59px;
   padding-right: 84px;
 }
 
@@ -191,7 +191,7 @@
 }
 
 .input-date-range__select--month {
-  width: 84px;
+  width: 110px;
 }
 
 .input-date-range__select:focus {

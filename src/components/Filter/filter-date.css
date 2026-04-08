@@ -48,10 +48,12 @@
 }
 
 .DayPickerNavigation_button__horizontalDefault {
-    border: 0;
-    border-radius: 10px;
-    background: transparent;
-    box-shadow: none;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #d7dee7;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,20 +62,20 @@
 
 .DayPickerNavigation_button__default:focus,
 .DayPickerNavigation_button__default:hover {
-    border: 0;
-    background: transparent;
+    border: 1px solid #cdd8e5;
+    background: #f8fbff;
 }
 
 .DayPickerNavigation_svg__horizontal {
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
     fill: #6b7280;
 }
 
 .CalendarMonth_caption {
-    padding-top: 16px;
+    padding-top: 24px;
     padding-bottom: 28px;
-    padding-left: 70px;
+    padding-left: 59px;
     padding-right: 84px;
 }
 
@@ -123,7 +125,7 @@
 }
 
 .filter-date__select--month {
-    width: 84px;
+    width: 110px;
 }
 
 .filter-date__select:focus {
