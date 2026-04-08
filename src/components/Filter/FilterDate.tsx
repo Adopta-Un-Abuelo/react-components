@@ -4,6 +4,7 @@ import {
 	Ref,
 	useEffect,
 	useImperativeHandle,
+	useRef,
 	useState,
 } from "react";
 import moment from "moment";
@@ -13,6 +14,14 @@ import "react-dates/lib/css/_datepicker.css";
 
 import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import FilterDefault from "./FilterDefault";
+
+const YEAR_OPTIONS = Array.from({ length: 201 }, (_, index) =>
+	String(1900 + index),
+);
+const MONTH_OPTIONS = moment.months().map((month, index) => ({
+	label: month,
+	value: String(index),
+}));
 
 const Filter = forwardRef(
 	(
@@ -26,6 +35,25 @@ const Filter = forwardRef(
 		const [endDate, setEndDate] = useState<moment.Moment | null>(null);
 		const [focusedInput, setFocusedInput] =
 			useState<FocusedInputShape | null>("startDate");
+		const shouldRestoreOnCloseRef = useRef(true);
+
+		const syncFromSelectedOptions = (
+			nextSelectedOptions?: FilterDateProps["selectedOptions"],
+		) => {
+			if (nextSelectedOptions) {
+				setStartDate(nextSelectedOptions.startDate);
+				setEndDate(nextSelectedOptions.endDate);
+				changeLabel(
+					nextSelectedOptions.startDate || undefined,
+					nextSelectedOptions.endDate || undefined,
+				);
+				return;
+			}
+
+			setStartDate(null);
+			setEndDate(null);
+			setLabel("");
+		};
 
 		useImperativeHandle(ref, () => ({
 			clean() {
@@ -34,34 +62,23 @@ const Filter = forwardRef(
 		}));
 
 		useEffect(() => {
-			if (selectedOptions) {
-				setStartDate(selectedOptions.startDate);
-				setEndDate(selectedOptions.endDate);
-				changeLabel(
-					selectedOptions.startDate
-						? selectedOptions.startDate
-						: undefined,
-					selectedOptions.endDate
-						? selectedOptions.endDate
-						: undefined,
-				);
-			} else {
-				setStartDate(null);
-				setEndDate(null);
-				setLabel("");
-			}
+			syncFromSelectedOptions(selectedOptions);
+			shouldRestoreOnCloseRef.current = true;
 		}, [selectedOptions]);
 
 		const onSave = () => {
+			shouldRestoreOnCloseRef.current = false;
+			const nextValue = {
+				startDate: startDate ? startDate.startOf("date") : null,
+				endDate: endDate ? endDate.endOf("date") : null,
+			};
+
+			console.log("FilterDate onChange", nextValue);
 			changeLabel(
 				startDate ? startDate : undefined,
 				endDate ? endDate : undefined,
 			);
-			onChange &&
-				onChange({
-					startDate: startDate ? startDate.startOf("date") : null,
-					endDate: endDate ? endDate.endOf("date") : null,
-				});
+			onChange && onChange(nextValue);
 		};
 
 		const changeLabel = (
@@ -69,9 +86,10 @@ const Filter = forwardRef(
 			endDate?: moment.Moment,
 		) => {
 			let tempLabel = "";
-			if (startDate) tempLabel = startDate.format("D MMM");
+			if (startDate) tempLabel = startDate.format("D MMM YY");
 			if (endDate)
-				tempLabel = tempLabel + ` - ${endDate.format("D MMM")}`;
+				tempLabel =
+					tempLabel + ` - ${endDate.format("D MMM YY")}`;
 			setLabel(tempLabel);
 		};
 
@@ -92,7 +110,18 @@ const Filter = forwardRef(
 				{...restProps}
 				label={label}
 				hideSearchBar={true}
+				buttonStyle={{
+					maxWidth: 280,
+				}}
+				menuStyle={{
+					width: "fit-content",
+					maxHeight: "unset",
+				}}
 				position={position}
+				onClose={() => {
+					if (!shouldRestoreOnCloseRef.current) return;
+					syncFromSelectedOptions(selectedOptions);
+				}}
 				onSave={onSave}
 				onRemove={onRemove}
 			>
@@ -102,14 +131,67 @@ const Filter = forwardRef(
 					onDatesChange={({ startDate, endDate }) => {
 						setStartDate(startDate);
 						setEndDate(endDate);
+						changeLabel(
+							startDate || undefined,
+							endDate || undefined,
+						);
+						if (startDate && !endDate) {
+							setFocusedInput("endDate");
+							return;
+						}
+						if (!startDate) {
+							setFocusedInput("startDate");
+						}
 					}}
 					daySize={isSmallMobile ? 35 : isMobile ? 48 : undefined}
 					focusedInput={focusedInput}
+					numberOfMonths={1}
 					noBorder={true}
 					onFocusChange={(focusedInput) =>
 						setFocusedInput(focusedInput)
 					}
-					initialVisibleMonth={() => moment()}
+					initialVisibleMonth={() =>
+						startDate?.clone() ?? endDate?.clone() ?? moment()
+					}
+					renderMonthElement={({
+						month,
+						onMonthSelect,
+						onYearSelect,
+					}) => (
+						<div className="filter-date__month-selector">
+							<select
+								aria-label="Seleccionar mes"
+								className="filter-date__select filter-date__select--month"
+								value={String(month.month())}
+								onChange={(event) =>
+									onMonthSelect(month, event.target.value)
+								}
+							>
+								{MONTH_OPTIONS.map((option) => (
+									<option
+										key={option.value}
+										value={option.value}
+									>
+										{option.label}
+									</option>
+								))}
+							</select>
+							<select
+								aria-label="Seleccionar año"
+								className="filter-date__select"
+								value={String(month.year())}
+								onChange={(event) =>
+									onYearSelect(month, event.target.value)
+								}
+							>
+								{YEAR_OPTIONS.map((year) => (
+									<option key={year} value={year}>
+										{year}
+									</option>
+								))}
+							</select>
+						</div>
+					)}
 				/>
 			</FilterDefault>
 		);
