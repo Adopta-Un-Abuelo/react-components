@@ -71,6 +71,14 @@
   overflow: hidden;
 }
 
+.input-date-range .DateRangePicker_picker {
+  background: #ffffff;
+  border: 1px solid rgba(0, 29, 61, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 18px 48px rgba(16, 24, 40, 0.14);
+  padding: 10px 14px 14px;
+}
+
 .input-date-range .DayPicker__horizontal,
 .input-date-range .DayPicker_focusRegion,
 .input-date-range .DayPicker_weekHeaders,
