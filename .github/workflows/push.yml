@@ -22,12 +22,7 @@ jobs:
           restore-keys: |
             npm-deps-${{ hashFiles('package-lock.json') }}
       - name: Install dependencies
-        run: npm ci
-      - name: 🔐 Configure npm auth
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: npm whoami
+        run: npm ci  
       - name: Build and Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
