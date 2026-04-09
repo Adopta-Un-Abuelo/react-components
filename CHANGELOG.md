@@ -4,6 +4,28 @@
 
 - Merge branch 'test' ([@sergiosanchez112](https://github.com/sergiosanchez112))
 - Merge branch 'feature/n-953' into test ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Removing last changes ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- add whoamI to debug ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- adding an auth to npm ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- adjusting css in dates filters ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- update version ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- improving Filter && Input dates ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- feat: Readme.md updated (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'main' into test (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 2
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.149 (Thu Apr 09 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'test' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Merge branch 'feature/n-953' into test ([@sergiosanchez112](https://github.com/sergiosanchez112))
 - add whoamI to debug ([@sergiosanchez112](https://github.com/sergiosanchez112))
 - adding an auth to npm ([@sergiosanchez112](https://github.com/sergiosanchez112))
 - adjusting css in dates filters ([@sergiosanchez112](https://github.com/sergiosanchez112))
