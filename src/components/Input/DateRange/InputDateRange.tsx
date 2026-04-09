@@ -62,7 +62,9 @@ const InputDateRange = (props: InputDateRangeProps) => {
 					endDate={endDate}
 					noBorder={true}
 					showClearDates={true}
-					isOutsideRange={props.isOutsideRange}
+					isOutsideRange={
+						props.isOutsideRange ? props.isOutsideRange : () => false
+					}
 					startDatePlaceholderText={"Fecha inicio"}
 					endDatePlaceholderText={"Fecha final"}
 					hideKeyboardShortcutsPanel={true}
