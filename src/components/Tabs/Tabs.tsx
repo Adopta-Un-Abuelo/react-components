@@ -45,7 +45,7 @@ const Container3 = styled.div`
 const ActiveIndicator = styled.div`
 	position: absolute;
 	top: 3px;
-	bottom: 3.5px;
+	bottom: 3px;
 	border-radius: 999px;
 	background-color: ${Color.background.soft};
 	box-shadow: 0 1px 2px ${Color.line.softTransparent};
