@@ -1,3 +1,19 @@
+# v0.3.153 (Mon Apr 27 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'test' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Merge branch 'feature/n-986' into test ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- fix: adjust ActiveIndicator bottom positioning for consistency ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- chore: bump version to 0.3.153 in package.json ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- feat: update InputPrice and Tabs components for improved styling and functionality ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.152 (Thu Apr 09 2026)
 
 #### ⚠️ Pushed to `main`
