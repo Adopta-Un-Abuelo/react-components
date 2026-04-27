@@ -11,16 +11,13 @@ const meta: Meta<typeof Tabs> = {
   args: {
     options: [
       {
-        id: "option1",
-        title: "Option 1",
+        id: "monthly",
+        title: "Mensual",
       },
+     
       {
-        id: "option2",
-        title: "Option 2",
-      },
-      {
-        id: "option3",
-        title: "Option 3",
+        id: "yearly",
+        title: "Anual",
       },
     ],
     onChange: action("onChange"),
@@ -37,7 +34,7 @@ export const Primary: Story = {
   play: async ({ canvasElement, step }: PlayFunctionContext<typeof Tabs>) => {
     const canvas = within(canvasElement);
     const container = await canvas.getByRole("container");
-    const tab = await canvas.findByRole("option3");
+    const tab = await canvas.findByRole("yearly");
     await step("render", async () => {
       expect(container).toBeInTheDocument();
       expect(tab).toBeInTheDocument();
@@ -55,7 +52,25 @@ export const Secondary: Story = {
   play: async ({ canvasElement, step }: PlayFunctionContext<typeof Tabs>) => {
     const canvas = within(canvasElement);
     const container = await canvas.getByRole("container");
-    const tab = await canvas.findByRole("option3");
+    const tab = await canvas.findByRole("yearly");
+    await step("render", async () => {
+      expect(container).toBeInTheDocument();
+      expect(tab).toBeInTheDocument();
+    });
+    await step("click", async () => {
+      userEvent.click(tab);
+    });
+  },
+};
+
+export const Third: Story = {
+  args: {
+    design: "third",
+  },
+  play: async ({ canvasElement, step }: PlayFunctionContext<typeof Tabs>) => {
+    const canvas = within(canvasElement);
+    const container = await canvas.getByRole("container");
+    const tab = await canvas.findByRole("yearly");
     await step("render", async () => {
       expect(container).toBeInTheDocument();
       expect(tab).toBeInTheDocument();

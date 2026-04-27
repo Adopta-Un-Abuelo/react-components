@@ -47,11 +47,9 @@ const Cell = styled.div<{ $selected: boolean; $data: boolean }>`
 			? `0 0 0 2px ${ColorV2.border.primary}`
 			: `0 0 0 1px ${ColorV2.border.neutralSoft}`};
 	cursor: pointer;
-	background-color: ${(props) =>
-		props.$selected ? ColorV2.border.primarySoft : "transparent"};
+
 	&:hover {
-		background-color: ${ColorV2.border.primarySoft};
-		box-shadow: 0 0 0 2px ${ColorV2.border.primary};
+		background-color: ${ColorV2.surface.neutralSoft};
 	}
 `;
 const Input = styled.input`
@@ -99,8 +97,7 @@ const InputContainer = styled.div<{
 			: "transparent"};
 	cursor: pointer;
 	&:hover {
-		background-color: ${ColorV2.border.primarySoft};
-		box-shadow: 0 0 0 2px ${ColorV2.border.primary};
+		background-color: ${ColorV2.border.neutralSoft};
 	}
 `;
 const LabelContainer = styled.div`
@@ -110,9 +107,9 @@ const LabelContainer = styled.div`
 const Label = styled(Text)`
 	position: relative;
 	padding: 8px 12px;
-	background-color: ${ColorV2.surface.primary};
+	background-color: ${ColorV2.surface.neutralSoft};
 	border-radius: 8px;
-	color: white;
+	color: ${ColorV2.text.neutralHard};
 	max-width: 50%;
 	text-align: center;
 	${media.lessThan("small")`
@@ -127,7 +124,7 @@ const LabelContainerSpan = styled.span<{
 		position: absolute;
 		width: 0;
 		height: 0;
-		border-top: 11px solid ${ColorV2.surface.primary};
+		border-top: 11px solid ${ColorV2.surface.neutralSoft};
 		border-left: 8px solid transparent;
 		border-right: 8px solid transparent;
 		top: 100%;
