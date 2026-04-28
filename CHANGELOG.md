@@ -1,3 +1,17 @@
+# v0.3.155 (Tue Apr 28 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'test' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Merge branch 'feature/n-986' into test ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- fix: standardize height and box-sizing for Cell and InputContainer components ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
 # v0.3.153 (Mon Apr 27 2026)
 
 #### ⚠️ Pushed to `main`
