@@ -40,12 +40,13 @@ const Cell = styled.div<{ $selected: boolean; $data: boolean }>`
 	align-items: center;
 	justify-content: center;
 	padding: 14px 16px;
-	height: fit-content;
+	height: 64px;
+	box-sizing: border-box;
 	border-radius: 16px;
 	box-shadow: ${(props) =>
 		props.$selected
-			? `0 0 0 2px ${ColorV2.border.primary}`
-			: `0 0 0 1px ${ColorV2.border.neutralSoft}`};
+			? `inset 0 0 0 2px ${ColorV2.border.primary}`
+			: `inset 0 0 0 1px ${ColorV2.border.neutralSoft}`};
 	cursor: pointer;
 
 	&:hover {
@@ -82,13 +83,14 @@ const InputContainer = styled.div<{
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: fit-content;
+	height: 64px;
+	box-sizing: border-box;
 	box-shadow: ${(props) =>
 		props.$focus || props.$isSelected
-			? `0 0 0 2px ${ColorV2.border.primary}`
+			? `inset 0 0 0 2px ${ColorV2.border.primary}`
 			: props.$error
-			? `0 0 0 2px ${ColorV2.border.red}`
-			: `0 0 0 1px ${ColorV2.border.neutralSoft}`};
+			? `inset 0 0 0 2px ${ColorV2.border.red}`
+			: `inset 0 0 0 1px ${ColorV2.border.neutralSoft}`};
 	border-radius: 16px;
 	padding: 14px 16px;
 	background-color: ${(props) =>
@@ -306,7 +308,12 @@ const InputPrice = (props: InputPriceProps) => {
 								{option.price.toLocaleString("es-ES", {
 									useGrouping: true,
 								})}
-								<span style={{ fontSize: numberFontSize - 6 }}>
+								<span
+									style={{
+										fontSize: numberFontSize - 6,
+										marginLeft: 2,
+									}}
+								>
 									{props.currency}
 								</span>
 							</Text>
