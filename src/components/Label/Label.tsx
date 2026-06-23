@@ -71,7 +71,7 @@ const Label = (props: Props) => {
 				return {
 					color: "#2D7FD9",
 					backgroundColor: "#E5F1FC",
-					text: "En registro",
+					text: "Registro simple",
 				};
 			case "registered":
 				return {
@@ -89,7 +89,7 @@ const Label = (props: Props) => {
 				return {
 					color: "#2D7FD9",
 					backgroundColor: "#E5F1FC",
-					text: "Formación en proceso",
+					text: "Onboarding en proceso",
 				};
 			case "match":
 				return {

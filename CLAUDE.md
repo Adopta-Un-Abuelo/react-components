@@ -1,51 +1,51 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Este archivo proporciona orientación a Claude Code (claude.ai/code) cuando trabaja con el código de este repositorio.
 
-## Project Overview
+## Descripción del Proyecto
 
-This is `@adoptaunabuelo/react-components`, a React component library built with TypeScript and styled-components. The library is published to npm and documented via Storybook.
+Esta es `@adoptaunabuelo/react-components`, una librería de componentes React construida con TypeScript y styled-components. La librería se publica en npm y se documenta mediante Storybook.
 
-## Common Commands
+## Comandos Comunes
 
-### Development
+### Desarrollo
 ```bash
-npm run storybook          # Run Storybook dev server on port 6006
-npm run build              # Build the library with Rollup
-npm run build-storybook    # Build static Storybook
-npm run chromatic          # Run Chromatic visual testing
+npm run storybook          # Levanta el servidor de Storybook en el puerto 6006
+npm run build              # Compila la librería con Rollup
+npm run build-storybook    # Genera el Storybook estático
+npm run chromatic          # Ejecuta las pruebas visuales con Chromatic
 ```
 
 ### Testing
-- Tests are written as interactive Storybook stories using `@storybook/test`
-- Each component's `.stories.tsx` file includes `play` functions with test assertions
-- No separate test runner; use Storybook and Chromatic for testing
+- Las pruebas se escriben como stories interactivas de Storybook usando `@storybook/test`
+- Cada archivo `.stories.tsx` de un componente incluye funciones `play` con aserciones
+- No hay un test runner separado; se usa Storybook y Chromatic para testear
 
 ### Release
 ```bash
-npm run release            # Run auto shipit (automated release)
+npm run release            # Ejecuta auto shipit (release automatizado)
 ```
-- Releases are automated via GitHub Actions on push to main
-- Uses the `auto` package for changelog generation and npm publishing
+- Los releases están automatizados mediante GitHub Actions al hacer push a main
+- Usa el paquete `auto` para generación de changelog y publicación en npm
 
-### Maintenance
+### Mantenimiento
 ```bash
-npm run clean              # Clean install (removes node_modules, package-lock.json, dist)
+npm run clean              # Instalación limpia (elimina node_modules, package-lock.json, dist)
 ```
 
-## Architecture
+## Arquitectura
 
-### Component Structure Pattern
+### Patrón de Estructura de Componentes
 
-Components follow a **variant router pattern**:
+Los componentes siguen un **patrón de router de variantes**:
 
-1. **Main Component** (`ComponentName.tsx`): Acts as a router that delegates to variant implementations based on props
-2. **Variant Components** (`ComponentPrimary.tsx`, `ComponentSecondary.tsx`): Actual implementations
-3. **Stories** (`Component.stories.tsx`): Storybook documentation with interactive tests
+1. **Componente Principal** (`ComponentName.tsx`): Actúa como router que delega a las implementaciones de variantes según las props
+2. **Componentes de Variante** (`ComponentPrimary.tsx`, `ComponentSecondary.tsx`): Implementaciones reales
+3. **Stories** (`Component.stories.tsx`): Documentación de Storybook con pruebas interactivas
 
-Example from Button component:
+Ejemplo del componente Button:
 ```typescript
-// Button.tsx routes to variants
+// Button.tsx enruta a las variantes
 const Button = ({ design, ...props }) => {
   return design === "secondary" ? <ButtonSecondary {...props} />
     : design === "text" ? <ButtonText {...props} />
@@ -53,92 +53,92 @@ const Button = ({ design, ...props }) => {
 };
 ```
 
-### Directory Structure
+### Estructura de Directorios
 
 ```
 src/
-├── components/          # All React components
+├── components/          # Todos los componentes React
 │   ├── Button/
-│   │   ├── Button.tsx           # Main router component
-│   │   ├── ButtonPrimary.tsx    # Variant implementation
-│   │   ├── ButtonSecondary.tsx  # Variant implementation
-│   │   └── Button.stories.tsx   # Storybook stories + tests
-│   ├── Input/               # Complex components have subdirectories
+│   │   ├── Button.tsx           # Componente router principal
+│   │   ├── ButtonPrimary.tsx    # Implementación de variante
+│   │   ├── ButtonSecondary.tsx  # Implementación de variante
+│   │   └── Button.stories.tsx   # Stories de Storybook + tests
+│   ├── Input/               # Los componentes complejos tienen subdirectorios
 │   │   ├── Basic/
 │   │   ├── Phone/
 │   │   ├── Location/
 │   │   └── ...
 │   └── ...
-├── constants/          # Shared constants (Color, ColorV2, Country)
-└── assets/            # Static assets (mainly Lottie animations)
+├── constants/          # Constantes compartidas (Color, ColorV2, Country)
+└── assets/            # Recursos estáticos (principalmente animaciones Lottie)
 ```
 
-### Path Aliases (IMPORTANT)
+### Alias de Rutas (IMPORTANTE)
 
-This project uses TypeScript path aliases for consistent and maintainable imports:
+Este proyecto usa alias de rutas de TypeScript para imports consistentes y mantenibles:
 
-| Alias | Path | Usage |
-|-------|------|-------|
-| `@components/*` | `src/components/*` | Import components |
-| `@constants/*` | `src/constants/*` | Import constants |
-| `@assets/*` | `src/assets/*` | Import assets |
+| Alias | Ruta | Uso |
+|-------|------|-----|
+| `@components/*` | `src/components/*` | Importar componentes |
+| `@constants/*` | `src/constants/*` | Importar constantes |
+| `@assets/*` | `src/assets/*` | Importar recursos |
 
-**Usage examples:**
+**Ejemplos de uso:**
 ```typescript
-// ✅ CORRECT: Use path aliases for cross-directory imports
+// ✅ CORRECTO: Usa alias de rutas para imports entre directorios
 import Text from "@components/Text/Text";
 import { Color } from "@constants/Color";
 import loadingAnimation from "@assets/button-loading.json";
 
-// ✅ CORRECT: Use relative paths for same-directory imports
+// ✅ CORRECTO: Usa rutas relativas para imports del mismo directorio
 import ButtonPrimary from "./ButtonPrimary";
 
-// ❌ WRONG: Don't use relative paths for cross-directory imports
+// ❌ INCORRECTO: No uses rutas relativas para imports entre directorios
 import Text from "../../components/Text/Text";
 import Color from "../../../constants/Color";
 ```
 
-**Benefits:**
-- Consistent imports regardless of file location
-- Easier refactoring (moving files doesn't break imports)
-- Better readability and maintainability
-- Improved IDE autocomplete
+**Beneficios:**
+- Imports consistentes sin importar la ubicación del archivo
+- Refactorización más sencilla (mover archivos no rompe los imports)
+- Mejor legibilidad y mantenibilidad
+- Mejor autocompletado en el IDE
 
-See [PATH_ALIASES.md](./PATH_ALIASES.md) for complete documentation.
+Los paths se configuran en `tsconfig.json` bajo `compilerOptions.paths` y se resuelven en build mediante `babel-plugin-module-resolver`.
 
-### Export Pattern
+### Patrón de Exports
 
-All exports flow through:
-1. Individual component files export their component
-2. `src/components/index.ts` exports all components
-3. `src/index.ts` re-exports from components and constants
-4. Package consumers import from `@adoptaunabuelo/react-components`
+Todos los exports siguen este flujo:
+1. Cada archivo de componente exporta su componente
+2. `src/components/index.ts` exporta todos los componentes
+3. `src/index.ts` re-exporta desde components y constants
+4. Los consumidores del paquete importan desde `@adoptaunabuelo/react-components`
 
-### Build Configuration
+### Configuración del Build
 
-- **Rollup** bundles to ESM format in `dist/esm/`
-- Excludes `*.stories.tsx` files from build
-- Generates TypeScript declarations in `dist/index.d.ts`
-- Uses plugins: TypeScript, PostCSS, Terser, SVGR for SVG imports
+- **Rollup** empaqueta a formato ESM en `dist/esm/`
+- Excluye los archivos `*.stories.tsx` del build
+- Genera las declaraciones TypeScript en `dist/index.d.ts`
+- Usa los plugins: TypeScript, PostCSS, Terser, SVGR para imports de SVG
 
-## Creating New Components
+## Crear Nuevos Componentes
 
-1. Create component folder: `src/components/ComponentName/`
-2. Create main component: `ComponentName.tsx`
-3. Create variants if needed: `ComponentPrimary.tsx`, `ComponentSecondary.tsx`
-4. Create story file: `ComponentName.stories.tsx` with interactive tests
-5. Export in `src/components/index.ts`:
+1. Crear la carpeta del componente: `src/components/ComponentName/`
+2. Crear el componente principal: `ComponentName.tsx`
+3. Crear variantes si es necesario: `ComponentPrimary.tsx`, `ComponentSecondary.tsx`
+4. Crear el archivo de story: `ComponentName.stories.tsx` con tests interactivos
+5. Exportar en `src/components/index.ts`:
    ```typescript
    export { default as ComponentName } from "./ComponentName/ComponentName";
    ```
 
-### Story File Pattern
+### Patrón del Archivo de Story
 
-Stories should include:
-- Meta configuration with `autodocs` tag
-- Multiple story variants demonstrating component states
-- `play` functions with interaction tests using `@storybook/test`
-- Example:
+Las stories deben incluir:
+- Configuración de Meta con el tag `autodocs`
+- Múltiples variantes de story que demuestren los estados del componente
+- Funciones `play` con tests de interacción usando `@storybook/test`
+- Ejemplo:
   ```typescript
   export const Primary: Story = {
     args: { ... },
@@ -151,27 +151,33 @@ Stories should include:
   };
   ```
 
-## Styling
+## Estilos
 
-- Uses **styled-components** for all styling
-- Transient props (prefixed with `$`) for styled-component props that shouldn't be passed to DOM
-- Color constants imported from `src/constants/Color.tsx` (avoid hardcoded colors)
-- Responsive utilities available via `styled-media-query`
+- Se usa **styled-components** para todos los estilos
+- Props transitorias (con prefijo `$`) para props de styled-components que no deben pasarse al DOM
+- Las constantes de color se importan desde `src/constants/Color.tsx` (evita colores hardcodeados)
+- Utilidades responsivas disponibles vía `styled-media-query`
 
-## Special Dependencies
+## Dependencias Especiales
 
-- **Tiptap**: Rich text editor (TextArea component)
-- **Google Maps API**: Required for `InputLocation` component
-  - Add `GOOGLE_MAPS_API=YOUR_KEY` to `.env` for local development
-  - Users must add script tag to their app: `<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&language=es"/>`
-- **Stripe**: Payout component integration
-- **Lottie**: Animations (button loading/success states)
-- **Lucide React**: Icon library
+- **Tiptap**: Editor de texto enriquecido (componente TextArea)
+- **Google Maps API**: Necesaria para el componente `InputLocation`
+  - Añade `GOOGLE_MAPS_API=YOUR_KEY` al `.env` para desarrollo local
+  - Los usuarios deben añadir el script en su app: `<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&language=es"/>`
+- **Stripe**: Integración del componente Payout
+- **Lottie**: Animaciones (estados de loading/success del botón)
+- **Lucide React**: Librería de iconos
 
-## Important Notes
+## Notas Importantes
 
-- **Do not modify** files in `src/constants/` (per CONTRIBUTING.md)
-- Minimum Node.js version: 16.15+ (from CONTRIBUTING.md)
-- React and react-dom are peer dependencies (version 19.x)
-- TypeScript is in strict mode
-- Component library targets ES6
+- **No modificar** los archivos en `src/constants/` (según CONTRIBUTING.md)
+- Versión mínima de Node.js: 16.15+ (según CONTRIBUTING.md)
+- Peer dependencies: `react`/`react-dom` (`^18.0.0 || ^19.0.0`) y `styled-components` (`^5 || ^6`)
+- Muchas integraciones son peer deps opcionales (Tiptap, Lottie, Stripe, react-google-maps, react-webcam) — ver `peerDependenciesMeta` en `package.json`
+- TypeScript en modo strict
+- La librería compila a ES6
+
+## Variables de Entorno
+
+- `GOOGLE_MAPS_API` — necesaria para `InputLocation` en Storybook local (ver CONTRIBUTING.md)
+- `CHROMATIC_PROJECT_TOKEN` — necesaria para `npm run chromatic`; en CI proviene de un GitHub Actions secret con el mismo nombre
