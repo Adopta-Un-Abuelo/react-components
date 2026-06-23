@@ -1,3 +1,15 @@
+# v0.3.156 (Tue Jun 23 2026)
+
+#### 🐛 Bug Fix
+
+- Remove .claude-configs submodule and update CLAUDE.md [#21](https://github.com/Adopta-Un-Abuelo/react-components/pull/21) ([@danirc](https://github.com/danirc))
+
+#### Authors: 1
+
+- [@danirc](https://github.com/danirc)
+
+---
+
 # v0.3.155 (Tue Apr 28 2026)
 
 #### ⚠️ Pushed to `main`
