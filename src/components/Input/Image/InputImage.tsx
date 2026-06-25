@@ -5,6 +5,9 @@ import {
 	CSSProperties,
 	ReactElement,
 	useCallback,
+	forwardRef,
+	useImperativeHandle,
+	Ref,
 } from "react";
 import styled from "styled-components";
 import Compressor from "compressorjs";
@@ -94,344 +97,368 @@ const Xcontainer = styled.div`
 function centerAspectCrop(
 	mediaWidth: number,
 	mediaHeight: number,
-	aspect: number
+	aspect: number,
 ) {
 	return centerCrop(
 		makeAspectCrop(
 			{ unit: "%", width: 60 },
 			aspect,
 			mediaWidth,
-			mediaHeight
+			mediaHeight,
 		),
 		mediaWidth,
-		mediaHeight
+		mediaHeight,
 	);
 }
 
-const InputImage = (props: InputImageProps) => {
-	const isMobile = window.innerWidth <= 768;
-	const webcamRef = useRef<Webcam>(null);
-	const inputRef = useRef<HTMLInputElement>(null);
-	const previewCanvasRef = useRef<HTMLCanvasElement>(null);
-	const imgRef = useRef<HTMLImageElement>(null);
-	const aspect = 1 / 1;
-	const [imgSrc, setImgSrc] = useState("");
-	const [crop, setCrop] = useState<Crop>();
-	const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
-	const [loading, setLoading] = useState(false);
-	const [showModal, setShowModal] = useState(false);
-	const [showWebcam, setShowWebcam] = useState(false);
+const InputImage = forwardRef(
+	(props: InputImageProps, ref: Ref<InputImageRef>) => {
+		const isMobile = window.innerWidth <= 768;
+		const webcamRef = useRef<Webcam>(null);
+		const inputRef = useRef<HTMLInputElement>(null);
+		const previewCanvasRef = useRef<HTMLCanvasElement>(null);
+		const imgRef = useRef<HTMLImageElement>(null);
+		const aspect = 1 / 1;
+		const [imgSrc, setImgSrc] = useState("");
+		const [crop, setCrop] = useState<Crop>();
+		const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
+		const [loading, setLoading] = useState(false);
+		const [showModal, setShowModal] = useState(false);
+		const [showWebcam, setShowWebcam] = useState(false);
 
-	useEffect(() => {
-		const t = setTimeout(() => {
-			canvasPreview.apply([completedCrop]);
-		}, 100);
-
-		return () => clearTimeout(t);
-	}, [completedCrop]);
-
-	const canvasPreview = async () => {
-		const image = imgRef.current;
-		const canvas = previewCanvasRef.current;
-		const crop = completedCrop;
-		if (crop?.width && crop?.height && image && canvas) {
-			const ctx = canvas.getContext("2d");
-			if (!ctx) {
-				throw new Error("No 2d context");
-			}
-
-			const scaleX = image.naturalWidth / image.width;
-			const scaleY = image.naturalHeight / image.height;
-			const pixelRatio = window.devicePixelRatio;
-
-			canvas.width = Math.floor(crop.width * scaleX * pixelRatio);
-			canvas.height = Math.floor(crop.height * scaleY * pixelRatio);
-
-			ctx.scale(pixelRatio, pixelRatio);
-			ctx.imageSmoothingQuality = "high";
-
-			const cropX = crop.x * scaleX;
-			const cropY = crop.y * scaleY;
-
-			const centerX = image.naturalWidth / 2;
-			const centerY = image.naturalHeight / 2;
-
-			ctx.save();
-
-			// 5) Move the crop origin to the canvas origin (0,0)
-			ctx.translate(-cropX, -cropY);
-			// 4) Move the origin to the center of the original position
-			ctx.translate(centerX, centerY);
-			// 1) Move the center of the image to the origin (0,0)
-			ctx.translate(-centerX, -centerY);
-			ctx.drawImage(
-				image,
-				0,
-				0,
-				image.naturalWidth,
-				image.naturalHeight,
-				0,
-				0,
-				image.naturalWidth,
-				image.naturalHeight
-			);
-			ctx.restore();
-		}
-	};
-
-	const toBase64 = (file: File | Blob): Promise<string | ArrayBuffer | null> => {
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader();
-			reader.readAsDataURL(file);
-			reader.onload = () => resolve(reader.result);
-			reader.onerror = (error) => reject(error);
-		});
-	};
-
-	const onSelectFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (e && e.target && e.target.files && e.target.files[0]) {
-			const file = e.target.files[0];
-			if (props.hideCrop) {
-				const blob = new Blob([file], { type: "image/webp" });
-				compressImage(blob);
-			} else {
-				setCrop(undefined);
-				const base64 = await toBase64(file);
-				setImgSrc(typeof base64 === 'string' ? base64 : '');
-				if (inputRef.current) inputRef.current.value = "";
-			}
-		}
-	};
-
-	const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
-		if (aspect) {
-			const { width, height } = e.currentTarget;
-			setCrop(centerAspectCrop(width, height, aspect));
-		}
-	};
-
-	const completeCrop = () => {
-		setLoading(true);
-		previewCanvasRef.current?.toBlob((blob) => {
-			if (blob) {
-				compressImage(blob);
-			} else setLoading(false);
-		}, "image/webp");
-	};
-
-	const compressImage = (blob: Blob) => {
-		new Compressor(blob, {
-			quality: 1,
-			maxHeight: props.maxHeight,
-			maxWidth: props.maxWidth,
-			success: async (compressedResult) => {
-				setImgSrc("");
-				const base64 = await toBase64(compressedResult);
-				props.onChange && props.onChange(base64);
-				setLoading(false);
+		// Expose methods to parent via ref
+		useImperativeHandle(ref, () => ({
+			triggerCrop: () => {
+				completeCrop();
 			},
-		});
-	};
+			cancelCrop: () => {
+				cancelCrop();
+			},
+		}));
 
-	const cancelCrop = () => {
-		setImgSrc("");
-	};
+		useEffect(() => {
+			const t = setTimeout(() => {
+				canvasPreview.apply([completedCrop]);
+			}, 100);
 
-	const onOptionClick = (op: string) => {
-		if (op === "camera") {
-			setShowWebcam(true);
-		} else if (op === "library") {
-			setShowModal(false);
-			inputRef.current?.click();
-		}
-	};
+			return () => clearTimeout(t);
+		}, [completedCrop]);
 
-	const onCaptureClick = useCallback(() => {
-		const image = webcamRef.current?.getScreenshot();
-		if (image) {
-			setShowModal(false);
-			setShowWebcam(false);
-			setImgSrc(image);
-			if (props.hideCrop) {
-				props.onChange && props.onChange(image);
+		// Notify parent when crop state changes
+		useEffect(() => {
+			if (!props.hideCrop) {
+				const isCropping = imgSrc !== "";
+				props.onCropStateChange?.(isCropping);
 			}
-		}
-	}, [webcamRef]);
+		}, [imgSrc, props.hideCrop]);
 
-	return (
-		<Container style={props.style}>
-			<Modal
-				isVisible={showModal}
-				type={isMobile ? "full-screen" : "default"}
-				hideClose={true}
-				hideHeader={true}
-				style={{ width: isMobile ? "100%" : 400 }}
-				contentStyle={{
-					padding: "16px 0px",
-					backgroundColor: showWebcam ? "black" : "white",
-				}}
-				buttonProps={
-					showWebcam
-						? {
-								children: (
-									<Row
-										style={{
-											position: "relative",
-											justifyContent: "center",
-											alignItems: "center",
-											width: "100%",
-											padding: "0 32px",
-										}}
-									>
-										<CaptureButton
-											onClick={onCaptureClick}
-										/>
-									</Row>
-								),
-								style: {
-									backgroundColor: "transparent",
-									width: "100%",
-									marginTop: 12,
-									marginBottom: 12,
-									paddingBottom:
-										"calc(env(safe-area-inset-bottom, 0) + 8px)",
-								},
-						  }
-						: undefined
+		const canvasPreview = async () => {
+			const image = imgRef.current;
+			const canvas = previewCanvasRef.current;
+			const crop = completedCrop;
+			if (crop?.width && crop?.height && image && canvas) {
+				const ctx = canvas.getContext("2d");
+				if (!ctx) {
+					throw new Error("No 2d context");
 				}
-				onClose={() => setShowModal(false)}
-			>
-				{showWebcam && (
-					<Button
-						design="image"
-						icon={<X />}
-						onClick={() => {
-							setShowWebcam(false);
-							setShowModal(false);
-						}}
-						style={{
-							position: "absolute",
-							top: 12,
-							right: 12,
-							backgroundColor: "rgba(0, 0, 0, 0.4)",
-							color: "white",
-							border: "none",
-							padding: 8,
-							borderRadius: "50%",
-							cursor: "pointer",
-							zIndex: 10,
-						}}
-					/>
-				)}
-				{showWebcam ? (
-					<>
-						<Webcam
-							ref={webcamRef}
-							height={"100%"}
-							width={"100%"}
-							videoConstraints={{
-								facingMode: "environment",
-							}}
-						/>
-					</>
-				) : (
-					<>
-						<Xcontainer>
-							<X
-								style={{
-									cursor: "pointer",
-								}}
-								onClick={() => {
-									setShowWebcam(false);
-									setShowModal(false);
-								}}
-							/>
-						</Xcontainer>
 
-						<Cell onClick={() => onOptionClick("camera")}>
-							<Camera />
-							<Text type="p">Cámara</Text>
-						</Cell>
+				const scaleX = image.naturalWidth / image.width;
+				const scaleY = image.naturalHeight / image.height;
+				const pixelRatio = window.devicePixelRatio;
 
-						<Cell onClick={() => onOptionClick("library")}>
-							<Image />
-							<Text type="p">Imagen de librería</Text>
-						</Cell>
-					</>
-				)}
-			</Modal>
-			<Button
-				role={"button"}
-				onClick={() => {
-					if (props.options && props.options.length > 1)
-						setShowModal(true);
-					else inputRef.current?.click();
-				}}
-				style={{
-					height: 32,
-					padding: "0px 12px",
-					fontSize: 14,
-					fontWeight: 500,
-					...props.buttonStyle,
-				}}
-				icon={props.icon}
-				design={"secondary"}
-			>
-				{props.buttonText ? props.buttonText : "Subir foto"}
-			</Button>
-			<input
-				name="image"
-				accept="image/*"
-				onChange={onSelectFile}
-				hidden={true}
-				type="file"
-				ref={inputRef}
-			/>
-			{imgSrc && !props.hideCrop && (
-				<CropContainer>
-					<ToolBar>
+				canvas.width = Math.floor(crop.width * scaleX * pixelRatio);
+				canvas.height = Math.floor(crop.height * scaleY * pixelRatio);
+
+				ctx.scale(pixelRatio, pixelRatio);
+				ctx.imageSmoothingQuality = "high";
+
+				const cropX = crop.x * scaleX;
+				const cropY = crop.y * scaleY;
+
+				const centerX = image.naturalWidth / 2;
+				const centerY = image.naturalHeight / 2;
+
+				ctx.save();
+
+				// 5) Move the crop origin to the canvas origin (0,0)
+				ctx.translate(-cropX, -cropY);
+				// 4) Move the origin to the center of the original position
+				ctx.translate(centerX, centerY);
+				// 1) Move the center of the image to the origin (0,0)
+				ctx.translate(-centerX, -centerY);
+				ctx.drawImage(
+					image,
+					0,
+					0,
+					image.naturalWidth,
+					image.naturalHeight,
+					0,
+					0,
+					image.naturalWidth,
+					image.naturalHeight,
+				);
+				ctx.restore();
+			}
+		};
+
+		const toBase64 = (
+			file: File | Blob,
+		): Promise<string | ArrayBuffer | null> => {
+			return new Promise((resolve, reject) => {
+				const reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onload = () => resolve(reader.result);
+				reader.onerror = (error) => reject(error);
+			});
+		};
+
+		const onSelectFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+			if (e && e.target && e.target.files && e.target.files[0]) {
+				const file = e.target.files[0];
+				if (props.hideCrop) {
+					const blob = new Blob([file], { type: "image/webp" });
+					compressImage(blob);
+				} else {
+					setCrop(undefined);
+					const base64 = await toBase64(file);
+					setImgSrc(typeof base64 === "string" ? base64 : "");
+					if (inputRef.current) inputRef.current.value = "";
+				}
+			}
+		};
+
+		const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+			if (aspect) {
+				const { width, height } = e.currentTarget;
+				setCrop(centerAspectCrop(width, height, aspect));
+			}
+		};
+
+		const completeCrop = () => {
+			setLoading(true);
+			previewCanvasRef.current?.toBlob((blob) => {
+				if (blob) {
+					compressImage(blob);
+				} else setLoading(false);
+			}, "image/webp");
+		};
+
+		const compressImage = (blob: Blob) => {
+			new Compressor(blob, {
+				quality: 1,
+				maxHeight: props.maxHeight,
+				maxWidth: props.maxWidth,
+				success: async (compressedResult) => {
+					setImgSrc("");
+					const base64 = await toBase64(compressedResult);
+					props.onChange && props.onChange(base64);
+					setLoading(false);
+				},
+			});
+		};
+
+		const cancelCrop = () => {
+			setImgSrc("");
+		};
+
+		const onOptionClick = (op: string) => {
+			if (op === "camera") {
+				setShowWebcam(true);
+			} else if (op === "library") {
+				setShowModal(false);
+				inputRef.current?.click();
+			}
+		};
+
+		const onCaptureClick = useCallback(() => {
+			const image = webcamRef.current?.getScreenshot();
+			if (image) {
+				setShowModal(false);
+				setShowWebcam(false);
+				setImgSrc(image);
+				if (props.hideCrop) {
+					props.onChange && props.onChange(image);
+				}
+			}
+		}, [webcamRef]);
+
+		return (
+			<Container style={props.style}>
+				<Modal
+					isVisible={showModal}
+					type={isMobile ? "full-screen" : "default"}
+					hideClose={true}
+					hideHeader={true}
+					style={{ width: isMobile ? "100%" : 400 }}
+					contentStyle={{
+						padding: "16px 0px",
+						backgroundColor: showWebcam ? "black" : "white",
+					}}
+					buttonProps={
+						showWebcam
+							? {
+									children: (
+										<Row
+											style={{
+												position: "relative",
+												justifyContent: "center",
+												alignItems: "center",
+												width: "100%",
+												padding: "0 32px",
+											}}
+										>
+											<CaptureButton
+												onClick={onCaptureClick}
+											/>
+										</Row>
+									),
+									style: {
+										backgroundColor: "transparent",
+										width: "100%",
+										marginTop: 12,
+										marginBottom: 12,
+										paddingBottom:
+											"calc(env(safe-area-inset-bottom, 0) + 8px)",
+									},
+								}
+							: undefined
+					}
+					onClose={() => setShowModal(false)}
+				>
+					{showWebcam && (
 						<Button
-							design="primary"
-							size="small"
-							loading={loading}
-							icon={<CropIcon />}
-							onClick={completeCrop}
-						>
-							Recortar
-						</Button>
-						<Button
-							style={{ marginLeft: 12 }}
 							design="image"
 							icon={<X />}
-							onClick={cancelCrop}
-						/>
-					</ToolBar>
-					<ReactCrop
-						style={{ height: "-webkit-fill-available" }}
-						crop={crop}
-						onChange={(_, percentCrop) => setCrop(percentCrop)}
-						onComplete={(c) => setCompletedCrop(c)}
-						aspect={aspect}
-					>
-						<img
-							ref={imgRef}
-							alt="Crop me"
-							src={imgSrc}
-							style={{ maxWidth: "100%", maxHeight: "100%" }}
-							onLoad={onImageLoad}
-						/>
-					</ReactCrop>
-					{completedCrop && (
-						<Preview
-							ref={previewCanvasRef}
-							style={props.previewStyle}
+							onClick={() => {
+								setShowWebcam(false);
+								setShowModal(false);
+							}}
+							style={{
+								position: "absolute",
+								top: 12,
+								right: 12,
+								backgroundColor: "rgba(0, 0, 0, 0.4)",
+								color: "white",
+								border: "none",
+								padding: 8,
+								borderRadius: "50%",
+								cursor: "pointer",
+								zIndex: 10,
+							}}
 						/>
 					)}
-				</CropContainer>
-			)}
-		</Container>
-	);
-};
+					{showWebcam ? (
+						<>
+							<Webcam
+								ref={webcamRef}
+								height={"100%"}
+								width={"100%"}
+								videoConstraints={{
+									facingMode: "environment",
+								}}
+							/>
+						</>
+					) : (
+						<>
+							<Xcontainer>
+								<X
+									style={{
+										cursor: "pointer",
+									}}
+									onClick={() => {
+										setShowWebcam(false);
+										setShowModal(false);
+									}}
+								/>
+							</Xcontainer>
+
+							<Cell onClick={() => onOptionClick("camera")}>
+								<Camera />
+								<Text type="p">Cámara</Text>
+							</Cell>
+
+							<Cell onClick={() => onOptionClick("library")}>
+								<Image />
+								<Text type="p">Imagen de librería</Text>
+							</Cell>
+						</>
+					)}
+				</Modal>
+				<Button
+					role={"button"}
+					onClick={() => {
+						if (props.options && props.options.length > 1)
+							setShowModal(true);
+						else inputRef.current?.click();
+					}}
+					style={{
+						height: 32,
+						padding: "0px 12px",
+						fontSize: 14,
+						fontWeight: 500,
+						...props.buttonStyle,
+					}}
+					icon={props.icon}
+					design={"secondary"}
+				>
+					{props.buttonText ? props.buttonText : "Subir foto"}
+				</Button>
+				<input
+					name="image"
+					accept="image/*"
+					onChange={onSelectFile}
+					hidden={true}
+					type="file"
+					ref={inputRef}
+				/>
+				{imgSrc && !props.hideCrop && (
+					<CropContainer>
+						{!props.hideToolbar && (
+							<ToolBar>
+								<Button
+									design="primary"
+									size="small"
+									loading={loading}
+									icon={<CropIcon />}
+									onClick={completeCrop}
+								>
+									Recortar
+								</Button>
+								<Button
+									style={{ marginLeft: 12 }}
+									design="image"
+									icon={<X />}
+									onClick={cancelCrop}
+								/>
+							</ToolBar>
+						)}
+						<ReactCrop
+							style={{ height: "-webkit-fill-available" }}
+							crop={crop}
+							onChange={(_, percentCrop) => setCrop(percentCrop)}
+							onComplete={(c) => setCompletedCrop(c)}
+							aspect={aspect}
+						>
+							<img
+								ref={imgRef}
+								alt="Crop me"
+								src={imgSrc}
+								style={{ maxWidth: "100%", maxHeight: "100%" }}
+								onLoad={onImageLoad}
+							/>
+						</ReactCrop>
+						{completedCrop && (
+							<Preview
+								ref={previewCanvasRef}
+								style={props.previewStyle}
+							/>
+						)}
+					</CropContainer>
+				)}
+			</Container>
+		);
+	},
+);
 export default InputImage;
 /**
  * Image upload with crop, compression, and webcam capture.
@@ -464,4 +491,16 @@ export interface InputImageProps {
 	hideCrop?: boolean;
 	/** Callback with base64-encoded WebP image */
 	onChange?: (image: string | ArrayBuffer | null) => void;
+	/** Callback when crop state changes (for external control of crop actions) */
+	onCropStateChange?: (isCropping: boolean) => void;
+	/** Hide internal toolbar with crop/cancel buttons (use with ref for external control) */
+	hideToolbar?: boolean;
+}
+
+/** Ref methods exposed by InputImage for external control */
+export interface InputImageRef {
+	/** Trigger the crop operation */
+	triggerCrop: () => void;
+	/** Cancel the crop and clear the image */
+	cancelCrop: () => void;
 }

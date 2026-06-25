@@ -9,6 +9,7 @@ export { default as InputChat } from "./Input/Chat/InputChat";
 export { default as InputCode } from "./Input/Code/InputCode";
 export { default as InputDateRange } from "./Input/DateRange/InputDateRange";
 export { default as InputImage } from "./Input/Image/InputImage";
+export type { InputImageRef } from "./Input/Image/InputImage";
 export { default as InputLocation } from "./Input/Location/InputLocation";
 export { default as InputPhone } from "./Input/Phone/InputPhone";
 export { default as InputRange } from "./Input/Range/InputRange";
