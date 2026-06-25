@@ -1,3 +1,102 @@
+# v0.3.156 (Tue Jun 23 2026)
+
+#### 🐛 Bug Fix
+
+- Remove .claude-configs submodule and update CLAUDE.md [#21](https://github.com/Adopta-Un-Abuelo/react-components/pull/21) ([@danirc](https://github.com/danirc))
+
+#### Authors: 1
+
+- [@danirc](https://github.com/danirc)
+
+---
+
+# v0.3.155 (Tue Apr 28 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'test' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Merge branch 'feature/n-986' into test ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- fix: standardize height and box-sizing for Cell and InputContainer components ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
+# v0.3.153 (Mon Apr 27 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'test' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Merge branch 'feature/n-986' into test ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- fix: adjust ActiveIndicator bottom positioning for consistency ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- chore: bump version to 0.3.153 in package.json ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- feat: update InputPrice and Tabs components for improved styling and functionality ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
+# v0.3.152 (Thu Apr 09 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'test' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Merge branch 'feature/n-953' into test ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Improving inputDateRange ([@sergiosanchez112](https://github.com/sergiosanchez112))
+
+#### Authors: 1
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+
+---
+
+# v0.3.149 (Thu Apr 09 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'test' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Merge branch 'feature/n-953' into test ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Removing last changes ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- add whoamI to debug ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- adding an auth to npm ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- adjusting css in dates filters ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- update version ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- improving Filter && Input dates ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- feat: Readme.md updated (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'main' into test (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 2
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
+# v0.3.149 (Thu Apr 09 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'test' ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- Merge branch 'feature/n-953' into test ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- add whoamI to debug ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- adding an auth to npm ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- adjusting css in dates filters ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- update version ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- improving Filter && Input dates ([@sergiosanchez112](https://github.com/sergiosanchez112))
+- feat: Readme.md updated (guillermo.angeles@adoptaunabuelo.com)
+- Merge branch 'main' into test (guillermo.angeles@adoptaunabuelo.com)
+
+#### Authors: 2
+
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+- Guillermo Angeles (guillermo.angeles@adoptaunabuelo.com)
+
+---
+
 # v0.3.148 (Mon Feb 16 2026)
 
 #### ⚠️ Pushed to `main`
