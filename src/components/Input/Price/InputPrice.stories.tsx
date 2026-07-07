@@ -14,6 +14,7 @@ const meta: Meta<typeof InputPrice> = {
 		label: "Nos ayudas a cumplir el sueño de {{value}} abuelos",
 		labelValueConversion: 0.2,
 		onChange: fn(),
+		onErrorChange: fn(),
 	},
 };
 

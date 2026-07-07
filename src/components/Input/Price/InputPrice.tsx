@@ -154,9 +154,29 @@ const InputPrice = (props: InputPriceProps) => {
 	const [inputError, setInputError] = useState("");
 	const [numberFontSize, setNumberFontSize] = useState(24);
 
+	const minPrice = props.options[0].price;
+	//A custom-amount string is invalid when it is not a number or is below the
+	//minimum. Shared by the blur visual error and the onErrorChange signal.
+	const isCustomAmountInvalid = (value: string) => {
+		const priceInt = parseInt(value);
+		return isNaN(priceInt) || priceInt < minPrice;
+	};
+
 	useEffect(() => {
 		setOptionSelected(props.defaultOption);
 	}, [props.defaultOption]);
+
+	//Report the custom-amount validity to the parent. Derived from customPrice
+	//(which changes as the user types, a gesture that precedes any submit tap),
+	//so a parent gating a button on this signal is always up to date in time —
+	//unlike a blur-based signal, which fires in the same tap as the click.
+	//The visual error (setInputError) still appears on blur; this only notifies.
+	useEffect(() => {
+		if (!props.onErrorChange) return;
+		const hasError =
+			customPrice.length > 0 && isCustomAmountInvalid(customPrice);
+		props.onErrorChange(hasError);
+	}, [customPrice, props.options]);
 
 	useEffect(() => {
 		if (props.options.length > 0) {
@@ -196,6 +216,15 @@ const InputPrice = (props: InputPriceProps) => {
 		}
 	}, [optionSelected]);
 
+	//Only whole numbers are allowed, so block decimal separators, sign and
+	//scientific notation. This also prevents the browser's "value cannot be
+	//parsed" warning that a type="number" input logs for values like "9,3".
+	const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if ([".", ",", "e", "E", "+", "-"].includes(e.key)) {
+			e.preventDefault();
+		}
+	};
+
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setCustomPrice(e.target.value);
 	};
@@ -208,9 +237,7 @@ const InputPrice = (props: InputPriceProps) => {
 
 	const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 		setInputFocus(false);
-		const priceInt = parseInt(e.target.value);
-		const minPrice = props.options[0].price;
-		if (priceInt < minPrice || !priceInt) {
+		if (isCustomAmountInvalid(e.target.value)) {
 			setInputError(
 				`La donación mínima es de ${minPrice}${props.currency}`
 			);
@@ -219,7 +246,7 @@ const InputPrice = (props: InputPriceProps) => {
 			props.onChange &&
 				props.onChange(
 					e.target.value.length > 0
-						? priceInt
+						? parseInt(e.target.value)
 						: optionSelected
 						? optionSelected
 						: 0
@@ -382,6 +409,7 @@ const InputPrice = (props: InputPriceProps) => {
 							type="number"
 							value={customPrice}
 							placeholder="Otra cantidad"
+							onKeyDown={onInputKeyDown}
 							onChange={onInputChange}
 							onFocus={onInputFocus}
 							onBlur={onInputBlur}
@@ -474,4 +502,6 @@ export type InputPriceProps = {
 	customAmountData?: React.ReactElement;
 	/** Callback with selected/entered price. Validates minimum from first option */
 	onChange?: (value: number) => void;
+	/** Fires when the custom-amount min-validation error appears (true) or clears (false) */
+	onErrorChange?: (hasError: boolean) => void;
 };
