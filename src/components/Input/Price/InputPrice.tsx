@@ -244,6 +244,7 @@ const InputPrice = (props: InputPriceProps) => {
 		setInputFocus(true);
 		setInputError("");
 		setOptionSelected(undefined);
+		setCustomPrice("");
 	};
 
 	const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
