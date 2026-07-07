@@ -47,10 +47,15 @@ const Cell = styled.div<{ $selected: boolean; $data: boolean }>`
 		props.$selected
 			? `inset 0 0 0 2px ${ColorV2.border.primary}`
 			: `inset 0 0 0 1px ${ColorV2.border.neutralSoft}`};
+	background-color: ${(props) =>
+		props.$selected ? ColorV2.surface.primarySoft : "transparent"};
 	cursor: pointer;
 
 	&:hover {
-		background-color: ${ColorV2.surface.neutralSoft};
+		background-color: ${(props) =>
+		props.$selected
+			? ColorV2.surface.primarySoft
+			: ColorV2.surface.neutralSoft};
 	}
 `;
 const Input = styled.input`
@@ -86,21 +91,27 @@ const InputContainer = styled.div<{
 	height: 64px;
 	box-sizing: border-box;
 	box-shadow: ${(props) =>
-		props.$focus || props.$isSelected
-			? `inset 0 0 0 2px ${ColorV2.border.primary}`
-			: props.$error
+		props.$error
 			? `inset 0 0 0 2px ${ColorV2.border.red}`
-			: `inset 0 0 0 1px ${ColorV2.border.neutralSoft}`};
+			: props.$focus || props.$isSelected
+				? `inset 0 0 0 2px ${ColorV2.border.primary}`
+				: `inset 0 0 0 1px ${ColorV2.border.neutralSoft}`};
 	border-radius: 16px;
 	padding: 14px 16px;
 	background-color: ${(props) =>
-		props.$isSelected || props.$focus
-			? ColorV2.border.primarySoft
+		!props.$error && (props.$isSelected || props.$focus)
+			? ColorV2.surface.primarySoft
 			: "transparent"};
 	cursor: pointer;
 	&:hover {
 		background-color: ${ColorV2.border.neutralSoft};
 	}
+`;
+const ErrorMessage = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 20px;
 `;
 const LabelContainer = styled.div`
 	display: flex;
@@ -390,66 +401,70 @@ const InputPrice = (props: InputPriceProps) => {
 				})}
 			</CellContainer>
 			{!props.hideCustomAmount && (
-				<InputContainer
-					$focus={inputFocus}
-					$isSelected={customPrice.length > 0}
-					$error={inputError.length > 0 ? true : false}
-					onClick={() => input.current?.focus()}
-				>
-					<Row $data={props.options[0].data ? true : false}>
-						<Input
-							ref={input}
-							style={{
-								fontSize: numberFontSize,
-								width:
-									customPrice.length > 0
-										? customPrice.length + "ch"
-										: "unset",
-							}}
-							type="number"
-							value={customPrice}
-							placeholder="Otra cantidad"
-							onKeyDown={onInputKeyDown}
-							onChange={onInputChange}
-							onFocus={onInputFocus}
-							onBlur={onInputBlur}
-						/>
-						{customPrice.length > 0 && (
-							<Text
-								type="h6"
-								weight="medium"
-								style={{ fontSize: 18, marginTop: 6 }}
+				<>
+					<InputContainer
+						$focus={inputFocus}
+						$isSelected={customPrice.length > 0}
+						$error={inputError.length > 0 ? true : false}
+						onClick={() => input.current?.focus()}
+					>
+						<Row $data={props.options[0].data ? true : false}>
+							<Input
+								ref={input}
+								style={{
+									fontSize: numberFontSize,
+									width:
+										customPrice.length > 0
+											? customPrice.length + "ch"
+											: "unset",
+								}}
+								type="number"
+								value={customPrice}
+								placeholder="Otra cantidad"
+								onKeyDown={onInputKeyDown}
+								onChange={onInputChange}
+								onFocus={onInputFocus}
+								onBlur={onInputBlur}
+							/>
+							{customPrice.length > 0 && (
+								<Text
+									type="h6"
+									weight="medium"
+									style={{ fontSize: 18, marginTop: 6 }}
+								>
+									{props.currency}
+								</Text>
+							)}
+						</Row>
+						{props.customAmountData && (
+							<div
+								style={{
+									marginTop: 12,
+									paddingTop: 12,
+									borderTop:
+										"1px solid " +
+										ColorV2.border.neutralSoft,
+								}}
 							>
-								{props.currency}
+								{props.customAmountData}
+							</div>
+						)}
+					</InputContainer>
+					<ErrorMessage>
+						{inputError && (
+							<Text
+								type="p2"
+								weight="medium"
+								style={{
+									color: ColorV2.text.red,
+									textAlign: "center",
+								}}
+							>
+								{inputError}
 							</Text>
 						)}
-					</Row>
-					{props.customAmountData && (
-						<div
-							style={{
-								marginTop: 12,
-								paddingTop: 12,
-								borderTop:
-									"1px solid " + ColorV2.border.neutralSoft,
-							}}
-						>
-							{props.customAmountData}
-						</div>
-					)}
-					{inputError && (
-						<Text
-							type="p2"
-							weight="medium"
-							style={{
-								marginTop: 4,
-								color: ColorV2.text.red,
-								textAlign: "center",
-							}}
-						>
-							{inputError}
-						</Text>
-					)}
-				</InputContainer>
+					</ErrorMessage>
+				</>
 			)}
 		</Container>
 	);
