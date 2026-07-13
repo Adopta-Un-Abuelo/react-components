@@ -21,6 +21,8 @@ const Container = styled.div`
 const Row = styled.div<{ $data: boolean }>`
 	display: flex;
 	flex-direction: row;
+	align-items: baseline;
+	gap: 2px;
 `;
 const CellContainer = styled.div`
 	display: flex;
@@ -142,9 +144,9 @@ const LabelContainerSpan = styled.span<{
 		border-right: 8px solid transparent;
 		top: 100%;
 		left: ${(props) =>
-			props.$position === "left"
-				? "20%"
-				: props.$position === "right"
+		props.$position === "left"
+			? "20%"
+			: props.$position === "right"
 				? "80%"
 				: "50%"};
 		margin-left: -8px;
@@ -260,8 +262,8 @@ const InputPrice = (props: InputPriceProps) => {
 					e.target.value.length > 0
 						? parseInt(e.target.value)
 						: optionSelected
-						? optionSelected
-						: 0
+							? optionSelected
+							: 0
 				);
 		}
 	};
@@ -282,14 +284,14 @@ const InputPrice = (props: InputPriceProps) => {
 						style={{
 							justifyContent: optionSelected
 								? props.options.findIndex(
-										(i) => i.price === optionSelected
-								  ) === 0
+									(i) => i.price === optionSelected
+								) === 0
 									? "flex-start"
 									: props.options.findIndex(
-											(i) => i.price === optionSelected
-									  ) === 1
-									? "center"
-									: "flex-end"
+										(i) => i.price === optionSelected
+									) === 1
+										? "center"
+										: "flex-end"
 								: "center",
 						}}
 					>
@@ -301,28 +303,27 @@ const InputPrice = (props: InputPriceProps) => {
 									(optionSelected
 										? optionSelected
 										: customPrice
-										? parseInt(customPrice)
-										: 0)
+											? parseInt(customPrice)
+											: 0)
 								).toFixed(0)
 							)}
-							<LabelContainerSpan
-								$position={
-									optionSelected
-										? props.options.findIndex(
-												(i) =>
-													i.price === optionSelected
-										  ) === 0
+							{optionSelected && (
+								<LabelContainerSpan
+									$position={
+										props.options.findIndex(
+											(i) => i.price === optionSelected
+										) === 0
 											? "left"
 											: props.options.findIndex(
-													(i) =>
-														i.price ===
-														optionSelected
-											  ) === 1
-											? "center"
-											: "right"
-										: "center"
-								}
-							/>
+												(i) =>
+													i.price ===
+													optionSelected
+											) === 1
+												? "center"
+												: "right"
+									}
+								/>
+							)}
 						</Label>
 					</LabelContainer>
 				)}
@@ -431,7 +432,7 @@ const InputPrice = (props: InputPriceProps) => {
 								<Text
 									type="h6"
 									weight="medium"
-									style={{ fontSize: 18, marginTop: 6 }}
+									style={{ fontSize: 18 }}
 								>
 									{props.currency}
 								</Text>
