@@ -1,3 +1,26 @@
+# v0.3.156 (Wed Jul 22 2026)
+
+#### 🐛 Bug Fix
+
+- Input Image [#22](https://github.com/Adopta-Un-Abuelo/react-components/pull/22) ([@sergiosanchez112](https://github.com/sergiosanchez112) [@guillermo-angeles](https://github.com/guillermo-angeles) [@danirc](https://github.com/danirc) [@gmalija](https://github.com/gmalija))
+- Remove .claude-configs submodule and update CLAUDE.md [#21](https://github.com/Adopta-Un-Abuelo/react-components/pull/21) ([@danirc](https://github.com/danirc))
+
+#### ⚠️ Pushed to `main`
+
+- feat: InputPrice: align row and conditional toast arrow ([@danirc](https://github.com/danirc))
+- feat: Reset custom price when input is focused ([@danirc](https://github.com/danirc))
+- refactor: InputPrice selection and error UI ([@danirc](https://github.com/danirc))
+- feat: Add custom amount validation and onErrorChange ([@danirc](https://github.com/danirc))
+
+#### Authors: 4
+
+- [@danirc](https://github.com/danirc)
+- [@sergiosanchez112](https://github.com/sergiosanchez112)
+- Guillermo Angeles ([@guillermo-angeles](https://github.com/guillermo-angeles))
+- Guillermo Marco Alija ([@gmalija](https://github.com/gmalija))
+
+---
+
 # v0.3.156 (Tue Jun 23 2026)
 
 #### 🐛 Bug Fix
