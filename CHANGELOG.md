@@ -1,3 +1,16 @@
+# v0.3.159 (Mon Sep 14 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'test' ([@danirc](https://github.com/danirc))
+- Fix location short-address naming ([@danirc](https://github.com/danirc))
+
+#### Authors: 1
+
+- [@danirc](https://github.com/danirc)
+
+---
+
 # v0.3.156 (Wed Jul 22 2026)
 
 #### 🐛 Bug Fix
