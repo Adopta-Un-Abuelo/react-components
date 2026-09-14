@@ -193,17 +193,14 @@ const InputLocation = ({
 								? countryObj[0].short_name
 								: undefined;
 
-						const addressString = `${route}${
-							routeNumber ? " " + routeNumber : ""
-						}, ${
-							zipCode ? zipCode : ""
-						}, ${city}, ${province}, ${country}`;
-						const sortAddress = `${city ? city + ", " : ""}${
-							province ? province + ", " : ""
-						}${country}`;
+						const addressString = `${route}${routeNumber ? " " + routeNumber : ""
+							}, ${zipCode ? zipCode : ""
+							}, ${city}, ${province}, ${country}`;
+						const shortAddress = `${city ? city + ", " : ""}${province ? province + ", " : ""
+							}${country}`;
 						const tempLocation = {
 							address: addressString,
-							sortAddress: sortAddress,
+							shortAddress: shortAddress,
 							route: route as string,
 							routeNumber: routeNumber as string,
 							location: {
@@ -219,8 +216,7 @@ const InputLocation = ({
 						onLocationChange && onLocationChange(tempLocation);
 						if (isForm) {
 							setInput(
-								`${route}${
-									routeNumber ? " " + routeNumber : ""
+								`${route}${routeNumber ? " " + routeNumber : ""
 								}`
 							);
 						} else {
@@ -331,7 +327,7 @@ export interface LocationProps {
 	/** Full formatted address string */
 	address?: string;
 	/** Short address (city, province, country) */
-	sortAddress?: string;
+	shortAddress?: string;
 	/** Street name */
 	route?: string;
 	/** Street number */
