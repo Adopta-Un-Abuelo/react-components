@@ -51,7 +51,7 @@ export const LocationWithDefaultValues: Story = {
 		design: "secondary",
 		defaultLocation: {
 			address: "Calle Orense, 12, 2, 5, 28020 Madrid, España",
-			sortAddress: "Madrid, Madrid, España",
+			shortAddress: "Madrid, Madrid, España",
 			route: "Calle Orense",
 			routeNumber: "12",
 			routeInfo: "Planta 2, Oficina 5",
