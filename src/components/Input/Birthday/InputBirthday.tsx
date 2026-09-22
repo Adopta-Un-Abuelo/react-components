@@ -39,6 +39,10 @@ const ErrorDiv = styled.div<{ $error: boolean }>`
 	animation-duration: 0.25s;
 `;
 
+// Un día o un mes está terminado si tiene dos dígitos, o uno solo que no sea "0"
+// (un "0" suelto todavía puede acabar siendo "01".."09", así que no avisamos aún).
+const isFieldComplete = (value: string) => value.length === 2 || value !== "0";
+
 const InputBirthday = ({
 	error,
 	onChange,
@@ -152,24 +156,20 @@ const InputBirthday = ({
 	}) => {
 		setErrorString(undefined);
 		setDate(date);
-		if (
-			date.day &&
-			date.day.length === 2 &&
-			date.month &&
-			date.month.length === 2 &&
-			date.year &&
-			date.year.length === 4
-		) {
-			//check if date is valid
-			const dateString = `${date.year}-${date.month}-${date.day}`;
-			const momentDate = moment(dateString, "YYYY-MM-DD", true);
-			const isValidDate = momentDate.isValid();
-			if (!isValidDate) {
-				setErrorString("Fecha no válida");
-			} else {
-				const temp: Date = momentDate.toDate();
-				onChange && onChange(temp);
-			}
+		const { day, month, year } = date;
+		if (!day || !month || !year || year.length !== 4) return;
+
+		//check if date is valid ("5" y "05" son el mismo día)
+		const dateString = `${year}-${month.padStart(2, "0")}-${day.padStart(
+			2,
+			"0"
+		)}`;
+		const momentDate = moment(dateString, "YYYY-MM-DD", true);
+		if (momentDate.isValid()) {
+			const temp: Date = momentDate.toDate();
+			onChange && onChange(temp);
+		} else if (isFieldComplete(day) && isFieldComplete(month)) {
+			setErrorString("Fecha no válida");
 		}
 	};
 
