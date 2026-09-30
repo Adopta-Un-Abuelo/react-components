@@ -1,3 +1,16 @@
+# v0.3.161 (Wed Sep 30 2026)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'test' ([@danirc](https://github.com/danirc))
+- Update package author metadata ([@danirc](https://github.com/danirc))
+
+#### Authors: 1
+
+- [@danirc](https://github.com/danirc)
+
+---
+
 # v0.3.160 (Tue Sep 22 2026)
 
 #### ⚠️ Pushed to `main`
