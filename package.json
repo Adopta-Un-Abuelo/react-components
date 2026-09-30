@@ -2,7 +2,7 @@
 	"name": "@adoptaunabuelo/react-components",
 	"version": "0.3.160",
 	"homepage": "https://github.com/Adopta-Un-Abuelo/react-components",
-	"author": "Guillermo Angeles <guilleangeles94@gmail.com>",
+	"author": "Adopta Un Abuelo <tech@adoptaunabuelo.com>",
 	"private": false,
 	"description": "A simple, customizable, and accessible library of React components",
 	"keywords": [
