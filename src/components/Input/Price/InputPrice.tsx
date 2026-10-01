@@ -42,7 +42,8 @@ const Cell = styled.div<{ $selected: boolean; $data: boolean }>`
 	align-items: center;
 	justify-content: center;
 	padding: 14px 16px;
-	height: 64px;
+	height: ${(props) => (props.$data ? "auto" : "64px")};
+	min-height: 64px;
 	box-sizing: border-box;
 	border-radius: 16px;
 	box-shadow: ${(props) =>
